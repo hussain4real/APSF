@@ -58,7 +58,10 @@ class AdminPanelProvider extends PanelProvider
                         hasAvatars: true,
                         slug: 'my-profile',
                         navigationGroup: 'Settings',
-                    ),
+                    )
+                    ->myProfileComponents([
+                       'subscription' => \App\Livewire\SubscriptionDetails::class,
+                    ]),
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')

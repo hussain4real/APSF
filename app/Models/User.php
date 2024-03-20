@@ -13,7 +13,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
+use Laravel\Paddle\Cashier;
 use Laravel\Paddle\Customer;
+use LogicException;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, MustVerifyEmail
 {
@@ -27,6 +29,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
     protected $fillable = [
         'first_name',
         'last_name',
+        'name',
         'email',
         'password',
     ];
@@ -54,22 +57,79 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         ];
     }
 
-    // public function getNameAttribute()
-    // {
-    //     return $this->first_name . ' ' . $this->last_name;
-    // }
 
-    // public function createAsCustomer(array $options = [])
-    // {
-    //     $options['name'] = $this->first_name . ' ' . $this->last_name;
-    //     return Customer::create([
-    //         'billable_id' => $this->id,
-    //         'billable_type' => static::class,
-    //         'email' => $this->email,
-    //         'paddle_id' => $this->id,
-    //         'name' => $options['name'],
-    //     ]);
-    // }
+
+
+    /**
+     * Get the billable model's name to associate with Paddle.
+     *
+     * @return string|null
+     */
+    public function paddleName(): string|null
+    {
+        return $this->name;;
+    }
+
+    /**
+     * Create a Paddle customer for the given model.
+     *
+     * @return \Laravel\Paddle\Customer
+     */
+    public function createAsCustomer(array $options = [])
+    {
+        if ($customer = $this->customer) {
+            return $customer;
+        }
+
+        if (!array_key_exists('name', $options) && $name = $this->paddleName()) {
+            $options['name'] = $this->paddleName();
+        }
+
+        if (!array_key_exists('email', $options) && $email = $this->paddleEmail()) {
+            $options['email'] = $email;
+        }
+
+        if (!isset($options['email'])) {
+            throw new LogicException('Unable to create Paddle customer without an email.');
+        }
+
+        $trialEndsAt = $options['trial_ends_at'] ?? null;
+
+        unset($options['trial_ends_at']);
+
+        // Attempt to find the customer by email address first...
+        $response = Cashier::api('GET', 'customers', [
+            'status' => 'active,archived',
+            'search' => $options['email'],
+        ])['data'][0] ?? null;
+
+        // If we can't find the customer by email, we'll create them on Paddle...
+        if (is_null($response)) {
+            $response = Cashier::api('POST', 'customers', $options)['data'];
+        }
+
+        if (Cashier::$customerModel::where('paddle_id', $response['id'])->exists()) {
+            throw new LogicException("The Paddle customer [{$response['id']}] already exists in the database.");
+        }
+
+        $customer = $this->customer()->make();
+        $customer->paddle_id = $response['id'];
+        $customer->name = $this->paddleName();
+        $customer->email = $response['email'];
+        $customer->trial_ends_at = $trialEndsAt;
+        $customer->save();
+
+        $this->refresh();
+
+        return $customer;
+    }
+
+    public function getPayLinkForProductPriceId($priceId)
+    {
+        return $this->checkout([$priceId]);
+    }
+
+
 
 
     public function canAccessPanel(Panel $panel): bool
