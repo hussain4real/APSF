@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Paddle\Billable;
 
-class School extends Model
+class Teacher extends Model
 {
     use Billable, HasFactory, SoftDeletes;
 
@@ -20,24 +20,13 @@ class School extends Model
      */
     protected $fillable = [
         'user_id',
-        'name',
-        'slug',
-        'description',
         'address',
-        'city',
-        'state',
-        'zip',
+        'subject_taught',
+        'qualification',
+        'date_of_birth',
+        'previous_experience',
         'country',
         'phone',
-        'email',
-        'website',
-        'date_founded',
-        'motto',
-        'logo_path',
-        'cover_path',
-        'number_of_students',
-        'number_of_teachers',
-        'type',
         'status',
     ];
 
@@ -46,10 +35,10 @@ class School extends Model
      *
      * @return array<string, string>
      */
-    protected function casts()
+    protected function casts(): array
     {
         return [
-            'date_founded' => 'date',
+            'date_of_birth' => 'date',
             'status' => Status::class,
         ];
     }

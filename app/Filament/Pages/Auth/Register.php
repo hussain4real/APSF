@@ -2,12 +2,16 @@
 
 namespace App\Filament\Pages\Auth;
 
+use App\Filament\Clusters\Schools\Resources\SchoolResource\Pages\CreateSchool;
+use App\Filament\Clusters\Students\Resources\StudentResource\Pages\CreateStudent;
+use App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages\CreateTeacher;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Wizard\Step;
+use Filament\Forms\Get;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
@@ -64,6 +68,59 @@ class Register extends BaseRegister
     public function getSteps(): array
     {
         return [
+            Step::make('Entity')
+                ->icon('heroicon-o-clipboard')
+                ->description(__('Please select your entity'))
+                ->schema([
+                    $this->getEntityFormField()
+                        ->live(onBlur: true),
+                ]),
+            Step::make('School Profile')
+                ->icon('heroicon-o-squares-plus')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'school';
+                })
+//                ->hidden(function (Get $get) {
+//                    return $get('entity') !== 'school';
+//                })
+                ->description(__('Please provide your school details'))
+                ->schema([
+                    CreateSchool::getNameFormField(),
+                    CreateSchool::getSlugFormField(),
+                    CreateSchool::getDescriptionFormField(),
+                    CreateSchool::getAddressFormField(),
+                    CreateSchool::getCityFormField(),
+                    CreateSchool::getStateFormField(),
+                ]),
+            Step::make('Teacher Profile')
+                ->icon('heroicon-o-user')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'teacher';
+                })
+                ->description(__('Please provide more details to complete your profile as teacher'))
+                ->schema([
+                    CreateTeacher::getAddressFormField(),
+                    CreateTeacher::getSubjectTaughtFormField(),
+                    CreateTeacher::getQualificationFormField(),
+                    CreateTeacher::getDateOfBirthFormField(),
+                    CreateTeacher::getPreviousExperienceFormField(),
+                    CreateTeacher::getCountryFormField(),
+                    CreateTeacher::getPhoneFormField(),
+                ]),
+            Step::make('Student Profile')
+                ->icon('heroicon-o-user-group')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'student';
+                })
+                ->description(__('Please provide more details to complete your profile as student'))
+                ->schema([
+                    CreateStudent::getSchoolNameFormField(),
+                    CreateStudent::getCurrentGradeFormField(),
+                    CreateStudent::getAddressFormField(),
+                    CreateStudent::getDateOfBirthFormField(),
+                    CreateStudent::getCountryFormField(),
+                    CreateStudent::getPhoneFormField(),
+                ]),
             Step::make('Authentication credentials')
                 ->icon('heroicon-o-key')
                 ->description(__('Please provide your authentication credentials'))
@@ -73,9 +130,9 @@ class Register extends BaseRegister
                     $this->getEmailFormComponent(),
                     $this->getPasswordFormComponent(),
                     $this->getPasswordConfirmationFormComponent(),
-                    $this->getEntityFormField(),
+
                 ]),
-            Step::make('S'),
+
         ];
     }
 
@@ -112,7 +169,16 @@ class Register extends BaseRegister
         $user = DB::transaction(function () {
             $data = $this->form->getState();
 
-            return $this->getUserModel()::create($data);
+            $user = $this->getUserModel()::create($data);
+
+            match ($data['entity']) {
+                'school' => $this->getSchoolModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'teacher' => $this->getTeacherModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
+                default => null,
+            };
+
+            return $user;
         });
 
         event(new \Illuminate\Auth\Events\Registered($user));
@@ -124,5 +190,21 @@ class Register extends BaseRegister
         session()->regenerate();
 
         return app(RegistrationResponse::class);
+    }
+
+    protected function getSchoolModel(): string
+    {
+        return \App\Models\School::class;
+    }
+
+    protected function getStudentModel(): string
+    {
+        return \App\Models\Student::class;
+
+    }
+
+    protected function getTeacherModel(): string
+    {
+        return \App\Models\Teacher::class;
     }
 }

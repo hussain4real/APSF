@@ -7,32 +7,28 @@ use Filament\Support\Contracts\HasDescription;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 
-enum Status: string implements HasColor,HasDescription,HasIcon, HasLabel
+enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
 {
     case ACTIVE = 'active';
     case INACTIVE = 'inactive';
     case PENDING = 'pending';
     case SUSPENDED = 'suspended';
+
     //
-    /**
-     * @return string|array|null
-     */
+
     public function getColor(): string|array|null
     {
-       return match($this){
-           self::ACTIVE => 'primary',
-           self::INACTIVE => 'gray',
-           self::PENDING => 'warning',
-           self::SUSPENDED => 'danger',
-       };
+        return match ($this) {
+            self::ACTIVE => 'primary',
+            self::INACTIVE => 'gray',
+            self::PENDING => 'warning',
+            self::SUSPENDED => 'danger',
+        };
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
-        return match($this){
+        return match ($this) {
             self::ACTIVE => 'Active',
             self::INACTIVE => 'Inactive',
             self::PENDING => 'Pending',
@@ -40,22 +36,16 @@ enum Status: string implements HasColor,HasDescription,HasIcon, HasLabel
         };
     }
 
-    /**
-     * @return string|null
-     */
     public function getIcon(): ?string
     {
-        return match($this){
-            self::ACTIVE => 'heroicon-check-circle',
-            self::INACTIVE => 'heroicon-x-circle',
-            self::PENDING => 'heroicon-clock',
-            self::SUSPENDED => 'heroicon-pause-circle',
+        return match ($this) {
+            self::ACTIVE => 'heroicon-o-check-circle',
+            self::INACTIVE => 'heroicon-o-signal-slash',
+            self::PENDING => 'heroicon-o-clock',
+            self::SUSPENDED => 'heroicon-o-x-mark',
         };
     }
 
-    /**
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->value;
