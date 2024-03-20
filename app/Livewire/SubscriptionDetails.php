@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
@@ -51,6 +52,13 @@ class SubscriptionDetails extends MyProfileComponent
 
     public function render()
     {
+       if(session()->has('success')){
+            Notification::make('subscribed')
+            ->success()
+            ->title('You are now subscribed!')
+            ->body('You are now subscribed to our service. Thank you for your support!')
+            ->send();
+         }
         return view('livewire.subscription-details-component', [
             'transactions' => $this->transactions,
             // 'checkout' => $this->checkout,
