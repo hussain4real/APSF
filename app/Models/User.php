@@ -3,13 +3,21 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Paddle\Billable;
+use Laravel\Paddle\Customer;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use Billable, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +25,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -43,5 +52,62 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // public function getNameAttribute()
+    // {
+    //     return $this->first_name . ' ' . $this->last_name;
+    // }
+
+    // public function createAsCustomer(array $options = [])
+    // {
+    //     $options['name'] = $this->first_name . ' ' . $this->last_name;
+    //     return Customer::create([
+    //         'billable_id' => $this->id,
+    //         'billable_type' => static::class,
+    //         'email' => $this->email,
+    //         'paddle_id' => $this->id,
+    //         'name' => $options['name'],
+    //     ]);
+    // }
+
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar_url;
+    }
+
+    public function getFilamentName(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
+    /**
+     * HasMany School
+     */
+    public function schools(): HasMany
+    {
+        return $this->hasMany(School::class);
+    }
+
+    /**
+     * HasMany Teacher
+     */
+    public function teachers(): HasMany
+    {
+        return $this->hasMany(Teacher::class);
+    }
+
+    /**
+     * HasMany Student
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
     }
 }
