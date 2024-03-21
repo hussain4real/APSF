@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubscriptionController;
 use App\Livewire\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,14 +18,10 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/subscribe', function (Request $request) {
-    
-    $checkout = $request->user()->subscribe('pri_01hsb68jw5jmjbms2xbmr5ba9s','default')
-        ->returnTo(route('confirmation'))
-       ;
+Route::get('/subscribe', [SubscriptionController::class, 'create'])->name('subscribe');
 
-    return view('subscribe', ['checkout' => $checkout]);
-})->name('subscribe');
+Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
+    ->name('update-payment-method');
 
 Route::get('/confirmation', Subscribe::class)
     ->name('confirmation');

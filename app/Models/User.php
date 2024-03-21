@@ -114,7 +114,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
 
         $customer = $this->customer()->make();
         $customer->paddle_id = $response['id'];
-        $customer->name = $this->paddleName();
+        $customer->name = $response['name'];
         $customer->email = $response['email'];
         $customer->trial_ends_at = $trialEndsAt;
         $customer->save();

@@ -80,9 +80,9 @@ class Register extends BaseRegister
                 ->visible(function (Get $get) {
                     return $get('entity') === 'school';
                 })
-//                ->hidden(function (Get $get) {
-//                    return $get('entity') !== 'school';
-//                })
+                //                ->hidden(function (Get $get) {
+                //                    return $get('entity') !== 'school';
+                //                })
                 ->description(__('Please provide your school details'))
                 ->schema([
                     CreateSchool::getNameFormField(),
@@ -177,10 +177,15 @@ class Register extends BaseRegister
                 'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
                 default => null,
             };
-
+            $user->createAsCustomer([
+                'name'=> $user->first_name . ' ' . $user->last_name,
+                'trial_ends_at' => now()->addDays(7)->format('Y-m-d H:i:s'),
+            ]);
             return $user;
         });
 
+
+        
         event(new \Illuminate\Auth\Events\Registered($user));
 
         $this->sendEmailVerificationNotification($user);
@@ -200,7 +205,6 @@ class Register extends BaseRegister
     protected function getStudentModel(): string
     {
         return \App\Models\Student::class;
-
     }
 
     protected function getTeacherModel(): string
