@@ -14,9 +14,12 @@
 
 
         @php
+        $user = auth()->user();
         $subscriptions = auth()->user()->subscriptions;
         $subscribed = auth()->user()->subscribed();
         $trial = auth()->user()->onTrial();
+        $genericTrial = auth()->user()->onGenericTrial();
+        $customer = auth()->user()->customer;
         @endphp
         <div>
             @if ($subscribed)
@@ -28,12 +31,12 @@
                 <li>Plan: {{ $subscription->type }}</li>
                 @if ($trial)
                 <small class="border border-amber-400 bg-amber-400 text-white rounded-md px-2 py-1 font-semibold">Trial Ends: 
-                    <span class="text-red-400">{{ $subscription->trial_ends_at->toFormattedDateString() }}
+                    <span class="text-red-400 ml-2">{{ $subscription->trial_ends_at->toFormattedDateString() }}
                     </span>
                     </small>
                 @else
                 <small class="border border-green-400 bg-green-400 text-white rounded-md px-2 py-1 font-semibold">Renewal Date: 
-                    <span class="text-red-400">{{ $subscription->ends_at->toFormattedDateString() }}
+                    <span class="text-red-400">{{ $subscription->ends_at->diffForHumans() }}
                     </span>
                     </small>
                 @endif
@@ -45,6 +48,14 @@
             @else
             {{$this->subscribeAction}}
             <x-filament-actions::modals />
+            @endif
+        </div>
+        <div>
+            @if ($genericTrial)
+            <p class="text-yellow-400 my-2 ">Your trial ends at: 
+                <span class="text-red-400">{{ $user->trialEndsAt()->diffForHumans() }}</span>
+            </p>
+                
             @endif
         </div>
 
