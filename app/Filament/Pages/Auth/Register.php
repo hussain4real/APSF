@@ -2,9 +2,13 @@
 
 namespace App\Filament\Pages\Auth;
 
+use App\Filament\Clusters\Contractors\Resources\ContractorResource\Pages\CreateContractor;
+use App\Filament\Clusters\EducationalConsultants\Resources\EducationalConsultantResource\Pages\CreateEducationalConsultant;
+use App\Filament\Clusters\Founders\Resources\FounderResource\Pages\CreateFounder;
 use App\Filament\Clusters\Schools\Resources\SchoolResource\Pages\CreateSchool;
 use App\Filament\Clusters\Students\Resources\StudentResource\Pages\CreateStudent;
 use App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages\CreateTeacher;
+use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource\Pages\CreateTrainingProvider;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
@@ -50,10 +54,15 @@ class Register extends BaseRegister
     public static function getEntityFormField(): ToggleButtons
     {
         return ToggleButtons::make('entity')
+            ->label(__('Profiles'))
             ->options([
                 'school' => 'School',
                 'teacher' => 'Teacher',
                 'student' => 'Student',
+                'contractor' => 'Contractor',
+                'founder' => 'Founder',
+                'training_provider' => 'Training Provider',
+                'educational_consultant' => 'Educational Consultant',
             ])
             ->inline();
     }
@@ -70,13 +79,13 @@ class Register extends BaseRegister
         return [
             Step::make('Entity')
                 ->icon('heroicon-o-clipboard')
-                ->description(__('Please select your entity'))
+                ->description(__('Please select your profile'))
                 ->schema([
                     $this->getEntityFormField()
-                        ->live(onBlur: true),
+                        ->live(onBlur: false),
                 ]),
             Step::make('School Profile')
-                ->icon('heroicon-o-squares-plus')
+                ->icon('heroicon-o-building-library')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'school';
                 })
@@ -93,7 +102,7 @@ class Register extends BaseRegister
                     CreateSchool::getStateFormField(),
                 ]),
             Step::make('Teacher Profile')
-                ->icon('heroicon-o-user')
+                ->icon('heroicon-o-user-plus')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'teacher';
                 })
@@ -108,7 +117,7 @@ class Register extends BaseRegister
                     CreateTeacher::getPhoneFormField(),
                 ]),
             Step::make('Student Profile')
-                ->icon('heroicon-o-user-group')
+                ->icon('heroicon-o-academic-cap')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'student';
                 })
@@ -120,6 +129,71 @@ class Register extends BaseRegister
                     CreateStudent::getDateOfBirthFormField(),
                     CreateStudent::getCountryFormField(),
                     CreateStudent::getPhoneFormField(),
+                ]),
+            Step::make('Contractor Profile')
+                ->icon('heroicon-o-clipboard-document')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'contractor';
+                })
+                ->description(__('Please provide more details to complete your profile as a contractor'))
+                ->schema([
+                    CreateContractor::getBusinessNameFormField(),
+                    CreateContractor::getBusinessTypeFormField(),
+                    CreateContractor::getBusinessAddressFormField(),
+                    CreateContractor::getBusinessPhoneFormField(),
+                    CreateContractor::getBusinessEmailFormField(),
+                    CreateContractor::getBusinessWebsiteFormField(),
+                    CreateContractor::getBusinessDescriptionFormField(),
+                    CreateContractor::getBusinessLicenseFormField(),
+                    CreateContractor::getBusinessLicenseExpFormField(),
+                ]),
+            Step::make('Founder Profile')
+                ->icon('heroicon-o-check-badge')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'founder';
+                })
+                ->description(__('Please provide more details to complete your profile as a founder'))
+                ->schema([
+                    CreateFounder::getCompanyNameFormField(),
+                    CreateFounder::getCompanyPhoneFormField(),
+                    CreateFounder::getCompanyAddressFormField(),
+                    CreateFounder::getCompanyCityFormField(),
+                    CreateFounder::getCompanyStateFormField(),
+                    CreateFounder::getCompanyCountryFormField(),
+                    CreateFounder::getCompanyWebsiteFormField(),
+                ]),
+            Step::make('Training Provider Profile')
+                ->icon('heroicon-o-clipboard-document-check')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'training_provider';
+                })
+                ->description(__('Please provide more details to complete your profile as a training provider'))
+                ->schema([
+                    CreateTrainingProvider::getInstitutionNameFormField(),
+                    CreateTrainingProvider::getInstitutionTypeFormField(),
+                    CreateTrainingProvider::getInstitutionAddressFormField(),
+                    CreateTrainingProvider::getInstitutionPhoneFormField(),
+                    CreateTrainingProvider::getInstitutionEmailFormField(),
+                    CreateTrainingProvider::getInstitutionWebsiteFormField(),
+                    CreateTrainingProvider::getInstitutionDescriptionFormField(),
+                    CreateTrainingProvider::getInstitutionLicenseFormField(),
+                    CreateTrainingProvider::getInstitutionLicenseExpFormField(),
+                ]),
+            Step::make('Educational Consultant Profile')
+                ->icon('heroicon-o-chart-pie')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'educational_consultant';
+                })
+                ->description(__('Please provide more details to complete your profile as an educational consultant'))
+                ->schema([
+                    CreateEducationalConsultant::getQualificationFormField(),
+                    CreateEducationalConsultant::getYearsOfExperienceFormField(),
+                    CreateEducationalConsultant::getSpecializationFormField(),
+                    CreateEducationalConsultant::getPhoneNumberFormField(),
+                    CreateEducationalConsultant::getAddressFormField(),
+                    CreateEducationalConsultant::getCityFormField(),
+                    CreateEducationalConsultant::getStateFormField(),
+                    CreateEducationalConsultant::getCountryFormField(),
                 ]),
             Step::make('Authentication credentials')
                 ->icon('heroicon-o-key')
@@ -175,6 +249,10 @@ class Register extends BaseRegister
                 'school' => $this->getSchoolModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'teacher' => $this->getTeacherModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'founder' => $this->getFounderModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
                 default => null,
             };
 
@@ -182,7 +260,7 @@ class Register extends BaseRegister
         });
 
         $user->createAsCustomer([
-            'name' => $user->first_name . ' ' . $user->last_name,
+            'name' => $user->first_name.' '.$user->last_name,
             'trial_ends_at' => now()->addDays(7)->format('Y-m-d H:i:s'),
         ]);
 
@@ -210,5 +288,25 @@ class Register extends BaseRegister
     protected function getTeacherModel(): string
     {
         return \App\Models\Teacher::class;
+    }
+
+    protected function getContractorModel(): string
+    {
+        return \App\Models\Contractor::class;
+    }
+
+    protected function getFounderModel(): string
+    {
+        return \App\Models\Founder::class;
+    }
+
+    protected function getTrainingProviderModel(): string
+    {
+        return \App\Models\TrainingProvider::class;
+    }
+
+    protected function getEducationalConsultantModel(): string
+    {
+        return \App\Models\EducationalConsultant::class;
     }
 }

@@ -5,11 +5,11 @@ namespace App\Models;
 use App\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Founder extends Model
 {
-    use HasFactory;
-
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +17,7 @@ class Founder extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
         'company_name',
         'company_website',
         'company_phone',
@@ -28,7 +29,7 @@ class Founder extends Model
         'status',
     ];
 
-     /**
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

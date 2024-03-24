@@ -6,10 +6,11 @@ use App\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EducationalConsultant extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +18,7 @@ class EducationalConsultant extends Model
      * @var string[]
      */
     protected $fillable = [
+        'user_id',
         'qualification',
         'years_of_experience',
         'specialization',

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('company_address')->nullable();
             $table->string('company_city')->nullable();
             $table->string('company_state')->nullable();
-            $table->string('company_zip')->nullable();
             $table->string('company_country')->nullable();
             $table->string('status')->default(\App\Status::PENDING->value)->nullable();
             $table->softDeletes();

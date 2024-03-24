@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('institution_logo')->nullable();
             $table->string('institution_description')->nullable();
             $table->string('license')->nullable();
-            $table->string('license_expiry_date')->nullable();
+            $table->date('license_expiry_date')->nullable();
             $table->string('status')->default(\App\Status::PENDING->value);
 
             $table->softDeletes();
