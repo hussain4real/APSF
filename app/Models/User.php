@@ -10,6 +10,7 @@ use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
@@ -57,17 +58,12 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         ];
     }
 
-
-
-
     /**
      * Get the billable model's name to associate with Paddle.
-     *
-     * @return string|null
      */
-    public function paddleName(): string|null
+    public function paddleName(): ?string
     {
-        return $this->name;;
+        return $this->name;
     }
 
     /**
@@ -81,15 +77,15 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
             return $customer;
         }
 
-        if (!array_key_exists('name', $options) && $name = $this->paddleName()) {
+        if (! array_key_exists('name', $options) && $name = $this->paddleName()) {
             $options['name'] = $this->paddleName();
         }
 
-        if (!array_key_exists('email', $options) && $email = $this->paddleEmail()) {
+        if (! array_key_exists('email', $options) && $email = $this->paddleEmail()) {
             $options['email'] = $email;
         }
 
-        if (!isset($options['email'])) {
+        if (! isset($options['email'])) {
             throw new LogicException('Unable to create Paddle customer without an email.');
         }
 
@@ -129,9 +125,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         return $this->checkout([$priceId]);
     }
 
-
-
-
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
@@ -156,18 +149,50 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
     }
 
     /**
-     * HasMany Teacher
+     * HasOne Teacher
      */
-    public function teachers(): HasMany
+    public function teacher(): HasOne
     {
-        return $this->hasMany(Teacher::class);
+        return $this->hasOne(Teacher::class);
     }
 
     /**
-     * HasMany Student
+     * HasOne Student
      */
-    public function students(): HasMany
+    public function student(): HasOne
     {
-        return $this->hasMany(Student::class);
+        return $this->hasOne(Student::class);
+    }
+
+    /**
+     * HasOne Founder
+     */
+    public function founder(): HasOne
+    {
+        return $this->hasOne(Founder::class);
+    }
+
+    /**
+     * HasOne TrainingProvider
+     */
+    public function trainingProvider(): HasOne
+    {
+        return $this->hasOne(TrainingProvider::class);
+    }
+
+    /**
+     * HasOne Contractor
+     */
+    public function contractor(): HasOne
+    {
+        return $this->hasOne(Contractor::class);
+    }
+
+    /**
+     * HasOne EducationalConsultant
+     */
+    public function educationalConsultant(): HasOne
+    {
+        return $this->hasOne(EducationalConsultant::class);
     }
 }
