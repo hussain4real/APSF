@@ -20,12 +20,19 @@ class SubscriptionController extends Controller
      */
     public function create(Request $request)
     {
-        $checkout = $request->user()->subscribe(['pri_01hsb68jw5jmjbms2xbmr5ba9s'])
+        $subscriptionName = 'Student Annual subscription fee';
+        $subscriptionType = 'student_annual_subscription_fee';
+        $subscriptionPriceID = 'pri_01hsb68jw5jmjbms2xbmr5ba9s';
+        $subscriptionPrice = auth()->user()->previewPrices([$subscriptionPriceID]);
+        $checkout = $request->user()->subscribe($subscriptionPriceID, $subscriptionType)
             ->returnTo(route('filament.admin.pages.my-profile'));
 
-        return view('subscribe', ['checkout' => $checkout]);
+        return view('subscribe', [
+            'checkout' => $checkout,
+            'subscriptionName' => $subscriptionName,
+            'subscriptionPrice' => $subscriptionPrice,
+        ]);
     }
-   
 
     public function updatePaymentMethod(Request $request)
     {
@@ -39,7 +46,8 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //after the user has subscribed, you can redirect them to a page
+        return redirect()->route('filament.admin.pages.my-profile');
     }
 
     /**

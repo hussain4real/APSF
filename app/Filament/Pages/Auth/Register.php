@@ -20,6 +20,7 @@ use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
 
 class Register extends BaseRegister
@@ -259,15 +260,14 @@ class Register extends BaseRegister
             return $user;
         });
 
-        $user->createAsCustomer([
-            'name' => $user->first_name.' '.$user->last_name,
-            'trial_ends_at' => now()->addDays(7)->format('Y-m-d H:i:s'),
-        ]);
+        //        event(new Registered($user));
 
-        event(new \Illuminate\Auth\Events\Registered($user));
+        //        $this->sendEmailVerificationNotification($user);
 
-        $this->sendEmailVerificationNotification($user);
-
+        //        $user->createAsCustomer([
+        //            'name' => $user->first_name.' '.$user->last_name,
+        //            'trial_ends_at' => now()->addDays(7)->format('Y-m-d H:i:s'),
+        //        ]);
         Filament::auth()->login($user);
 
         session()->regenerate();

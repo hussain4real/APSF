@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(Login::class)
             ->registration(Register::class)
-            ->emailVerification()
+//            ->emailVerification()
             ->passwordReset()
             ->colors([
                 'primary' => Color::Amber,
@@ -60,7 +60,7 @@ class AdminPanelProvider extends PanelProvider
                         navigationGroup: 'Settings',
                     )
                     ->myProfileComponents([
-                       'subscription' => \App\Livewire\SubscriptionDetails::class,
+                        'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
             ])
             ->databaseNotifications()

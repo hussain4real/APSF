@@ -7,7 +7,6 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -18,7 +17,7 @@ use Laravel\Paddle\Cashier;
 use Laravel\Paddle\Customer;
 use LogicException;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
 {
     use Billable, HasFactory, Notifiable;
 
