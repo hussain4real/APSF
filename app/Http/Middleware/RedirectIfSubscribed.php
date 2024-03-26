@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureUserIsSubscribed
+class RedirectIfSubscribed
 {
     /**
      * Handle an incoming request.
@@ -15,15 +15,10 @@ class EnsureUserIsSubscribed
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // $subscription = $request?->user()?->subscriptions?->first();
-        // $subscriptionType = $subscription?->type;
-        if ($request->user() && !$request->user()->subscribed()) {
-            // This user is not a paying customer...
-            return redirect('subscribe');
+        if($request->user() && $request->user()->subscribed()){
+            // This user is a paying customer...
+            return redirect(route('filament.admin.pages.my-profile'));
         }
-
-      
-
         return $next($request);
     }
 }

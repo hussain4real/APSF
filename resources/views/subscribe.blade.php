@@ -7,7 +7,7 @@
     <div class="w-full max-w-sm mx-auto container p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">{{$subscriptionName}}</h5>
         <div class="flex items-baseline text-gray-900 dark:text-white">
-            <span class="text-3xl font-semibold">$</span>
+            <span class="text-3xl font-semibold"></span>
             @foreach($subscriptionPrice as $price)
             <span class="text-5xl font-extrabold tracking-tight">{{$price->total()}}</span>
             @endforeach

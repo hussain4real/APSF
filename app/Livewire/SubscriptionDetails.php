@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -19,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
 use Jeffgreco13\FilamentBreezy\Pages\MyProfilePage;
+use Livewire\Attributes\On;
 
 class SubscriptionDetails extends MyProfileComponent implements HasActions, HasForms
 {
@@ -42,26 +44,36 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
         $this->transactions = $user->transactions;
         $this->subscriptions = $user->subscriptions;
         $this->subscriptionType = $this->subscriptions->first()->type;
-        $this->subscribed = $user->subscription($this->subscriptionType);
+        $this->subscribed = $user->subscription();
     }
 
-    public function pauseSubscription()
+    public function pauseSubscription(): void
     {
-        $user = auth()->user();
+        $user = User::where('id', auth()->id())->first();
         try {
-            $user->subscription($this->subscriptionType)->pause();
-            Notification::make('subscription-paused')
+            //            $user->subscription($this->subscriptionType)->pause();
+            $user->subscription($this->subscriptionType)->pauseNow();
+            Notification::make()
                 ->success()
                 ->color('success')
                 ->title('Subscription Paused')
                 ->body('Your subscription has been paused. You will not be billed until you resume your subscription.')
+                ->sendToDatabase($user);
+            Notification::make('subscription-paused')
+                ->success()
+                ->color('success')
+                ->title('Subscription Paused')
+                ->seconds(15)
+                ->body('Your subscription has been paused. You will not be billed until you resume your subscription.')
+                ->actions([
+                    ActionsAction::make('resume')
+                        ->button()
+                        ->dispatch('resumeSubscription')
+                        ->close(),
+
+                ])
                 ->send();
-            Notification::make('subscription-paused')
-                ->success()
-                ->color('success')
-                ->title('Subscription Paused')
-                ->body('Your subscription has been paused. You will not be billed until you resume your subscription.')
-                ->sendToDatabase(auth()->user());
+
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Notification::make('subscription-paused')
@@ -69,6 +81,64 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                 ->color('danger')
                 ->title('Subscription Not Paused')
                 ->body('There was an error pausing your subscription. Please try again later.')
+                ->send();
+        }
+    }
+
+    #[On('resumeSubscription')] //
+    public function resumeSubscription(): void
+    {
+        $user = User::where('id', auth()->id())->first();
+        try {
+            $user->subscription($this->subscriptionType)->resume();
+            Notification::make('subscription-resumed')
+                ->success()
+                ->color('success')
+                ->title('Subscription Resumed')
+                ->body('Your subscription has been resumed. You will be billed on the next billing cycle.')
+                ->sendToDatabase($user);
+            Notification::make('subscription-resumed')
+                ->success()
+                ->color('success')
+                ->title('Subscription Resumed')
+                ->body('Your subscription has been resumed. You will be billed on the next billing cycle.')
+                ->send();
+
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Notification::make('subscription-resumed')
+                ->danger()
+                ->color('danger')
+                ->title('Subscription Not Resumed')
+                ->body('There was an error resuming your subscription. Please try again later.')
+                ->send();
+        }
+    }
+
+    public function cancelSubscription(): void
+    {
+        $user = auth()->user();
+        try {
+            $user->subscription($this->subscriptionType)->cancel();
+            Notification::make('subscription-canceled')
+                ->success()
+                ->color('success')
+                ->title('Subscription Canceled')
+                ->body('Your subscription has been canceled. You will not be billed again.')
+                ->send();
+            Notification::make('subscription-canceled')
+                ->success()
+                ->color('success')
+                ->title('Subscription Canceled')
+                ->body('Your subscription has been canceled. You will not be billed again.')
+                ->sendToDatabase(auth()->user());
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            Notification::make('subscription-canceled')
+                ->danger()
+                ->color('danger')
+                ->title('Subscription Not Canceled')
+                ->body('There was an error canceling your subscription. Please try again later.')
                 ->send();
         }
     }

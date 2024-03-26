@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,9 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/subscribe', [SubscriptionController::class, 'create'])->name('subscribe');
+Route::get('/subscribe', [SubscriptionController::class, 'create'])
+->middleware(['auth',RedirectIfSubscribed::class])
+->name('subscribe');
 
 Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
     ->name('update-payment-method');

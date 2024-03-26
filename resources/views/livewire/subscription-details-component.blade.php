@@ -51,17 +51,23 @@
                 </div>
                 <div class="my-2">
                     <p class="text-3xl font-semibold">Fees</p>
-                    <span class="text-5xl font-extrabold tracking-tight">{{ $subscribed->nextPayment()->amount() }}</span>
+                    <span class="text-5xl font-extrabold tracking-tight">{{ $subscribed?->nextPayment()?->amount() }}</span>
                     <span class="ms-1 text-xl font-normal text-gray-500 dark:text-gray-400">/year</span>
                 </div>
                 <div class="flex justify-between items-baseline">
 {{--                    <span class="text-3xl font-semibold">Next Payment:</span>--}}
 {{--                    <span class="text-5xl font-extrabold tracking-tight">{{ $subscription->nextPayment()->total() }}</span>--}}
                     <div class="border border-slate-400 bg-slate-600 text-white rounded-md px-2 py-1 font-semibold">Renewal Date:
-                        <span class="text-red-400">{{ $subscribed->nextPayment()->date()->diffForHumans() }}
+                        <span class="text-red-400">{{ $subscribed?->nextPayment()?->date()?->diffForHumans() }}
                         </span>
                     </div>
-                <button wire:click="pauseSubscription" class="text-blue-400 bg-slate-700 px-2 py-1 rounded-md ml-2">Pause</button>
+                    @if ($subscribed->active())
+                    <button wire:click="pauseSubscription" class="text-blue-400 bg-slate-700 px-2 py-1 rounded-md ml-2">Pause</button>
+                    <button wire:click="cancelSubscription" class="text-red-400 bg-slate-700 px-2 py-1 rounded-md ml-2">Cancel</button>
+                    @endif
+                    @if($subscribed->paused())
+                    <button wire:click="resumeSubscription" class="text-green-400 bg-slate-700 px-2 py-1 rounded-md ml-2">Resume</button>
+                    @endif
                 </div>
 
                 @endforeach

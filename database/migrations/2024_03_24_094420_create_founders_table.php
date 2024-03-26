@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('founders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('company_name')->nullable();
-            $table->string('company_website')->nullable();
-            $table->string('company_phone')->nullable();
-            $table->string('company_address')->nullable();
-            $table->string('company_city')->nullable();
-            $table->string('company_state')->nullable();
-            $table->string('company_country')->nullable();
+            $table->string('school_name')->nullable();
+            $table->string('school_website')->nullable();
+            $table->string('school_phone')->nullable();
+            $table->string('school_address')->nullable();
+            $table->string('school_city')->nullable();
+            $table->string('school_state')->nullable();
+            $table->string('school_country')->nullable();
             $table->string('status')->default(\App\Status::PENDING->value)->nullable();
             $table->softDeletes();
             $table->timestamps();

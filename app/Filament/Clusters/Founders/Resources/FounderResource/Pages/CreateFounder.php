@@ -13,7 +13,7 @@ class CreateFounder extends CreateRecord
 
     public static function getCompanyNameFormField(): TextInput
     {
-        return TextInput::make('company_name')
+        return TextInput::make('school_name')
             ->translateLabel()
             ->required()
             ->maxLength(255);
@@ -21,15 +21,15 @@ class CreateFounder extends CreateRecord
 
     public static function getCompanyWebsiteFormField(): TextInput
     {
-        return TextInput::make('company_website')
-            ->translateLabel()
+        return TextInput::make('school_website')
+            ->label(__('Website'))
             ->maxLength(255);
     }
 
     public static function getCompanyPhoneFormField(): TextInput
     {
-        return TextInput::make('company_phone')
-            ->translateLabel()
+        return TextInput::make('school_phone')
+            ->label(__('Phone'))
             ->tel()
             ->required()
             ->maxLength(255);
@@ -37,31 +37,31 @@ class CreateFounder extends CreateRecord
 
     public static function getCompanyAddressFormField(): TextInput
     {
-        return TextInput::make('company_address')
-            ->translateLabel()
+        return TextInput::make('school_address')
+            ->label(__('Address'))
             ->required()
             ->maxLength(255);
     }
 
     public static function getCompanyCityFormField(): TextInput
     {
-        return TextInput::make('company_city')
-            ->translateLabel()
+        return TextInput::make('school_city')
+            ->label(__('City'))
             ->required()
             ->maxLength(255);
     }
 
     public static function getCompanyStateFormField(): TextInput
     {
-        return TextInput::make('company_state')
-            ->translateLabel()
+        return TextInput::make('school_state')
+            ->label(__('State'))
             ->maxLength(255);
     }
 
     public static function getCompanyCountryFormField(): TextInput
     {
-        return TextInput::make('company_country')
-            ->translateLabel()
+        return TextInput::make('school_country')
+            ->label(__('Country'))
             ->required()
             ->maxLength(255);
     }

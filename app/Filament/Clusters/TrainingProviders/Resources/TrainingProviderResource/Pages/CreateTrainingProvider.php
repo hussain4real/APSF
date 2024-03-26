@@ -15,7 +15,8 @@ class CreateTrainingProvider extends CreateRecord
     public static function getInstitutionNameFormField(): TextInput
     {
         return TextInput::make('institution_name')
-            ->translateLabel()
+            ->label(__('Institution Name'))
+            ->placeholder(__('ABC Institution'))
             ->required()
             ->maxLength(255);
     }
@@ -23,32 +24,41 @@ class CreateTrainingProvider extends CreateRecord
     public static function getInstitutionTypeFormField(): TextInput
     {
         return TextInput::make('institution_type')
-            ->translateLabel()
-            ->required()
+            ->label(__('Type'))
+            ->placeholder(__('Vocational Training Center'))
+
             ->maxLength(255);
     }
 
     public static function getInstitutionAddressFormField(): TextInput
     {
         return TextInput::make('institution_address')
-            ->translateLabel()
-            ->required()
+            ->label(__('Address'))
+            ->placeholder(__('123 Main St'))
+            ->prefixIcon('heroicon-o-map-pin')
+            ->prefixIconColor('primary')
             ->maxLength(255);
     }
 
     public static function getInstitutionPhoneFormField(): TextInput
     {
         return TextInput::make('institution_phone')
-            ->translateLabel()
+            ->label(__('Phone Number'))
+            ->placeholder('+123-4566-7890')
             ->tel()
-            ->required()
-            ->maxLength(255);
+            ->telRegex('/^\+\d{1,3}-\d{3}-\d{4}$/')
+            ->prefixIcon('heroicon-o-phone')
+            ->prefixIconColor('primary')
+            ->required();
     }
 
     public static function getInstitutionEmailFormField(): TextInput
     {
         return TextInput::make('institution_email')
-            ->translateLabel()
+            ->label(__('Email'))
+            ->placeholder('info@abc.com')
+            ->prefixIcon('heroicon-o-at-symbol')
+            ->prefixIconColor('primary')
             ->email()
             ->required()
             ->maxLength(255);
@@ -57,7 +67,11 @@ class CreateTrainingProvider extends CreateRecord
     public static function getInstitutionWebsiteFormField(): TextInput
     {
         return TextInput::make('institution_website')
-            ->translateLabel()
+            ->label(__('Website'))
+            ->prefix('https://')
+            ->placeholder('abc.com')
+            ->prefixIcon('heroicon-o-globe-alt')
+            ->prefixIconColor('primary')
             ->url()
             ->maxLength(255);
     }
@@ -65,21 +79,21 @@ class CreateTrainingProvider extends CreateRecord
     public static function getInstitutionDescriptionFormField(): TextInput
     {
         return TextInput::make('institution_description')
-            ->translateLabel()
+            ->label(__('Activities'))
             ->maxLength(255);
     }
 
     public static function getInstitutionLicenseFormField(): TextInput
     {
         return TextInput::make('institution_license')
-            ->translateLabel()
+            ->label(__('License'))
             ->maxLength(255);
     }
 
     public static function getInstitutionLicenseExpFormField(): DatePicker
     {
         return DatePicker::make('institution_license_expiry_date')
-            ->translateLabel()
+            ->label(__('Expiry Date'))
             ->native(false)
             ->placeholder('YYYY-MM-DD');
     }

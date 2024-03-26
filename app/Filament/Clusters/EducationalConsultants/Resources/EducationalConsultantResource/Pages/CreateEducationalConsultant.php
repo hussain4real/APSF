@@ -25,7 +25,7 @@ class CreateEducationalConsultant extends CreateRecord
             ->translateLabel()
             ->integer()
             ->required()
-            ->maxLength(255);
+            ->maxLength(50);
     }
 
     public static function getSpecializationFormField(): TextInput
@@ -39,17 +39,22 @@ class CreateEducationalConsultant extends CreateRecord
     public static function getPhoneNumberFormField(): TextInput
     {
         return TextInput::make('phone_number')
-            ->translateLabel()
+            ->label(__('Phone Number'))
+            ->placeholder('+123-4566-7890')
             ->tel()
-            ->required()
-            ->maxLength(255);
+            ->telRegex('/^\+\d{1,3}-\d{3}-\d{4}$/')
+            ->prefixIcon('heroicon-o-phone')
+            ->prefixIconColor('primary')
+            ->required();
     }
 
     public static function getAddressFormField(): TextInput
     {
         return TextInput::make('address')
-            ->translateLabel()
-            ->required()
+            ->label(__('Address'))
+            ->placeholder(__('123 Main St'))
+            ->prefixIcon('heroicon-o-map-pin')
+            ->prefixIconColor('primary')
             ->maxLength(255);
     }
 
@@ -57,7 +62,7 @@ class CreateEducationalConsultant extends CreateRecord
     {
         return TextInput::make('city')
             ->translateLabel()
-            ->required()
+            ->placeholder('Doha')
             ->maxLength(255);
     }
 
@@ -65,14 +70,15 @@ class CreateEducationalConsultant extends CreateRecord
     {
         return TextInput::make('state')
             ->translateLabel()
-            ->required()
+            ->placeholder('Ad Dawha')
             ->maxLength(255);
     }
 
     public static function getCountryFormField(): TextInput
     {
         return TextInput::make('country')
-            ->translateLabel()
+            ->label(__('Country'))
+            ->placeholder('Qatar')
             ->required()
             ->maxLength(255);
     }

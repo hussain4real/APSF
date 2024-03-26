@@ -15,65 +15,80 @@ class CreateContractor extends CreateRecord
     public static function getBusinessNameFormField(): TextInput
     {
         return TextInput::make('business_name')
-            ->translateLabel()
+            ->label(__('Business Name'))
+            ->placeholder(__('ABC Company'))
+            ->required()
             ->maxLength(255);
     }
 
     public static function getBusinessTypeFormField(): TextInput
     {
         return TextInput::make('business_type')
-            ->translateLabel()
+            ->label(__('Type'))
+            ->placeholder(__('Construction'))
             ->maxLength(255);
     }
 
     public static function getBusinessAddressFormField(): TextInput
     {
         return TextInput::make('business_address')
-            ->translateLabel()
+            ->label(__('Address'))
+            ->placeholder(__('123 Main St'))
             ->maxLength(255);
     }
 
     public static function getBusinessPhoneFormField(): TextInput
     {
         return TextInput::make('business_phone')
-            ->translateLabel()
+            ->label(__('Phone'))
+            ->required()
             ->tel()
-            ->maxLength(255);
+            ->telRegex('/^\+\d{1,3}-\d{3}-\d{4}$/')
+            ->prefixIcon('heroicon-o-phone')
+            ->prefixIconColor('primary')
+            ->placeholder('+123-4566-7890');
     }
 
     public static function getBusinessEmailFormField(): TextInput
     {
         return TextInput::make('business_email')
-            ->translateLabel()
+            ->label(__('Email'))
             ->email()
-            ->maxLength(255);
+            ->prefixIcon('heroicon-o-at-symbol')
+            ->prefixIconColor('primary')
+            ->placeholder('info@abc.com')
+            ->maxLength(200);
     }
 
     public static function getBusinessWebsiteFormField(): TextInput
     {
         return TextInput::make('business_website')
-            ->translateLabel()
+            ->label(__('Website'))
+            ->prefix('https://')
+            ->prefixIcon('heroicon-o-globe-alt')
+            ->prefixIconColor('primary')
+            ->placeholder('abc.com')
             ->maxLength(255);
     }
 
     public static function getBusinessDescriptionFormField(): TextInput
     {
         return TextInput::make('business_description')
-            ->translateLabel()
+            ->label(__('Description'))
             ->maxLength(255);
     }
 
     public static function getBusinessLicenseFormField(): TextInput
     {
         return TextInput::make('business_license')
-            ->translateLabel()
+            ->label(__('License'))
             ->maxLength(255);
     }
 
     public static function getBusinessLicenseExpFormField(): DatePicker
     {
         return DatePicker::make('business_license_exp')
-            ->translateLabel()
+            ->label(__('License Expiry'))
             ->native(false)
             ->placeholder('MM/DD/YYYY');
     }

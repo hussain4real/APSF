@@ -3,7 +3,6 @@
 namespace App\Filament\Clusters\Schools\Resources\SchoolResource\Pages;
 
 use App\Filament\Clusters\Schools\Resources\SchoolResource;
-use Filament\Actions;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -13,138 +12,146 @@ class CreateSchool extends CreateRecord
 {
     protected static string $resource = SchoolResource::class;
 
-    public static function getUserFormField():Select
+    public static function getUserFormField(): Select
     {
         return Select::make('user_id')
+            ->label(__('Contact Person'))
             ->relationship('user', 'id')
             ->required();
     }
 
-    public static function getNameFormField():TextInput
+    public static function getNameFormField(): TextInput
     {
         return TextInput::make('name')
+            ->label(__('Name'))
             ->required()
             ->maxLength(255);
     }
 
-    public static function getSlugFormField():TextInput
+    public static function getSlugFormField(): TextInput
     {
         return TextInput::make('slug')
-            ->required()
+            ->label(__('Slug'))
             ->maxLength(255);
     }
 
-    public static function getDescriptionFormField():TextInput
+    public static function getDescriptionFormField(): TextInput
     {
         return TextInput::make('description')
-            ->required()
+            ->label(__('Description'))
             ->maxLength(255);
     }
 
-    public static function getAddressFormField():TextInput
+    public static function getAddressFormField(): TextInput
     {
         return TextInput::make('address')
-            ->required()
+            ->label(__('Address'))
             ->maxLength(255);
     }
 
-    public static function getCityFormField():TextInput
+    public static function getCityFormField(): TextInput
     {
         return TextInput::make('city')
+            ->label(__('City'))
             ->required()
             ->maxLength(255);
     }
 
-    public static function getStateFormField():TextInput
+    public static function getStateFormField(): TextInput
     {
         return TextInput::make('state')
+            ->label(__('State'))
             ->required()
             ->maxLength(255);
     }
 
-    public static function getZipFormField():TextInput
+    public static function getZipFormField(): TextInput
     {
         return TextInput::make('zip')
-            ->required()
+            ->label(__('Zip'))
             ->maxLength(255);
     }
 
-    public static function getCountryFormField():TextInput
+    public static function getCountryFormField(): TextInput
     {
         return TextInput::make('country')
+            ->label(__('Country'))
             ->required()
             ->maxLength(255);
     }
 
-    public static function getPhoneFormField():TextInput
+    public static function getPhoneFormField(): TextInput
     {
         return TextInput::make('phone')
+            ->label(__('Phone'))
             ->required()
             ->maxLength(255);
     }
 
-    public static function getEmailFormField():TextInput
+    public static function getEmailFormField(): TextInput
     {
         return TextInput::make('email')
+            ->label(__('Email'))
             ->required()
             ->maxLength(255);
     }
 
-    public static function getWebsiteFormField():TextInput
+    public static function getWebsiteFormField(): TextInput
     {
         return TextInput::make('website')
-            ->required()
+            ->label(__('Website'))
             ->maxLength(255);
     }
 
-    public static function getDateFoundedFormField():TextInput
+    public static function getDateFoundedFormField(): TextInput
     {
         return TextInput::make('date_founded')
-            ->required()
+            ->label(__('Date Founded'))
             ->maxLength(255);
     }
 
-    public static function getMottoFormField():TextInput
+    public static function getMottoFormField(): TextInput
     {
         return TextInput::make('motto')
-            ->required()
+            ->label(__('Motto'))
             ->maxLength(255);
     }
 
-    public static function getLogoPathFormField():TextInput
+    public static function getLogoPathFormField(): TextInput
     {
         return TextInput::make('logo_path')
-            ->required()
+            ->label(__('Logo Path'))
             ->maxLength(255);
     }
 
-    public static function getCoverPathFormField():TextInput
+    public static function getCoverPathFormField(): TextInput
     {
         return TextInput::make('cover_path')
-            ->required()
+            ->label(__('Cover Path'))
             ->maxLength(255);
     }
 
-    public static function getNumberOfStudentsFormField():TextInput
+    public static function getNumberOfStudentsFormField(): TextInput
     {
         return TextInput::make('number_of_students')
-            ->required()
+            ->label(__('Number of Students'))
             ->maxLength(255);
     }
 
-    public static function getNumberOfTeachersFormField():TextInput
+    public static function getNumberOfTeachersFormField(): TextInput
     {
         return TextInput::make('number_of_teachers')
-            ->required()
+            ->label(__('Number of Teachers'))
             ->maxLength(255);
     }
 
-    public static function getTypeFormField():TextInput
+    public static function getTypeFormField(): TextInput
     {
         return TextInput::make('type')
-            ->required()
+            ->label(__('Type'))
             ->maxLength(255);
     }
+
     public function form(Form $form): Form
     {
         return $form

@@ -20,11 +20,40 @@ class SubscriptionController extends Controller
      */
     public function create(Request $request)
     {
-        $subscriptionName = 'Student Annual subscription fee';
+
         $subscriptionType = 'student_annual_subscription_fee';
-        $subscriptionPriceID = 'pri_01hsb68jw5jmjbms2xbmr5ba9s';
+        $studentSubscriptionPriceID = 'pri_01hsb68jw5jmjbms2xbmr5ba9s';
+        $teacherSubscriptionPriceID = 'pri_01hsb68jw5jmjbms2xbhfdsges';
+        $schoolSubscriptionPriceID = 'pri_01hsb68jw5jmj9872s2xbhfdsges';
+        $founderSubscriptionPriceID = 'pri_01hs233fmj9872s2xbhfdsges';
+        $contractorSubscriptionPriceID = 'pri_01hsb68jw920jn23hfdsges';
+        $trainingProviderSubscriptionPriceID = 'pri_01hsb68jw5jm2gd34es';
+        $educationalConsultantSubscriptionPriceID = 'pri_01hsb68jw5jmj9872fe332ges';
+        $memberSubscriptionPriceID = 'pri_01hsx4ytr4w9msrm8y666rkb2x';
+
+        $subscriptionName = match (true) {
+            $request->user()->student !== null => 'Student Annual Subscription Fee',
+            $request->user()->teacher !== null => 'Teacher Annual Subscription Fee',
+            $request->user()->school !== null => 'School Annual Subscription Fee',
+            $request->user()->founder !== null => 'Founder Annual Subscription Fee',
+            $request->user()->contractor !== null => 'Contractor Annual Subscription Fee',
+            $request->user()->trainingProvider !== null => 'Training Provider Annual Subscription Fee',
+            $request->user()->educationalConsultant !== null => 'Educational Consultant Annual Subscription Fee',
+            default => 'Member Annual Subscription Fee',
+        };
+
+        $subscriptionPriceID = match (true) {
+            $request->user()->student !== null => $studentSubscriptionPriceID,
+            $request->user()->teacher !== null => $teacherSubscriptionPriceID,
+            $request->user()->school !== null => $schoolSubscriptionPriceID,
+            $request->user()->founder !== null => $founderSubscriptionPriceID,
+            $request->user()->contractor !== null => $contractorSubscriptionPriceID,
+            $request->user()->trainingProvider !== null => $trainingProviderSubscriptionPriceID,
+            $request->user()->educationalConsultant !== null => $educationalConsultantSubscriptionPriceID,
+            default => $memberSubscriptionPriceID,
+        };
         $subscriptionPrice = auth()->user()->previewPrices([$subscriptionPriceID]);
-        $checkout = $request->user()->subscribe($subscriptionPriceID, $subscriptionType)
+        $checkout = $request->user()->subscribe($subscriptionPriceID)
             ->returnTo(route('filament.admin.pages.my-profile'));
 
         return view('subscribe', [
