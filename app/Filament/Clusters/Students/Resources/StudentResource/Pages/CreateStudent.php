@@ -23,6 +23,8 @@ class CreateStudent extends CreateRecord
     public static function getSchoolNameFormField(): TextInput
     {
         return TextInput::make('school_name')
+            ->label(__('School Name'))
+            ->placeholder(__('ABC School'))
             ->required()
             ->maxLength(255);
     }
@@ -30,6 +32,8 @@ class CreateStudent extends CreateRecord
     public static function getCurrentGradeFormField(): TextInput
     {
         return TextInput::make('current_grade')
+            ->label(__('Current Grade'))
+            ->placeholder(__('Grade 1'))
             ->required()
             ->maxLength(255);
     }
@@ -37,28 +41,34 @@ class CreateStudent extends CreateRecord
     public static function getAddressFormField(): TextInput
     {
         return TextInput::make('address')
-            ->required()
+            ->label(__('Address'))
+            ->placeholder(__('123 Main St'))
             ->maxLength(255);
     }
 
     public static function getDateOfBirthFormField(): DatePicker
     {
         return DatePicker::make('date_of_birth')
+            ->label(__('Date of Birth'))
+            ->placeholder(__('YYYY-MM-DD'))
+            ->native(false)
             ->required();
     }
 
     public static function getCountryFormField(): TextInput
     {
         return TextInput::make('country')
-            ->required()
+            ->label(__('Country'))
+            ->placeholder(__('Oman'))
             ->maxLength(255);
     }
 
     public static function getPhoneFormField(): TextInput
     {
         return TextInput::make('phone')
-            ->required()
-            ->maxLength(255);
+            ->label(__('Phone'))
+            ->tel()
+            ->placeholder(__('+1234567890'));
     }
 
     public function form(Form $form): Form

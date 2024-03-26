@@ -17,6 +17,12 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('name')->virtualAs('CONCAT(first_name, " ", last_name)');
             $table->string('email')->unique();
+            $table->string('phone_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
+            $table->string('status')->nullable()->default(\App\Status::ACTIVE->value);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

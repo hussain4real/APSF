@@ -4,6 +4,8 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
+use App\Http\Middleware\EnsureUserIsSubscribed;
+use App\Http\Middleware\RedirectIfSubscribed;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -33,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(Login::class)
             ->registration(Register::class)
-            ->emailVerification()
+//            ->emailVerification()
             ->passwordReset()
             ->colors([
                 'primary' => Color::Amber,
@@ -58,7 +60,10 @@ class AdminPanelProvider extends PanelProvider
                         hasAvatars: true,
                         slug: 'my-profile',
                         navigationGroup: 'Settings',
-                    ),
+                    )
+                    ->myProfileComponents([
+                        'subscription' => \App\Livewire\SubscriptionDetails::class,
+                    ]),
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
@@ -72,6 +77,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                EnsureUserIsSubscribed::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
