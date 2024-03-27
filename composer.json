@@ -10,7 +10,9 @@
     "require": {
         "php": "^8.2",
         "filament/filament": "^3.2",
+        "filament/spatie-laravel-media-library-plugin": "^3.2",
         "jeffgreco13/filament-breezy": "^2.3",
+        "joshembling/image-optimizer": "^1.4",
         "laravel/breeze": "^2.0",
         "laravel/cashier-paddle": "^2.4",
         "laravel/framework": "^11.0",

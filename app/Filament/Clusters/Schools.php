@@ -6,5 +6,5 @@ use Filament\Clusters\Cluster;
 
 class Schools extends Cluster
 {
-    protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 }
