@@ -4,6 +4,7 @@ namespace App\Filament\Clusters\Students\Resources;
 
 use App\Filament\Clusters\Students;
 use App\Filament\Clusters\Students\Resources\StudentResource\Pages;
+use App\Models\Scopes\MemberScope;
 use App\Models\Student;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
@@ -45,6 +46,7 @@ class StudentResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
+                MemberScope::class,
             ]);
     }
 }

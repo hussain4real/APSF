@@ -12,6 +12,7 @@ use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource\P
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
@@ -97,6 +98,15 @@ class Register extends BaseRegister
             ->label(__('Country'))
             ->placeholder(__('Nigeria'))
             ->maxLength(155);
+    }
+
+    public function getDateOfBirthFormComponent():DatePicker
+    {
+        return DatePicker::make('date_of_birth')
+            ->label(__('Date of Birth'))
+            ->placeholder(__('YYYY-MM-DD'))
+            ->native(false)
+            ->required();
     }
 
     public static function getEntityFormField(): ToggleButtons
@@ -269,6 +279,10 @@ class Register extends BaseRegister
                                     return $get('entity') === 'member';
                                 }),
                             $this->getCountryFormComponent()
+                                ->visible(function (Get $get) {
+                                    return $get('entity') === 'member';
+                                }),
+                            $this->getDateOfBirthFormComponent()
                                 ->visible(function (Get $get) {
                                     return $get('entity') === 'member';
                                 }),

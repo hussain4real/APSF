@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->string('status')->nullable()->default(\App\Status::ACTIVE->value);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

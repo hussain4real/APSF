@@ -3,13 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Scopes\MemberScope;
+use App\Status;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
@@ -21,6 +26,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+// #[ScopedBy([MemberScope::class])]
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, HasMedia
 {
     use Billable, HasFactory, Notifiable, InteractsWithMedia;
@@ -36,6 +42,12 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         'name',
         'email',
         'password',
+        'phone_number',
+        'address',
+        'city',
+        'state',
+        'country',
+        'status',
     ];
 
     /**
@@ -58,6 +70,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'status'=>Status::class,
         ];
     }
 

@@ -29,6 +29,10 @@ class Student extends Model
         'status',
     ];
 
+    protected $with=[
+        'user'
+    ];
+
     /**
      * Get the attributes that should be cast.
      *
