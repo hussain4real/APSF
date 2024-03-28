@@ -16,10 +16,14 @@ use Laravel\Paddle\Billable;
 use Laravel\Paddle\Cashier;
 use Laravel\Paddle\Customer;
 use LogicException;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, HasMedia
 {
-    use Billable, HasFactory, Notifiable;
+    use Billable, HasFactory, Notifiable, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -76,15 +80,15 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
             return $customer;
         }
 
-        if (! array_key_exists('name', $options) && $name = $this->paddleName()) {
+        if (!array_key_exists('name', $options) && $name = $this->paddleName()) {
             $options['name'] = $this->paddleName();
         }
 
-        if (! array_key_exists('email', $options) && $email = $this->paddleEmail()) {
+        if (!array_key_exists('email', $options) && $email = $this->paddleEmail()) {
             $options['email'] = $email;
         }
 
-        if (! isset($options['email'])) {
+        if (!isset($options['email'])) {
             throw new LogicException('Unable to create Paddle customer without an email.');
         }
 
@@ -193,5 +197,28 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
     public function educationalConsultant(): HasOne
     {
         return $this->hasOne(EducationalConsultant::class);
+    }
+
+    //spatie media library
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('previw')
+            ->fit(fit: Fit::Contain)
+            ->nonQueued();
+    }
+
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('profile')
+            ->singleFile();
+    }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->getFirstMediaUrl('profile_photos')) {
+            return $this->getFirstMediaUrl('profile_photos');
+        }
+        return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=#ff8503&background=ffd22b';
     }
 }
