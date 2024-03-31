@@ -4,23 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Review extends Model
 {
     use HasFactory;
 
-     protected $fillable = ['rating', 'comment', 'reviewable_id', 'reviewable_type', 'user_id'];
+    protected $fillable = ['rating', 'comment', 'reviewable_id', 'reviewable_type', 'user_id'];
 
-     /**
-      * BelongsTo User
-      */
-      public function user()
-      {
-          return $this->belongsTo(User::class);
-      }
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'rating' => 'float',
+        ];
+    }
 
-      /**
+    /**
+     * BelongsTo User
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * Get the parent commentable model (post or video).
      */
     public function reviewable(): MorphTo

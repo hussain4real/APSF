@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
@@ -27,9 +27,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 // #[ScopedBy([MemberScope::class])]
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, HasMedia
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName
 {
-    use Billable, HasFactory, Notifiable, InteractsWithMedia;
+    use Billable, HasFactory, InteractsWithMedia, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -48,6 +48,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         'state',
         'country',
         'status',
+        'rating',
     ];
 
     /**
@@ -70,7 +71,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'status'=>Status::class,
+            'status' => Status::class,
         ];
     }
 
@@ -93,15 +94,15 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
             return $customer;
         }
 
-        if (!array_key_exists('name', $options) && $name = $this->paddleName()) {
+        if (! array_key_exists('name', $options) && $name = $this->paddleName()) {
             $options['name'] = $this->paddleName();
         }
 
-        if (!array_key_exists('email', $options) && $email = $this->paddleEmail()) {
+        if (! array_key_exists('email', $options) && $email = $this->paddleEmail()) {
             $options['email'] = $email;
         }
 
-        if (!isset($options['email'])) {
+        if (! isset($options['email'])) {
             throw new LogicException('Unable to create Paddle customer without an email.');
         }
 
@@ -212,6 +213,50 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         return $this->hasOne(EducationalConsultant::class);
     }
 
+    /**
+     * HasMany Reviews
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * Get all of the user's reviews.
+     */
+    public function reviewees(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    /**
+     * Get the sum of all the user's ratings.
+     */
+    public function getRatingSumAttribute(): int
+    {
+        return $this->reviewees->sum('rating');
+    }
+
+    /**
+     * Get User Reviews
+     */
+    public function getReviewsAttribute()
+    {
+        return $this->reviewees()->get();
+    }
+
+    /**
+     * Get the average rating of the user.
+     */
+    public function getRatingAttribute(): float
+    {
+        if ($this->reviewees()->count() === 0) {
+            return 0.0;
+        }
+
+        return floatval(number_format($this->rating_sum / $this->reviewees()->count(), 2));
+    }
+
     //spatie media library
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -219,7 +264,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
             ->fit(fit: Fit::Contain)
             ->nonQueued();
     }
-
 
     public function registerMediaCollections(): void
     {
@@ -232,6 +276,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         if ($this->getFirstMediaUrl('profile_photos')) {
             return $this->getFirstMediaUrl('profile_photos');
         }
-        return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=#ff8503&background=ffd22b';
+
+        return 'https://ui-avatars.com/api/?name='.$this->name.'&color=#ff8503&background=ffd22b';
     }
 }
