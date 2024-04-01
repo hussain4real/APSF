@@ -116,7 +116,7 @@ class ViewContractor extends ViewRecord
                                                 ->placeholder('Enter your comment here'),
                                         ])
                                         ->action(function (array $data, Model $record): void {
-                                            //users should not be able to rate themselves
+                                            //entities should not be able to rate themselves
                                             //                            dd($record->user_id, auth()->id());
                                             if ($record->user_id === auth()->id()) {
                                                 Notification::make('Rating Error')

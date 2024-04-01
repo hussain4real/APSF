@@ -6,10 +6,12 @@ use App\Filament\Clusters\Members\Resources\UserResource;
 use App\Models\User;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\IconPosition;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
@@ -48,7 +50,7 @@ class ListUsers extends ListRecords
         return $table
             ->columns([
                 Stack::make([
-                    View::make('users.table.profile')
+                    View::make('entities.table.profile')
                         ->components([
                             TextColumn::make('name')
                                 ->label(__('Name'))
@@ -107,11 +109,19 @@ class ListUsers extends ListRecords
                     ViewAction::make(),
                     EditAction::make(),
                 ])
-                    ->button()
+                    ->link()
+                    ->icon('heroicon-m-ellipsis-horizontal')
+//                    ->iconButton()
+                    ->iconSize(IconSize::Medium)
+                    ->color(Color::Amber)
                     ->label(__('Actions'))
-                    ->size(ActionSize::Small)
+                    ->hiddenLabel(false)
+                    ->size(ActionSize::Large)
+                    ->iconPosition(IconPosition::Before)
+                    ->tooltip(__('Click to view available actions'))
                     ->extraAttributes([
-                        'class' => 'ml-16 my-1',
+                        'class' => 'mx-16',
+                        //                        ml-16 my-1
                     ]),
             ])
             ->bulkActions([

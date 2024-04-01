@@ -8,9 +8,12 @@ use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontWeight;
+use Filament\Support\Enums\IconPosition;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -44,10 +47,12 @@ class ListStudents extends ListRecords
     public function table(Table $table): Table
     {
         return $table
+            ->queryStringIdentifier('student')
             ->columns([
 
                 Stack::make([
-                    View::make('students.table.profile')
+                    View::make('entities.table.profile')
+
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Name'))
@@ -155,7 +160,7 @@ class ListStudents extends ListRecords
                                 ->placeholder('Enter your comment here'),
                         ])
                         ->action(function (array $data, Model $record): void {
-                            //users should not be able to rate themselves
+                            //entities should not be able to rate themselves
                             //                            dd($record->user_id, auth()->id());
                             if ($record->user_id === auth()->id()) {
                                 Notification::make('Rating Error')
@@ -191,11 +196,19 @@ class ListStudents extends ListRecords
                         }),
 
                 ])
-                    ->button()
+//                    ->link()
+                    ->icon('heroicon-m-ellipsis-horizontal')
+//                    ->iconButton()
+                    ->iconSize(IconSize::Medium)
+                    ->color(Color::Amber)
                     ->label(__('Actions'))
-                    ->size(ActionSize::Small)
+                    ->hiddenLabel(false)
+                    ->size(ActionSize::Large)
+                    ->iconPosition(IconPosition::Before)
+                    ->tooltip(__('Click to view available actions'))
                     ->extraAttributes([
-                        'class' => 'ml-16 my-1',
+                        'class' => 'mx-16',
+                        //                        ml-16 my-1
                     ]),
 
             ])

@@ -45,7 +45,7 @@ class ListFounders extends ListRecords
         return $table
             ->columns([
                 Stack::make([
-                    View::make('founders.table.profile')
+                    View::make('entities.table.profile')
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Name'))
@@ -119,7 +119,7 @@ class ListFounders extends ListRecords
                                 ->placeholder('Enter your comment here'),
                         ])
                         ->action(function (array $data, Model $record): void {
-                            //users should not be able to rate themselves
+                            //entities should not be able to rate themselves
                             //                            dd($record->user_id, auth()->id());
                             if ($record->user_id === auth()->id()) {
                                 Notification::make('Rating Error')
