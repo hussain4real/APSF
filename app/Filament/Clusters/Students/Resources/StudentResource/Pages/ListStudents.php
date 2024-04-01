@@ -115,18 +115,11 @@ class ListStudents extends ListRecords
                                 ->label(__('Rating'))
                                 ->state(function (Model $record): string {
                                     return $record->rating;
-                                    //                                    if ($record->reviews->count() > 0) {
-                                    //                                        return $record->rating_sum / $record->reviews->count();
-                                    //                                    }
-                                    //
-                                    //                                    return 0; // Return a default value if the student has no reviews
                                 })
                                 ->color('warning')
                                 ->size('sm')
                                 ->alignCenter()
-                                ->extraAttributes([
-                                    'class' => 'mt-4',
-                                ]),
+                                ->allowZero(),
 
                         ]),
 

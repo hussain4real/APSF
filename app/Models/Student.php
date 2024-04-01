@@ -56,7 +56,7 @@ class Student extends Model
     }
 
     /**
-     * Get all of the student's reviews.
+     * Get all the student's reviews.
      */
     public function reviews(): MorphMany
     {
@@ -84,10 +84,11 @@ class Student extends Model
      */
     public function getRatingAttribute(): float
     {
-        if ($this->reviews->count() > 0) {
-            return floatval(number_format($this->rating_sum / $this->reviews->count(), 2));
-        }
-
-        return 0.0;
+        return $this->reviews->avg('rating');
+        //        if ($this->reviews->count() > 0) {
+        //            return floatval(number_format($this->rating_sum / $this->reviews->count(), 2));
+        //        }
+        //
+        //        return 0.0;
     }
 }

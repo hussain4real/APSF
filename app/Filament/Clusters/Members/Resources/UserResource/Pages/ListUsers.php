@@ -17,14 +17,14 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Mokhosh\FilamentRating\Columns\RatingColumn;
 
 class ListUsers extends ListRecords
 {
@@ -78,66 +78,22 @@ class ListUsers extends ListRecords
                                 ->badge()
                                 ->alignCenter()
                                 ->extraAttributes([
-                                    'class' => 'mt-2'
+                                    'class' => 'mt-2',
                                 ]),
+                            RatingColumn::make('rating')
+                                ->label(__('Rating'))
+                                ->state(function (Model $record) {
+                                    return $record->rating;
+                                })
+                                ->size('sm')
+                                ->color('warning')
+                                ->alignCenter()
+                                ->allowZero(),
                         ])
-                        ->collapsed()
-                    // SpatieMediaLibraryImageColumn::make('profile_photo')
-                    //     ->collection('profile_photos')
-                    //     ->label(__('Profile Photo'))
-                    //     ->size(100)
-                    //     ->alignCenter()
-                    //     ->circular()
-                    //     ->defaultImageUrl(fn ($record) => $record->profile_photo_url)
-                    //     ->extraAttributes([
-                    //         'class' => 'my-4'
-                    //     ]),
-
-                    // TextColumn::make('name')
-                    //     ->label(__('Name'))
-                    //     ->icon('heroicon-o-user-circle')
-                    //     ->iconColor('primary')
-                    //     ->searchable()
-                    //     ->alignCenter(),
-                    // TextColumn::make('email')
-                    //     ->label(__('Email'))
-                    //     ->icon('heroicon-o-envelope')
-                    //     ->iconColor('primary')
-                    //     ->searchable()
-                    //     ->alignCenter(),
-                    // TextColumn::make('phone_number')
-                    //     ->label(__('Phone'))
-                    //     ->icon('heroicon-o-phone')
-                    //     ->iconColor('primary')
-                    //     ->searchable()
-                    //     ->alignCenter(),
-                    // TextColumn::make('address')
-                    //     ->searchable()
-                    //     ->alignCenter(),
-                    // TextColumn::make('country')
-                    //     ->label(__('Country'))
-                    //     ->icon('heroicon-o-flag')
-                    //     ->iconColor('primary')
-                    //     ->searchable()
-                    //     ->alignCenter(),
-                    // // Split::make([
-                    //     TextColumn::make('status')
-                    //         ->badge()
-                    //         ->alignCenter(),
-
-                    //     TextColumn::make('created_at')
-                    // ->label(__('Created'))
-                    // ->date(format: 'M d, Y')
-                    // ->badge()
-                    // ->icon('heroicon-o-calendar-days')
-                    // ->color('primary')
-                    // ->sortable()
-                    // ->toggleable(isToggledHiddenByDefault: true)
-                    // ->alignCenter(),
-
+                        ->collapsed(),
 
                 ])
-                    ->alignment(Alignment::Start)
+                    ->alignment(Alignment::Start),
             ])
             ->contentGrid([
                 'md' => 2,
@@ -155,8 +111,8 @@ class ListUsers extends ListRecords
                     ->label(__('Actions'))
                     ->size(ActionSize::Small)
                     ->extraAttributes([
-                        'class' => 'ml-16 my-1'
-                    ])
+                        'class' => 'ml-16 my-1',
+                    ]),
             ])
             ->bulkActions([
                 BulkActionGroup::make([

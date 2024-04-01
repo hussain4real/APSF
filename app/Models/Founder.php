@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Founder extends Model
@@ -29,6 +30,10 @@ class Founder extends Model
         'status',
     ];
 
+    protected $with = [
+        'user',
+    ];
+
     /**
      * Get the attributes that should be cast.
      *
@@ -47,5 +52,37 @@ class Founder extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get all of the founder's reviews.
+     */
+    public function reviews(): MorphMany
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
+    /**
+     * Get the sum of all the founder's ratings.
+     */
+    public function getRatingSumAttribute()
+    {
+        return $this->reviews->sum('rating');
+    }
+
+    /**
+     * Get Founder Reviews
+     */
+    public function getReviewsAttribute()
+    {
+        return $this->reviews()->get();
+    }
+
+    /**
+     * Get the average rating of the founder.
+     */
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews->avg('rating');
     }
 }

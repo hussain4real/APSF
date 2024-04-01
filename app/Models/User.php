@@ -222,7 +222,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     }
 
     /**
-     * Get all of the user's reviews.
+     * Get all the user's reviews.
      */
     public function reviewees(): MorphMany
     {
@@ -250,17 +250,18 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
      */
     public function getRatingAttribute(): float
     {
-        if ($this->reviewees()->count() === 0) {
-            return 0.0;
-        }
-
-        return floatval(number_format($this->rating_sum / $this->reviewees()->count(), 2));
+        return $this->reviewees->avg('rating');
+        //        if ($this->reviewees->count() > 0) {
+        //            return floatval(number_format($this->rating_sum / $this->reviewees->count(), 2));
+        //        }
+        //
+        //        return 0.0;
     }
 
     //spatie media library
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion('previw')
+        $this->addMediaConversion('preview')
             ->fit(fit: Fit::Contain)
             ->nonQueued();
     }
