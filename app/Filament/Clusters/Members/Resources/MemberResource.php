@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Clusters\Teachers\Resources;
+namespace App\Filament\Clusters\Members\Resources;
 
 use App\Filament\Clusters\Members;
-use App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages;
-use App\Models\Teacher;
+use App\Filament\Clusters\Members\Resources\MemberResource\Pages;
+use App\Models\Member;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -12,20 +12,17 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TeacherResource extends Resource
+class MemberResource extends Resource
 {
-    protected static ?string $model = Teacher::class;
+    protected static ?string $model = Member::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-pencil';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     protected static ?string $cluster = Members::class;
 
-    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+    protected static ?int $navigationSort = 2;
 
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Academics';
-    }
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function getNavigationBadge(): ?string
     {
@@ -40,22 +37,22 @@ class TeacherResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('subject_taught')
+                Tables\Columns\TextColumn::make('phone_number')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('qualification')
+                Tables\Columns\TextColumn::make('address')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('city')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('state')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('country')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('date_of_birth')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('previous_experience')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('country')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('phone')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
@@ -97,10 +94,10 @@ class TeacherResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeachers::route('/'),
-            'create' => Pages\CreateTeacher::route('/create'),
-            'view' => Pages\ViewTeacher::route('/{record}'),
-            'edit' => Pages\EditTeacher::route('/{record}/edit'),
+            'index' => Pages\ListMembers::route('/'),
+            'create' => Pages\CreateMember::route('/create'),
+            'view' => Pages\ViewMember::route('/{record}'),
+            'edit' => Pages\EditMember::route('/{record}/edit'),
         ];
     }
 

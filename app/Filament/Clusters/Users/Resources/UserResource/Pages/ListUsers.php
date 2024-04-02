@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Members\Resources\UserResource\Pages;
+namespace App\Filament\Clusters\Users\Resources\UserResource\Pages;
 
-use App\Filament\Clusters\Members\Resources\UserResource;
+use App\Filament\Clusters\Users\Resources\UserResource;
 use App\Models\User;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -85,7 +85,7 @@ class ListUsers extends ListRecords
                             RatingColumn::make('rating')
                                 ->label(__('Rating'))
                                 ->state(function (Model $record) {
-                                    return $record->rating;
+                                    return $record->rating ?? 0;
                                 })
                                 ->size('sm')
                                 ->color('warning')

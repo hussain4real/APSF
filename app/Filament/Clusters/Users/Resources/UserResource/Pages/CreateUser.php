@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Members\Resources\UserResource\Pages;
+namespace App\Filament\Clusters\Users\Resources\UserResource\Pages;
 
-use App\Filament\Clusters\Members\Resources\UserResource;
-use Filament\Actions;
+use App\Filament\Clusters\Users\Resources\UserResource;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;

@@ -10,47 +10,42 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class EducationalConsultant extends Model
+class Member extends Model
 {
     use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'qualification',
-        'years_of_experience',
-        'specialization',
-        'phone_number',
-        'address',
-        'city',
-        'state',
-        'country',
-        'status',
-    ];
+    protected $fillable =
+        [
+            'user_id',
+            'phone_number',
+            'address',
+            'city',
+            'state',
+            'country',
+            'date_of_birth',
+            'status',
+        ];
 
-    protected $with = [
-        'user',
-    ];
-
-    //cast
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
+            'date_of_birth' => 'date',
             'status' => Status::class,
         ];
     }
 
     /**
-     * Get the user that owns the educational consultant.
+     * BelongsTo Student
      */
     public function user(): BelongsTo
     {
@@ -58,7 +53,7 @@ class EducationalConsultant extends Model
     }
 
     /**
-     * Get all the educational consultant's reviews.
+     * Get all the member's reviews.
      */
     public function reviews(): MorphMany
     {
@@ -66,7 +61,7 @@ class EducationalConsultant extends Model
     }
 
     /**
-     * Get the sum of all the educational consultant's ratings.
+     * Get the sum of all the member's ratings.
      */
     public function getRatingSumAttribute(): int
     {
@@ -74,7 +69,7 @@ class EducationalConsultant extends Model
     }
 
     /**
-     * Get Educational consultant Reviews
+     * Get the member Reviews.
      */
     public function getReviewsAttribute(): Collection
     {
@@ -82,15 +77,10 @@ class EducationalConsultant extends Model
     }
 
     /**
-     * Get the average rating of the educational consultant.
+     * Get the average rating of the member.
      */
-    public function getRatingAttribute(): float
+    public function getAverageRatingAttribute(): float
     {
         return $this->reviews->avg('rating');
-        //        if ($this->reviews->count() > 0) {
-        //            return floatval(number_format($this->rating_sum / $this->reviews->count(), 2));
-        //        }
-        //
-        //        return 0.0;
     }
 }

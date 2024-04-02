@@ -5,15 +5,16 @@ namespace App\Filament\Pages\Auth;
 use App\Filament\Clusters\Contractors\Resources\ContractorResource\Pages\CreateContractor;
 use App\Filament\Clusters\EducationalConsultants\Resources\EducationalConsultantResource\Pages\CreateEducationalConsultant;
 use App\Filament\Clusters\Founders\Resources\FounderResource\Pages\CreateFounder;
+use App\Filament\Clusters\Members\Resources\MemberResource\Pages\CreateMember;
 use App\Filament\Clusters\Schools\Resources\SchoolResource\Pages\CreateSchool;
 use App\Filament\Clusters\Students\Resources\StudentResource\Pages\CreateStudent;
 use App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages\CreateTeacher;
 use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource\Pages\CreateTrainingProvider;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
+use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Wizard\Step;
@@ -22,7 +23,6 @@ use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
 
 class Register extends BaseRegister
@@ -100,7 +100,7 @@ class Register extends BaseRegister
             ->maxLength(155);
     }
 
-    public function getDateOfBirthFormComponent():DatePicker
+    public function getDateOfBirthFormComponent(): DatePicker
     {
         return DatePicker::make('date_of_birth')
             ->label(__('Date of Birth'))
@@ -250,6 +250,18 @@ class Register extends BaseRegister
                     CreateEducationalConsultant::getStateFormField(),
                     CreateEducationalConsultant::getCountryFormField(),
                 ]),
+            Step::make('Member Profile')
+                ->icon('heroicon-o-identification')
+                ->visible(function (Get $get) {
+                    return $get('entity') === 'member';
+                })
+                ->description(__('Please provide more details to complete your profile as a member'))
+                ->schema([
+                    CreateMember::getPhoneNumberFormField(),
+                    CreateMember::getAddressFormField(),
+                    CreateMember::getCountryFormField(),
+                    CreateMember::getDateOfBirthFormField(),
+                ]),
             Step::make('Authentication credentials')
                 ->icon('heroicon-o-key')
                 ->description(__('Please provide your authentication credentials'))
@@ -259,37 +271,7 @@ class Register extends BaseRegister
                     $this->getEmailFormComponent(),
                     $this->getPasswordFormComponent(),
                     $this->getPasswordConfirmationFormComponent(),
-                    Section::make('member information')
-                        ->description(__('Please provide your member information'))
-                        ->schema([
-                            $this->getPhoneNumberFormComponent()
-                                ->visible(function (Get $get) {
-                                    return $get('entity') === 'member';
-                                }),
-                            $this->getAddressFormComponent()
-                                ->visible(function (Get $get) {
-                                    return $get('entity') === 'member';
-                                }),
-                            $this->getCityFormComponent()
-                                ->visible(function (Get $get) {
-                                    return $get('entity') === 'member';
-                                }),
-                            $this->getStateFormComponent()
-                                ->visible(function (Get $get) {
-                                    return $get('entity') === 'member';
-                                }),
-                            $this->getCountryFormComponent()
-                                ->visible(function (Get $get) {
-                                    return $get('entity') === 'member';
-                                }),
-                            $this->getDateOfBirthFormComponent()
-                                ->visible(function (Get $get) {
-                                    return $get('entity') === 'member';
-                                }),
-                        ])
-                        ->visible(function (Get $get) {
-                            return $get('entity') === 'member';
-                        }),
+
                 ]),
 
         ];
@@ -338,15 +320,16 @@ class Register extends BaseRegister
                 'founder' => $this->getFounderModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
-                default => 'member',
+                'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
+                default => null,
             };
 
             return $user;
         });
 
-        //        event(new Registered($user));
+        event(new Registered($user));
 
-        //        $this->sendEmailVerificationNotification($user);
+        $this->sendEmailVerificationNotification($user);
 
         //        $user->createAsCustomer([
         //            'name' => $user->first_name.' '.$user->last_name,
@@ -358,6 +341,11 @@ class Register extends BaseRegister
 
         return app(RegistrationResponse::class);
     }
+
+    //    protected function mutateFormDataBeforeRegister(array $data): array
+    //    {
+    //
+    //    }
 
     protected function getSchoolModel(): string
     {
@@ -392,5 +380,10 @@ class Register extends BaseRegister
     protected function getEducationalConsultantModel(): string
     {
         return \App\Models\EducationalConsultant::class;
+    }
+
+    protected function getMemberModel(): string
+    {
+        return \App\Models\Member::class;
     }
 }

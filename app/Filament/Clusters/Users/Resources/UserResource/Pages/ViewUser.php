@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Clusters\Members\Resources\UserResource\Pages;
+namespace App\Filament\Clusters\Users\Resources\UserResource\Pages;
 
-use App\Filament\Clusters\Members\Resources\UserResource;
+use App\Filament\Clusters\Users\Resources\UserResource;
 use App\Models\Review;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;

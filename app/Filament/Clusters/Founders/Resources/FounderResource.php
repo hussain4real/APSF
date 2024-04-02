@@ -14,11 +14,20 @@ class FounderResource extends Resource
 {
     protected static ?string $model = Founder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-check-badge';
 
     protected static ?string $cluster = Founders::class;
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getNavigationBadge(): ?string
+    {
+        if (static::getModel()::count() > 0) {
+            return static::getModel()::count();
+        }
+
+        return null;
+    }
 
     public static function getRelations(): array
     {

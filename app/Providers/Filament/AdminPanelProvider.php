@@ -2,13 +2,17 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Clusters\Schools\Resources\SchoolResource;
+use App\Filament\Clusters\Students\Resources\StudentResource;
+use App\Filament\Clusters\Teachers\Resources\TeacherResource;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
 use App\Http\Middleware\EnsureUserIsSubscribed;
-use App\Http\Middleware\RedirectIfSubscribed;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -35,7 +39,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(Login::class)
             ->registration(Register::class)
-//            ->emailVerification()
+            ->emailVerification()
             ->passwordReset()
             ->colors([
                 'primary' => Color::Indigo,
@@ -65,6 +69,22 @@ class AdminPanelProvider extends PanelProvider
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
             ])
+//            ->navigationGroups([
+//                NavigationGroup::make('Academics')
+//                    ->label('Academics')
+//
+//                    ->icon('heroicon-o-academic-cap'),
+//            ])
+//            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+//                return $builder->groups([
+//                    NavigationGroup::make('Academics')
+//                        ->items([
+//                            ...StudentResource::getNavigationItems(),
+//                            ...TeacherResource::getNavigationItems(),
+//                            ...SchoolResource::getNavigationItems(),
+//                        ]),
+//                ]);
+//            })
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
             ->middleware([
@@ -77,7 +97,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                EnsureUserIsSubscribed::class,
+                //                EnsureUserIsSubscribed::class,
             ])
             ->authMiddleware([
                 Authenticate::class,

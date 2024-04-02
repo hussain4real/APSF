@@ -81,7 +81,7 @@ class ListFounders extends ListRecords
                             RatingColumn::make('student.rating')
                                 ->label(__('Rating'))
                                 ->state(function (Model $record): string {
-                                    return $record->rating;
+                                    return $record->rating ?? 0;
                                 })
                                 ->color('warning')
                                 ->size('sm')

@@ -1,18 +1,13 @@
 <?php
 
-namespace App\Filament\Clusters\Members\Resources;
+namespace App\Filament\Clusters\Users\Resources;
 
 use App\Filament\Clusters\Members;
-use App\Filament\Clusters\Members\Resources\UserResource\Pages;
-use App\Filament\Clusters\Members\Resources\UserResource\RelationManagers;
+use App\Filament\Clusters\Users\Resources\UserResource\Pages;
 use App\Models\Scopes\MemberScope;
 use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -24,18 +19,22 @@ class UserResource extends Resource
 
     protected static ?string $cluster = Members::class;
 
+    protected static ?int $navigationSort = 1;
+
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
-
-
-
-    public static function getModelLabel(): string
-    {
-        return 'Member';
-    }
 
     public static function getPluralModelLabel(): string
     {
-        return 'Members';
+        return 'Users';
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        if (static::getModel()::count() > 0) {
+            return static::getModel()::count();
+        }
+
+        return null;
     }
 
     public static function getRelations(): array
@@ -58,10 +57,10 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-        ->withoutGlobalScopes([
-            SoftDeletingScope::class,
-            // MemberScope::class,
-        ])
-        ->withGlobalScope('member', new MemberScope);
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+                // MemberScope::class,
+            ]);
+        //            ->withGlobalScope('member', new MemberScope);
     }
 }

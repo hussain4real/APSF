@@ -10,6 +10,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -27,7 +28,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 // #[ScopedBy([MemberScope::class])]
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
     use Billable, HasFactory, InteractsWithMedia, Notifiable;
 
@@ -42,11 +43,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         'name',
         'email',
         'password',
-        'phone_number',
-        'address',
-        'city',
-        'state',
-        'country',
         'status',
         'rating',
     ];
@@ -214,6 +210,14 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     }
 
     /**
+     * HasOne Member
+     */
+    public function member(): HasOne
+    {
+        return $this->hasOne(Member::class);
+    }
+
+    /**
      * HasMany Reviews
      */
     public function reviews(): HasMany
@@ -221,41 +225,139 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return $this->hasMany(Review::class);
     }
 
-    /**
-     * Get all the user's reviews.
-     */
-    public function reviewees(): MorphMany
-    {
-        return $this->morphMany(Review::class, 'reviewable');
-    }
+    //    /**
+    //     * Get all the user's reviews.
+    //     */
+    //    public function reviewees(): MorphMany
+    //    {
+    //        return $this->morphMany(Review::class, 'reviewable');
+    //    }
 
     /**
      * Get the sum of all the user's ratings.
      */
     public function getRatingSumAttribute(): int
     {
-        return $this->reviewees->sum('rating');
+        //get the sum of rating for related models
+        if ($this->teacher) {
+            return $this->teacher->reviews->sum('rating');
+        }
+
+        if ($this->student) {
+            return $this->student->reviews->sum('rating');
+        }
+
+        if ($this->schools) {
+            return $this->schools->reviews->sum('rating');
+        }
+
+        if ($this->founder) {
+            return $this->founder->reviews->sum('rating');
+        }
+
+        if ($this->trainingProvider) {
+            return $this->trainingProvider->reviews->sum('rating');
+        }
+
+        if ($this->contractor) {
+            return $this->contractor->reviews->sum('rating');
+        }
+
+        if ($this->educationalConsultant) {
+            return $this->educationalConsultant->reviews->sum('rating');
+        }
+
+        if ($this->member) {
+            return $this->member->reviews->sum('rating');
+        }
+
+        return 0;
     }
 
     /**
      * Get User Reviews
      */
-    public function getReviewsAttribute()
+    public function getReviewsAttribute(?int $schoolId)
     {
-        return $this->reviewees()->get();
+        //get the reviews for related models
+        if ($this->teacher) {
+            return $this->teacher->reviews()->get();
+        }
+
+        if ($this->student) {
+            return $this->student->reviews()->get();
+        }
+
+        $school = $this->schools()->find($schoolId);
+
+        if ($school) {
+            return $school->reviews()->get();
+        }
+
+        if ($this->founder) {
+            return $this->founder->reviews()->get();
+        }
+
+        if ($this->trainingProvider) {
+            return $this->trainingProvider->reviews()->get();
+        }
+
+        if ($this->contractor) {
+            return $this->contractor->reviews()->get();
+        }
+
+        if ($this->educationalConsultant) {
+            return $this->educationalConsultant->reviews()->get();
+        }
+
+        if ($this->member) {
+            return $this->member->reviews()->get();
+        }
+
+        return collect();
     }
 
     /**
      * Get the average rating of the user.
      */
-    public function getRatingAttribute(): float
+    public function getRatingAttribute(?int $schoolId): float
     {
-        return $this->reviewees->avg('rating');
-        //        if ($this->reviewees->count() > 0) {
-        //            return floatval(number_format($this->rating_sum / $this->reviewees->count(), 2));
-        //        }
-        //
-        //        return 0.0;
+        //get the average rating for related models
+        if ($this->teacher) {
+            return $this->teacher->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->student) {
+            return $this->student->reviews->avg('rating') ?? 0;
+        }
+
+        $school = $this->schools()->find($schoolId);
+
+        if ($school) {
+            return $school->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->founder) {
+            return $this->founder->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->trainingProvider) {
+            return $this->trainingProvider->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->contractor) {
+            return $this->contractor->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->educationalConsultant) {
+            return $this->educationalConsultant->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->member) {
+            return $this->member->reviews->avg('rating') ?? 0;
+        }
+
+        return 0;
     }
 
     //spatie media library
