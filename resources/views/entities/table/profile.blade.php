@@ -51,12 +51,14 @@
                 Founder
             @elseif($getRecord()->trainingProvider)
                 Training Provider
-            @elseif($getRecord()->schools)
-                School
+            @elseif($getRecord()->schools()->exists())
+                Schools
             @elseif($getRecord()->contractor)
                 Contractor
             @elseif($getRecord()->educationalConsultant)
                 Consultant
+            @else
+                {{class_basename($getRecord())}}
             @endif
         @else
             {{class_basename($getRecord())}}

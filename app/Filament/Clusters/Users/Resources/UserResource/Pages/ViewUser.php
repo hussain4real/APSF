@@ -85,12 +85,54 @@ class ViewUser extends ViewRecord
                                         ->hiddenLabel()
                                         ->color(Color::Yellow)
                                         ->link()
+                                        ->visible(function (Model $record) {
+                                            $user = auth()->user();
+                                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                                            $record->load($roles);
+                                            foreach ($roles as $role) {
+                                                if ($record->$role?->user_id === $user->id) {
+                                                    return false;
+
+                                                }
+
+                                                return true;
+                                            }
+                                        })
                                         ->tooltip(__('Rate this student'))
-                                        ->fillForm(fn ($record): array => [
-                                            $user = auth()->user(),
-                                            'rating' => $record->reviewees()->where('user_id', $user->id)->first()?->rating ?? 0,
-                                            'comment' => $record->reviewees()->where('user_id', $user->id)->first()?->comment ?? '',
-                                        ])
+                                        ->fillForm(function (Model $record): array {
+                                            $user = auth()->user();
+                                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                                            $record->load($roles);
+
+                                            $rating = 0;
+                                            $comment = '';
+
+                                            foreach ($roles as $role) {
+                                                if ($record->$role) {
+                                                    if ($role === 'schools') {
+                                                        foreach ($record->$role as $school) {
+                                                            $review = $school->reviews()->where('user_id', $user->id)->first();
+                                                            if ($review) {
+                                                                $rating = $review->rating;
+                                                                $comment = $review->comment;
+                                                                break;
+                                                            }
+                                                        }
+                                                    } else {
+                                                        $review = $record->$role->reviews()->where('user_id', $user->id)->first();
+                                                        if ($review) {
+                                                            $rating = $review->rating;
+                                                            $comment = $review->comment;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            return [
+                                                'rating' => $rating,
+                                                'comment' => $comment,
+                                            ];
+                                        })
                                         ->form([
                                             Rating::make('rating')
                                                 ->stars(5)
@@ -101,39 +143,26 @@ class ViewUser extends ViewRecord
                                                 ->placeholder('Enter your comment here'),
                                         ])
                                         ->action(function (array $data, Model $record): void {
-                                            //entities should not be able to rate themselves
-                                            //                                            dd($record->user_id, auth()->id());
-                                            if ($record->id === auth()->id()) {
-                                                Notification::make('Rating Error')
-                                                    ->title('Rating Error')
-                                                    ->danger()
-                                                    ->body('You cannot rate yourself')
-                                                    ->send();
+                                            $user = auth()->user();
+                                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                                            $record->load($roles);
 
-                                                return;
+                                            //                            Log::info('Rate action called', [$record, $user, $data]);
+                                            foreach ($roles as $role) {
+                                                if ($record->$role) {
+                                                    if ($role === 'schools') {
+                                                        foreach ($record->$role as $school) {
+                                                            $this->handleRatingAndComment($school, $user, $data);
+                                                        }
+                                                    } else {
+                                                        $this->handleRatingAndComment($record->$role, $user, $data);
+                                                    }
+                                                }
                                             }
-                                            //                            dd($data);
-                                            if ($record->reviewees()->where('user_id', auth()->id())->exists()) {
-                                                $record->reviewees()->where('user_id', auth()->id())->update([
-                                                    'rating' => $data['rating'],
-                                                    'comment' => $data['comment'],
-                                                ]);
-                                            } else {
-                                                $review = new Review([
-                                                    'rating' => $data['rating'],
-                                                    'comment' => $data['comment'],
-                                                    'reviewable_id' => $record->id,
-                                                    'reviewable_type' => get_class($record),
-                                                    'user_id' => auth()->id(),
-                                                ]);
-                                                $record->reviewees()->save($review);
-                                            }
-
-                                            Notification::make('Rating Updated')
-                                                ->title('Rating Updated')
-                                                ->success()
-                                                ->body('Rating has been updated successfully')
-                                                ->send();
+                                            //                            // Handle rating and commenting for normal users
+                                            //                            if (! $record->student && ! $record->teacher && ! $record->schools && ! $record->contractor && ! $record->educationalConsultant && ! $record->founder && ! $record->member && ! $record->trainingProvider) {
+                                            //                                $this->handleRatingAndComment($record, $user, $data);
+                                            //                            }
                                         }),
                                     Action::make('view_reviews')
                                         ->hiddenLabel()
@@ -218,5 +247,42 @@ class ViewUser extends ViewRecord
                 ])
                     ->columnSpanFull(),
             ]);
+    }
+
+    protected function handleRatingAndComment($entity, $user, $data): void
+    {
+        //        dd($user->id);
+        //        Log::info('handleRatingAndComment called', [$entity, $user, $data]);
+        if ($entity->user_id === $user->id) {
+            Notification::make('Rating Error')
+                ->title('Rating Error')
+                ->danger()
+                ->body('You cannot rate yourself')
+                ->send();
+
+            return;
+        }
+
+        if ($entity->reviews()->where('user_id', $user->id)->exists()) {
+            $entity->reviews()->where('user_id', $user->id)->update([
+                'rating' => $data['rating'],
+                'comment' => $data['comment'],
+            ]);
+        } else {
+            $review = new Review([
+                'rating' => $data['rating'],
+                'comment' => $data['comment'],
+                'reviewable_id' => $entity->id,
+                'reviewable_type' => get_class($entity),
+                'user_id' => $user->id,
+            ]);
+            $entity->reviews()->save($review);
+        }
+
+        Notification::make('Rating Updated')
+            ->title('Rating Updated')
+            ->success()
+            ->body('Rating has been updated successfully')
+            ->send();
     }
 }
