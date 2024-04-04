@@ -4,15 +4,13 @@ namespace App\Filament\Clusters\Chats\Resources;
 
 use App\Filament\Clusters\Chats;
 use App\Filament\Clusters\Chats\Resources\ChatResource\Pages;
-use App\Filament\Clusters\Chats\Resources\ChatResource\RelationManagers;
 use App\Models\Chat;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ChatResource extends Resource
 {
@@ -55,6 +53,10 @@ class ChatResource extends Resource
             ->filters([
                 //
             ])
+//            ->headerActions([
+//                Action::make('chat')
+//                    ->modalContent(view('vendor.Chatify.pages.app')),
+//            ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),

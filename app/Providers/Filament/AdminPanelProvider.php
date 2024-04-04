@@ -2,17 +2,13 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Clusters\Schools\Resources\SchoolResource;
-use App\Filament\Clusters\Students\Resources\StudentResource;
-use App\Filament\Clusters\Teachers\Resources\TeacherResource;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
 use App\Http\Middleware\EnsureUserIsSubscribed;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\NavigationBuilder;
-use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -69,22 +65,11 @@ class AdminPanelProvider extends PanelProvider
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
             ])
-//            ->navigationGroups([
-//                NavigationGroup::make('Academics')
-//                    ->label('Academics')
-//
-//                    ->icon('heroicon-o-academic-cap'),
-//            ])
-//            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-//                return $builder->groups([
-//                    NavigationGroup::make('Academics')
-//                        ->items([
-//                            ...StudentResource::getNavigationItems(),
-//                            ...TeacherResource::getNavigationItems(),
-//                            ...SchoolResource::getNavigationItems(),
-//                        ]),
-//                ]);
-//            })
+            ->navigationItems([
+                NavigationItem::make('Chat')
+                    ->icon('heroicon-o-chat-bubble-left-right')
+                    ->url('/chatify'),
+            ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
             ->middleware([
