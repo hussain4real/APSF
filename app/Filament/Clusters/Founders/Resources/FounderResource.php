@@ -5,9 +5,8 @@ namespace App\Filament\Clusters\Founders\Resources;
 use App\Filament\Clusters\Founders;
 use App\Filament\Clusters\Founders\Resources\FounderResource\Pages;
 use App\Models\Founder;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -15,30 +14,19 @@ class FounderResource extends Resource
 {
     protected static ?string $model = Founder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-check-badge';
 
     protected static ?string $cluster = Founders::class;
 
-    public static function table(Table $table): Table
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getNavigationBadge(): ?string
     {
-        return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                Tables\Filters\TrashedFilter::make(),
-            ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
-                ]),
-            ]);
+        if (static::getModel()::count() > 0) {
+            return static::getModel()::count();
+        }
+
+        return null;
     }
 
     public static function getRelations(): array

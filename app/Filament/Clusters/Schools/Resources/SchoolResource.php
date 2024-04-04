@@ -2,12 +2,10 @@
 
 namespace App\Filament\Clusters\Schools\Resources;
 
-use App\Filament\Clusters\Schools;
+use App\Filament\Clusters\Members;
 use App\Filament\Clusters\Schools\Resources\SchoolResource\Pages;
-use App\Filament\Clusters\Schools\Resources\SchoolResource\RelationManagers;
 use App\Models\School;
-use Filament\Forms;
-use Filament\Forms\Form;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,11 +16,27 @@ class SchoolResource extends Resource
 {
     protected static ?string $model = School::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?string $cluster = Schools::class;
+    protected static ?string $cluster = Members::class;
 
+    //    protected static ?string $navigationGroup = 'Academics';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Academics';
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        if (static::getModel()::count() > 0) {
+            return static::getModel()::count();
+        }
+
+        return null;
+    }
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function table(Table $table): Table
     {

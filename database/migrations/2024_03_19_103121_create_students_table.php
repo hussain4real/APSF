@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('phone')->nullable();
             $table->string('status')->default(\App\Status::PENDING->value)->nullable();
+        
 
             $table->softDeletes();
             $table->timestamps();

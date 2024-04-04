@@ -9,19 +9,26 @@ use Laravel\Paddle\Checkout;
 use Laravel\Paddle\Transaction;
 
 Route::view('/', 'welcome')
-->name('welcome');
+    ->name('welcome');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('/testemail', function () {
+    $user = App\Models\User::find(1);
+    $user->notify(new App\Notifications\TestEmail());
+
+    //redirect to welcome page
+    return redirect('/');
+});
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
 Route::get('/subscribe', [SubscriptionController::class, 'create'])
-->middleware(['auth',RedirectIfSubscribed::class])
-->name('subscribe');
+    ->middleware(['auth', RedirectIfSubscribed::class])
+    ->name('subscribe');
 
 Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
     ->name('update-payment-method');
@@ -29,15 +36,14 @@ Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaym
 Route::get('/confirmation', Subscribe::class)
     ->name('confirmation');
 
- 
 Route::get('/download-invoice/{transaction}', function (Request $request, Transaction $transaction) {
     return $transaction->redirectToInvoicePdf();
 })->name('download-invoice');
- 
+
 Route::get('/buy', function (Request $request) {
     $checkout = Checkout::guest(['pri_01hsb68jw5jmjbms2xbmr5ba9s'])
         ->returnTo(route('welcome'));
- 
+
     return view('subscribe', ['checkout' => $checkout]);
 });
 

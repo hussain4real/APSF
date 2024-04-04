@@ -2,12 +2,11 @@
 
 namespace App\Filament\Clusters\Contractors\Resources;
 
-use App\Filament\Clusters\Contractors;
 use App\Filament\Clusters\Contractors\Resources\ContractorResource\Pages;
+use App\Filament\Clusters\Members;
 use App\Models\Contractor;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -15,67 +14,21 @@ class ContractorResource extends Resource
 {
     protected static ?string $model = Contractor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-check';
 
-    protected static ?string $cluster = Contractors::class;
+    protected static ?string $cluster = Members::class;
 
-    public static function table(Table $table): Table
+    protected static ?int $navigationSort = 3;
+
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getNavigationBadge(): ?string
     {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('business_name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_type')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_address')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_phone')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_website')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_logo')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_description')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_license')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('business_license_exp')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                Tables\Filters\TrashedFilter::make(),
-            ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
-                ]),
-            ]);
+        if (static::getModel()::count() > 0) {
+            return static::getModel()::count();
+        }
+
+        return null;
     }
 
     public static function getRelations(): array
