@@ -3,13 +3,19 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Scopes\MemberScope;
+use App\Status;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
@@ -21,9 +27,10 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, HasMedia
+// #[ScopedBy([MemberScope::class])]
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-    use Billable, HasFactory, Notifiable, InteractsWithMedia;
+    use Billable, HasFactory, InteractsWithMedia, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +43,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         'name',
         'email',
         'password',
+        'status',
+        'rating',
     ];
 
     /**
@@ -58,6 +67,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'status' => Status::class,
         ];
     }
 
@@ -80,15 +90,15 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
             return $customer;
         }
 
-        if (!array_key_exists('name', $options) && $name = $this->paddleName()) {
+        if (! array_key_exists('name', $options) && $name = $this->paddleName()) {
             $options['name'] = $this->paddleName();
         }
 
-        if (!array_key_exists('email', $options) && $email = $this->paddleEmail()) {
+        if (! array_key_exists('email', $options) && $email = $this->paddleEmail()) {
             $options['email'] = $email;
         }
 
-        if (!isset($options['email'])) {
+        if (! isset($options['email'])) {
             throw new LogicException('Unable to create Paddle customer without an email.');
         }
 
@@ -199,14 +209,164 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         return $this->hasOne(EducationalConsultant::class);
     }
 
+    /**
+     * HasOne Member
+     */
+    public function member(): HasOne
+    {
+        return $this->hasOne(Member::class);
+    }
+
+    /**
+     * HasMany Reviews
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    //    /**
+    //     * Get all the user's reviews.
+    //     */
+    //    public function reviewees(): MorphMany
+    //    {
+    //        return $this->morphMany(Review::class, 'reviewable');
+    //    }
+
+    /**
+     * Get the sum of all the user's ratings.
+     */
+    public function getRatingSumAttribute(): int
+    {
+        //get the sum of rating for related models
+        if ($this->teacher) {
+            return $this->teacher->reviews->sum('rating');
+        }
+
+        if ($this->student) {
+            return $this->student->reviews->sum('rating');
+        }
+
+        if ($this->schools) {
+            return $this->schools->reviews->sum('rating');
+        }
+
+        if ($this->founder) {
+            return $this->founder->reviews->sum('rating');
+        }
+
+        if ($this->trainingProvider) {
+            return $this->trainingProvider->reviews->sum('rating');
+        }
+
+        if ($this->contractor) {
+            return $this->contractor->reviews->sum('rating');
+        }
+
+        if ($this->educationalConsultant) {
+            return $this->educationalConsultant->reviews->sum('rating');
+        }
+
+        if ($this->member) {
+            return $this->member->reviews->sum('rating');
+        }
+
+        return 0;
+    }
+
+    /**
+     * Get User Reviews
+     */
+    public function getReviewsAttribute(?int $schoolId)
+    {
+        //get the reviews for related models
+        if ($this->teacher) {
+            return $this->teacher->reviews()->get();
+        }
+
+        if ($this->student) {
+            return $this->student->reviews()->get();
+        }
+
+        $school = $this->schools()->find($schoolId);
+
+        if ($school) {
+            return $school->reviews()->get();
+        }
+
+        if ($this->founder) {
+            return $this->founder->reviews()->get();
+        }
+
+        if ($this->trainingProvider) {
+            return $this->trainingProvider->reviews()->get();
+        }
+
+        if ($this->contractor) {
+            return $this->contractor->reviews()->get();
+        }
+
+        if ($this->educationalConsultant) {
+            return $this->educationalConsultant->reviews()->get();
+        }
+
+        if ($this->member) {
+            return $this->member->reviews()->get();
+        }
+
+        return collect();
+    }
+
+    /**
+     * Get the average rating of the user.
+     */
+    public function getRatingAttribute(?int $schoolId): float
+    {
+        //get the average rating for related models
+        if ($this->teacher) {
+            return $this->teacher->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->student) {
+            return $this->student->reviews->avg('rating') ?? 0;
+        }
+
+        $school = $this->schools()->find($schoolId);
+
+        if ($school) {
+            return $school->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->founder) {
+            return $this->founder->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->trainingProvider) {
+            return $this->trainingProvider->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->contractor) {
+            return $this->contractor->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->educationalConsultant) {
+            return $this->educationalConsultant->reviews->avg('rating') ?? 0;
+        }
+
+        if ($this->member) {
+            return $this->member->reviews->avg('rating') ?? 0;
+        }
+
+        return 0;
+    }
+
     //spatie media library
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion('previw')
+        $this->addMediaConversion('preview')
             ->fit(fit: Fit::Contain)
             ->nonQueued();
     }
-
 
     public function registerMediaCollections(): void
     {
@@ -219,6 +379,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasName, 
         if ($this->getFirstMediaUrl('profile_photos')) {
             return $this->getFirstMediaUrl('profile_photos');
         }
-        return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=#ff8503&background=ffd22b';
+
+        return 'https://ui-avatars.com/api/?name='.$this->name.'&color=#ff8503&background=ffd22b';
     }
 }

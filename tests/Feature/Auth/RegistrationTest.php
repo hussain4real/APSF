@@ -12,7 +12,7 @@ test('registration screen can be rendered', function () {
         ->assertSeeVolt('pages.auth.register');
 });
 
-test('new users can register', function () {
+test('new entities can register', function () {
     $component = Volt::test('pages.auth.register')
         ->set('name', 'Test User')
         ->set('email', 'test@example.com')
