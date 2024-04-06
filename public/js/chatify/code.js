@@ -512,7 +512,7 @@ function sendMessage() {
         errorMessageCard(tempID);
         // error log
         console.error(
-          "Failed sending the message! Please, check your server response.again"
+          "Failed sending the message! Please, check your server response."
         );
       },
     });
