@@ -68,7 +68,7 @@ class AdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('Chat')
                     ->icon('heroicon-o-chat-bubble-left-right')
-                    ->url('/chatify'),
+                    ->url('/chat'),
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
