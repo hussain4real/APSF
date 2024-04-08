@@ -225,6 +225,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return $this->hasMany(Review::class);
     }
 
+    public function livefeeds(): HasMany
+    {
+        return $this->hasMany(Livefeed::class);
+    }
+
     //    /**
     //     * Get all the user's reviews.
     //     */

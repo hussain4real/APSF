@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
@@ -15,6 +16,9 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('livefeed', [LiveFeedController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('livefeeds');
 Route::get('/testemail', function () {
     $user = App\Models\User::find(1);
     $user->notify(new App\Notifications\TestEmail());

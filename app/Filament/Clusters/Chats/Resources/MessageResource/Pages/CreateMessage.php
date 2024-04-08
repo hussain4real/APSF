@@ -25,9 +25,9 @@ class CreateMessage extends CreateRecord
     }
 
     #[On('echo:chat-channel,MessageEvent')]
-    public function listenForMessageEvent()
+    public function listenForMessageEvent($event)
     {
-        dd('MessageEvent');
+        dd($event);
 
     }
 }

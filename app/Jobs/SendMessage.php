@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Events\MessageEvent;
-use App\Models\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,7 +16,7 @@ class SendMessage implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public Message $message)
+    public function __construct(public array $message)
     {
         //
     }
