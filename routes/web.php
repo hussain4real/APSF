@@ -9,8 +9,22 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Paddle\Checkout;
 use Laravel\Paddle\Transaction;
 
-Route::view('/', 'welcome')
+Route::view('/', 'home.welcome')
     ->name('welcome');
+Route::view('/about', 'home.about')
+    ->name('about');
+Route::view('/founders-committee', 'home.founders_committee')
+    ->name('founders-committee');
+Route::view('/board-of-trustees', 'home.board_of_trustees')
+    ->name('board-of-trustees');
+Route::view('/general-secretariat', 'home.general_secretariat')
+    ->name('general-secretariat');
+Route::view('/services', 'home.services')
+    ->name('services');
+Route::view('/events', 'home.events')
+    ->name('events');
+Route::view('/contact', 'home.contact')
+    ->name('contact');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -51,4 +65,4 @@ Route::get('/buy', function (Request $request) {
     return view('subscribe', ['checkout' => $checkout]);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
