@@ -14,6 +14,8 @@ export default {
         './vendor/filament/**/*.blade.php',
 
         './resources/view/**/*.blade.php',
+
+
     ],
 
     theme: {
