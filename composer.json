@@ -16,10 +16,12 @@
         "laravel/breeze": "^2.0",
         "laravel/cashier-paddle": "^2.4",
         "laravel/framework": "^11.0",
+        "laravel/reverb": "@beta",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
         "mokhosh/filament-rating": "^1.1",
+        "munafio/chatify": "^1.6",
         "symfony/http-client": "^7.0",
         "symfony/mailgun-mailer": "^7.0"
     },
@@ -54,7 +56,8 @@
             "npm run build"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan chatify:publish --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
