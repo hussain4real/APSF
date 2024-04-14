@@ -57,14 +57,20 @@ new class extends Component {
                         </li>
                     @endguest
                     @auth
+
                         <!-- Settings Dropdown -->
                         <div class="main-menu-4 menu-anim">
+
                             <x-dropdown align="right" width="20">
                                 <x-slot name="trigger">
                                     <button
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                                        <div x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name"
-                                            x-on:profile-updated.window="name = $event.detail.name"></div>
+                                        <div x-data="{{ json_encode([
+                                            'name' => auth()->user()->name,
+                                        ]) }}" x-text="name"
+                                            x-on:profile-updated.window="name = $event.detail.name">
+
+                                        </div>
 
                                         <div class="ms-1">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +84,14 @@ new class extends Component {
                                 </x-slot>
 
                                 <x-slot name="content">
+                                    <span class="notification">
+
+                                        <a href="route('filament.admin.pages.dashboard')">
+
+                                            @livewire('database-notifications')
+
+                                        </a>
+                                    </span>
                                     <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
                                         {{ __('Dashboard') }}
                                     </x-dropdown-link>
@@ -118,6 +132,11 @@ new class extends Component {
         .main-menu-4.menu-anim {
             position: relative;
             display: inline-block;
+        }
+
+        .notification {
+            display: inline-block;
+            margin-right: -1rem;
         }
 
         .main-menu-4.menu-anim .dropdown {
