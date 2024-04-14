@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
 use App\Http\Middleware\EnsureUserIsSubscribed;
+use App\Models\ChMessage;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -12,6 +13,8 @@ use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Support\Assets\Css;
+use Filament\Support\Assets\Js;
 use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentView;
 use Filament\Widgets;
@@ -21,6 +24,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
@@ -38,7 +42,7 @@ class AdminPanelProvider extends PanelProvider
             ->emailVerification()
             ->passwordReset()
             ->colors([
-                'primary' => Color::Indigo,
+                'primary' => Color::Teal,
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
@@ -68,7 +72,19 @@ class AdminPanelProvider extends PanelProvider
             ->navigationItems([
                 NavigationItem::make('Chat')
                     ->icon('heroicon-o-chat-bubble-left-right')
-                    ->url('/chat'),
+                    ->url('/chat')
+                    ->badge(function() {
+                        $messages = ChMessage::where('to_id', Auth::id())->where('seen', false)->count();
+                        return $messages > 0 ? $messages : null;
+                    })
+                    ->badgeTooltip(function() {
+                        $messages = ChMessage::where('to_id', Auth::id())->where('seen', false)->count();
+                        return "You have {$messages} unread messages";
+                    }),
+                    NavigationItem::make('Homepage')
+                    ->icon('heroicon-o-arrow-uturn-up')
+                    ->url('/')
+                    ->sort(1),
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
@@ -86,6 +102,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->assets([
+                // Css::make('style', 'css/chatify/style.css'),
+                // Js::make('code', 'public/js/chatify/code.js'),
             ]);
     }
 

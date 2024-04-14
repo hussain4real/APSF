@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     {{-- <link rel="stylesheet" href="style.css"> --}}
+    
     @vite('public/assets/css/master.css')
 </head>
 
