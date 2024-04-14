@@ -1,8 +1,11 @@
 <?php
 
+use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new class extends Component {
+new
+
+class extends Component {
     #[\Livewire\Attributes\Validate('required|string|max:255')]
     public string $message = '';
 
@@ -18,7 +21,7 @@ new class extends Component {
     }
 }; ?>
 
-<div>
+<div class="mt-24">
     <form wire:submit="store">
         <textarea
             wire:model="message"
@@ -27,6 +30,7 @@ new class extends Component {
         ></textarea>
 
         <x-input-error :messages="$errors->get('message')" class="mt-2" />
-        <x-primary-button class="mt-4">{{ __('Livefeed') }}</x-primary-button>
+        <x-primary-button class="mt-4 bg-primary-700 hover:bg-primary-500">{{ __('Post') }}</x-primary-button>
     </form>
+    <livewire:livefeeds.list />
 </div>

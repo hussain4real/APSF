@@ -17,7 +17,7 @@ return [
     'broadcasting' => [
 
         // 'echo' => [
-        //     'broadcaster' => 'pusher',
+        //     'broadcaster' => 'reverb',
         //     'key' => env('VITE_PUSHER_APP_KEY'),
         //     'cluster' => env('VITE_PUSHER_APP_CLUSTER'),
         //     'wsHost' => env('VITE_PUSHER_HOST'),
@@ -27,6 +27,22 @@ return [
         //     'disableStats' => true,
         //     'encrypted' => true,
         //     'forceTLS' => true,
+        // ],
+
+
+        // 'echo' => [
+        //     'broadcaster' => 'pusher',
+        //     'debug' => env('APP_DEBUG', false),
+        //     'key' => env('PUSHER_APP_KEY'),
+        //     'secret' => env('PUSHER_APP_SECRET'),
+        //     'app_id' => env('PUSHER_APP_ID'),
+        //     'cluster' => env('PUSHER_APP_CLUSTER'),
+        //     'wsHost' => env('PUSHER_HOST'),
+        //     'wsPort' => env('PUSHER_PORT'),
+        //     'wssPort' => env('PUSHER_PORT'),
+        //     'encrypted' => true,
+        //     'forceTLS' => env('PUSHER_SCHEME', 'https') === 'https',
+
         // ],
 
     ],
