@@ -122,66 +122,105 @@ new class extends Component {
 
     <!-- Offcanvas area end -->
     <style>
+.main-menu-4.menu-anim {
+    position: relative;
+    display: inline-block;
+}
 
-        .px-3 {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
+.main-menu-4.menu-anim .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 20rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
+    margin-top: 0.125rem;
+    z-index: 1000;
+    display: none;
+}
 
-        .py-2 {
+.main-menu-4.menu-anim .dropdown.show {
+    display: block;
+}
 
-            padding-bottom: 0.5rem;
-        }
+.main-menu-4.menu-anim .dropdown-link {
+    display: block;
+    padding: 0.5rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
 
-        .border-transparent {
-            border-color: transparent;
-        }
+.main-menu-4.menu-anim .dropdown-link:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
 
-        .text-sm {
-            font-size: 0.875rem;
-        }
+.main-menu-4.menu-anim .dropdown-link:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
 
-        .leading-4 {
-            line-height: 1rem;
-        }
+.main-menu-4.menu-anim button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #6b7280;
+    background-color: #ffffff;
+    border-radius: 0.375rem;
+    border-width: 1px;
+    border-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
-        .font-medium {
-            font-weight: 500;
-        }
+.main-menu-4.menu-anim button:hover {
+    color: #4b5563;
+    background-color: #f9fafb;
+}
 
-        .rounded-md {
-            border-radius: 0.375rem;
-        }
+.main-menu-4.menu-anim button:focus {
+    outline: 0;
+    color: #4b5563;
+    background-color: #f9fafb;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+}
 
-        .text-gray-500 {
-            color: #6b7280;
-        }
+.main-menu-4.menu-anim button svg {
+    height: 1.5em;
+    width: 1.5em;
+}
 
-        .bg-white {
-            background-color: #ffffff;
-        }
+.main-menu-4.menu-anim button svg path.inline-flex {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
 
-        .hover-text-gray-700:hover {
-            color: #374151;
-        }
+.main-menu-4.menu-anim button svg path.hidden {
+    display: none;
+}
 
-        .focus-outline-none:focus {
-            outline: 2px solid transparent;
-            outline-offset: 2px;
-        }
+.main-menu-4.menu-anim button:focus svg path.inline-flex {
+    stroke: #4b5563;
+}
 
-        .transition {
-            transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 0.15s;
-        }
+.main-menu-4.menu-anim button:focus svg path.hidden {
+    display: inline;
+}
 
-        .ease-in-out {
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .duration-150 {
-            transition-duration: 0.15s;
-        }
+.main-menu-4.menu-anim button:focus svg path.hidden {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
     </style>
 </nav>
