@@ -43,7 +43,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
         $user = auth()->user();
         $this->transactions = $user->transactions;
         $this->subscriptions = $user->subscriptions;
-        $this->subscriptionType = $this->subscriptions->first()->type;
+        $this->subscriptionType = $this->subscriptions->first()->type ?? '';
         $this->subscribed = $user->subscription();
     }
 

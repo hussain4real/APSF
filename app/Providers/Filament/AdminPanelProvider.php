@@ -11,6 +11,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
+use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Assets\Css;
@@ -28,6 +29,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
+use Jeffgreco13\FilamentBreezy\Pages\MyProfilePage;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -39,6 +42,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(Login::class)
             ->registration(Register::class)
+            ->profile(EditProfile::class)
             ->emailVerification()
             ->passwordReset()
             ->colors([
@@ -64,27 +68,34 @@ class AdminPanelProvider extends PanelProvider
                         hasAvatars: true,
                         slug: 'my-profile',
                         navigationGroup: 'Settings',
+
+
                     )
+
                     ->myProfileComponents([
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
             ])
             ->navigationItems([
-                NavigationItem::make('Chat')
-                    ->icon('heroicon-o-chat-bubble-left-right')
-                    ->url('/chat')
-                    ->badge(function() {
-                        $messages = ChMessage::where('to_id', Auth::id())->where('seen', false)->count();
-                        return $messages > 0 ? $messages : null;
-                    })
-                    ->badgeTooltip(function() {
-                        $messages = ChMessage::where('to_id', Auth::id())->where('seen', false)->count();
-                        return "You have {$messages} unread messages";
-                    }),
-                    NavigationItem::make('Homepage')
+                // NavigationItem::make('Chat')
+                //     ->icon('heroicon-o-chat-bubble-left-right')
+                //     ->url('/chat')
+                //     ->badge(function () {
+                //         $messages = ChMessage::where('to_id', Auth::id())->where('seen', false)->count();
+                //         return $messages > 0 ? $messages : null;
+                //     })
+                //     ->badgeTooltip(function () {
+                //         $messages = ChMessage::where('to_id', Auth::id())->where('seen', false)->count();
+                //         return "You have {$messages} unread messages";
+                //     })
+                //     ->sort(0),
+                    // NavigationItem::make('livefeed')
+                    // ->icon('heroicon-o-arrow-path-rounded-square')
+                    // ->url('/livefeed'),
+                NavigationItem::make('Homepage')
                     ->icon('heroicon-o-arrow-uturn-up')
                     ->url('/')
-                    ->sort(1),
+                    ->sort(-1),
             ])
             ->databaseNotifications()
             ->databaseNotificationsPolling('60s')
@@ -106,6 +117,11 @@ class AdminPanelProvider extends PanelProvider
             ->assets([
                 // Css::make('style', 'css/chatify/style.css'),
                 // Js::make('code', 'public/js/chatify/code.js'),
+            ])
+            ->spa()
+            ->spaUrlExceptions(fn ():array => [
+
+                url('/admin/chat'),
             ]);
     }
 

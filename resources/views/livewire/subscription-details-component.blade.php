@@ -1,6 +1,6 @@
 <x-filament-breezy::grid-section md=2 title="Subscription" description="Subscription datails">
     <x-filament::card>
-        <table class="table-auto border-separate border-spacing-2 border border-slate-400">
+        <table class="table-auto border-separate border-spacing-2 border border-slate-400 my-4">
             <thead>
                 <tr>
                     <th class="border border-slate-300">Date</th>

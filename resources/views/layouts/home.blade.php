@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     {{-- <link rel="stylesheet" href="style.css"> --}}
-    
+
     @vite('public/assets/css/master.css')
 </head>
 
@@ -326,6 +326,7 @@
     <script src="assets/js/vanilla-tilt.js"></script>
     <script src="assets/js/jquery.meanmenu.min.js"></script>
     <script src="assets/js/main.js"></script>
+    
 </body>
 
 </html>

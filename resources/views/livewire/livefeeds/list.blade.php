@@ -1,8 +1,13 @@
 <?php
 
+use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new class extends Component {
+
+
+new
+#[Layout('layouts.app')]
+ class extends Component {
     public \Illuminate\Database\Eloquent\Collection $livefeeds;
 
     public ?\App\Models\Livefeed $editing = null;

@@ -78,9 +78,14 @@ new class extends Component {
                                 </x-slot>
 
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('profile')" wire:navigate>
+                                    <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
+                                        {{ __('Dashboard') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
+
+
 
                                     <!-- Authentication -->
                                     <button wire:click="logout" class="w-full text-start">
@@ -93,19 +98,7 @@ new class extends Component {
                         </div>
 
                         <!-- Hamburger -->
-                        <div class="-me-2 flex items-center sm:hidden">
-                            <button @click="open = ! open"
-                                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
-                                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                    <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 6h16M4 12h16M4 18h16" />
-                                    <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden"
-                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
+
                     @endauth
                 </ul>
             </div>
@@ -122,105 +115,105 @@ new class extends Component {
 
     <!-- Offcanvas area end -->
     <style>
-.main-menu-4.menu-anim {
-    position: relative;
-    display: inline-block;
-}
+        .main-menu-4.menu-anim {
+            position: relative;
+            display: inline-block;
+        }
 
-.main-menu-4.menu-anim .dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    min-width: 20rem;
-    background-color: white;
-    border-radius: 0.25rem;
-    padding: 0.5rem 0;
-    margin-top: 0.125rem;
-    z-index: 1000;
-    display: none;
-}
+        .main-menu-4.menu-anim .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            min-width: 20rem;
+            background-color: white;
+            border-radius: 0.25rem;
+            padding: 0.5rem 0;
+            margin-top: 0.125rem;
+            z-index: 1000;
+            display: none;
+        }
 
-.main-menu-4.menu-anim .dropdown.show {
-    display: block;
-}
+        .main-menu-4.menu-anim .dropdown.show {
+            display: block;
+        }
 
-.main-menu-4.menu-anim .dropdown-link {
-    display: block;
-    padding: 0.5rem 1.5rem;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-}
+        .main-menu-4.menu-anim .dropdown-link {
+            display: block;
+            padding: 0.5rem 1.5rem;
+            clear: both;
+            font-weight: 400;
+            color: #212529;
+            text-align: inherit;
+            white-space: nowrap;
+            background-color: transparent;
+            border: 0;
+        }
 
-.main-menu-4.menu-anim .dropdown-link:hover {
-    color: #16181b;
-    text-decoration: none;
-    background-color: #f8f9fa;
-}
+        .main-menu-4.menu-anim .dropdown-link:hover {
+            color: #16181b;
+            text-decoration: none;
+            background-color: #f8f9fa;
+        }
 
-.main-menu-4.menu-anim .dropdown-link:focus {
-    color: #16181b;
-    text-decoration: none;
-    background-color: #f8f9fa;
-}
+        .main-menu-4.menu-anim .dropdown-link:focus {
+            color: #16181b;
+            text-decoration: none;
+            background-color: #f8f9fa;
+        }
 
-.main-menu-4.menu-anim button {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #6b7280;
-    background-color: #ffffff;
-    border-radius: 0.375rem;
-    border-width: 1px;
-    border-color: transparent;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+        .main-menu-4.menu-anim button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #6b7280;
+            background-color: #ffffff;
+            border-radius: 0.375rem;
+            border-width: 1px;
+            border-color: transparent;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-.main-menu-4.menu-anim button:hover {
-    color: #4b5563;
-    background-color: #f9fafb;
-}
+        .main-menu-4.menu-anim button:hover {
+            color: #4b5563;
+            background-color: #f9fafb;
+        }
 
-.main-menu-4.menu-anim button:focus {
-    outline: 0;
-    color: #4b5563;
-    background-color: #f9fafb;
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
-}
+        .main-menu-4.menu-anim button:focus {
+            outline: 0;
+            color: #4b5563;
+            background-color: #f9fafb;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+        }
 
-.main-menu-4.menu-anim button svg {
-    height: 1.5em;
-    width: 1.5em;
-}
+        .main-menu-4.menu-anim button svg {
+            height: 1.5em;
+            width: 1.5em;
+        }
 
-.main-menu-4.menu-anim button svg path.inline-flex {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2;
-}
+        .main-menu-4.menu-anim button svg path.inline-flex {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
 
-.main-menu-4.menu-anim button svg path.hidden {
-    display: none;
-}
+        .main-menu-4.menu-anim button svg path.hidden {
+            display: none;
+        }
 
-.main-menu-4.menu-anim button:focus svg path.inline-flex {
-    stroke: #4b5563;
-}
+        .main-menu-4.menu-anim button:focus svg path.inline-flex {
+            stroke: #4b5563;
+        }
 
-.main-menu-4.menu-anim button:focus svg path.hidden {
-    display: inline;
-}
+        .main-menu-4.menu-anim button:focus svg path.hidden {
+            display: inline;
+        }
 
-.main-menu-4.menu-anim button:focus svg path.hidden {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2;
-}
+        .main-menu-4.menu-anim button:focus svg path.hidden {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2;
+        }
     </style>
 </nav>

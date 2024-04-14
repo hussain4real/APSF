@@ -157,7 +157,7 @@ class MessagesController extends Controller
             ->actions([
                 Action::make('view')
                 ->button()
-                ->url(route('user', ['id' => Auth::user()->id]))
+                ->url(route('filament.admin.pages.chat', ['id' => Auth::user()->id]))
                 ->markAsRead(),
             ])
             ->sendToDatabase($recipient);
