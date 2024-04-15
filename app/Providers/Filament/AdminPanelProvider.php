@@ -89,9 +89,9 @@ class AdminPanelProvider extends PanelProvider
                 //         return "You have {$messages} unread messages";
                 //     })
                 //     ->sort(0),
-                    // NavigationItem::make('livefeed')
-                    // ->icon('heroicon-o-arrow-path-rounded-square')
-                    // ->url('/livefeed'),
+                // NavigationItem::make('livefeed')
+                // ->icon('heroicon-o-arrow-path-rounded-square')
+                // ->url('/livefeed'),
                 NavigationItem::make('Homepage')
                     ->icon('heroicon-o-arrow-uturn-up')
                     ->url('/')
@@ -109,7 +109,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                //                EnsureUserIsSubscribed::class,
+                // EnsureUserIsSubscribed::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -119,7 +119,7 @@ class AdminPanelProvider extends PanelProvider
                 // Js::make('code', 'public/js/chatify/code.js'),
             ])
             ->spa()
-            ->spaUrlExceptions(fn ():array => [
+            ->spaUrlExceptions(fn (): array => [
 
                 url('/admin/chat'),
             ]);
