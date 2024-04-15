@@ -29,8 +29,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
-use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
-use Jeffgreco13\FilamentBreezy\Pages\MyProfilePage;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -48,6 +46,9 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Teal,
             ])
+            ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
+            ->favicon(asset('assets/imgs/apsf/logo/apsf_favicon.png'))
+            ->darkModeBrandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -68,7 +69,6 @@ class AdminPanelProvider extends PanelProvider
                         hasAvatars: true,
                         slug: 'my-profile',
                         navigationGroup: 'Settings',
-
 
                     )
 
