@@ -120,8 +120,8 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->spa()
             ->spaUrlExceptions(fn (): array => [
-
                 url('/admin/chat'),
+                url('/admin/livefeed'),
             ]);
     }
 

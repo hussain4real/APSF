@@ -29,9 +29,11 @@ new class extends Component implements HasForms {
                     ->dehydrated()
                     ->default(auth()?->user()?->id ?? null),
             Filament\Forms\Components\Textarea::make('message')
-            ->placeholder(__('What\'s on your mind?')),
+            ->placeholder(__('What\'s on your mind?'))
+            ->hiddenLabel(),
             Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('attachment')
             ->collection('livefeed_images')
+            ->hiddenLabel()
             ->reorderable()
             ->downloadable()
             ])
