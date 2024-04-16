@@ -22,7 +22,6 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
@@ -60,23 +59,23 @@ class ListStudents extends ListRecords
                                 ->searchable()
                                 ->size(TextColumnSize::Medium)
                                 ->weight(FontWeight::SemiBold),
-                            TextColumn::make('school_name')
-                                ->label(__('School Name'))
-                                ->icon('heroicon-o-building-office-2')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->alignCenter()
-                                ->color('gray')
-                                ->weight(FontWeight::SemiBold),
-                            TextColumn::make('current_grade')
-                                ->label(__('Grade'))
-                                ->icon('heroicon-o-academic-cap')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->sortable()
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                            //                            TextColumn::make('school_name')
+                            //                                ->label(__('School Name'))
+                            //                                ->icon('heroicon-o-building-office-2')
+                            //                                ->iconColor('primary')
+                            //                                ->searchable()
+                            //                                ->alignCenter()
+                            //                                ->color('gray')
+                            //                                ->weight(FontWeight::SemiBold),
+                            //                            TextColumn::make('current_grade')
+                            //                                ->label(__('Grade'))
+                            //                                ->icon('heroicon-o-academic-cap')
+                            //                                ->iconColor('primary')
+                            //                                ->searchable()
+                            //                                ->sortable()
+                            //                                ->color('gray')
+                            //                                ->weight(FontWeight::Medium)
+                            //                                ->alignCenter(),
 
                             TextColumn::make('user.email')
                                 ->label(__('Email'))
@@ -98,24 +97,23 @@ class ListStudents extends ListRecords
                                 ->iconColor('primary')
                                 ->hidden()
                                 ->alignCenter(),
-                            Split::make([
-                                TextColumn::make('date_of_birth')
-                                    ->label(__('Date of Birth'))
-                                    ->date(format: 'M d, Y')
-                                    ->badge()
-                                    ->icon('heroicon-o-cake')
-                                    ->color('primary')
-                                    ->grow(true)
-                                    ->sortable(),
-                                TextColumn::make('status')
-                                    ->badge()
-                                    ->grow(false)
-                                    ->alignCenter(),
 
-                            ])
+                            //                                TextColumn::make('date_of_birth')
+                            //                                    ->label(__('Date of Birth'))
+                            //                                    ->date(format: 'M d, Y')
+                            //                                    ->badge()
+                            //                                    ->icon('heroicon-o-cake')
+                            //                                    ->color('primary')
+                            //                                    ->grow(true)
+                            //                                    ->sortable(),
+                            TextColumn::make('status')
+                                ->badge()
+                                ->grow(false)
+                                ->alignCenter()
                                 ->extraAttributes([
-                                    'class' => 'mt-2',
+                                    'class' => 'my-2',
                                 ]),
+
                             RatingColumn::make('student.rating')
                                 ->label(__('Rating'))
                                 ->state(function (Model $record): string {

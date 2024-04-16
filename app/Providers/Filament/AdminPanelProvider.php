@@ -29,8 +29,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
-use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
-use Jeffgreco13\FilamentBreezy\Pages\MyProfilePage;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -48,6 +46,9 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Teal,
             ])
+            ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
+            ->favicon(asset('assets/imgs/apsf/logo/apsf_favicon.png'))
+            ->darkModeBrandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -69,7 +70,6 @@ class AdminPanelProvider extends PanelProvider
                         slug: 'my-profile',
                         navigationGroup: 'Settings',
 
-
                     )
 
                     ->myProfileComponents([
@@ -89,9 +89,9 @@ class AdminPanelProvider extends PanelProvider
                 //         return "You have {$messages} unread messages";
                 //     })
                 //     ->sort(0),
-                    // NavigationItem::make('livefeed')
-                    // ->icon('heroicon-o-arrow-path-rounded-square')
-                    // ->url('/livefeed'),
+                // NavigationItem::make('livefeed')
+                // ->icon('heroicon-o-arrow-path-rounded-square')
+                // ->url('/livefeed'),
                 NavigationItem::make('Homepage')
                     ->icon('heroicon-o-arrow-uturn-up')
                     ->url('/')
@@ -109,7 +109,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                //                EnsureUserIsSubscribed::class,
+                // EnsureUserIsSubscribed::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -119,9 +119,9 @@ class AdminPanelProvider extends PanelProvider
                 // Js::make('code', 'public/js/chatify/code.js'),
             ])
             ->spa()
-            ->spaUrlExceptions(fn ():array => [
-
+            ->spaUrlExceptions(fn (): array => [
                 url('/admin/chat'),
+                url('/admin/livefeed'),
             ]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\EducationalConsultants\Resources;
 use App\Filament\Clusters\EducationalConsultants;
 use App\Filament\Clusters\EducationalConsultants\Resources\EducationalConsultantResource\Pages;
 use App\Models\EducationalConsultant;
+use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,9 +16,10 @@ class EducationalConsultantResource extends Resource
 {
     protected static ?string $model = EducationalConsultant::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $cluster = EducationalConsultants::class;
+    protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     public static function table(Table $table): Table
     {
