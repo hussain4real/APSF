@@ -26,6 +26,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     {{-- <link rel="stylesheet" href="style.css"> --}}
+
+
+
+
+
+
     @vite('public/assets/css/master.css')
 </head>
 
@@ -126,61 +132,64 @@
             <main>
 
                 {{ $slot }}
-                  <!-- Brand area start -->
-    <section class="brand__area">
-        <div class="container g-0 line pt-140 pb-140">
-            <span class="line-3"></span>
-            <div class="row g-0">
-                <div class="col-xxl-12">
-                    <div class="sec-title-wrapper">
-                        <h2 class="sec-sub-title title-anim">Partnerships and International Cooperation</h2>
-                        <h3 class="sec-title title-anim">We are happy to work with global <br>
-                            renowned institutions</h3>
-                    </div>
-                </div>
-                <div class="brand__list-3">
-                    <div class="brand__item-2 fade_bottom">
-                        <img src="assets/imgs/apsf/partners/tamkeen.webp" alt="Brand Logo">
-                    </div>
-                    <div class="brand__item-2 fade_bottom">
-                        <img src="assets/imgs/apsf/partners/aief.webp" alt="Brand Logo">
-                    </div>
-                    <div class="brand__item-2 fade_bottom">
-                        <img src="assets/imgs/apsf/partners/uv.webp" alt="Brand Logo">
-                    </div>
-                    <div class="brand__item-2 fade_bottom">
-                        <img src="assets/imgs/apsf/partners/ge.webp" alt="Brand Logo">
-                    </div>
-                </div>
+                <!-- Brand area start -->
+                <section class="brand__area">
+                    <div class="container g-0 line pt-140 pb-140">
+                        <span class="line-3"></span>
+                        <div class="row g-0">
+                            <div class="col-xxl-12">
+                                <div class="sec-title-wrapper">
+                                    <h2 class="sec-sub-title title-anim">Partnerships and International Cooperation</h2>
+                                    <h3 class="sec-title title-anim">We are happy to work with global <br>
+                                        renowned institutions</h3>
+                                </div>
+                            </div>
+                            <div class="brand__list-3">
+                                <div class="brand__item-2 fade_bottom">
+                                    <img src="assets/imgs/apsf/partners/tamkeen.webp" alt="Brand Logo">
+                                </div>
+                                <div class="brand__item-2 fade_bottom">
+                                    <img src="assets/imgs/apsf/partners/aief.webp" alt="Brand Logo">
+                                </div>
+                                <div class="brand__item-2 fade_bottom">
+                                    <img src="assets/imgs/apsf/partners/uv.webp" alt="Brand Logo">
+                                </div>
+                                <div class="brand__item-2 fade_bottom">
+                                    <img src="assets/imgs/apsf/partners/ge.webp" alt="Brand Logo">
+                                </div>
+                            </div>
 
-            </div>
-        </div>
-    </section>
-    <!-- Brand area end -->
-
-    <!-- CTA area start -->
-    <section class="cta__area cta__area-7 pt-130">
-        <div class="container pb-110">
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="cta__content">
-                        <p class="cta__sub-title">Work with us</p>
-                        <h2 class="cta__title title-anim">Discover the benefits of membership at Arab Private Schools
-                            Federation. Join us for collaboration, innovation, and educational excellence today</h2>
-                        <div class="btn_wrapper">
-                            <a href="contact.html" class="wc-btn-primary btn-hover btn-item"><span></span>Be A Member
-                                <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CTA area end -->
+                </section>
+                <!-- Brand area end -->
+
+                <!-- CTA area start -->
+                <section class="cta__area cta__area-7 pt-130">
+                    <div class="container pb-110">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="cta__content">
+                                    <p class="cta__sub-title">Work with us</p>
+                                    <h2 class="cta__title title-anim">Discover the benefits of membership at Arab
+                                        Private Schools
+                                        Federation. Join us for collaboration, innovation, and educational excellence
+                                        today</h2>
+                                    <div class="btn_wrapper">
+                                        <a href="contact.html"
+                                            class="wc-btn-primary btn-hover btn-item"><span></span>Be A Member
+                                            <i class="fa-solid fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- CTA area end -->
 
 
-    <!-- Blog area start -->
-    <!-- <section class="blog__area-7 blog__animation">
+                <!-- Blog area start -->
+                <!-- <section class="blog__area-7 blog__animation">
             <div class="container g-0 pb-140">
               <div class="row">
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
@@ -241,7 +250,7 @@
               </div>
             </div>
           </section> -->
-    <!-- Blog area end -->
+                <!-- Blog area end -->
             </main>
 
             <!-- Footer area start -->
@@ -325,6 +334,9 @@
     <script src="assets/js/vanilla-tilt.js"></script>
     <script src="assets/js/jquery.meanmenu.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+    @livewire('notifications')
+
 </body>
 
 </html>

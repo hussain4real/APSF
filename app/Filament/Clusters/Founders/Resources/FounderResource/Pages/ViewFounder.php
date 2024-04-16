@@ -3,7 +3,10 @@
 namespace App\Filament\Clusters\Founders\Resources\FounderResource\Pages;
 
 use App\Filament\Clusters\Founders\Resources\FounderResource;
+use App\Models\Founder;
 use App\Models\Review;
+use App\Models\User;
+use Chatify\Facades\ChatifyMessenger;
 use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\Actions\Action;
@@ -18,7 +21,9 @@ use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Colors\Color;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Mokhosh\FilamentRating\Components\Rating;
 use Mokhosh\FilamentRating\Entries\RatingEntry;
 
@@ -52,7 +57,8 @@ class ViewFounder extends ViewRecord
                             TextEntry::make('school_name')
                                 ->label(__('School Name'))
                                 ->icon('heroicon-o-building-office-2')
-                                ->iconColor('primary'),
+                                ->iconColor('primary')
+                                ->placeholder('No School Name Provided'),
                             TextEntry::make('user.email')
                                 ->label(__('Email'))
                                 ->icon('heroicon-o-envelope')
@@ -60,15 +66,18 @@ class ViewFounder extends ViewRecord
                             TextEntry::make('school_phone')
                                 ->label(__('Phone'))
                                 ->icon('heroicon-o-phone')
-                                ->iconColor('primary'),
+                                ->iconColor('primary')
+                                ->placeholder('No Phone Provided'),
                             TextEntry::make('school_address')
                                 ->label(__('Address'))
                                 ->icon('heroicon-o-map-pin')
-                                ->iconColor('primary'),
+                                ->iconColor('primary')
+                                ->placeholder('No Address Provided'),
                             TextEntry::make('school_country')
                                 ->label(__('Country'))
                                 ->icon('heroicon-o-flag')
-                                ->iconColor('primary'),
+                                ->iconColor('primary')
+                                ->placeholder('No Country Provided'),
                         ])
                             ->columns(2),
                     ]),
@@ -83,7 +92,7 @@ class ViewFounder extends ViewRecord
                                         ->hiddenLabel()
                                         ->color(Color::Yellow)
                                         ->link()
-                                        ->tooltip(__('Rate this student'))
+                                        ->tooltip(__('Rate this founder'))
                                         ->fillForm(fn ($record): array => [
                                             $user = auth()->user(),
                                             'rating' => $record->reviews()->where('user_id', $user->id)->first()?->rating ?? 0,
@@ -210,6 +219,29 @@ class ViewFounder extends ViewRecord
                                 ->color(Color::Sky)
                                 ->icon('heroicon-o-arrows-right-left')
                                 ->iconColor('primary'),
+                                TextEntry::make('chat')
+                                ->label(__('Chat'))
+                                ->hiddenLabel()
+                                ->default('Chat')
+                                ->prefixAction(
+                                    Action::make('chat')
+                                    ->icon('heroicon-o-chat-bubble-left-right')
+                                    ->hiddenLabel()
+                                    ->color(Color::Blue)
+                                    ->link()
+                                    ->tooltip(__('Chat with this founder'))
+                                    ->url('/chat/' . $this->record->user_id)
+                                    // ->modalContent(function (Founder $record): View {
+                                    //     $id = $record->user_id;
+                                    //     $messengerColor = Auth::user()->messenger_color;
+                                    //     $darkMode = Auth::user()->dark_mode < 1 ? 'light' : 'dark';
+                                    //     return view('Chatify::pages.app', [
+                                    //         'id' => $id ?? 0,
+                                    //         'messengerColor' => $messengerColor ? $messengerColor : ChatifyMessenger::getFallbackColor(),
+                                    //         'dark_mode' => $darkMode,
+                                    // ]);
+                                    // })
+                                )
                         ]),
                     ])
                         ->grow(false),

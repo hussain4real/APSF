@@ -74,21 +74,35 @@ class ListUsers extends ListRecords
                                 ->color('gray')
                                 ->weight(FontWeight::Medium)
                                 ->alignCenter(),
-                            TextColumn::make('created_at')
-                                ->label(__('Created'))
-                                ->date(format: 'M d, Y')
-                                ->badge()
-                                ->tooltip('Date of account creation')
-                                ->icon('heroicon-o-calendar-days')
-                                ->color('primary')
-                                ->sortable()
-                                ->alignCenter(),
+                            //                            TextColumn::make('created_at')
+                            //                                ->label(__('Created'))
+                            //                                ->date(format: 'M d, Y')
+                            //                                ->badge()
+                            //                                ->tooltip('Date of account creation')
+                            //                                ->icon('heroicon-o-calendar-days')
+                            //                                ->color('primary')
+                            //                                ->sortable()
+                            //                                ->alignCenter(),
                             TextColumn::make('status')
                                 ->badge()
+                                ->state(function ($record) {
+                                    return match (true) {
+                                        $record->student !== null => $record->student->status,
+                                        $record->teacher !== null => $record->teacher->status,
+                                        $record->schools !== null && $record->schools->isNotEmpty() => $record->schools->first()->status,
+                                        $record->contractor !== null => $record->contractor->status,
+                                        $record->educationalConsultant !== null => $record->educationalConsultant->status,
+                                        $record->founder !== null => $record->founder->status,
+                                        $record->member !== null => $record->member->status,
+                                        $record->trainingProvider !== null => $record->trainingProvider->status,
+                                        default => $record->status,
+                                    };
+                                })
                                 ->alignCenter()
                                 ->extraAttributes([
-                                    'class' => 'mt-2',
-                                ]),
+                                    'class' => 'my-2',
+                                ])
+                                ->sortable(),
                             RatingColumn::make('rating')
                                 ->label(__('Rating'))
                                 ->state(function (Model $record) {
@@ -200,17 +214,17 @@ class ListUsers extends ListRecords
                     ->iconPosition(IconPosition::Before)
                     ->tooltip(__('Click to view available actions'))
                     ->extraAttributes([
-                                                'class' => 'mx-16',
-                                                //                        ml-16 my-1
-                                            ]),
+                        'class' => 'mx-16',
+                        //                        ml-16 my-1
+                    ]),
             ])
             ->bulkActions([
-                                        BulkActionGroup::make([
-                                            DeleteBulkAction::make(),
-                                            ForceDeleteBulkAction::make(),
-                                            RestoreBulkAction::make(),
-                                        ]),
-                                    ]);
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                    ForceDeleteBulkAction::make(),
+                    RestoreBulkAction::make(),
+                ]),
+            ]);
     }
 
     protected function handleRatingAndComment($entity, $user, $data): void

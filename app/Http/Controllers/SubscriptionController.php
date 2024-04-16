@@ -23,9 +23,9 @@ class SubscriptionController extends Controller
 
         $subscriptionType = 'student_annual_subscription_fee';
         $studentSubscriptionPriceID = 'pri_01hsb68jw5jmjbms2xbmr5ba9s';
-        $teacherSubscriptionPriceID = 'pri_01hsb68jw5jmjbms2xbhfdsges';
-        $schoolSubscriptionPriceID = 'pri_01hsb68jw5jmj9872s2xbhfdsges';
-        $founderSubscriptionPriceID = 'pri_01hs233fmj9872s2xbhfdsges';
+        $teacherSubscriptionPriceID = 'pri_01hvgqqn9rmhjv9hr3e8yh95gf';
+        $schoolSubscriptionPriceID = 'pri_01hvgqv34j4syfe3c52atpawhr';
+        $founderSubscriptionPriceID = 'pri_01hvgn6dq3hxsqcsy3gxpbnmpg';
         $contractorSubscriptionPriceID = 'pri_01hsb68jw920jn23hfdsges';
         $trainingProviderSubscriptionPriceID = 'pri_01hsb68jw5jm2gd34es';
         $educationalConsultantSubscriptionPriceID = 'pri_01hsb68jw5jmj9872fe332ges';

@@ -6,6 +6,8 @@ use App\Models\ChFavorite as Favorite;
 use App\Models\ChMessage as Message;
 use App\Models\User;
 use Chatify\Facades\ChatifyMessenger as Chatify;
+use Filament\Notifications\Actions\Action;
+use Filament\Notifications\Notification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -148,6 +150,17 @@ class MessagesController extends Controller
                     'message' => Chatify::messageCard($messageData, true),
                 ]);
             }
+            $recipient = User::find($request['id']);
+            Notification::make()
+            ->title('New Message')
+            ->body('You have a new message from '.Auth::user()->name)
+            ->actions([
+                Action::make('view')
+                ->button()
+                ->url(route('filament.admin.pages.chat', ['id' => Auth::user()->id]))
+                ->markAsRead(),
+            ])
+            ->sendToDatabase($recipient);
         }
 
         // send the response

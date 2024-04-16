@@ -1,6 +1,6 @@
 <x-filament-breezy::grid-section md=2 title="Subscription" description="Subscription datails">
     <x-filament::card>
-        <table class="table-auto border-separate border-spacing-2 border border-slate-400">
+        <table class="table-auto border-separate border-spacing-2 border border-slate-400 my-4">
             <thead>
                 <tr>
                     <th class="border border-slate-300">Date</th>
@@ -37,11 +37,19 @@
         $trial = auth()->user()->onTrial();
         $genericTrial = auth()->user()->onGenericTrial();
         $customer = auth()->user()->customer;
+        $priceInQAR = \App\Models\User::find(auth()->user()->id)->previewPrices(['pri_01hsx4ytr4w9msrm8y666rkb2x'],['address'=>[
+            'country_code' => 'GB',
+            'postal_code' => 'WC1'
+
+        ],
+        'currency_code' => 'GBP'
+        ]);
         @endphp
         <div>
 {{--            <p>{{$subscribed->nextPayment()->date()}}</p>--}}
             @if ($subscriptions->count() > 0)
             <ul>
+{{--                @dd($priceInQAR)--}}
                 @foreach ($subscriptions as $subscription)
                 <div class="flex space-x-2 mt-4 items-center">
                     <p>Plan: {{ $subscription->type }}</p>
