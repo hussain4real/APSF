@@ -18,9 +18,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Paddle\Billable;
+//use Laravel\Paddle\Billable;
 use Laravel\Paddle\Cashier;
 use Laravel\Paddle\Customer;
+use LemonSqueezy\Laravel\Billable;
 use LogicException;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
@@ -30,7 +31,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 // #[ScopedBy([MemberScope::class])]
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-    use Billable, HasFactory, InteractsWithMedia, Notifiable;
+//    use Billable,
+        use HasFactory, InteractsWithMedia, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.

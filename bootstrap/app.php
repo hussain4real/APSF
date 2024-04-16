@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except:[
             'paddle/*',
+            'lemon-squeezy/*'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
