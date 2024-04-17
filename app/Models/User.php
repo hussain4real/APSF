@@ -31,8 +31,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 // #[ScopedBy([MemberScope::class])]
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
 {
-//    use Billable,
-        use HasFactory, InteractsWithMedia, Notifiable, Billable;
+    //    use Billable,
+    use Billable, HasFactory, InteractsWithMedia, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -388,5 +388,58 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         }
 
         return 'https://ui-avatars.com/api/?name='.$this->name.'&color=#ff8503&background=ffd22b';
+    }
+
+    /**
+     * get the user's full name
+     */
+    public function lemonSqueezyName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * get the user's country
+     */
+    public function lemonSqueezyCountry(): ?string
+    {
+        $arabCountries = [
+            'Algeria' => 'DZ',
+            'Bahrain' => 'BH',
+            'Comoros' => 'KM',
+            'Djibouti' => 'DJ',
+            'Egypt' => 'EG',
+            'Iraq' => 'IQ',
+            'Jordan' => 'JO',
+            'Kuwait' => 'KW',
+            'Lebanon' => 'LB',
+            'Libya' => 'LY',
+            'Mauritania' => 'MR',
+            'Morocco' => 'MA',
+            'Oman' => 'OM',
+            'Palestine' => 'PS',
+            'Qatar' => 'QA',
+            'Saudi Arabia' => 'SA',
+            'Somalia' => 'SO',
+            'Sudan' => 'SD',
+            'Syria' => 'SY',
+            'Tunisia' => 'TN',
+            'United Arab Emirates' => 'AE',
+            'Yemen' => 'YE',
+            // Add more countries as needed...
+        ];
+
+        $userCountry = match (true) {
+            $this->student() !== null => $this->student->country,
+            $this->teacher() !== null => $this->teacher->country,
+            $this->schools()->count() > 0 => $this->schools->first()->country,
+            default => null,
+        };
+
+        if ($userCountry) {
+            return $arabCountries[$userCountry] ?? null;
+        }
+
+        return null;
     }
 }
