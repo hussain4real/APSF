@@ -432,6 +432,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         $userCountry = match (true) {
             $this->student() !== null => $this->student->country,
             $this->teacher() !== null => $this->teacher->country,
+            $this->founder() !== null => $this->founder->country,
+            $this->trainingProvider() !== null => $this->trainingProvider->country,
+            $this->contractor() !== null => $this->contractor->country,
+            $this->educationalConsultant() !== null => $this->educationalConsultant->country,
+            $this->member() !== null => $this->member->country,
             $this->schools()->count() > 0 => $this->schools->first()->country,
             default => null,
         };

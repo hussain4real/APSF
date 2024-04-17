@@ -23,14 +23,29 @@ class LemonSqueezySubscriptionController extends Controller
         $studentsSubscriptionVariantID = '342344';
         $schoolsSubscriptionVariantID = '342334';
         $membersSubscriptionVariantID = '342342';
+        $teachersSubscriptionVariantID = '344435';
+        $foundersSubscriptionVariantID = '344414';
+        $trainingProvidersSubscriptionVariantID = '344417';
+        $educationalConsultantsSubscriptionVariantID = '344426';
+        $contractorsSubscriptionVariantID = '344433';
         $subscriptionVariantID = match (true) {
             $request->user()->student !== null => $studentsSubscriptionVariantID,
+            $request->user()->teacher !== null => $teachersSubscriptionVariantID,
+            $request->user()->founder !== null => $foundersSubscriptionVariantID,
+            $request->user()->trainingProvider !== null => $trainingProvidersSubscriptionVariantID,
+            $request->user()->educationalConsultant !== null => $educationalConsultantsSubscriptionVariantID,
+            $request->user()->contractor !== null => $contractorsSubscriptionVariantID,
             $request->user()->schools()->count() > 0 => $schoolsSubscriptionVariantID,
             $request->user()->member !== null => $membersSubscriptionVariantID,
             default => $membersSubscriptionVariantID,
         };
         $subscriptionName = match (true) {
             $request->user()->student !== null => 'Student Annual Subscription Fee',
+            $request->user()->teacher !== null => 'Teacher Annual Subscription Fee',
+            $request->user()->founder !== null => 'Founder Annual Subscription Fee',
+            $request->user()->trainingProvider !== null => 'Training Provider Annual Subscription Fee',
+            $request->user()->educationalConsultant !== null => 'Educational Consultant Annual Subscription Fee',
+            $request->user()->contractor !== null => 'Contractor Annual Subscription Fee',
             $request->user()->schools()->count() > 0 => 'School Annual Subscription Fee',
             $request->user()->member !== null => 'Member Annual Subscription Fee',
             default => 'Member Annual Subscription Fee',
@@ -56,7 +71,7 @@ class LemonSqueezySubscriptionController extends Controller
             // Cache the checkout for 60 minutes
             Cache::put($cacheKey, $checkout, 60);
         }
-        //        dd($checkout);
+        dd($checkout);
 
         return view('lemon-subscribe', [
             'checkout' => $checkout,
