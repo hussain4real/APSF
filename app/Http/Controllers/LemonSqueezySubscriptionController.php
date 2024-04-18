@@ -53,9 +53,14 @@ class LemonSqueezySubscriptionController extends Controller
 
         $suscriptionPrice = match (true) {
             $request->user()->student !== null => 50,
+            $request->user()->teacher !== null => 85,
+            $request->user()->founder !== null => 1000,
+            $request->user()->trainingProvider !== null => 600,
+            $request->user()->educationalConsultant !== null => 750,
+            $request->user()->contractor !== null => 1100,
             $request->user()->schools()->count() > 0 => 500,
             $request->user()->member !== null => 100,
-            default => 100,
+            default => 10,
         };
 
         //        dd($suscriptionPrice, $subscriptionName, $subscriptionVariantID);
@@ -71,7 +76,7 @@ class LemonSqueezySubscriptionController extends Controller
             // Cache the checkout for 60 minutes
             Cache::put($cacheKey, $checkout, 60);
         }
-        dd($checkout);
+        //        dd($checkout);
 
         return view('lemon-subscribe', [
             'checkout' => $checkout,

@@ -14,12 +14,14 @@ use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\Actions;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Concerns\InteractsWithInfolists;
 use Filament\Infolists\Contracts\HasInfolists;
 use Filament\Infolists\Infolist;
 use Filament\Notifications\Actions\Action as ActionsAction;
 use Filament\Notifications\Notification;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -98,9 +100,24 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
         return $infolist
             ->record($this->user?->subscription() ?? new Subscription())
             ->schema([
+                TextEntry::make('name')
+                    ->label('Plan')
+                    ->state(function (User $user) {
+                        $user = auth()->user();
+
+                        //                        dd($user);
+                        return "{$user->profile_type} Subscription";
+                    })
+                    ->size(size: TextEntry\TextEntrySize::Medium)
+                    ->weight(weight: FontWeight::SemiBold)
+                    ->color('info')
+                    ->badge()
+                    ->placeholder('No subscription found'),
                 TextEntry::make('status')
 
                     ->color(function (SubscriptionAlias $subscription) {
+                        //                        dd($subscription);
+
                         return match ($subscription->status) {
                             SubscriptionAlias::STATUS_ACTIVE => 'success',
                             SubscriptionAlias::STATUS_PAST_DUE => 'warning',
@@ -116,18 +133,20 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     ->since()
                     ->badge()
                     ->color('info')
-                    ->placeholder('No subscription found')
-                    ->suffixAction(
-                        \Filament\Infolists\Components\Actions\Action::make('manage')
-                            ->icon('heroicon-o-link')
-                            ->button()
-                            ->url(function () {
-                                $user = auth()->user();
+                    ->placeholder('No subscription found'),
 
-                                return $user->customerPortalUrl();
-                            })
-                            ->openUrlInNewTab()
-                    ),
+                Actions::make([
+                    \Filament\Infolists\Components\Actions\Action::make('manage')
+                        ->icon('heroicon-o-cog')
+                        ->button()
+                        ->tooltip('Manage your payment details Subscription')
+                        ->url(function () {
+                            $user = auth()->user();
+
+                            return $user->customerPortalUrl();
+                        })
+                        ->openUrlInNewTab(),
+                ]),
             ])
             ->columns([
                 'lg' => 2,

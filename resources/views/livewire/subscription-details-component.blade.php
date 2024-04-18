@@ -1,12 +1,13 @@
 <x-filament-breezy::grid-section 2xl=2 title="Subscription" description="Subscription datails">
     <x-filament::card>
+        <div class="mb-6">
+            {{$this->subscriptionInfolist}}
+        </div>
         <div>
             {{$this->table}}
         </div>
 
-        <div class="my-6">
-            {{$this->subscriptionInfolist}}
-        </div>
+
         <!-- <x-primary-button wire:click="subscribe">Subscribe</x-primary-button> -->
 
 

@@ -86,59 +86,59 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
      *
      * @return \Laravel\Paddle\Customer
      */
-    public function createAsCustomer(array $options = [])
-    {
-        if ($customer = $this->customer) {
-            return $customer;
-        }
-
-        if (! array_key_exists('name', $options) && $name = $this->paddleName()) {
-            $options['name'] = $this->paddleName();
-        }
-
-        if (! array_key_exists('email', $options) && $email = $this->paddleEmail()) {
-            $options['email'] = $email;
-        }
-
-        if (! isset($options['email'])) {
-            throw new LogicException('Unable to create Paddle customer without an email.');
-        }
-
-        $trialEndsAt = $options['trial_ends_at'] ?? null;
-
-        unset($options['trial_ends_at']);
-
-        // Attempt to find the customer by email address first...
-        $response = Cashier::api('GET', 'customers', [
-            'status' => 'active,archived',
-            'search' => $options['email'],
-        ])['data'][0] ?? null;
-
-        // If we can't find the customer by email, we'll create them on Paddle...
-        if (is_null($response)) {
-            $response = Cashier::api('POST', 'customers', $options)['data'];
-        }
-
-        if (Cashier::$customerModel::where('paddle_id', $response['id'])->exists()) {
-            throw new LogicException("The Paddle customer [{$response['id']}] already exists in the database.");
-        }
-
-        $customer = $this->customer()->make();
-        $customer->paddle_id = $response['id'];
-        $customer->name = $response['name'];
-        $customer->email = $response['email'];
-        $customer->trial_ends_at = $trialEndsAt;
-        $customer->save();
-
-        $this->refresh();
-
-        return $customer;
-    }
-
-    public function getPayLinkForProductPriceId($priceId)
-    {
-        return $this->checkout([$priceId]);
-    }
+    //    public function createAsCustomer(array $options = [])
+    //    {
+    //        if ($customer = $this->customer) {
+    //            return $customer;
+    //        }
+    //
+    //        if (! array_key_exists('name', $options) && $name = $this->paddleName()) {
+    //            $options['name'] = $this->paddleName();
+    //        }
+    //
+    //        if (! array_key_exists('email', $options) && $email = $this->paddleEmail()) {
+    //            $options['email'] = $email;
+    //        }
+    //
+    //        if (! isset($options['email'])) {
+    //            throw new LogicException('Unable to create Paddle customer without an email.');
+    //        }
+    //
+    //        $trialEndsAt = $options['trial_ends_at'] ?? null;
+    //
+    //        unset($options['trial_ends_at']);
+    //
+    //        // Attempt to find the customer by email address first...
+    //        $response = Cashier::api('GET', 'customers', [
+    //            'status' => 'active,archived',
+    //            'search' => $options['email'],
+    //        ])['data'][0] ?? null;
+    //
+    //        // If we can't find the customer by email, we'll create them on Paddle...
+    //        if (is_null($response)) {
+    //            $response = Cashier::api('POST', 'customers', $options)['data'];
+    //        }
+    //
+    //        if (Cashier::$customerModel::where('paddle_id', $response['id'])->exists()) {
+    //            throw new LogicException("The Paddle customer [{$response['id']}] already exists in the database.");
+    //        }
+    //
+    //        $customer = $this->customer()->make();
+    //        $customer->paddle_id = $response['id'];
+    //        $customer->name = $response['name'];
+    //        $customer->email = $response['email'];
+    //        $customer->trial_ends_at = $trialEndsAt;
+    //        $customer->save();
+    //
+    //        $this->refresh();
+    //
+    //        return $customer;
+    //    }
+    //
+    //    public function getPayLinkForProductPriceId($priceId)
+    //    {
+    //        return $this->checkout([$priceId]);
+    //    }
 
     public function canAccessPanel(Panel $panel): bool
     {
@@ -399,6 +399,47 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     }
 
     /**
+     * get the user's profile type
+     */
+    public function getProfileTypeAttribute(): ?string
+    {
+        if ($this->teacher) {
+            return 'Teacher';
+        }
+
+        if ($this->student) {
+            return 'Student';
+        }
+
+        //schools is hasMany relationship
+        if ($this->schools()->count() > 0) {
+            return 'School';
+        }
+
+        if ($this->founder) {
+            return 'Founder';
+        }
+
+        if ($this->trainingProvider) {
+            return 'Training Provider';
+        }
+
+        if ($this->contractor) {
+            return 'Contractor';
+        }
+
+        if ($this->educationalConsultant) {
+            return 'Educational Consultant';
+        }
+
+        if ($this->member) {
+            return 'Member';
+        }
+
+        return 'User';
+    }
+
+    /**
      * get the user's country
      */
     public function lemonSqueezyCountry(): ?string
@@ -429,16 +470,17 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
             // Add more countries as needed...
         ];
 
+        //        dd($this->student);
         $userCountry = match (true) {
-            $this->student() !== null => $this->student->country,
-            $this->teacher() !== null => $this->teacher->country,
-            $this->founder() !== null => $this->founder->country,
-            $this->trainingProvider() !== null => $this->trainingProvider->country,
-            $this->contractor() !== null => $this->contractor->country,
-            $this->educationalConsultant() !== null => $this->educationalConsultant->country,
-            $this->member() !== null => $this->member->country,
+            $this->student !== null => $this->student->country,
+            $this->teacher !== null => $this->teacher->country,
+            $this->founder !== null => $this->founder->school_country,
+            $this->trainingProvider !== null => $this->trainingProvider->country,
+            $this->contractor !== null => $this->contractor->country,
+            $this->educationalConsultant !== null => $this->educationalConsultant->country,
+            $this->member !== null => $this->member->country,
             $this->schools()->count() > 0 => $this->schools->first()->country,
-            default => null,
+            default => 'Qatar',
         };
 
         if ($userCountry) {
