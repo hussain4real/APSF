@@ -54,8 +54,8 @@
             @else
 {{--            {{$this->subscribeAction}}--}}
 {{--            <x-filament-actions::modals />--}}
-                <a href="{{route('lemon-squeezy-subscription')}}">
-                    <x-filament::button>Subscribe</x-filament::button>
+                <a href="{{route('lemon-squeezy-subscription')}}" >
+                    <x-filament::button class="my-4 ">Subscribe</x-filament::button>
                 </a>
             @endif
         </div>

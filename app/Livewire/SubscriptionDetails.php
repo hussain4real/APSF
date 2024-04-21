@@ -92,7 +92,17 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     ->url(fn (Order $order) => $order->receipt_url)
                     ->openUrlInNewTab(),
             ])
-            ->bulkActions([]);
+            ->bulkActions([])
+            ->emptyStateHeading(__('No orders yet'))
+            ->emptyStateDescription(__('Once you purchase a subscription, your orders will appear here'))
+            ->emptyStateIcon('heroicon-o-banknotes')
+            ->emptyStateActions([
+                \Filament\Tables\Actions\Action::make('subscribe')
+                ->label(__('Subscribe'))
+                ->url(route('lemon-squeezy-subscription'))
+                ->icon('heroicon-o-plus')
+                ->button()
+            ]);
     }
 
     public function subscriptionInfolist(Infolist $infolist): Infolist
@@ -139,11 +149,17 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     \Filament\Infolists\Components\Actions\Action::make('manage')
                         ->icon('heroicon-o-cog')
                         ->button()
+                        ->disabled(fn()=> !auth()->user()->subscribed())
                         ->tooltip('Manage your payment details Subscription')
                         ->url(function () {
+
                             $user = auth()->user();
 
-                            return $user->customerPortalUrl();
+                            if (!$user->subscribed()){
+
+                            return null;
+                            }
+                            return $user?->customerPortalUrl();
                         })
                         ->openUrlInNewTab(),
                 ]),

@@ -33,6 +33,7 @@
 
 
     @vite('public/assets/css/master.css')
+    @vite('resources/css/app.css')
 </head>
 
 <body>
