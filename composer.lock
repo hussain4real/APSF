@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8e53802a510a73fd4bdce7ca9ae944c",
+    "content-hash": "12658fe2a6ebd9a1f06be363b37790aa",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -125,6 +125,69 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.8"
             },
             "time": "2022-12-07T17:46:57+00:00"
+        },
+        {
+            "name": "based/momentum-modal",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lepikhinb/momentum-modal.git",
+                "reference": "b45992e4982859990a076dd924e19e589ff9797e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lepikhinb/momentum-modal/zipball/b45992e4982859990a076dd924e19e589ff9797e",
+                "reference": "b45992e4982859990a076dd924e19e589ff9797e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.24|^9.0|^10.0|^11.0",
+                "inertiajs/inertia-laravel": "^0.6|^1.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^0.1.3|^1.13",
+                "nunomaduro/larastan": "^1.0|^2.0",
+                "orchestra/testbench": "^6.9|^7.0|^8.0|^9.0",
+                "pestphp/pest": "^1.2|^2.34",
+                "pestphp/pest-plugin-laravel": "^1.0|^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Momentum\\Modal\\ModalServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Momentum\\Modal\\": "src/",
+                    "Momentum\\Modal\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Boris Lepikhin",
+                    "email": "boris@lepikhin.com"
+                }
+            ],
+            "description": "Build dynamic modal dialogs for your Inertia-powered Laravel apps",
+            "support": {
+                "issues": "https://github.com/lepikhinb/momentum-modal/issues",
+                "source": "https://github.com/lepikhinb/momentum-modal/tree/v0.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lepikhinb",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-13T04:13:45+00:00"
         },
         {
             "name": "bezhansalleh/filament-language-switch",
@@ -405,6 +468,55 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "brick/varexporter",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brick/varexporter.git",
+                "reference": "2fd038f7c9d12d468130c6e1b3ce06e4160a7dbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brick/varexporter/zipball/2fd038f7c9d12d468130c6e1b3ce06e4160a7dbb",
+                "reference": "2fd038f7c9d12d468130c6e1b3ce06e4160a7dbb",
+                "shasum": ""
+            },
+            "require": {
+                "nikic/php-parser": "^4.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^8.5 || ^9.0",
+                "vimeo/psalm": "5.15.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brick\\VarExporter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A powerful alternative to var_export(), which can export closures and objects without __set_state()",
+            "keywords": [
+                "var_export"
+            ],
+            "support": {
+                "issues": "https://github.com/brick/varexporter/issues",
+                "source": "https://github.com/brick/varexporter/tree/0.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/BenMorel",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-09-01T21:10:07+00:00"
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -2520,6 +2632,81 @@
                 }
             ],
             "time": "2023-12-03T19:50:20+00:00"
+        },
+        {
+            "name": "inertiajs/inertia-laravel",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inertiajs/inertia-laravel.git",
+                "reference": "fcf3d6db1a259a55d8d18cf43fc971202c1f6b0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inertiajs/inertia-laravel/zipball/fcf3d6db1a259a55d8d18cf43fc971202c1f6b0d",
+                "reference": "fcf3d6db1a259a55d8d18cf43fc971202c1f6b0d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.74|^9.0|^10.0|^11.0",
+                "php": "^7.3|~8.0.0|~8.1.0|~8.2.0|~8.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench": "^6.4|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^8.0|^9.5.8|^10.4",
+                "roave/security-advisories": "dev-master"
+            },
+            "suggest": {
+                "ext-pcntl": "Recommended when running the Inertia SSR server via the `inertia:start-ssr` artisan command."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inertia\\ServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "./helpers.php"
+                ],
+                "psr-4": {
+                    "Inertia\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "homepage": "https://reinink.ca"
+                }
+            ],
+            "description": "The Laravel adapter for Inertia.js.",
+            "keywords": [
+                "inertia",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/inertiajs/inertia-laravel/issues",
+                "source": "https://github.com/inertiajs/inertia-laravel/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/reinink",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-09T00:30:58+00:00"
         },
         {
             "name": "intervention/image",
@@ -5038,27 +5225,25 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.0.2",
+            "version": "v4.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "139676794dc1e9231bf7bcd123cfc0c99182cb13"
+                "reference": "4e1b88d21c69391150ace211e9eaf05810858d0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/139676794dc1e9231bf7bcd123cfc0c99182cb13",
-                "reference": "139676794dc1e9231bf7bcd123cfc0c99182cb13",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4e1b88d21c69391150ace211e9eaf05810858d0b",
+                "reference": "4e1b88d21c69391150ace211e9eaf05810858d0b",
                 "shasum": ""
             },
             "require": {
-                "ext-ctype": "*",
-                "ext-json": "*",
                 "ext-tokenizer": "*",
-                "php": ">=7.4"
+                "php": ">=7.1"
             },
             "require-dev": {
                 "ircmaxell/php-yacc": "^0.0.7",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -5066,7 +5251,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "4.9-dev"
                 }
             },
             "autoload": {
@@ -5090,9 +5275,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.19.1"
             },
-            "time": "2024-03-05T20:51:40+00:00"
+            "time": "2024-03-17T08:10:35+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -5274,6 +5459,98 @@
                 }
             ],
             "time": "2024-01-09T09:30:37+00:00"
+        },
+        {
+            "name": "outhebox/laravel-translations",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MohmmedAshraf/laravel-translations.git",
+                "reference": "abc02135b19ea216c79bfc971805deae5e6beffa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MohmmedAshraf/laravel-translations/zipball/abc02135b19ea216c79bfc971805deae5e6beffa",
+                "reference": "abc02135b19ea216c79bfc971805deae5e6beffa",
+                "shasum": ""
+            },
+            "require": {
+                "based/momentum-modal": "^0.3.0",
+                "brick/varexporter": "^0.4.0",
+                "ext-zip": "*",
+                "illuminate/contracts": "^10.0|^11.0",
+                "inertiajs/inertia-laravel": "^1.0",
+                "php": "^8.2|^8.3",
+                "spatie/laravel-package-tools": "^1.0",
+                "stichoza/google-translate-php": "^5.1",
+                "tightenco/ziggy": "^2.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^9.0",
+                "pestphp/pest": "^2.18",
+                "pestphp/pest-plugin-faker": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.2",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outhebox\\TranslationsUI\\TranslationsUIServiceProvider"
+                    ],
+                    "aliases": {
+                        "TranslationsUI": "Outhebox\\TranslationsUI\\Facades\\TranslationsUI"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Outhebox\\TranslationsUI\\": "src",
+                    "Outhebox\\TranslationsUI\\Database\\Seeders\\": "database/seeders",
+                    "Outhebox\\TranslationsUI\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed Ashraf",
+                    "email": "cupo.ashraf@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Translations UI provides a simple way to manage your translations in your Laravel application. It allows you to add, edit, delete and export translations, and it also provides a search functionality to find translations.",
+            "homepage": "https://github.com/MohmmedAshraf/laravel-translations",
+            "keywords": [
+                "inertia",
+                "inertiajs",
+                "laravel",
+                "laravel-translations",
+                "localization",
+                "translation-manager",
+                "translations"
+            ],
+            "support": {
+                "issues": "https://github.com/MohmmedAshraf/laravel-translations/issues",
+                "source": "https://github.com/MohmmedAshraf/laravel-translations/tree/1.1.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/MohmmedAshraf",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-04-22T12:39:19+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -7823,6 +8100,86 @@
                 }
             ],
             "time": "2024-03-08T11:35:19+00:00"
+        },
+        {
+            "name": "stichoza/google-translate-php",
+            "version": "v5.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stichoza/google-translate-php.git",
+                "reference": "0d3de083a4b286868c4456cc76448a439a5aae07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stichoza/google-translate-php/zipball/0d3de083a4b286868c4456cc76448a439a5aae07",
+                "reference": "0d3de083a4b286868c4456cc76448a439a5aae07",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5.10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stichoza\\GoogleTranslate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Levan Velijanashvili",
+                    "email": "me@stichoza.com"
+                }
+            ],
+            "description": "Free Google Translate API PHP Package",
+            "homepage": "https://github.com/Stichoza/google-translate-php",
+            "keywords": [
+                "google",
+                "php",
+                "translate",
+                "translating",
+                "translator"
+            ],
+            "support": {
+                "issues": "https://github.com/Stichoza/google-translate-php/issues",
+                "source": "https://github.com/Stichoza/google-translate-php/tree/v5.1.3"
+            },
+            "funding": [
+                {
+                    "url": "https://btc.com/bc1qc25j4x7yahghm8nnn6lypnw59nptylsw32nkfl",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.paypal.me/stichoza",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/stichoza",
+                    "type": "ko_fi"
+                },
+                {
+                    "url": "https://liberapay.com/stichoza",
+                    "type": "liberapay"
+                },
+                {
+                    "url": "https://opencollective.com/stichoza",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/stichoza",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-12-18T21:40:16+00:00"
         },
         {
             "name": "symfony/clock",
@@ -10512,6 +10869,74 @@
                 }
             ],
             "time": "2024-03-19T11:57:22+00:00"
+        },
+        {
+            "name": "tightenco/ziggy",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tighten/ziggy.git",
+                "reference": "f2ce6091078109f434e295a17adfac7378257ace"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/f2ce6091078109f434e295a17adfac7378257ace",
+                "reference": "f2ce6091078109f434e295a17adfac7378257ace",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": ">=9.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0 || ^8.0 || ^9.0",
+                "phpunit/phpunit": "^9.5 || ^10.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tighten\\Ziggy\\ZiggyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tighten\\Ziggy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Coulbourne",
+                    "email": "daniel@tighten.co"
+                },
+                {
+                    "name": "Jake Bathman",
+                    "email": "jake@tighten.co"
+                },
+                {
+                    "name": "Jacob Baker-Kretzmar",
+                    "email": "jacob@tighten.co"
+                }
+            ],
+            "description": "Use your Laravel named routes in JavaScript.",
+            "homepage": "https://github.com/tighten/ziggy",
+            "keywords": [
+                "Ziggy",
+                "javascript",
+                "laravel",
+                "routes"
+            ],
+            "support": {
+                "issues": "https://github.com/tighten/ziggy/issues",
+                "source": "https://github.com/tighten/ziggy/tree/v2.1.0"
+            },
+            "time": "2024-03-26T16:04:23+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
