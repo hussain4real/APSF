@@ -9,9 +9,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Paddle\Checkout;
 use Laravel\Paddle\Transaction;
+use Livewire\Volt\Volt;
 
-Route::view('/', 'home.welcome')
-    ->name('welcome');
+// Route::view('/', 'home.welcome')
+//     ->name('welcome');
+Volt::route('/livefeeds', 'livefeeds.list');
+Route::get('/{locale?}', function ($locale = null) {
+    if (isset($locale) && in_array($locale, config('app.available_locales'))) {
+        app()->setLocale($locale);
+    }
+
+    return view('home.welcome');
+})->name('welcome');
 Route::view('/about', 'home.about')
     ->name('about');
 Route::view('/founders-committee', 'home.founders_committee')
@@ -31,9 +40,10 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::get('livefeed', [LiveFeedController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('livefeeds');
+
+// Route::get('livefeed', [LiveFeedController::class, 'index'])
+//     ->middleware(['auth'])
+//     ->name('livefeeds');
 Route::get('/testemail', function () {
     $user = App\Models\User::find(1);
     $user->notify(new App\Notifications\TestEmail());
@@ -70,4 +80,4 @@ Route::get('/confirmation', Subscribe::class)
 //    return view('subscribe', ['checkout' => $checkout]);
 //});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

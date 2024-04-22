@@ -26,7 +26,7 @@ new class extends Component {
             </div>
             <div class="header__nav-2">
                 <ul class="main-menu-4 menu-anim">
-                    <li><a href="{{ route('welcome') }}" wire:navigate>Home</a></li>
+                    <li><a href="{{ route('welcome') }}" wire:navigate>{{__('Home')}}</a></li>
                     <li><a href="{{ route('about') }}" wire:navigate>About Us</a></li>
                     <li><a href="#">Committee</a>
                         <ul class="main-dropdown">
@@ -93,7 +93,7 @@ new class extends Component {
                                         </a>
                                     </span>
                                     <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
-                                        {{ __('Dashboard') }}
+                                        {{ 'Dashboard' }}
                                     </x-dropdown-link>
                                     <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
                                         {{ __('Profile') }}

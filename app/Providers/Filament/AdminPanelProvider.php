@@ -77,7 +77,7 @@ class AdminPanelProvider extends PanelProvider
                     ->myProfileComponents([
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
-                TranslationManagerPlugin::make(),
+               
             ])
             ->navigationItems([
                 // NavigationItem::make('Chat')

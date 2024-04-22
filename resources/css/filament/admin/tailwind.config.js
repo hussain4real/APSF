@@ -10,6 +10,5 @@ export default {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
         './vendor/bezhansalleh/filament-language-switch/resources/views/language-switch.blade.php',
-        './vendor/kenepa/translation-manager/resources/**/*.blade.php',
     ],
 }

@@ -14,7 +14,6 @@
         "filament/spatie-laravel-media-library-plugin": "^3.2",
         "jeffgreco13/filament-breezy": "^2.3",
         "joshembling/image-optimizer": "^1.4",
-        "kenepa/translation-manager": "^4.0",
         "laravel/breeze": "^2.0",
         "laravel/cashier-paddle": "^2.4",
         "laravel/framework": "^11.0",
@@ -28,8 +27,7 @@
         "rickdbcn/filament-email": "^1.1",
         "spatie/laravel-translation-loader": "^2.8",
         "symfony/http-client": "^7.0",
-        "symfony/mailgun-mailer": "^7.0",
-        "tomatophp/filament-translations": "^1.0"
+        "symfony/mailgun-mailer": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

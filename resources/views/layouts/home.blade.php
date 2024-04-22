@@ -33,94 +33,97 @@
 
 
     @vite('public/assets/css/master.css')
-    @vite('resources/css/app.css')
+{{--    @vite('resources/css/app.css')--}}
 </head>
 
 <body>
-    <!-- Cursor Animation -->
-    <div class="cursor1"></div>
-    <div class="cursor2"></div>
+<!-- Cursor Animation -->
+<div class="cursor1"></div>
+<div class="cursor2"></div>
+
+<!-- Team Cursor -->
+<div class="cursor" id="team_cursor">Drag</div>
 
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loading">
-            <div class="bar bar1"></div>
-            <div class="bar bar2"></div>
-            <div class="bar bar3"></div>
-            <div class="bar bar4"></div>
-            <div class="bar bar5"></div>
-            <div class="bar bar6"></div>
-            <div class="bar bar7"></div>
-            <div class="bar bar8"></div>
-        </div>
+<!-- Preloader -->
+<div class="preloader">
+    <div class="loading">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+        <div class="bar bar4"></div>
+        <div class="bar bar5"></div>
+        <div class="bar bar6"></div>
+        <div class="bar bar7"></div>
+        <div class="bar bar8"></div>
+    </div>
+</div>
+
+
+
+<!-- Switcher Area Start -->
+<div class="switcher__area">
+    <div class="switcher__icon">
+        <button id="switcher_open"><i class="fa-solid fa-gear"></i></button>
+        <button id="switcher_close"><i class="fa-solid fa-xmark"></i></button>
     </div>
 
-
-
-    <!-- Switcher Area Start -->
-    <div class="switcher__area">
-        <div class="switcher__icon">
-            <button id="switcher_open"><i class="fa-solid fa-gear"></i></button>
-            <button id="switcher_close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="switcher__items">
+        <div class="switcher__item">
+            <div class="switch__title-wrap">
+                <h2 class="switcher__title">Cursor</h2>
+            </div>
+            <div class="switcher__btn">
+                <select name="cursor-style" id="cursor_style">
+                    <option value="1">default</option>
+                    <option selected value="2">animated</option>
+                </select>
+            </div>
         </div>
 
-        <div class="switcher__items">
-            <div class="switcher__item">
-                <div class="switch__title-wrap">
-                    <h2 class="switcher__title">Cursor</h2>
-                </div>
-                <div class="switcher__btn">
-                    <select name="cursor-style" id="cursor_style">
-                        <option value="1">default</option>
-                        <option selected value="2">animated</option>
-                    </select>
-                </div>
+        <div class="switcher__item">
+            <div class="switch__title-wrap">
+                <h2 class="switcher__title">mode</h2>
             </div>
-
-            <div class="switcher__item">
-                <div class="switch__title-wrap">
-                    <h2 class="switcher__title">mode</h2>
-                </div>
-                <div class="switcher__btn mode-type wc-col-2">
-                    <button class="active" data-mode="light">light</button>
-                    <button data-mode="dark">dark</button>
-                </div>
+            <div class="switcher__btn mode-type wc-col-2">
+                <button class="active" data-mode="light">light</button>
+                <button data-mode="dark">dark</button>
             </div>
+        </div>
 
-            <div class="switcher__item">
-                <div class="switch__title-wrap">
-                    <h2 class="switcher__title">Direction</h2>
-                </div>
-                <div class="switcher__btn lang_dir wc-col-2">
-                    <button class="active" data-mode="ltr">LTR</button>
-                    <button data-mode="rtl">RTL</button>
-                </div>
+        <div class="switcher__item">
+            <div class="switch__title-wrap">
+                <h2 class="switcher__title">Direction</h2>
             </div>
+            <div class="switcher__btn lang_dir wc-col-2">
+                <button class="active" data-mode="ltr">LTR</button>
+                <button data-mode="rtl">RTL</button>
+            </div>
+        </div>
 
-            <div class="switcher__item">
-                <div class="switch__title-wrap">
-                    <h2 class="switcher__title">Language Support</h2>
-                </div>
-                <div class="switcher__btn lang_dir wc-col-2">
-                    <button class="active" data-mode="ltr">LTR</button>
-                    <button data-mode="rtl">RTL</button>
-                </div>
+        <div class="switcher__item">
+            <div class="switch__title-wrap">
+                <h2 class="switcher__title">Language Support</h2>
+            </div>
+            <div class="switcher__btn lang_dir wc-col-2">
+                <button class="active" data-mode="ltr">LTR</button>
+                <button data-mode="rtl">RTL</button>
             </div>
         </div>
     </div>
-    <!-- Switcher Area End -->
+</div>
+<!-- Switcher Area End -->
 
 
 
-    <!-- Scroll Smoother -->
-    <div class="has-smooth" id="has_smooth"></div>
+<!-- Scroll Smoother -->
+<div class="has-smooth" id="has_smooth"></div>
 
 
-    <!-- Go Top Button -->
-    <button id="scroll_top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+<!-- Go Top Button -->
+<button id="scroll_top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
 
-    <!-- Header area start -->
+<!-- Header area start -->
 
     <livewire:layout.home-navigation />
 
@@ -140,7 +143,7 @@
                         <div class="row g-0">
                             <div class="col-xxl-12">
                                 <div class="sec-title-wrapper">
-                                    <h2 class="sec-sub-title title-anim">Partnerships and International Cooperation</h2>
+                                    <h2 class="sec-sub-title title-anim orange_color">Partnerships and International Cooperation</h2>
                                     <h3 class="sec-title title-anim">We are happy to work with global <br>
                                         renowned institutions</h3>
                                 </div>
@@ -171,15 +174,11 @@
                         <div class="row">
                             <div class="col-xxl-12">
                                 <div class="cta__content">
-                                    <p class="cta__sub-title">Work with us</p>
-                                    <h2 class="cta__title title-anim">Discover the benefits of membership at Arab
-                                        Private Schools
-                                        Federation. Join us for collaboration, innovation, and educational excellence
-                                        today</h2>
+                                    <!-- <p class="cta__sub-title">Sign Up Now!</p> -->
+                                    <h2 class="cta__title title-anim">Discover the benefits of membership at Arab Private Schools Federation. Join us for collaboration, innovation, and educational excellence today</h2>
                                     <div class="btn_wrapper">
-                                        <a href="contact.html"
-                                            class="wc-btn-primary btn-hover btn-item"><span></span>Be A Member
-                                            <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="#" class="wc-btn-primary btn-hover btn-item"><span></span>Be A Member <i
+                                                class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -189,70 +188,10 @@
                 <!-- CTA area end -->
 
 
-                <!-- Blog area start -->
-                <!-- <section class="blog__area-7 blog__animation">
-            <div class="container g-0 pb-140">
-              <div class="row">
-                <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-                  <div class="sec-title-wrapper">
-                    <h3 class="sec-title title-anim">News & Updates</h3>
-                  </div>
-                </div>
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
-                  <article class="blog__item">
-                    <div class="blog__img-wrapper">
-                      <a href="blog-details.html">
-                        <div class="img-box">
-                          <img class="image-box__item" src="assets/imgs/apsf/news-updates/news-1.webp" alt="">
-                          <img class="image-box__item" src="assets/imgs/apsf/news-updates/news-1.webp" alt="">
-                        </div>
-                      </a>
-                    </div>
-                    <h4 class="blog__meta"><a href="category.html">Teachers</a> . 02 May 2019</h4>
-                    <h5><a href="blog-details.html" class="blog__title">Socienty of Teachers Inauguration</a></h5>
-                    <a href="#" class="blog__btn">Read More <span><i
-                          class="fa-solid fa-arrow-right"></i></span></a>
-                  </article>
-                </div>
 
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
-                  <article class="blog__item">
-                    <div class="blog__img-wrapper">
-                      <a href="blog-details.html">
-                        <div class="img-box">
-                          <img class="image-box__item" src="assets/imgs/apsf/news-updates/news-2.webp" alt="">
-                          <img class="image-box__item" src="assets/imgs/apsf/news-updates/news-2.webp" alt="">
-                        </div>
-                      </a>
-                    </div>
-                    <h4 class="blog__meta"><a href="category.html">Students</a> . 02 May 2019</h4>
-                    <h5><a href="blog-details.html" class="blog__title">Student Supreme Government</a></h5>
-                    <a href="#" class="blog__btn">Read More <span><i
-                          class="fa-solid fa-arrow-right"></i></span></a>
-                  </article>
-                </div>
-
-                <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
-                  <article class="blog__item">
-                    <div class="blog__img-wrapper">
-                      <a href="blog-details.html">
-                        <div class="img-box">
-                          <img class="image-box__item" src="assets/imgs/apsf/news-updates/news-3.webp" alt="Blog Thumbnail">
-                          <img class="image-box__item" src="assets/imgs/apsf/news-updates/news-3.webp" alt="BLog Thumbnail">
-                        </div>
-                      </a>
-                    </div>
-                    <h4 class="blog__meta"><a href="category.html">Suppliers</a> . 02 May 2019</h4>
-                    <h5><a href="blog-details.html" class="blog__title">GESS Qatar</a></h5>
-                    <a href="#" class="blog__btn">Read More <span><i
-                          class="fa-solid fa-arrow-right"></i></span></a>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </section> -->
-                <!-- Blog area end -->
             </main>
+
+
 
             <!-- Footer area start -->
             <footer class="footer__area-2 pt-130">
@@ -260,9 +199,8 @@
                     <div class="footer__top-2 text-anim">
                         <div class="row">
                             <div class="col-xxl-12">
-                                <h2 class="sec-title-3 title-anim">Be a member</h2>
-                                <p class="footer__sub-title">Discover the benefits of membership at Arab Private
-                                    Schools Federation.</p>
+                                <h2 class="sec-title-3 title-anim orange_color">Get Updated</h2>
+                                <p class="footer__sub-title">Stay informed with our newsletter by sending us your email</p>
                             </div>
                         </div>
                     </div>
@@ -272,22 +210,17 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                 <div class="footer__location-2">
                                     <div class="location">
-                                        <h3>Oman</h3>
-                                        <p>Muscat, Oman</p>
+                                        <h3>Sultanate of Oman</h3>
+                                        <p>P O Box 755, Postal Code 328, Al Rumais, Barka</p>
                                     </div>
-                                    <!-- <div class="location">
-                        <h3>New York</h3>
-                        <p>Nenuya Centre, Elia Street <br>
-                          New York, USA</p>
-                      </div> -->
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                 <div class="footer__subscribe-2">
                                     <form action="#">
                                         <input type="text" name="email" placeholder="Enter your email">
-                                        <button type="submit" class="submit"><img
-                                                src="assets/imgs/apsf/icon/arrow-black.png" alt="Arrow Icon"></button>
+                                        <button type="submit" class="submit"><img src="assets/imgs/apsf/icon/arrow-black.png"
+                                                                                  alt="Arrow Icon"></button>
                                     </form>
                                 </div>
                             </div>
@@ -306,7 +239,6 @@
                                     <ul class="footer-menu menu-anim">
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="career.html">Career</a></li>
                                         <li><a href="faq.html">FAQs</a></li>
                                     </ul>
                                 </div>
@@ -316,11 +248,14 @@
                 </div>
             </footer>
             <!-- Footer area end -->
+
+
         </div>
     </div>
 
 
-    <!-- All JS files -->
+
+<!-- All JS files -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/swiper-bundle.min.js"></script>

@@ -29,20 +29,16 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-        \Illuminate\Support\Facades\Gate::define('use-translation-manager', function (?User $user) {
-            // Your authorization logic
-            return $user !== null ;
-        });
-        LanguageSwitch::configureUsing(function (LanguageSwitch $switch){
-            $switch
-                ->locales(['ar','en'])
-            ->visible(outsidePanels: true)
-//            ->outsidePanelRoutes([
-//                'welcome',
-//                'about'
-//            ])
-            ->outsidePanelPlacement(Placement::BottomCenter);
-        });
+//         LanguageSwitch::configureUsing(function (LanguageSwitch $switch){
+//             $switch
+//                 ->locales(['ar','en'])
+//             ->visible(outsidePanels: true)
+// //            ->outsidePanelRoutes([
+// //                'welcome',
+// //                'about'
+// //            ])
+//             ->outsidePanelPlacement(Placement::BottomCenter);
+//         });
         // FilamentAsset::register([
         //     Js::make('app', __DIR__ . '/../../resources/js/app.js'),
         // ]);

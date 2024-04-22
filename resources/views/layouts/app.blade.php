@@ -37,7 +37,7 @@
 
     <!-- Scripts -->
     @vite('resources/css/app.css')
-    @vite('public/assets/css/master.css')
+    {{-- @vite('public/assets/css/master.css') --}}
     @lemonJS
 </head>
 
