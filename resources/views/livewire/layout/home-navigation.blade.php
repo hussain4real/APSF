@@ -17,17 +17,20 @@ new class extends Component {
 <nav>
 
     <header class="header__area-7">
+        @include('partials/language_switcher')
         <div class="header__inner-2">
             <div class="header__logo-2">
                 <a href="/" class="logo-dark" wire:navigate><img src="assets/imgs/apsf/logo/apsflogo_271x69.webp"
                         alt="Site Logo"></a>
                 <a href="/" class="logo-light" wire:navigate><img
                         src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
+
             </div>
             <div class="header__nav-2">
                 <ul class="main-menu-4 menu-anim">
-                    <li><a href="{{ route('welcome') }}" wire:navigate>{{__('Home')}}</a></li>
-                    <li><a href="{{ route('about') }}" wire:navigate>About Us</a></li>
+                    <li><a href="{{ route('welcome') }}" wire:navigate>{{__('nav.Home')}}</a></li>
+
+                    <li><a href="{{ route('about') }}" wire:navigate>{{__('nav.About Us')}}</a></li>
                     <li><a href="#">Committee</a>
                         <ul class="main-dropdown">
                             <li><a href="{{ route('founders-committee') }}" wire:navigate>Founders Committee</a></li>
@@ -36,6 +39,7 @@ new class extends Component {
                         </ul>
                     </li>
                     <li><a href="{{ route('services') }}" wire:navigate>Services</a>
+
                         <!-- <ul class="main-dropdown">
               <li><a href="#">Academic Support</a></li>
               <li><a href="#">Professional Development</a></li>

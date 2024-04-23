@@ -29,16 +29,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-//         LanguageSwitch::configureUsing(function (LanguageSwitch $switch){
-//             $switch
-//                 ->locales(['ar','en'])
-//             ->visible(outsidePanels: true)
-// //            ->outsidePanelRoutes([
-// //                'welcome',
-// //                'about'
-// //            ])
-//             ->outsidePanelPlacement(Placement::BottomCenter);
-//         });
+        view()->composer('partials.language_switcher', function ($view) {
+            $view->with('current_locale', app()->getLocale());
+            $view->with('available_locales', config('app.available_locales'));
+        });
+
+         LanguageSwitch::configureUsing(function (LanguageSwitch $switch){
+             $switch
+                 ->locales(['ar','en'])
+             ->visible(outsidePanels: true)
+//             ->outsidePanelRoutes([
+//                 'welcome',
+//                 'about'
+//             ])
+             ->outsidePanelPlacement(Placement::TopLeft);
+         });
         // FilamentAsset::register([
         //     Js::make('app', __DIR__ . '/../../resources/js/app.js'),
         // ]);

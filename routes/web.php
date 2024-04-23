@@ -14,13 +14,15 @@ use Livewire\Volt\Volt;
 Route::view('/', 'home.welcome')
     ->name('welcome');
 //Volt::route('/livefeeds', 'livefeeds.list');
-//Route::get('/{locale?}', function ($locale = null) {
-//    if (isset($locale) && in_array($locale, config('app.available_locales'))) {
-//        app()->setLocale($locale);
-//    }
-//
-//    return view('home.welcome');
-//})->name('welcome');
+
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+
+    return redirect()->back();
+});
+
+
 Route::view('/about', 'home.about')
     ->name('about');
 Route::view('/founders-committee', 'home.founders_committee')

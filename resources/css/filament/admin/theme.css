@@ -8,4 +8,10 @@
         @apply font-semibold !text-xl;
     } */
     /* fi-ta-text-item-label */
+
+    /*.language-switch-trigger {*/
+    /*    > img {*/
+    /*        @apply w-full;*/
+    /*    }*/
+    /*}*/
 }

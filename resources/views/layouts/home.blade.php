@@ -36,7 +36,8 @@
 {{--    @vite('resources/css/app.css')--}}
 </head>
 
-<body>
+<body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
+
 <!-- Cursor Animation -->
 <div class="cursor1"></div>
 <div class="cursor2"></div>

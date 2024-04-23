@@ -25944,7 +25944,7 @@ main {
   padding-bottom: 20px;
 }
 
-.service__item-7 img { 
+.service__item-7 img {
   padding-bottom: 20px; /* Added by Rodel */
 }
 
@@ -30156,3 +30156,16 @@ body {
   border-left: 1px solid var(--secondary);
 }
 /*# sourceMappingURL=master.css.map */
+
+/*my fix for language switcher*/
+.switch{
+    /*background-color: #0f5132;*/
+    margin-top: 0.5rem;
+    > span {
+        margin: 0 0.5rem;
+        background-color: rgb(2 55 49 / 1);
+        color: #E56131;
+        border-radius: 0.5rem;
+        font: 600 1rem 'Poppins', sans-serif;
+    }
+}
