@@ -48,6 +48,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Teal,
             ])
             ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
+            ->brandLogoHeight('3rem')
             ->favicon(asset('assets/imgs/apsf/logo/apsf_favicon.png'))
             ->darkModeBrandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp'))
             ->viteTheme('resources/css/filament/admin/theme.css')
@@ -97,6 +98,7 @@ class AdminPanelProvider extends PanelProvider
                 // ->icon('heroicon-o-arrow-path-rounded-square')
                 // ->url('/livefeed'),
                 NavigationItem::make('Homepage')
+                    ->label(__('nav.Homepage'))
                     ->icon('heroicon-o-arrow-uturn-up')
                     ->url('/')
                     ->sort(-1),

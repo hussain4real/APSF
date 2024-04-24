@@ -13,4 +13,5 @@ return [
     'Login' => 'Login',
     'Contact' => 'Contact',
     'Faqs' => 'FAQS',
+    'Homepage' => 'Homepage',
 ];

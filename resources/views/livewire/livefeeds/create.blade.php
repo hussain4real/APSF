@@ -58,9 +58,13 @@ new class extends Component implements HasForms {
 
            $this->form->fill();
 
-           // $this->message = '';
-
            $this->dispatch('livefeed-created');
+
+           \Filament\Notifications\Notification::make('Livefeed created successfully!')
+               ->success()
+           ->title('Success')
+           ->body('The livefeed has been posted successfully.')
+           ->send();
         }
 
     }
