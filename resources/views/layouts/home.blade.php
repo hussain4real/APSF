@@ -36,8 +36,27 @@
 {{--    @vite('resources/css/app.css')--}}
 </head>
 
-<body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
+<body >
+@php
+$homepageModel = \App\Models\Homepage::get([
+    'partners_title',
+    'partners_description',
+    'member_action_text',
+    'member_action_url',
+    'member_description',
+    'newsletter_title',
+    'newsletter_description',
+    ])->first();
 
+$partnersTitle = $homepageModel->partners_title;
+$partnersDescription = $homepageModel->partners_description;
+$memberActionText = $homepageModel->member_action_text;
+$memberActionUrl = $homepageModel->member_action_url;
+$memberDescription = $homepageModel->member_description;
+$newsletterTitle = $homepageModel->newsletter_title;
+$newsletterDescription = $homepageModel->newsletter_description;
+@endphp
+{{--dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}"--}}
 <!-- Cursor Animation -->
 <div class="cursor1"></div>
 <div class="cursor2"></div>
@@ -97,8 +116,8 @@
                 <h2 class="switcher__title">Direction</h2>
             </div>
             <div class="switcher__btn lang_dir wc-col-2">
-                <button class="active" data-mode="ltr">LTR</button>
-                <button data-mode="rtl">RTL</button>
+                <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>
+                <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>
             </div>
         </div>
 
@@ -107,8 +126,8 @@
                 <h2 class="switcher__title">Language Support</h2>
             </div>
             <div class="switcher__btn lang_dir wc-col-2">
-                <button class="active" data-mode="ltr">LTR</button>
-                <button data-mode="rtl">RTL</button>
+                <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>
+                <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>
             </div>
         </div>
     </div>
@@ -144,9 +163,8 @@
                         <div class="row g-0">
                             <div class="col-xxl-12">
                                 <div class="sec-title-wrapper">
-                                    <h2 class="sec-sub-title title-anim orange_color">Partnerships and International Cooperation</h2>
-                                    <h3 class="sec-title title-anim">We are happy to work with global <br>
-                                        renowned institutions</h3>
+                                    <h2 class="sec-sub-title title-anim orange_color">{{__($partnersTitle)}}</h2>
+                                    <h3 class="sec-title title-anim">{{__($partnersDescription)}}</h3>
                                 </div>
                             </div>
                             <div class="brand__list-3">
@@ -176,9 +194,9 @@
                             <div class="col-xxl-12">
                                 <div class="cta__content">
                                     <!-- <p class="cta__sub-title">Sign Up Now!</p> -->
-                                    <h2 class="cta__title title-anim">Discover the benefits of membership at Arab Private Schools Federation. Join us for collaboration, innovation, and educational excellence today</h2>
+                                    <h2 class="cta__title title-anim">{{__($memberDescription)}}</h2>
                                     <div class="btn_wrapper">
-                                        <a href="#" class="wc-btn-primary btn-hover btn-item"><span></span>Be A Member <i
+                                        <a href="#" class="wc-btn-primary btn-hover btn-item"><span></span>{{__($memberActionText)}}<i
                                                 class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -200,8 +218,8 @@
                     <div class="footer__top-2 text-anim">
                         <div class="row">
                             <div class="col-xxl-12">
-                                <h2 class="sec-title-3 title-anim orange_color">Get Updated</h2>
-                                <p class="footer__sub-title">Stay informed with our newsletter by sending us your email</p>
+                                <h2 class="sec-title-3 title-anim orange_color">{{__($newsletterTitle)}}</h2>
+                                <p class="footer__sub-title">{{__($newsletterDescription)}}</p>
                             </div>
                         </div>
                     </div>
@@ -211,15 +229,15 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                 <div class="footer__location-2">
                                     <div class="location">
-                                        <h3>Sultanate of Oman</h3>
-                                        <p>P O Box 755, Postal Code 328, Al Rumais, Barka</p>
+                                        <h3>{{__("frontend.address.title")}}</h3>
+                                        <p>{{__("frontend.address.description")}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                 <div class="footer__subscribe-2">
                                     <form action="#">
-                                        <input type="text" name="email" placeholder="Enter your email">
+                                        <input type="text" name="email" placeholder="{{__("frontend.input.email")}}">
                                         <button type="submit" class="submit"><img src="assets/imgs/apsf/icon/arrow-black.png"
                                                                                   alt="Arrow Icon"></button>
                                     </form>
@@ -232,15 +250,15 @@
                         <div class="row">
                             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-5">
                                 <div class="footer__copyright-2">
-                                    <p>© 2024 | Alrights reserved Arab Private School Federation</p>
+                                    <p>{{__("frontend.copyright")}}</p>
                                 </div>
                             </div>
                             <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-7">
                                 <div class="footer__nav">
                                     <ul class="footer-menu menu-anim">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="faq.html">FAQs</a></li>
+                                        <li><a href="about.html">{{__("nav.About Us")}}</a></li>
+                                        <li><a href="contact.html">{{__("nav.Contact")}}</a></li>
+                                        <li><a href="faq.html">{{__("nav.Faqs")}}</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -255,7 +273,20 @@
     </div>
 
 
+<script>
+    window.onload = function() {
+        var ltrButton = document.querySelector('button[data-mode="ltr"]');
+        var rtlButton = document.querySelector('button[data-mode="rtl"]');
 
+        if (ltrButton && ltrButton.getAttribute('data-mode') === 'ltr') {
+            ltrButton.click();
+            console.log('ltr');
+        } else if (rtlButton && rtlButton.getAttribute('data-mode') === 'rtl') {
+            rtlButton.click();
+            console.log('rtl');
+        }
+    }
+</script>
 <!-- All JS files -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>

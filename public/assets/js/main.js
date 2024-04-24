@@ -25,7 +25,7 @@
 21. Config GSAP
 22. Service 6
 23. Choose Section
-24. Portfolio 5 Animation 
+24. Portfolio 5 Animation
 25. Title Animation
 26. Title Animation Top
 27. Text Animation
@@ -46,19 +46,19 @@
 42. Counter Animation
 43. Workflow Slider Animation | animation__fade
 44. Workflow Slider Animation 2 |  fade_bottom
-45. Blog animation 
+45. Blog animation
 46. Blog animation 2
 47. Blog Animation 3
 48. Zoom In Animation
 49. Service 3 Animation
 50. Testimonial 2 Animation
 51. Testimonial 3 Image Animation
-52. Pricing Table Animation 
-53. Service 2 Animation 
+52. Pricing Table Animation
+53. Service 2 Animation
 54. Hero 1 Animation
 55. Service 1 Animation
-56. Features 2 Animation 
-57. Portfolio 6 Animation 
+56. Features 2 Animation
+57. Portfolio 6 Animation
 58. Portfolio 5 Border
 59. Portfolio Main Slider
 60. Portfolio Slider 6
@@ -245,7 +245,7 @@
         }, "-=0.3");
       }
 
-      // Main Cursor Moving 
+      // Main Cursor Moving
       tl.to(".cursor1", {
         ease: "power2.out"
       })
@@ -263,7 +263,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 02. Offcanvas 
+  // 02. Offcanvas
   $("#open_offcanvas").click(function () {
     $('.offcanvas__area').css('opacity', '1');
     $('.offcanvas__area').css('visibility', 'visible');
@@ -619,7 +619,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 15. Portfolio Slider 
+  // 15. Portfolio Slider
   var total_portfolio_item = $('.portfolio__item-6').length;
   if (total_portfolio_item) {
     $('.portfolio__total').html(total_portfolio_item);
@@ -916,7 +916,7 @@
   if (device_width > 100) {
 
     /////////////////////////////////////////////////////
-    // 24. Portfolio 5 Animation 
+    // 24. Portfolio 5 Animation
     let skewSetter = gsap.quickTo(".portfolio__item-5 img", "skewY"),
       clamp = gsap.utils.clamp(-15, 15);
     const smoother = ScrollSmoother.create({
@@ -932,7 +932,7 @@
     /////////////////////////////////////////////////////
 
 
-    ///////////////////////////////////////////////////// 
+    /////////////////////////////////////////////////////
     // 25. Title Animation
     let splitTitleLines = gsap.utils.toArray(".title-anim");
 
@@ -1214,7 +1214,7 @@
     duration: 1.5
   }, '-=5')
 
-  // All Buttons 
+  // All Buttons
   let arr1 = gsap.utils.toArray("#btn_wrapper")
   let arr2 = gsap.utils.toArray(".btn_wrapper")
   const all_buttons = arr1.concat(arr2);
@@ -1245,7 +1245,7 @@
     }
   })
 
-  // Image pin 
+  // Image pin
   imageTl.to(".about__img-2 img", {
     scale: 1.15,
     duration: 1,
@@ -1440,7 +1440,7 @@
   /////////////////////////////////////////////////////
   // 41. Image Moving Animations
 
-  // Service Page 
+  // Service Page
   let image_list = [".solution__wrapper img"]
   imageMoving(".solution__area", image_list)
 
@@ -1657,7 +1657,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 45. Blog animation 
+  // 45. Blog animation
   gsap.set(".blog__animation .blog__item", { x: 50, opacity: 0 });
 
   if (device_width < 1023) {
@@ -1798,7 +1798,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 49. Service 3 Animation 
+  // 49. Service 3 Animation
   let service__items_3 = gsap.utils.toArray(".service_animation")
   let service__items_heading = gsap.utils.toArray(".service_animation h3")
   let service__items_content = gsap.utils.toArray(".service_animation .service__content-3")
@@ -1839,8 +1839,8 @@
   /////////////////////////////////////////////////////
 
 
-  /////////////////////////////////////////////////////  
-  // 50. Testimonial 2 Animation 
+  /////////////////////////////////////////////////////
+  // 50. Testimonial 2 Animation
   gsap.set(".testimonial__inner-2", {
     opacity: 0,
     x: -100
@@ -1882,7 +1882,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 52. Pricing Table Animation 
+  // 52. Pricing Table Animation
   let pricing_timeline = gsap.timeline({
     scrollTrigger: {
       trigger: ".price__table",
@@ -1909,7 +1909,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 53. Service 2 Animation 
+  // 53. Service 2 Animation
   let animation__services2 = gsap.utils.toArray(".animation__service-2 .service__item-2")
   gsap.set(animation__services2, {
     opacity: 0,
@@ -2049,8 +2049,8 @@
   /////////////////////////////////////////////////////
 
 
-  /////////////////////////////////////////////////////  
-  // 56. Features 2 Animation 
+  /////////////////////////////////////////////////////
+  // 56. Features 2 Animation
   let animation__feature2 = gsap.utils.toArray(".animation__feature2 .feature__item")
   if (device_width < 1023) {
     animation__feature2.forEach((item, i) => {
@@ -2087,7 +2087,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 57. Portfolio 6 Animation 
+  // 57. Portfolio 6 Animation
   const portfolio_listss = gsap.utils.toArray(".portfolio__item-6 img")
   if (portfolio_listss) {
     portfolio_listss.forEach((item, i) => {
@@ -2127,7 +2127,7 @@
 
 
 
-  // Charchater Come Animation 
+  // Charchater Come Animation
   let char_come = document.querySelectorAll(".animation__char_come")
 
   char_come.forEach((char_come) => {
@@ -2136,7 +2136,7 @@
   })
 
 
-  // Charchater Come long Animation 
+  // Charchater Come long Animation
   let char_come_long = document.querySelectorAll(".animation__char_come_long")
 
   char_come_long.forEach((char_come) => {
@@ -2145,26 +2145,26 @@
   })
 
 
-  // Charchater Up Animation 
+  // Charchater Up Animation
   let char_up = document.querySelector(".animation__char_up")
   let split_char_up = new SplitText(char_up, { type: "chars, words" })
   gsap.from(split_char_up.chars, { duration: 1, y: 15, autoAlpha: 0, stagger: 0.05 });
 
 
 
-  // Service Page hero Animation 
+  // Service Page hero Animation
   let word_up = document.querySelector(".animation__word_up")
   let split_word_up = new SplitText(word_up, { type: "words", position: "absolute" })
   gsap.from(split_word_up.words, { duration: 1, y: 50, autoAlpha: 0, stagger: 0.05 });
 
-  // Service Page hero Animation   
+  // Service Page hero Animation
   let word_come = document.querySelectorAll(".animation__word_come")
   word_come.forEach((word_come) => {
     let split_word_come = new SplitText(word_come, { type: "chars words", position: "absolute" })
     gsap.from(split_word_come.words, { duration: 1, x: 50, autoAlpha: 0, stagger: 0.05 });
   })
 
-  // Service Page hero Animation   
+  // Service Page hero Animation
   let word_come_long = document.querySelectorAll(".animation__word_come_long")
   word_come_long.forEach((word_come_long) => {
     let split_word_come_long = new SplitText(word_come_long, { type: "chars words", position: "absolute" })
@@ -2172,10 +2172,10 @@
   })
 
 
-  // Home page Hero Animation 
+  // Home page Hero Animation
 
   /////////////////////////////////////////////////////
-  //  Service Page Animation 
+  //  Service Page Animation
   let animation__service_page = gsap.utils.toArray(".animation__service_page")
   if (animation__service_page) {
     animation__service_page.forEach((item, i) => {
@@ -2327,12 +2327,14 @@
     $(this).addClass('active').siblings().removeClass('active');
 
     var dir_val = $('.lang_dir button.active').attr('data-mode');
+
     if (dir_val == 'rtl') {
       $('body').addClass('dir-rtl');
     } else {
       $('body').removeClass('dir-rtl');
     }
   });
+
 
   // Cursor JS
   $('#cursor_style').on('change', function () {
@@ -2415,7 +2417,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 65. Service 7 Animation 
+  // 65. Service 7 Animation
   let animation_services_7 = gsap.utils.toArray(".animation_service_7 .service__item-7")
   gsap.set(animation_services_7, {
     opacity: 0,
@@ -2463,7 +2465,7 @@
 
 
   /////////////////////////////////////////////////////
-  // 65. Service 7 Animation 
+  // 65. Service 7 Animation
   let animation_workflow_6 = gsap.utils.toArray(".animation_workflow_6 .workflow__item-4")
   if (animation_workflow_6) {
     if (device_width < 1023) {
@@ -2544,7 +2546,7 @@
   }
   /////////////////////////////////////////////////////
 
-  // Home One Hero Animation 
+  // Home One Hero Animation
   let HomeDigital = gsap.timeline()
   let HomeDigitalImage = gsap.timeline()
 
@@ -2587,7 +2589,7 @@
   }
 
 
-  // Charchater Come long Animation 
+  // Charchater Come long Animation
   let mark = document.querySelector(".hero__area-3 .title-left")
   let eting = document.querySelector(".hero__area-3 .title-right")
   let hero__text_animation = document.querySelector(".hero__text-animation")
@@ -2603,10 +2605,10 @@
 
 
 
-  // Home page Hero Animation 
+  // Home page Hero Animation
   let homeCreative = gsap.timeline()
 
-  // Charchater Come long Animation 
+  // Charchater Come long Animation
   let creative = document.querySelector(".service__hero-right-2 .creative")
   let solution = document.querySelector(".service__hero-right-2 .solution")
   let heroContent = document.querySelector(".service__hero-right-2 .animate_content")
@@ -2621,14 +2623,14 @@
   homeCreative.from(split_herocontent.words, { duration: 1, x: 50, autoAlpha: 0, stagger: 0.05 }, "-=1");
 
 
-  // Home page Hero Animation 
+  // Home page Hero Animation
   gsap.set(".experience", {
     y: 50,
     opacity: 0,
   })
   let homeAgency = gsap.timeline()
 
-  // Charchater Come long Animation 
+  // Charchater Come long Animation
   let hero__title = document.querySelector(".hero__title")
   let hero__subtitle = document.querySelector(".hero__sub-title")
 
@@ -2648,10 +2650,10 @@
 
 
 
-  // Home 6 Hero Animation 
+  // Home 6 Hero Animation
   let homeStratup = gsap.timeline()
 
-  // Charchater Come long Animation 
+  // Charchater Come long Animation
   let hero6_title = document.querySelector(".hero__six_anim .hero__title-6")
   let hero6_desc = document.querySelector(".hero__six_anim p")
 

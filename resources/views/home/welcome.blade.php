@@ -1,5 +1,36 @@
 <x-home-layout>
+@php
+$homepageModel = \App\Models\Homepage::first();
 
+
+    $heroTitle = $homepageModel->hero_title;
+    $heroDescriptionOne = $homepageModel->hero_description_one;
+    $heroDescriptionTwo = $homepageModel->hero_description_two;
+    $missionTitle = $homepageModel->mission_title;
+    $missionDescription = $homepageModel->mission_description;
+    $visionTitle = $homepageModel->vision_title;
+    $visionDescription = $homepageModel->vision_description;
+    $valuesHeading = $homepageModel->values_heading;
+    $valueTitleOne = $homepageModel->value_title_one;
+    $valueDescriptionOne = $homepageModel->value_description_one;
+    $valueTitleTwo = $homepageModel->value_title_two;
+    $valueDescriptionTwo = $homepageModel->value_description_two;
+    $valueTitleThree = $homepageModel->value_title_three;
+    $valueDescriptionThree = $homepageModel->value_description_three;
+    $valueTitleFour = $homepageModel->value_title_four;
+    $valueDescriptionFour = $homepageModel->value_description_four;
+    $valueTitleFive = $homepageModel->value_title_five;
+    $valueDescriptionFive = $homepageModel->value_description_five;
+    $valueTitleSix = $homepageModel->value_title_six;
+    $valueDescriptionSix = $homepageModel->value_description_six;
+    $chairmanMessageTitle = $homepageModel->chairman_message_title;
+    $chairmanMessageOne = $homepageModel->chairman_message_one;
+    $chairmanMessageTwo = $homepageModel->chairman_message_two;
+    $chairmanMessageThree = $homepageModel->chairman_message_three;
+    $partnersTitle = $homepageModel->partners_title;
+    $partnersDescription = $homepageModel->partners_description;
+//    dd($heroTitle);
+@endphp
     <!-- Hero area start -->
     <section class="service__hero-2">
         <div class="container">
@@ -13,8 +44,8 @@
                             <img src="assets/imgs/apsf/home-header/home-300x450.webp" alt="Image" class="image-4">
                         </div>
                         <div class="service__hero-right-2 hero7__thum-anim">
-                            <h2 class="title creative">Excellence in Education  </h2>
-                            <p class="animate_content to_justify">A premier hub dedicated to serving and connecting private schools in the Arab region. Our platform is designed to administer, manage, coordinate and foster relationships among our community of esteemed schools. <br><br>Here, you'll find tailored support, collaboration opportunities and resources to facilitate the growth and excellence of your institution. Join us in shaping the future of education in the Arab region.</p>
+                            <h2 class="title creative">{{ __($heroTitle) }} </h2>
+                            <p class="animate_content to_justify">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>
                             <img src="assets/imgs/home-7/scroll.png" alt="scroll Image" class="scroll">
                         </div>
                     </div>
@@ -39,10 +70,10 @@
                 </div>
                 <div class="col-xxl-8 col-xl-5 col-lg-5 col-md-5">
                     <div class="text-anim objectives-inner" style="background-color: #f8f1e6;">
-                        <h2 class="sec-title title-anim orange_color">Mission</h2>
-                        <p class="body-text-common to_justify"><br>Fostering educational excellence through collaboration and innovation among Arab private schools, preparing students for global success.</p>
-                        <h2 class="sec-title title-anim orange_color">Vision</h2>
-                        <p class="body-text-common to_justify"><br>Pioneering a transformative, inclusive education ecosystem in the Arab region, fostering excellence, innovation and empowering every student's potential for positive societal impact.</p>
+                        <h2 class="sec-title title-anim orange_color">{{__($missionTitle)}}</h2>
+                        <p class="body-text-common to_justify"><br>{{__($missionDescription)}}</p>
+                        <h2 class="sec-title title-anim orange_color">{{__($visionTitle)}}</h2>
+                        <p class="body-text-common to_justify"><br>{{__($visionDescription)}}</p>
                     </div>
                 </div>
             </div>
@@ -58,7 +89,7 @@
             <div class="row">
                 <div class="col-xxl-12">
                     <div class="sec-title-wrapper text-anim">
-                        <h2 class="sec-title title-anim orange_color">Our Values</h2>
+                        <h2 class="sec-title title-anim orange_color">{{__($valuesHeading)}}</h2>
                     </div>
                 </div>
             </div>
@@ -72,33 +103,33 @@
                     <div class="service__items-7 animation_service_7">
                         <div class="service__item-7">
                             <img src="assets/imgs/apsf/values-icons/excellence.webp" alt="">
-                            <h3 class="service__title-7">Excellence</h3>
-                            <p> Striving for the highest standards of academic, professional, and operational excellence in all endeavors.</p>
+                            <h3 class="service__title-7">{{__($valueTitleOne)}}</h3>
+                            <p> {{__($valueDescriptionOne)}}</p>
                         </div>
                         <div class="service__item-7">
                             <img src="assets/imgs/apsf/values-icons/collaboration.webp" alt="">
-                            <h3 class="service__title-7">Collaboration</h3>
-                            <p>Fostering strong partnerships and collaboration among member schools, educators, and stakeholders to achieve common goals.</p>
+                            <h3 class="service__title-7">{{__($valueTitleTwo)}}</h3>
+                            <p>{{__($valueDescriptionTwo)}}</p>
                         </div>
                         <div class="service__item-7">
                             <img src="assets/imgs/apsf/values-icons/innovation.webp" alt="">
-                            <h3 class="service__title-7">Innovation</h3>
-                            <p>Embracing innovation and creativity in education, leveraging technology, and adopting best practices to enhance learning outcomes.</p>
+                            <h3 class="service__title-7">{{__($valueTitleThree)}}</h3>
+                            <p>{{__($valueDescriptionThree)}}</p>
                         </div>
                         <div class="service__item-7">
                             <img src="assets/imgs/apsf/values-icons/studentcenterdness.webp" alt="">
-                            <h3 class="service__title-7">Student-Centeredness</h3>
-                            <p>Putting students at the center of all educational initiatives, prioritizing their holistic development, well-being, and success.</p>
+                            <h3 class="service__title-7">{{__($valueTitleFour)}}</h3>
+                            <p>{{__($valueDescriptionFour)}}</p>
                         </div>
                         <div class="service__item-7">
                             <img src="assets/imgs/apsf/values-icons/leadership.webp" alt="">
-                            <h3 class="service__title-7">Leadership</h3>
-                            <p>Nurturing educational leadership at all levels, empowering educators and administrators to lead with vision, empathy, and effectiveness.</p>
+                            <h3 class="service__title-7">{{__($valueTitleFive)}}</h3>
+                            <p>{{__($valueDescriptionFive)}}</p>
                         </div>
                         <div class="service__item-7">
                             <img src="assets/imgs/apsf/values-icons/communityengagement.webp" alt="">
-                            <h3 class="service__title-7">Community Engagement</h3>
-                            <p>Engaging actively with the community, parents, and stakeholders to build strong partnerships and enhance the educational experience for students.</p>
+                            <h3 class="service__title-7">{{__($valueTitleSix)}}</h3>
+                            <p>{{__($valueDescriptionSix)}}</p>
                         </div>
                     </div>
                 </div>
@@ -112,7 +143,7 @@
             <div class="row">
                 <div class="col-xxl-12">
                     <div class="sec-title-wrapper text-anim">
-                        <h2 class="sec-title title-anim orange_color">Chairman's Message</h2>
+                        <h2 class="sec-title title-anim orange_color">{{__($chairmanMessageTitle)}}</h2>
                         <!-- <p class="sec-text">Comprehensive solutions tailored to meet diverse needs with precision.</p> -->
                     </div>
                 </div>
@@ -140,7 +171,8 @@
 
                                 <div class="swiper-slide testimonial__slide">
                                     <div class="testimonial__inner-2" style="background-color: #f8f1e6;">
-                                        <p class="testimonial__text-2 to_justify" >I extend my warm greetings to all associated with this esteemed institution, including the staff and students. As chairman founder of the "Arab Federation of Private Schools," I'm thrilled to strengthen cultural and educational ties among schools, fostering excellence and celebrating the Arab identity. <br><br>Our aim is to promote moral values and provide a platform for sharing experiences and implementing educational programs, fostering healthy competition. Through collaboration, we seek to elevate education standards and enrich student experiences.<br><br> It is our belief that the Arab Federation of Private Schools would act as a stimulant to improve the sense of unity and cooperation among Arab private schools. By combining our knowledge and resources, we can improve student learning outcomes and raise the standards of education. In addition, the federation will serve as a robust platform for training, professional development and career opportunities aligned with current and future educational trends. </p>
+                                        <p class="testimonial__text-2 to_justify" >{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
+                                            {{__($chairmanMessageThree)}} </p>
                                     </div>
                                 </div>
                             </div>
