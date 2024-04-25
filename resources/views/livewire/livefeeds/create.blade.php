@@ -30,7 +30,12 @@ new class extends Component implements HasForms {
                     ->default(auth()?->user()?->id ?? null),
             Filament\Forms\Components\Textarea::make('message')
             ->placeholder(__('What\'s on your mind?'))
-            ->hiddenLabel(),
+                ->rows(10)
+//                ->autosize()
+                ->autofocus()
+                ->maxLength(length: 1000)
+            ->hiddenLabel()
+            ,
             Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('attachment')
             ->collection('livefeed_images')
             ->hiddenLabel()
@@ -53,9 +58,13 @@ new class extends Component implements HasForms {
 
            $this->form->fill();
 
-           // $this->message = '';
-
            $this->dispatch('livefeed-created');
+
+           \Filament\Notifications\Notification::make('Livefeed created successfully!')
+               ->success()
+           ->title('Success')
+           ->body('The livefeed has been posted successfully.')
+           ->send();
         }
 
     }

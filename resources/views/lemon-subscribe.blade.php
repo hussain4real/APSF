@@ -1,16 +1,16 @@
-<x-guest-layout>
-    @lemonJS
+<x-app-layout>
+
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
 
-    <div class="w-full max-w-sm mx-auto container p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full max-w-sm mx-auto container p-4 my-36 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
         <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">{{$subscriptionName}}</h5>
         <div class="flex items-baseline text-gray-900 dark:text-white">
             <span class="text-3xl font-semibold"></span>
-            @foreach($subscriptionPrice as $price)
-            <span class="text-5xl font-extrabold tracking-tight">{{$price->total()}}</span>
-            @endforeach
+{{--            @foreach($subscriptionPrice as $price)--}}
+            <span class="text-5xl font-extrabold tracking-tight">OMR {{$subscriptionPrice}}</span>
+{{--            @endforeach--}}
             <span class="ms-1 text-xl font-normal text-gray-500 dark:text-gray-400">/year</span>
         </div>
         <ul role="list" class="space-y-5 my-7">
@@ -58,9 +58,9 @@
             </li>
         </ul>
         <button type="button" class="text-white bg-green-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-200 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">
-            <x-paddle-button :checkout="$checkout">
+            <x-lemon-button :href="$checkout" >
                 Subscribe
-            </x-paddle-button>
+            </x-lemon-button>
         </button>
     </div>
 
@@ -68,4 +68,4 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-</x-guest-layout>
+</x-app-layout>
