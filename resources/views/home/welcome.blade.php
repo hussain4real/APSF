@@ -3,33 +3,36 @@
 $homepageModel = \App\Models\Homepage::first();
 
 
-    $heroTitle = $homepageModel->hero_title;
-    $heroDescriptionOne = $homepageModel->hero_description_one;
-    $heroDescriptionTwo = $homepageModel->hero_description_two;
-    $missionTitle = $homepageModel->mission_title;
-    $missionDescription = $homepageModel->mission_description;
-    $visionTitle = $homepageModel->vision_title;
-    $visionDescription = $homepageModel->vision_description;
-    $valuesHeading = $homepageModel->values_heading;
-    $valueTitleOne = $homepageModel->value_title_one;
-    $valueDescriptionOne = $homepageModel->value_description_one;
-    $valueTitleTwo = $homepageModel->value_title_two;
-    $valueDescriptionTwo = $homepageModel->value_description_two;
-    $valueTitleThree = $homepageModel->value_title_three;
-    $valueDescriptionThree = $homepageModel->value_description_three;
-    $valueTitleFour = $homepageModel->value_title_four;
-    $valueDescriptionFour = $homepageModel->value_description_four;
-    $valueTitleFive = $homepageModel->value_title_five;
-    $valueDescriptionFive = $homepageModel->value_description_five;
-    $valueTitleSix = $homepageModel->value_title_six;
-    $valueDescriptionSix = $homepageModel->value_description_six;
-    $chairmanMessageTitle = $homepageModel->chairman_message_title;
-    $chairmanMessageOne = $homepageModel->chairman_message_one;
-    $chairmanMessageTwo = $homepageModel->chairman_message_two;
-    $chairmanMessageThree = $homepageModel->chairman_message_three;
-    $partnersTitle = $homepageModel->partners_title;
-    $partnersDescription = $homepageModel->partners_description;
+
+
+    $heroTitle = $homepageModel->hero_title ?? null;
+    $heroDescriptionOne = $homepageModel->hero_description_one ?? null;
+    $heroDescriptionTwo = $homepageModel->hero_description_two ?? null;
+    $missionTitle = $homepageModel->mission_title ?? null;
+    $missionDescription = $homepageModel->mission_description ?? null;
+    $visionTitle = $homepageModel->vision_title ?? null;
+    $visionDescription = $homepageModel->vision_description ?? null;
+    $valuesHeading = $homepageModel->values_heading ?? null;
+    $valueTitleOne = $homepageModel->value_title_one ?? null;
+    $valueDescriptionOne = $homepageModel->value_description_one ?? null;
+    $valueTitleTwo = $homepageModel->value_title_two ?? null;
+    $valueDescriptionTwo = $homepageModel->value_description_two ?? null;
+    $valueTitleThree = $homepageModel->value_title_three ?? null;
+    $valueDescriptionThree = $homepageModel->value_description_three ?? null;
+    $valueTitleFour = $homepageModel->value_title_four ?? null;
+    $valueDescriptionFour = $homepageModel->value_description_four ?? null;
+    $valueTitleFive = $homepageModel->value_title_five ?? null;
+    $valueDescriptionFive = $homepageModel->value_description_five ?? null;
+    $valueTitleSix = $homepageModel->value_title_six ?? null;
+    $valueDescriptionSix = $homepageModel->value_description_six ?? null;
+    $chairmanMessageTitle = $homepageModel->chairman_message_title ?? null;
+    $chairmanMessageOne = $homepageModel->chairman_message_one ?? null;
+    $chairmanMessageTwo = $homepageModel->chairman_message_two ?? null;
+    $chairmanMessageThree = $homepageModel->chairman_message_three ?? null;
+    $partnersTitle = $homepageModel->partners_title ?? null;
+    $partnersDescription = $homepageModel->partners_description ?? null;
 //    dd($heroTitle);
+
 @endphp
     <!-- Hero area start -->
     <section class="service__hero-2">

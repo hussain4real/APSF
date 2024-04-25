@@ -48,13 +48,16 @@ $homepageModel = \App\Models\Homepage::get([
     'newsletter_description',
     ])->first();
 
-$partnersTitle = $homepageModel->partners_title;
-$partnersDescription = $homepageModel->partners_description;
-$memberActionText = $homepageModel->member_action_text;
-$memberActionUrl = $homepageModel->member_action_url;
-$memberDescription = $homepageModel->member_description;
-$newsletterTitle = $homepageModel->newsletter_title;
-$newsletterDescription = $homepageModel->newsletter_description;
+
+
+    $partnersTitle = $homepageModel->partners_title ?? null;
+    $partnersDescription = $homepageModel->partners_description ?? null;
+    $memberActionText = $homepageModel->member_action_text ?? null;
+    $memberActionUrl = $homepageModel->member_action_url ?? null;
+    $memberDescription = $homepageModel->member_description ?? null;
+    $newsletterTitle = $homepageModel->newsletter_title ?? null;
+    $newsletterDescription = $homepageModel->newsletter_description ?? null;
+
 @endphp
 {{--dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}"--}}
 <!-- Cursor Animation -->
@@ -186,6 +189,41 @@ $newsletterDescription = $homepageModel->newsletter_description;
                     </div>
                 </section>
                 <!-- Brand area end -->
+
+                <!-- Dashboard start -->
+                <section class="brand__area" style="background-color: #f8f1e6;">
+                    <div class="container g-0 line pt-140 pb-140">
+                        <span class="line-3"></span>
+                        <div class="row g-0">
+                            <div class="col-xxl-12">
+                                <div class="sec-title-wrapper">
+                                    <h3 class="sec-title title-anim orange_color">Statistics</h3>
+                                </div>
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
+                                <img src="assets/imgs/apsf/dashboard/students.webp" alt="Brand Logo"><br><br>
+                                <h1>829</h1>
+                                <h2>Students</h2>
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
+                                <img src="assets/imgs/apsf/dashboard/teachers.webp" alt="Brand Logo"><br><br>
+                                <h1>483</h1>
+                                <h2>Teachers</h2>
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
+                                <img src="assets/imgs/apsf/dashboard/contractors.webp" alt="Brand Logo"><br><br>
+                                <h1>620</h1>
+                                <h2>Contractors</h2>
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
+                                <img src="assets/imgs/apsf/dashboard/institutions.webp" alt="Brand Logo"><br><br>
+                                <h1>150</h1>
+                                <h2>Institutions</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Dashboard end -->
 
                 <!-- CTA area start -->
                 <section class="cta__area cta__area-7 pt-130">

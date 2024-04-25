@@ -18,14 +18,14 @@
                 <div class="row">
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
-                            <h3 class="ps-title">Abdulkadir A. Ali Sharraay</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">
+                            <h3 class="ps-title">Pro. Dr. Wisam Al Shaikhli</h3>
+                            <img src="assets/imgs/apsf/board-of-trustees/bot_05.webp" width="80%" alt="">
                         </div>
                     </div>
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
-                            <h3 class="ps-title">Rebhi Hatamleh<br><br></h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">
+                            <h3 class="ps-title">Dr. Abdallah Al Swidi</h3>
+                            <img src="assets/imgs/apsf/board-of-trustees/bot_04.webp" width="80%" alt="">
                         </div>
                     </div>
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
@@ -36,14 +36,19 @@
                     </div>
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
-                            <h3 class="ps-title">Dr. Abdallah Al Swidi</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_04.webp" width="80%" alt="">
+                            <h3 class="ps-title">Rebhi Hatamleh<br><br></h3>
+                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
+                        <div class="portfolio__service-item">
+                            <h3 class="ps-title">Abdulkadir A. Ali Sharraay</h3>
+                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Team area end -->
 </x-home-layout>
