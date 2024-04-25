@@ -14,6 +14,7 @@ use Filament\Pages;
 use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Colors\Color;
@@ -47,6 +48,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Teal,
             ])
             ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
+            ->brandLogoHeight('3rem')
             ->favicon(asset('assets/imgs/apsf/logo/apsf_favicon.png'))
             ->darkModeBrandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp'))
             ->viteTheme('resources/css/filament/admin/theme.css')
@@ -54,14 +56,16 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->pages([
-                Pages\Dashboard::class,
+                //                Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                //                Widgets\AccountWidget::class,
                 //                Widgets\FilamentInfoWidget::class,
             ])
             ->plugins([
+                SpatieLaravelTranslatablePlugin::make()
+                    ->defaultLocales(['en', 'ar']),
                 BreezyCore::make()
                     ->myProfile(
                         shouldRegisterUserMenu: true,
@@ -75,6 +79,7 @@ class AdminPanelProvider extends PanelProvider
                     ->myProfileComponents([
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
+
             ])
             ->navigationItems([
                 // NavigationItem::make('Chat')
@@ -93,6 +98,7 @@ class AdminPanelProvider extends PanelProvider
                 // ->icon('heroicon-o-arrow-path-rounded-square')
                 // ->url('/livefeed'),
                 NavigationItem::make('Homepage')
+                    ->label(__('nav.Homepage'))
                     ->icon('heroicon-o-arrow-uturn-up')
                     ->url('/')
                     ->sort(-1),
@@ -118,6 +124,7 @@ class AdminPanelProvider extends PanelProvider
                 // Css::make('style', 'css/chatify/style.css'),
                 // Js::make('code', 'public/js/chatify/code.js'),
             ])
+            ->sidebarCollapsibleOnDesktop(true)
             ->spa()
             ->spaUrlExceptions(fn (): array => [
                 url('/admin/chat'),

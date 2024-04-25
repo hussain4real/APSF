@@ -17,25 +17,29 @@ new class extends Component {
 <nav>
 
     <header class="header__area-7">
+        @include('partials/language_switcher')
         <div class="header__inner-2">
             <div class="header__logo-2">
                 <a href="/" class="logo-dark" wire:navigate><img src="assets/imgs/apsf/logo/apsflogo_271x69.webp"
                         alt="Site Logo"></a>
                 <a href="/" class="logo-light" wire:navigate><img
                         src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
+
             </div>
             <div class="header__nav-2">
                 <ul class="main-menu-4 menu-anim">
-                    <li><a href="{{ route('welcome') }}" wire:navigate>Home</a></li>
-                    <li><a href="{{ route('about') }}" wire:navigate>About Us</a></li>
-                    <li><a href="#">Committee</a>
+                    <li><a href="{{ route('welcome') }}" wire:navigate>{{__('nav.Home')}}</a></li>
+
+                    <li><a href="{{ route('about') }}" wire:navigate>{{__('nav.About Us')}}</a></li>
+                    <li><a href="#">{{__('nav.Committee')}}</a>
                         <ul class="main-dropdown">
-                            <li><a href="{{ route('founders-committee') }}" wire:navigate>Founders Committee</a></li>
-                            <li><a href="{{ route('board-of-trustees') }}" wire:navigate>Board of Trustees</a></li>
-                            <li><a href="{{ route('general-secretariat') }}" wire:navigate>General Secretariat</a></li>
+                            <li><a href="{{ route('founders-committee') }}" wire:navigate>{{__('nav.Founders Committee')}}</a></li>
+                            <li><a href="{{ route('board-of-trustees') }}" wire:navigate>{{__('nav.Board of Trustees')}}</a></li>
+                            <li><a href="{{ route('general-secretariat') }}" wire:navigate>{{__('nav.General Secretariat')}}</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('services') }}" wire:navigate>Services</a>
+                    <li><a href="{{ route('services') }}" wire:navigate>{{__('nav.Services')}}</a>
+
                         <!-- <ul class="main-dropdown">
               <li><a href="#">Academic Support</a></li>
               <li><a href="#">Professional Development</a></li>
@@ -45,14 +49,14 @@ new class extends Component {
               <li><a href="#">Membership</a></li>
             </ul> -->
                     </li>
-                    <li><a href="{{ route('events') }}" wire:navigate>Events</a></li>
-                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                    <li><a href="{{ route('events') }}" wire:navigate>{{__('nav.Events')}}</a></li>
+                    <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
                     @guest
                         <li>
 
                             <span class="header__nav-icon-6">
                                 <i class="fa-solid fa-user"></i>
-                                <a href="{{ route('filament.admin.auth.login') }}">Login</a>
+                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
                             </span>
                         </li>
                     @endguest
@@ -93,7 +97,7 @@ new class extends Component {
                                         </a>
                                     </span>
                                     <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
-                                        {{ __('Dashboard') }}
+                                        {{ 'Dashboard' }}
                                     </x-dropdown-link>
                                     <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
                                         {{ __('Profile') }}

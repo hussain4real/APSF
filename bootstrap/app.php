@@ -12,10 +12,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->validateCsrfTokens(except:[
-            'paddle/*',
-            'lemon-squeezy/*'
+        $middleware->validateCsrfTokens(except: [
+            'lemon-squeezy/*',
         ]);
+        $middleware->appendToGroup('web', \App\Http\Middleware\Localization::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

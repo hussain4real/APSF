@@ -46,18 +46,18 @@ new class extends Component
             <div class="offcanvas__menu-wrapper">
                 <nav class="offcanvas__menu">
                     <ul class="menu-anim">
-                        <li><a href="{{route('welcome')}}" wire:navigate>Home</a></li>
-                        <li><a href="{{route('about')}}" wire:navigate>About Us</a></li>
-                        <li><a>Committee</a>
+                        <li><a href="{{route('welcome')}}" wire:navigate>{{__('nav.Home')}}</a></li>
+                        <li><a href="{{route('about')}}" wire:navigate>{{__('nav.About Us')}}</a></li>
+                        <li><a>{{__('nav.Committee')}}</a>
                             <ul>
-                                <li><a href="{{route('founders-committee')}}" wire:navigate>Founders Committee</a></li>
-                                <li><a href="{{route('board-of-trustees')}}" wire:navigate>Board of Trustees</a></li>
-                                <li><a href="{{route('general-secretariat')}}" wire:navigate>General Secretariat</a></li>
+                                <li><a href="{{route('founders-committee')}}" wire:navigate>{{__('nav.Founders Committee')}}</a></li>
+                                <li><a href="{{route('board-of-trustees')}}" wire:navigate>{{__('nav.Board of Trustees')}}</a></li>
+                                <li><a href="{{route('general-secretariat')}}" wire:navigate>{{__('nav.General Secretariat')}}</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{route('services')}}" wire:navigate>Services</a></li>
-                        <li><a href="{{route('events')}}" wire:navigate>Events</a></li>
-                        <li><a href="{{route('contact')}}">Contact Us</a></li>
+                        <li><a href="{{route('services')}}" wire:navigate>{{__('nav.Services')}}</a></li>
+                        <li><a href="{{route('events')}}" wire:navigate>{{__('nav.Events')}}</a></li>
+                        <li><a href="{{route('contact')}}">{{__('nav.Contact Us')}}</a></li>
                     </ul>
                 </nav>
             </div>

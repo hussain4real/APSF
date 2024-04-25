@@ -3,7 +3,10 @@
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new class extends Component {
+
+new
+ #[Layout('layouts.app')]
+ class extends Component {
     public \Illuminate\Database\Eloquent\Collection $livefeeds;
 
     public ?\App\Models\Livefeed $editing = null;
@@ -47,7 +50,7 @@ new class extends Component {
 
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
     @foreach ($livefeeds as $livefeed)
-        <div class="p-6 flex space-x-2" wire:key="{{ $livefeed->id }}">
+        <div class="p-6 flex space-x-2 " wire:key="{{ $livefeed->id }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -90,7 +93,7 @@ new class extends Component {
                 @if ($livefeed->is($editing))
                     <livewire:livefeeds.edit :livefeed="$livefeed" :key="$livefeed->id" />
                 @else
-                    <p class="mt-4 text-lg text-gray-900">{{ $livefeed->message }}</p>
+                    <p class="mt-4 text-lg text-gray-900 line-clamp-4 ">{{ $livefeed->message }}</p>
                     @if ($livefeed->media->isNotEmpty())
                         <div class="flex flex-wrap mt-4">
                             @foreach ($livefeed->media as $media)

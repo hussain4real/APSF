@@ -139,6 +139,7 @@ class Register extends BaseRegister
             Step::make('Entity')
                 ->icon('heroicon-o-clipboard')
                 ->description(__('Please select your profile'))
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->schema([
                     $this->getEntityFormField()
                         ->live(onBlur: false)
@@ -146,6 +147,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('School Profile')
                 ->icon('heroicon-o-building-library')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'school';
                 })
@@ -162,6 +164,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Teacher Profile')
                 ->icon('heroicon-o-user-plus')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'teacher';
                 })
@@ -177,6 +180,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Student Profile')
                 ->icon('heroicon-o-academic-cap')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'student';
                 })
@@ -191,6 +195,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Contractor Profile')
                 ->icon('heroicon-o-clipboard-document')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'contractor';
                 })
@@ -206,6 +211,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Founder Profile')
                 ->icon('heroicon-o-check-badge')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'founder';
                 })
@@ -221,6 +227,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Training Provider Profile')
                 ->icon('heroicon-o-clipboard-document-check')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'training_provider';
                 })
@@ -236,6 +243,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Educational Consultant Profile')
                 ->icon('heroicon-o-chart-pie')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'educational_consultant';
                 })
@@ -252,6 +260,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Member Profile')
                 ->icon('heroicon-o-identification')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'member';
                 })
@@ -264,6 +273,7 @@ class Register extends BaseRegister
                 ]),
             Step::make('Authentication credentials')
                 ->icon('heroicon-o-key')
+                ->completedIcon('heroicon-m-hand-thumb-up')
                 ->description(__('Please provide your authentication credentials'))
                 ->schema([
                     $this->getFirstNameFormComponent(),
