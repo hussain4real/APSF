@@ -11,7 +11,9 @@ use Laravel\Paddle\Checkout;
 use Laravel\Paddle\Transaction;
 use Livewire\Volt\Volt;
 
-Route::view('/', 'home.welcome')
+Route::view('/', 'coming_soon')
+    ->name('coming-soon');
+Route::view('/home', 'home.welcome')
     ->name('welcome');
 //Volt::route('/livefeeds', 'livefeeds.list');
 
@@ -21,7 +23,6 @@ Route::get('language/{locale}', function ($locale) {
 
     return redirect()->back();
 });
-
 
 Route::view('/about', 'home.about')
     ->name('about');
