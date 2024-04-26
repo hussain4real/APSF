@@ -56,7 +56,7 @@ new class extends Component {
 
                             <span class="header__nav-icon-6">
                                 <i class="fa-solid fa-user"></i>
-                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
+{{--                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>--}}
                             </span>
                         </li>
                     @endguest
