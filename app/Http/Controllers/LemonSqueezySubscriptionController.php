@@ -52,15 +52,15 @@ class LemonSqueezySubscriptionController extends Controller
         };
 
         $suscriptionPrice = match (true) {
-            $request->user()->student !== null => 50,
-            $request->user()->teacher !== null => 85,
-            $request->user()->founder !== null => 1000,
-            $request->user()->trainingProvider !== null => 600,
-            $request->user()->educationalConsultant !== null => 750,
-            $request->user()->contractor !== null => 1100,
-            $request->user()->schools()->count() > 0 => 500,
-            $request->user()->member !== null => 100,
-            default => 10,
+            $request->user()->student !== null => 25,
+            $request->user()->teacher !== null => 50,
+            $request->user()->founder !== null => 500,
+            $request->user()->trainingProvider !== null => 700,
+            $request->user()->educationalConsultant !== null => 700,
+            $request->user()->contractor !== null => 700,
+            $request->user()->schools()->count() > 0 => 700,
+            $request->user()->member !== null => 250,
+            default => 250,
         };
 
         //        dd($suscriptionPrice, $subscriptionName, $subscriptionVariantID);
