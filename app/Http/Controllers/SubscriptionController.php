@@ -50,8 +50,10 @@ class SubscriptionController extends Controller
             $request->user()->contractor !== null => $contractorSubscriptionPriceID,
             $request->user()->trainingProvider !== null => $trainingProviderSubscriptionPriceID,
             $request->user()->educationalConsultant !== null => $educationalConsultantSubscriptionPriceID,
+            $request->user() !== null => $memberSubscriptionPriceID,
             default => $memberSubscriptionPriceID,
         };
+        //        dd(auth()->user());
         $subscriptionPrice = auth()?->user()?->previewPrices([$subscriptionPriceID]);
         $checkout = $request->user()->subscribe($subscriptionPriceID)
             ->returnTo(route('filament.admin.pages.my-profile'));
