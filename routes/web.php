@@ -57,9 +57,9 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/subscribe', [SubscriptionController::class, 'create'])
-    ->middleware(['auth', RedirectIfSubscribed::class])
-    ->name('subscribe');
+//Route::get('/subscribe', [SubscriptionController::class, 'create'])
+//    ->middleware(['auth', RedirectIfSubscribed::class])
+//    ->name('subscribe');
 
 Route::get('/lemon-squeezy-subscription', [LemonSqueezySubscriptionController::class, 'create'])
     ->middleware(['auth', RedirectIfSubscribed::class])
