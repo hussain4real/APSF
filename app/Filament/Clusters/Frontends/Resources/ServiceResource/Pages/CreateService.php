@@ -4,6 +4,8 @@ namespace App\Filament\Clusters\Frontends\Resources\ServiceResource\Pages;
 
 use App\Filament\Clusters\Frontends\Resources\ServiceResource;
 use Filament\Actions\LocaleSwitcher;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
@@ -25,13 +27,13 @@ class CreateService extends CreateRecord
     {
         return $form
             ->schema([
-                TextInput::make('service_side_title')
+                RichEditor::make('service_side_title')
                     ->label(__('Service Side Title'))
                     ->required(),
                 TextInput::make('service_title')
                     ->label(__('Service Title'))
                     ->required(),
-                TextInput::make('service_description')
+                Textarea::make('service_description')
                     ->label(__('Service Description'))
                     ->required(),
                 TextInput::make('service_tag_one')

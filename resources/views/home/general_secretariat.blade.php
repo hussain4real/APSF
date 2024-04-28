@@ -1,6 +1,9 @@
 <x-home-layout>
-   <!-- Team area start -->
 
+    @php
+    $generalSecretariatModel = \App\Models\GeneralSecretariat::first();
+    @endphp
+   <!-- Team area start -->
     <section class="portfolio__service service-v5 pt-140 pb-140">
 
         <div class="container">
@@ -21,7 +24,7 @@
                 </div>
                 <div class="col-xxl-4 col-xl-7 col-lg-6 col-md-6">
                     <div class="portfolio__service-item">
-                        <h3 class="ps-title">Dr. Yousf Al Hosani<br><br></h3>
+                        <h3 class="ps-title">{{__($generalSecretariatModel->name)}}<br><br></h3>
                         <img src="assets/imgs/apsf/gen-sec/gen-sec.webp" width="80%" alt="">
                     </div>
                 </div>
