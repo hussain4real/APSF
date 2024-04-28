@@ -93,8 +93,8 @@
             </div>
 
             <div class="solution__mid">
-                <h1 class="solution__title animation__char_come orange_color">Services We Offer</h1>
-                <p class="to_justify">We provide tailored services to meet diverse educational needs, from academic support to cutting-edge programs. Dedicated to empowering members, we enhance teaching, support student achievement and advocate for community interests, fostering excellence and growth in education.</p>
+                <h1 class="solution__title animation__char_come orange_color">{{__("frontend.service.heading")}}</h1>
+                <p class="to_justify">{{__("frontend.service.description")}}</p>
             </div>
 
             <div class="solution__right">
@@ -109,9 +109,9 @@
                 <div class="col-xxl-12">
                     <div class="solution__btm">
                         <ul>
-                            <li>Approach</li>
-                            <li>Creativity</li>
-                            <li>Experienced</li>
+                            <li>{{__("frontend.service.tagOne")}}</li>
+                            <li>{{__("frontend.service.tagTwo")}}</li>
+                            <li>{{__("frontend.service.tagThree")}}</li>
                         </ul>
                     </div>
                 </div>

@@ -78,5 +78,7 @@
             </div>
         </div>
     </section>
+
+
     <!-- Blog area end -->
 </x-home-layout>
