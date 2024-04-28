@@ -39,7 +39,7 @@
 
                 <div class="row">
                     <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
-                        <h2 class="sec-sub-title title-anim">Arab Private Schools Federation</h2>
+                        <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
                         <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
                         <br><br>
                         <img src="assets/imgs/apsf/who-we-are/who-we-are.webp" alt="Who We Are">

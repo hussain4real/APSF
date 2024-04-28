@@ -22,7 +22,7 @@
                     <div class="sec-title-wrapper">
                         <!-- <h2 class="sec-sub-title title-anim">Our Team</h2> -->
                         <br><br><br>
-                        <h3 class="sec-title title-anim orange_color">General Secretariat</h3>
+                        <h3 class="sec-title title-anim orange_color">{{__("frontend.secretariat")}}</h3>
                     </div>
                 </div>
                 <div class="col-xxl-4 col-xl-7 col-lg-6 col-md-6">

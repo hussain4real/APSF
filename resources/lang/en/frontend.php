@@ -44,4 +44,34 @@ return [
         'email' => 'Enter your email',
     ],
     'copyright' => '© 2024 | Alrights reserved Arab Private School Federation',
+    'dashboard' => [
+        'stats' => [
+            'heading' => 'Statistics',
+            'student' => 'Students',
+            'studentNumber' => '829',
+            'teacher' => 'Teachers',
+            'teacherNumber' => '483',
+            'contractor' => 'Contractors',
+            'contractorNumber' => '620',
+            'institution' => 'Institutions',
+            'institutionNumber' => '150',
+        ],
+    ],
+    'about' => [
+        'name' => 'Arab Private Schools Federation',
+    ],
+    'founder' => [
+        'heading' => 'Founders',
+    ],
+    'board' => [
+        'heading' => 'Board of Trustees',
+    ],
+    'secretariat' => 'General Secretariat',
+    'service' => [
+        'heading' => 'Services We Offer',
+        'description' => 'We provide tailored services to meet diverse educational needs, from academic support to cutting-edge programs. Dedicated to empowering members, we enhance teaching, support student achievement and advocate for community interests, fostering excellence and growth in education.',
+        'tagOne' => 'Approach',
+        'tagTwo' => 'Creativity',
+        'tagThree' => 'Creativity',
+    ],
 ];
