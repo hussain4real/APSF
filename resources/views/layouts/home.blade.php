@@ -5,8 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Axtra HTML5 Template">
+    <meta name="description" content="Arab Private Schools Federation">
 
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="APSF">
+    <meta name="twitter:description"
+          content="Arab Private Schools Federation">
+    <meta name="twitter:image" content="{{ asset('assets/images/apsflogo_271x69.webp') }}">
+    <meta property="og:title" content="Fooddi">
+    <meta property="og:description"
+          content="Arab Private Schools Federation">
+    <meta property="og:image" content="{{ asset('assets/images/apsflogo_271x69.webp') }}" og:image:width="1200"
+          og:image:height="630" og:type="website">
+    <meta property="og:url" content="https://arab-psf.com">
+
+    <link rel="manifest" href="{{asset('assets/images/site.webmanifest')}}">
     <title>Home - Arab Private Schools Federation</title>
 
     <!-- Fav Icon -->

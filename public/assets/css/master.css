@@ -4711,7 +4711,7 @@ img {
     position: fixed;
     width: 40px;
     height: 40px;
-    border: 1px solid var(--primary);
+    border: 1px solid #033731;
     border-radius: 50%;
     left: 0;
     top: 0;
@@ -4737,7 +4737,7 @@ img {
     position: fixed;
     width: 8px;
     height: 8px;
-    background-color: var(--primary);
+    background-color: #033731;
     border-radius: 50%;
     left: 0;
     top: 0;
@@ -4767,7 +4767,7 @@ img {
     position: fixed;
     width: 80px;
     height: 80px;
-    background-color: var(--black-2);
+    background-color: #033731;
     border-radius: 50%;
     left: 0;
     top: 0;
@@ -4791,7 +4791,7 @@ img {
     width: 100px;
     height: 100px;
     mix-blend-mode: unset;
-    background-color: var(--black-2);
+    background-color: #033731;
 }
 .cursor-testi.play::after {
     position: absolute;
