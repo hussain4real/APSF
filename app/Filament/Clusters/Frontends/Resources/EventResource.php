@@ -23,6 +23,8 @@ class EventResource extends Resource
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
+    protected static ?int $navigationSort = 7;
+
     public static function table(Table $table): Table
     {
         return $table

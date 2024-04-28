@@ -23,6 +23,8 @@ class AboutPageResource extends Resource
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
+    protected static ?int $navigationSort = 2;
+
     public static function table(Table $table): Table
     {
         return $table
