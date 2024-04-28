@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6">
-                    <h2 class="sec-title animation__char_come orange_color"> Founders</h2>
+                    <h2 class="sec-title animation__char_come orange_color"> {{__("frontend.founder.heading")}}</h2>
                 </div>
             </div>
             <div class="portfolio__service-list">
