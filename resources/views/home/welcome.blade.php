@@ -1,8 +1,10 @@
 <x-home-layout>
 @php
-$homepageModel = \App\Models\Homepage::first();
+$homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*24, function () {
+    return \App\Models\Homepage::first();
+});
 
-
+//dd($homepageModel);
 
 
     $heroTitle = $homepageModel->hero_title ?? null;

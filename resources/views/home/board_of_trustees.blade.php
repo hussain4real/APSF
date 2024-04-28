@@ -1,6 +1,8 @@
 <x-home-layout>
     @php
-    $boardOfTrusteesModel = \App\Models\BoardOfTrustee::get();
+    $boardOfTrusteesModel = \Illuminate\Support\Facades\Cache::remember('board_of_trustees', 60*60*24, function () {
+        return \App\Models\BoardOfTrustee::get();
+    });
 //    dd($boardOfTrusteesModel);
     $names = [];
     foreach ($boardOfTrusteesModel as $boardOfTrustee) {

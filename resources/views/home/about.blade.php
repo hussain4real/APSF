@@ -1,6 +1,8 @@
 <x-home-layout>
     @php
-    $aboutUsModel = \App\Models\AboutPage::first();
+    $aboutUsModel = \Illuminate\Support\Facades\Cache::remember('about_us', 60*60*24, function () {
+        return \App\Models\AboutPage::first();
+    });
 //    dd($aboutUsModel);
     $heroTitle = $aboutUsModel->hero_title ?? null;
     $heroDescriptionOne = $aboutUsModel->hero_description_one ?? null;

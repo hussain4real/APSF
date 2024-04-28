@@ -54,7 +54,8 @@
 
 <body >
 @php
-$homepageModel = \App\Models\Homepage::get([
+$homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24, function () {
+    return \App\Models\Homepage::get([
     'partners_title',
     'partners_description',
     'member_action_text',
@@ -63,6 +64,7 @@ $homepageModel = \App\Models\Homepage::get([
     'newsletter_title',
     'newsletter_description',
     ])->first();
+});
 
 
 

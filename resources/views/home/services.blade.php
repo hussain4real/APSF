@@ -1,7 +1,9 @@
 <x-home-layout>
 
     @php
-    $servicesModel = \App\Models\Service::get();
+    $servicesModel = \Illuminate\Support\Facades\Cache::remember('services', 60 * 60 * 24, function () {
+        return \App\Models\Service::get();
+    });
     $serviceSideTitle = [];
     $serviceTitle = [];
     $serviceDescription = [];

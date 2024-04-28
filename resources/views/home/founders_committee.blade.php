@@ -1,6 +1,8 @@
 <x-home-layout>
     @php
-    $foundersCommitteeModel = \App\Models\FoundersCommittee::get();
+    $foundersCommitteeModel = \Illuminate\Support\Facades\Cache::remember('founders_committee', 60*60*24, function () {
+        return \App\Models\FoundersCommittee::get();
+    });
 //    dd($foundersCommitteeModel);
     @endphp
 
