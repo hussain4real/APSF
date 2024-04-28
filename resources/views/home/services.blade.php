@@ -1,5 +1,84 @@
 <x-home-layout>
 
+    @php
+    $servicesModel = \Illuminate\Support\Facades\Cache::remember('services', 60 * 60 * 24, function () {
+        return \App\Models\Service::get();
+    });
+    $serviceSideTitle = [];
+    $serviceTitle = [];
+    $serviceDescription = [];
+    $serviceTagOne = [];
+    $serviceTagTwo = [];
+    $serviceTagThree = [];
+    $serviceTagFour = [];
+    $serviceTagFive = [];
+
+    foreach ($servicesModel as $service) {
+        $serviceSideTitle[] = $service->service_side_title;
+        $serviceTitle[] = $service->service_title;
+        $serviceDescription[] = $service->service_description;
+        $serviceTagOne[] = $service->service_tag_one;
+        $serviceTagTwo[] = $service->service_tag_two;
+        $serviceTagThree[] = $service->service_tag_three;
+        $serviceTagFour[] = $service->service_tag_four;
+        $serviceTagFive[] = $service->service_tag_five;
+//        dd($serviceSideTitle);
+    }
+    $firstServiceSideTitle = $serviceSideTitle[0];
+    $firstServiceTitle = $serviceTitle[0];
+    $firstServiceDescription = $serviceDescription[0];
+    $firstServiceTagOne = $serviceTagOne[0];
+    $firstServiceTagTwo = $serviceTagTwo[0];
+    $firstServiceTagThree = $serviceTagThree[0];
+    $firstServiceTagFour = $serviceTagFour[0];
+    $firstServiceTagFive = $serviceTagFive[0];
+
+    $secondServiceSideTitle = $serviceSideTitle[1];
+    $secondServiceTitle = $serviceTitle[1];
+    $secondServiceDescription = $serviceDescription[1];
+    $secondServiceTagOne = $serviceTagOne[1];
+    $secondServiceTagTwo = $serviceTagTwo[1];
+    $secondServiceTagThree = $serviceTagThree[1];
+    $secondServiceTagFour = $serviceTagFour[1];
+    $secondServiceTagFive = $serviceTagFive[1];
+
+    $thirdServiceSideTitle = $serviceSideTitle[2];
+    $thirdServiceTitle = $serviceTitle[2];
+    $thirdServiceDescription = $serviceDescription[2];
+    $thirdServiceTagOne = $serviceTagOne[2];
+    $thirdServiceTagTwo = $serviceTagTwo[2];
+    $thirdServiceTagThree = $serviceTagThree[2];
+    $thirdServiceTagFour = $serviceTagFour[2];
+    $thirdServiceTagFive = $serviceTagFive[2];
+
+    $fourthServiceSideTitle = $serviceSideTitle[3] ?? null;
+    $fourthServiceTitle = $serviceTitle[3] ?? null;
+    $fourthServiceDescription = $serviceDescription[3] ?? null;
+    $fourthServiceTagOne = $serviceTagOne[3] ?? null;
+    $fourthServiceTagTwo = $serviceTagTwo[3] ?? null;
+    $fourthServiceTagThree = $serviceTagThree[3] ?? null;
+    $fourthServiceTagFour = $serviceTagFour[3] ?? null;
+    $fourthServiceTagFive = $serviceTagFive[3] ?? null;
+
+    $fifthServiceSideTitle = $serviceSideTitle[4] ?? null;
+    $fifthServiceTitle = $serviceTitle[4] ?? null;
+    $fifthServiceDescription = $serviceDescription[4] ?? null;
+    $fifthServiceTagOne = $serviceTagOne[4] ?? null;
+    $fifthServiceTagTwo = $serviceTagTwo[4] ?? null;
+    $fifthServiceTagThree = $serviceTagThree[4] ?? null;
+    $fifthServiceTagFour = $serviceTagFour[4] ?? null;
+    $fifthServiceTagFive = $serviceTagFive[4] ?? null;
+
+    $sixthServiceSideTitle = $serviceSideTitle[5] ?? null;
+    $sixthServiceTitle = $serviceTitle[5] ?? null;
+    $sixthServiceDescription = $serviceDescription[5] ?? null;
+    $sixthServiceTagOne = $serviceTagOne[5] ?? null;
+    $sixthServiceTagTwo = $serviceTagTwo[5] ?? null;
+    $sixthServiceTagThree = $serviceTagThree[5] ?? null;
+    $sixthServiceTagFour = $serviceTagFour[5] ?? null;
+    $sixthServiceTagFive = $serviceTagFive[5] ?? null;
+//    dd($firstServiceSideTitle);
+    @endphp
     <!-- Hero area start -->
     <section class="solution__area">
         <div class="container hero-line"></div>
@@ -58,12 +137,12 @@
                     <div class="content-wrapper">
                         <div class="left-content">
                             <ul class="service__list-6">
-                                <li class="active"><a href="#service_1">Academic <br>Support</a></li>
-                                <li><a href="#service_2">Professional <br>Development</a></li>
-                                <li><a href="#service_3">Student <br>Support</a></li>
-                                <li><a href="#service_4">Advocacy and <br> Representation</a></li>
-                                <li><a href="#service_5">Programs and <br>Initiatives</a></li>
-                                <li><a href="#service_6">Memberships</a></li>
+                                <li class="active"><a href="#service_1">{!! __($firstServiceSideTitle) !!}</a></li>
+                                <li><a href="#service_2">{!! __($secondServiceSideTitle) !!}</a></li>
+                                <li><a href="#service_3">{!! __($thirdServiceSideTitle) !!}</a></li>
+                                <li><a href="#service_4">{!! __($fourthServiceSideTitle) !!}</a></li>
+                                <li><a href="#service_5">{!! __($fifthServiceSideTitle) !!}</a></li>
+                                <li><a href="#service_6">{!! $sixthServiceSideTitle !!}</a></li>
                             </ul>
                         </div>
 
@@ -97,12 +176,12 @@
                                     </div>
 
                                     <div class="animation__service_page">
-                                        <h2 class="service__title-6 orange_color">Academic Support</h2>
-                                        <p class="services-p">Comprehensive academic support services tailored to meet diverse student needs, including tutoring, mentoring, study skills development and resource access, fostering academic success and empowering learners to excel in their educational pursuits and beyond.</p>
+                                        <h2 class="service__title-6 orange_color">{{__($firstServiceTitle)}}</h2>
+                                        <p class="services-p">{{__($firstServiceDescription)}}</p>
                                         <ul>
-                                            <li>+ Curriculum Development</li>
-                                            <li>+ Teacher Training</li>
-                                            <li>+ Educational Resources</li>
+                                            <li>{{__($firstServiceTagOne)}}</li>
+                                            <li>{{__($firstServiceTagTwo)}}</li>
+                                            <li>{{__($firstServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
@@ -116,13 +195,13 @@
                                     </div>
 
                                     <div class="animation__service_page">
-                                        <h2 class="service__title-6 orange_color">Professional Development</h2>
-                                        <p class="services-p">Professional development initiatives offer tailored programs, workshops and resources aimed at enhancing skills, knowledge and leadership capabilities, empowering individuals to excel in their careers, adapt to evolving demands and drive innovation and growth within their organizations, ensuring continuous success and personal fulfillment.</p>
+                                        <h2 class="service__title-6 orange_color">{{__($secondServiceTitle)}}</h2>
+                                        <p class="services-p">{{__($secondServiceDescription)}}</p>
                                         <ul>
-                                            <li>+ Exhibitions, Workshops and Seminars</li>
-                                            <li>+ Leadership Training</li>
-                                            <li>+ Networking Opportunities</li>
-                                            <li>+ Mentoring Programs</li>
+                                            <li>{{__($secondServiceTagOne)}}</li>
+                                            <li>{{__($secondServiceTagTwo)}}</li>
+                                            <li>{{__($secondServiceTagThree)}}</li>
+                                            <li>{{__($secondServiceTagFour)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
@@ -137,14 +216,14 @@
                                     </div>
 
                                     <div class="animation__service_page">
-                                        <h2 class="service__title-6 orange_color">Student Support</h2>
-                                        <p class="services-p">Student support development encompasses a holistic approach to nurturing students' academic, personal and social growth through tailored programs, resources and interventions, fostering resilience, well-being and success as they navigate their educational journey and prepare for future endeavors in an ever-changing world.</p>
+                                        <h2 class="service__title-6 orange_color">{{__($thirdServiceTitle)}}</h2>
+                                        <p class="services-p">{{__($thirdServiceDescription)}}</p>
                                         <ul>
-                                            <li>+ Counseling Services</li>
-                                            <li>+ Career Guidance</li>
-                                            <li>+ Scholarships and Grants</li>
-                                            <li>+ Extracurricular Activities</li>
-                                            <li>+ Student Exchange Programs</li>
+                                            <li>{{__($thirdServiceTagOne)}}</li>
+                                            <li>{{__($thirdServiceTagTwo)}}</li>
+                                            <li>{{__($thirdServiceTagThree)}}</li>
+                                            <li>{{__($thirdServiceTagFour)}}</li>
+                                            <li>{{__($thirdServiceTagFive)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
@@ -158,12 +237,12 @@
                                     </div>
 
                                     <div class="animation__service_page">
-                                        <h2 class="service__title-6 orange_color">Advocacy and Representation</h2>
-                                        <p class="services-p">Advocacy and representation efforts are dedicated to championing the rights, interests and well-being of individuals or groups, amplifying their voices, influencing policies and fostering positive change within communities or organizations, ensuring equitable treatment, access to opportunities and a platform for diverse perspectives to be heard and respected.</p>
+                                        <h2 class="service__title-6 orange_color">{{__($fourthServiceTitle)}}</h2>
+                                        <p class="services-p">{{__($fourthServiceDescription)}}</p>
                                         <ul>
-                                            <li>+ Policy Development</li>
-                                            <li>+ Government Relations</li>
-                                            <li>+ Lobbying Efforts</li>
+                                            <li>{{__($fourthServiceTagOne)}}</li>
+                                            <li>{{__($fourthServiceTagTwo)}}</li>
+                                            <li>{{__($fourthServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
@@ -177,11 +256,11 @@
                                     </div>
 
                                     <div class="animation__service_page">
-                                        <h2 class="service__title-6 orange_color">Programs and Initiatives</h2>
-                                        <p class="services-p">Our programs and initiatives are meticulously crafted to address diverse needs, fostering innovation, collaboration and empowerment. From educational enrichment to community engagement, we strive to make a positive impact, driving sustainable change and unlocking opportunities for growth, development and collective progress.</p>
+                                        <h2 class="service__title-6 orange_color">{{__($fifthServiceTitle)}}</h2>
+                                        <p class="services-p">{{__($fifthServiceDescription)}}</p>
                                         <ul>
-                                            <li>+ Programs and Initiatives</li>
-                                            <li>+ Collaborative Projects and Partnerships</li>
+                                            <li>{{__($fifthServiceTagOne)}}</li>
+                                            <li>{{__($fifthServiceTagTwo)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
@@ -195,12 +274,12 @@
                                     </div>
 
                                     <div class="animation__service_page">
-                                        <h2 class="service__title-6 orange_color">Membership</h2>
-                                        <p class="services-p">Membership with us opens doors to a vibrant community committed to fostering connections, collaboration and growth. Enjoy exclusive benefits, resources and opportunities tailored to your needs and interests. Join us to expand your network, access valuable insights and contribute to shaping a brighter future together.</p>
+                                        <h2 class="service__title-6 orange_color">{{__($sixthServiceTitle)}}</h2>
+                                        <p class="services-p">{{__($sixthServiceDescription)}}</p>
                                         <ul>
-                                            <li>+ Eligibility Criteria</li>
-                                            <li>+ Application Process</li>
-                                            <li>+ Rights and Responsibilities of Members</li>
+                                            <li>{{__($sixthServiceTagOne)}}</li>
+                                            <li>{{__($sixthServiceTagTwo)}}</li>
+                                            <li>{{__($sixthServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member  <i class="fa-solid fa-arrow-right"></i></a>

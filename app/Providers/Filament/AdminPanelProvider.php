@@ -118,7 +118,6 @@ class AdminPanelProvider extends PanelProvider
 
                 //                EnsureUserIsSubscribed::class,
 
-
             ])
             ->authMiddleware([
                 Authenticate::class,
