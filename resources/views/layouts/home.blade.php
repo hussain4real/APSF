@@ -11,15 +11,18 @@
     <meta name="twitter:title" content="APSF">
     <meta name="twitter:description"
           content="Arab Private Schools Federation">
-    <meta name="twitter:image" content="{{ asset('assets/images/apsflogo_271x69.webp') }}">
+    <meta name="twitter:image" content="{{ asset('assets/imgs/apsflogo_271x69.webp') }}">
     <meta property="og:title" content="Fooddi">
     <meta property="og:description"
           content="Arab Private Schools Federation">
-    <meta property="og:image" content="{{ asset('assets/images/apsflogo_271x69.webp') }}" og:image:width="1200"
+    <meta property="og:image" content="{{ asset('assets/imgs/apsflogo_271x69.webp') }}" og:image:width="1200"
           og:image:height="630" og:type="website">
     <meta property="og:url" content="https://arab-psf.com">
 
-    <link rel="manifest" href="{{asset('assets/images/site.webmanifest')}}">
+    <link rel="shortcut icon" href="{{ asset('assets/imgs/logo/apsf_favicon.png') }}" type="image/png">
+
+
+    <link rel="manifest" href="{{asset('assets/imgs/site.webmanifest')}}">
     <title>Home - Arab Private Schools Federation</title>
 
     <!-- Fav Icon -->
