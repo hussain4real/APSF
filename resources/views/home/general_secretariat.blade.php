@@ -2,8 +2,9 @@
 
     @php
     $generalSecretariatModel = \Illuminate\Support\Facades\Cache::remember('general_secretariat', 60*60*24, function () {
-        return \App\Models\GeneralSecretariat::get();
+        return \App\Models\GeneralSecretariat::first();
     });
+//    dd($generalSecretariatModel);
     @endphp
    <!-- Team area start -->
     <section class="portfolio__service service-v5 pt-140 pb-140">
