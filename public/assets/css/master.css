@@ -105,9 +105,10 @@
 
 /*added by aminu*/
 @font-face {
-    font-family: 'IBM Plex Sans Arabic';
-    src: url('/assets/fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf');
-    font-weight: 400;
+    font-family: 'Bahij_TheSansArabic-Bold';
+    src: url('/assets/fonts/Bahij_TheSansArabic-Plain.ttf');
+    font-weight: 500;
+    font-style: normal;
 
 }
 
@@ -592,11 +593,12 @@
 }
 
 body {
-    font-family: "Kanit", sans-serif;
+    font-family: 'Bahij_TheSansArabic-Bold',"Kanit", sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
+
 }
 
 h1,
@@ -25912,6 +25914,7 @@ main {
 .service__item-7 {
     padding-bottom: 90px;
     position: relative;
+    /*max-width: 14rem;*/
     z-index: 1;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -25994,6 +25997,10 @@ main {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     text-transform: capitalize;
+    max-width: 20rem; /* or any width */
+    /*overflow: hidden;*/
+    white-space: normal;
+    /*text-overflow: clip;*/
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .service__title-7 {
