@@ -34,6 +34,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+{{--    <link href="{{ Vite::asset('resources/fonts/Bahij_TheSansArabic-Bold.ttf') }}">--}}
     <!-- All CSS files -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
@@ -50,6 +51,12 @@
 
     @vite('public/assets/css/master.css')
 {{--    @vite('resources/css/app.css')--}}
+    <style type="text/css">
+        @font-face {
+            font-family: Bahij_TheSansArabic-Bold;
+            src: url('{{ public_path('assets/fonts/Bahij_TheSansArabic-Bold.tff') }}');
+        }
+    </style>
 </head>
 
 <body >
