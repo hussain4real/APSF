@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
+use App\Filament\Resources\AnnouncementResource;
 use App\Http\Middleware\EnsureUserIsSubscribed;
 use App\Models\ChMessage;
 use Filament\Http\Middleware\Authenticate;
@@ -30,6 +31,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Rupadana\FilamentAnnounce\FilamentAnnouncePlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -79,6 +81,9 @@ class AdminPanelProvider extends PanelProvider
                     ->myProfileComponents([
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
+                FilamentAnnouncePlugin::make()
+                    ->defaultColor('info')
+                    ->usingResource(AnnouncementResource::class),
 
             ])
             ->navigationItems([

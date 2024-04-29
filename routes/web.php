@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
@@ -81,5 +82,9 @@ Route::get('/confirmation', Subscribe::class)
 //
 //    return view('subscribe', ['checkout' => $checkout]);
 //});
-
+Route::get('create-transactions', [PayPalController::class, 'create'])
+    ->name('create-transactions');
+Route::get('payment', [PayPalController::class, 'processTransaction'])->name('payment');
+Route::get('/cancel', [PayPalController::class, 'cancelTransaction'])->name('payment.cancel');
+Route::get('/payment/success', [PayPalController::class, 'successTransaction'])->name('payment.success');
 require __DIR__.'/auth.php';
