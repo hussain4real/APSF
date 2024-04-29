@@ -22,7 +22,6 @@ class GeneralSecretariat extends Model
 
     public $translatable =
         [
-            'title',
             'name',
         ];
 }
