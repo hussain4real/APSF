@@ -9,11 +9,12 @@
         $names[] = $boardOfTrustee->name;
 //        dd($names);
     }
-    $firstTrustee = $names[0];
-    $secondTrustee = $names[1];
-    $thirdTrustee = $names[2];
-    $fourthTrustee = $names[3];
-    $fifthTrustee = $names[4];
+    $firstTrustee = $names[0] ?? null;
+    $secondTrustee = $names[1] ?? null;
+    $thirdTrustee = $names[2] ?? null;
+    $fourthTrustee = $names[3] ?? null;
+    $fifthTrustee = $names[4] ?? null;
+    $sixthTrustee = $names[5] ?? null;
     @endphp
    <!-- Team area start -->
     <section class="portfolio__service service-v5 pt-140 pb-140">
@@ -53,6 +54,12 @@
                         <div class="portfolio__service-item">
                             <h3 class="ps-title">{{__($fifthTrustee)}}</h3>
                             <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
+                        <div class="portfolio__service-item">
+                            <h3 class="ps-title">{{__($sixthTrustee)}}</h3>
+                            <img src="assets/imgs/apsf/board-of-trustees/08.webp" width="80%" alt="">
                         </div>
                     </div>
                 </div>
