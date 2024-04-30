@@ -52,7 +52,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 {{--                            part of css animation: creative--}}
                             <h2 class="title ">{{ __($heroTitle) }} </h2>
 {{--                            part of css animation: animate_content--}}
-                            <p class="to_justify">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>
+                            <p class="to_justify ">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>
                             <img src="assets/imgs/home-7/scroll.png" alt="scroll Image" class="scroll">
                         </div>
                     </div>
@@ -167,7 +167,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
             <div class="row g-0">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
                     <div class="testimonial__video">
-                        <img src="assets/imgs/apsf/chairman-message/chairman.webp" alt="Brand Logo">
+                        <img src="assets/imgs/apsf/chairman-message/chairman.webp" alt="Brand Logo" class="chairman-image">
                     </div>
                 </div>
 

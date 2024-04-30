@@ -11180,6 +11180,7 @@ img {
     }
 }
 .testimonial__inner-2 {
+    max-width: fit-content;
     background-color: var(--white);
     padding: 60px;
     /* margin-top: -10px; */
@@ -11259,8 +11260,9 @@ img {
         max-height: unset;
     }
 }
-.testimonial__video video {
+.testimonial__video img {
     width: 100%;
+    height: 45.2rem;
 }
 .testimonial__author {
     font-weight: 500;
@@ -29248,7 +29250,8 @@ body {
 }
 .dir-rtl .testimonial__video {
     margin-right: 0;
-    margin-left: -112px;
+    margin-left: 0rem;
+    padding-left:-10rem;
 }
 @media only screen and (max-width: 767px) {
     .dir-rtl .testimonial__video {
