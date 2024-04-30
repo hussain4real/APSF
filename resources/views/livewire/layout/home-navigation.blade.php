@@ -27,7 +27,8 @@ new class extends Component {
 
             </div>
             <div class="header__nav-2">
-                <ul class="main-menu-4 menu-anim">
+{{--                animation style class: menu-anim--}}
+                <ul class="main-menu-4 ">
                     <li><a href="{{ route('welcome') }}" wire:navigate>{{__('nav.Home')}}</a></li>
 
                     <li><a href="{{ route('about') }}" wire:navigate>{{__('nav.About Us')}}</a></li>

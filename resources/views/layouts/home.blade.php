@@ -281,10 +281,10 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
             <!-- Footer area start -->
             <footer class="footer__area-2 pt-130">
                 <div class="container">
-                    <div class="footer__top-2 text-anim">
+                    <div class="footer__top-2 ">
                         <div class="row">
                             <div class="col-xxl-12">
-                                <h2 class="sec-title-3 title-anim orange_color">{{__($newsletterTitle)}}</h2>
+                                <h2 class="sec-title-2 orange_color">{{__($newsletterTitle)}}</h2>
                                 <p class="footer__sub-title">{{__($newsletterDescription)}}</p>
                             </div>
                         </div>
@@ -321,7 +321,8 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                             </div>
                             <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-7">
                                 <div class="footer__nav">
-                                    <ul class="footer-menu menu-anim">
+{{--                                    animation style class: menu-anim--}}
+                                    <ul class="footer-menu ">
                                         <li><a href="about.html">{{__("nav.About Us")}}</a></li>
                                         <li><a href="contact.html">{{__("nav.Contact")}}</a></li>
                                         <li><a href="faq.html">{{__("nav.Faqs")}}</a></li>
