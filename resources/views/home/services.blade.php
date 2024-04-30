@@ -109,9 +109,9 @@
                 <div class="col-xxl-12">
                     <div class="solution__btm">
                         <ul>
-                            <li>{{__("frontend.service.tagOne")}}</li>
-                            <li>{{__("frontend.service.tagTwo")}}</li>
-                            <li>{{__("frontend.service.tagThree")}}</li>
+{{--                            <li>{{__("frontend.service.tagOne")}}</li>--}}
+{{--                            <li>{{__("frontend.service.tagTwo")}}</li>--}}
+{{--                            <li>{{__("frontend.service.tagThree")}}</li>--}}
                         </ul>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                                             <li>{{__($firstServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                             <li>{{__($secondServiceTagFour)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@
                                             <li>{{__($thirdServiceTagFive)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                             <li>{{__($fourthServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
                                             <li>{{__($fifthServiceTagTwo)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -282,7 +282,7 @@
                                             <li>{{__($sixthServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>Be A Member  <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -315,13 +315,13 @@
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                         <div class="cta__content-4">
-                            <h2 class="cta__title-4 title-anim">Apply for Scholarships</h2>
+                            <h2 class="cta__title-4 title-anim">{{__("frontend.scholarship.heading")}} </h2>
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                         <div class="cta__content-4 text-anim">
-                            <p>The role of this portal extends to acting as a catalyst for students' future success and will also function as a scholarship resource based on specific criteria to ensure continued student growth beyond graduation through postgraduate programs.</p>
-                            <a class="btn-started" href="#">Apply Now <span><i
+                            <p>{{__("frontend.scholarship.description")}} </p>
+                            <a class="btn-started" href="#">{{__("frontend.scholarship.action")}}<span><i
                                         class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>

@@ -223,28 +223,28 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                         <div class="row g-0">
                             <div class="col-xxl-12">
                                 <div class="sec-title-wrapper">
-                                    <h3 class="sec-title title-anim orange_color">{{__("frontend.dashboard.stats.heading")}}</h3>
+                                    <h3 class="sec-title title-anim orange_color">{{__("frontend.stats.heading")}}</h3>
                                 </div>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="assets/imgs/apsf/dashboard/students.webp" alt="Brand Logo"><br><br>
-                                <h1>{{__("frontend.dashboard.stats.studentNumber")}}</h1>
-                                <h2>{{__("frontend.dashboard.stats.student")}}</h2>
+                                <h1>829</h1>
+                                <h2>{{__("frontend.stats.student")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="assets/imgs/apsf/dashboard/teachers.webp" alt="Brand Logo"><br><br>
-                                <h1>{{__("frontend.dashboard.stats.teacherNumber")}}</h1>
-                                <h2>{{__("frontend.dashboard.stats.teacher")}}</h2>
+                                <h1>483</h1>
+                                <h2>{{__("frontend.stats.teacher")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="assets/imgs/apsf/dashboard/contractors.webp" alt="Brand Logo"><br><br>
-                                <h1>{{__("frontend.dashboard.stats.contractorNumber")}}</h1>
-                                <h2>{{__("frontend.dashboard.stats.contractor")}}</h2>
+                                <h1>620</h1>
+                                <h2>{{__("frontend.stats.contractor")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="assets/imgs/apsf/dashboard/institutions.webp" alt="Brand Logo"><br><br>
-                                <h1>{{__("frontend.dashboard.stats.institutionNumber")}}</h1>
-                                <h2>{{__("frontend.dashboard.stats.institution")}}</h2>
+                                <h1>150</h1>
+                                <h2>{{__("frontend.stats.institution")}}</h2>
                             </div>
                         </div>
                     </div>
