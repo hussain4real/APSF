@@ -44,34 +44,41 @@ return [
         'email' => 'Enter your email',
     ],
     'copyright' => '© 2024 | Alrights reserved Arab Private School Federation',
-    'dashboard' => [
-        'stats' => [
-            'heading' => 'Statistics',
-            'student' => 'Students',
-            'studentNumber' => '829',
-            'teacher' => 'Teachers',
-            'teacherNumber' => '483',
-            'contractor' => 'Contractors',
-            'contractorNumber' => '620',
-            'institution' => 'Institutions',
-            'institutionNumber' => '150',
-        ],
-    ],
     'about' => [
         'name' => 'Arab Private Schools Federation',
     ],
-    'founder' => [
-        'heading' => 'Founders',
-    ],
-    'board' => [
-        'heading' => 'Board of Trustees',
-    ],
-    'secretariat' => 'General Secretariat',
     'service' => [
         'heading' => 'Services We Offer',
         'description' => 'We provide tailored services to meet diverse educational needs, from academic support to cutting-edge programs. Dedicated to empowering members, we enhance teaching, support student achievement and advocate for community interests, fostering excellence and growth in education.',
         'tagOne' => 'Approach',
         'tagTwo' => 'Creativity',
-        'tagThree' => 'Creativity',
+    ],
+    'action' => [
+        'text' => 'Be A Member',
+    ],
+    'contact' => [
+        'heading' => 'Reach out to us',
+        'title' => 'Great! We\'re excited to hear from you and let\'s start something special together. call us for any inquiry.',
+        'description' => 'We\'re waiting for your! Say Hello',
+        'name' => 'Name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'subject' => 'Subject',
+        'message' => 'Messages',
+        'miniDescription' => 'Say Hello',
+        'action1' => 'Send',
+        'action2' => 'Messages',
+    ],
+    'scholarship' => [
+        'heading' => 'Apply for Scholarships',
+        'description' => 'The role of this portal extends to acting as a catalyst for students\' future success and will also function as a scholarship resource based on specific criteria to ensure continued student growth beyond graduation through postgraduate programs.',
+        'action' => 'Apply Now',
+    ],
+    'stats' => [
+        'heading' => 'Statistics',
+        'student' => 'Students',
+        'teacher' => 'Teachers',
+        'contractor' => 'Contractors',
+        'institution' => 'Institutions',
     ],
 ];

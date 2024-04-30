@@ -14,4 +14,7 @@ return [
     'Contact' => 'Contact',
     'Faqs' => 'FAQS',
     'Homepage' => 'Homepage',
+    'dashboard' => 'Dashboard',
+    'profile' => 'Profile',
+    'logout' => 'Logout',
 ];
