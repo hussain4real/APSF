@@ -44,22 +44,24 @@
                             <img src="assets/imgs/apsf/board-of-trustees/bot_03.webp" width="80%" alt="">
                         </div>
                     </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
+                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 ">
                         <div class="portfolio__service-item">
                             <h3 class="ps-title">{{__($fourthTrustee)}}<br><br></h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">
+                            <img src="assets/imgs/apsf/board-of-trustees/08.webp" width="80%" alt="">
+{{--                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">--}}
                         </div>
                     </div>
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
                             <h3 class="ps-title">{{__($fifthTrustee)}}</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">
+                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">
+{{--                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">--}}
                         </div>
                     </div>
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
                             <h3 class="ps-title">{{__($sixthTrustee)}}</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/08.webp" width="80%" alt="">
+                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">
                         </div>
                     </div>
                 </div>

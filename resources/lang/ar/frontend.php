@@ -82,4 +82,11 @@ return [
         'contractor' => 'المُقاوِلون',
         'institution' => 'المؤسسات',
     ],
+    'founder' => [
+        'heading' => 'لجنةُ المؤسّسين',
+    ],
+    'board' => [
+        'heading' => 'مجلسُ الأمناء',
+    ],
+    'secretariat' => 'الأمانةُ العامّة',
 ];

@@ -145,8 +145,10 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                 <h2 class="switcher__title">Direction</h2>
             </div>
             <div class="switcher__btn lang_dir wc-col-2">
-                <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>
-                <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>
+                <button class="active" data-mode="ltr">LTR</button>
+                <button data-mode="rtl">RTL</button>
+{{--                <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>--}}
+{{--                <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>--}}
             </div>
         </div>
 
@@ -155,8 +157,8 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                 <h2 class="switcher__title">Language Support</h2>
             </div>
             <div class="switcher__btn lang_dir wc-col-2">
-                <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>
-                <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>
+                <button class="active" data-mode="ltr">LTR</button>
+                <button  data-mode="rtl">RTL</button>
             </div>
         </div>
     </div>
@@ -342,14 +344,25 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
         var ltrButton = document.querySelector('button[data-mode="ltr"]');
         var rtlButton = document.querySelector('button[data-mode="rtl"]');
 
-        if (ltrButton && ltrButton.getAttribute('data-mode') === 'ltr') {
-            ltrButton.click();
-            console.log('ltr');
-        } else if (rtlButton && rtlButton.getAttribute('data-mode') === 'rtl') {
+        var mode = "{{App::getLocale()}}";
+        console.log(mode);
+
+        if(mode === 'ar') {
             rtlButton.click();
             console.log('rtl');
+        } else {
+            ltrButton.click();
+            console.log('ltr');
         }
+
     }
+    // if (mode && ltrButton.getAttribute('data-mode') === 'ltr') {
+    //     ltrButton.click();
+    //     console.log('ltr');
+    // } else if (rtlButton && rtlButton.getAttribute('data-mode') === 'rtl') {
+    //     rtlButton.click();
+    //     console.log('rtl');
+    // }
 </script>
 <!-- All JS files -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
