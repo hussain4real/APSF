@@ -60,7 +60,7 @@
 {{--    </style>--}}
 </head>
 
-<body >
+<body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
 @php
 $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24, function () {
     return \App\Models\Homepage::get([
