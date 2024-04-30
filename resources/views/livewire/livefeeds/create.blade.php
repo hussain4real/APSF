@@ -38,6 +38,7 @@ new class extends Component implements HasForms {
             ,
             Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('attachment')
             ->collection('livefeed_images')
+            ->disk('livefeeds')
             ->hiddenLabel()
             ->reorderable()
             ->downloadable()
