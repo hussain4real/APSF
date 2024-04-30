@@ -9604,8 +9604,8 @@ img {
     width: 132px;
     height: auto;
     /* right: 165px; */
-    right: 80px; /* Added by Rodel */
-    top: 275px;
+    right: 5rem; /* Added by Rodel */
+    top: 19.5rem;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
     .service__hero-2 .shape-1 {
@@ -9759,8 +9759,9 @@ img {
     color: #e56131; /* Added by Rodel */
     text-transform: capitalize;
     padding-bottom: 40px;
-    padding-top: 80px;
+    padding-top: 2rem;
     padding-left: 20px;
+    /*padding-right: 20px;*/
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .service__hero-right-2 .title {
