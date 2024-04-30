@@ -13675,7 +13675,8 @@ img {
     padding-top: 62px;
 }
 .portfolio__service-item {
-    padding: 40px;
+    padding: 0 2rem 1rem 2rem;
+    height: 25rem;
     border: 1.3px solid var(--black-2);
     border-radius: 21px;
     position: relative;
@@ -13721,12 +13722,15 @@ img {
     font-weight: 500;
     font-size: 24px;
     line-height: 1.5;
+    margin-top: 0.5rem;
     text-transform: uppercase;
     color: var(--black-2);
-    padding-bottom: 20px;
+    padding-bottom: 1rem;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
+
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .portfolio__service-item .ps-title {
         font-size: 20px;

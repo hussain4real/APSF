@@ -81,4 +81,11 @@ return [
         'contractor' => 'Contractors',
         'institution' => 'Institutions',
     ],
+    'founder' => [
+        'heading' => 'Founders Committee',
+    ],
+    'board' => [
+        'heading' => 'Board of trustees',
+    ],
+    'secretariat' => 'General Secretariat',
 ];
