@@ -26,7 +26,7 @@ class Livefeed extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('preview')
@@ -37,6 +37,6 @@ class Livefeed extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('livefeed_images')
-            ->useDisk('public');
+            ->useDisk('livefeeds');
     }
 }

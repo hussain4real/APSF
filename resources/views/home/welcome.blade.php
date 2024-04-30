@@ -49,8 +49,10 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
                             <img src="assets/imgs/apsf/home-header/home-300x450.webp" alt="Image" class="image-4">
                         </div>
                         <div class="service__hero-right-2 hero7__thum-anim">
-                            <h2 class="title creative">{{ __($heroTitle) }} </h2>
-                            <p class="animate_content to_justify">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>
+{{--                            part of css animation: creative--}}
+                            <h2 class="title ">{{ __($heroTitle) }} </h2>
+{{--                            part of css animation: animate_content--}}
+                            <p class="to_justify">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>
                             <img src="assets/imgs/home-7/scroll.png" alt="scroll Image" class="scroll">
                         </div>
                     </div>
