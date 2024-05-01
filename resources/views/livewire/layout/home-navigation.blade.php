@@ -16,20 +16,21 @@ new class extends Component {
 }; ?>
 <nav>
 
+
     <header class="header__area-7">
         @include('partials/language_switcher')
         <div class="header__inner-2">
             <div class="header__logo-2">
-                <a href="/" class="logo-dark" wire:navigate><img src="assets/imgs/apsf/logo/apsflogo_271x69.webp"
+                <a href="/" class="logo-dark" ><img src="assets/imgs/apsf/logo/apsflogo_271x69.webp"
                         alt="Site Logo"></a>
-                <a href="/" class="logo-light" wire:navigate><img
+                <a href="/" class="logo-light" ><img
                         src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
 
             </div>
             <div class="header__nav-2">
 {{--                animation style class: menu-anim--}}
                 <ul class="main-menu-4 ">
-                    <li><a href="{{ route('welcome') }}" wire:navigate>{{__('nav.Home')}}</a></li>
+                    <li><a href="{{ route('welcome') }}" >{{__('nav.Home')}}</a></li>
 
                     <li><a href="{{ route('about') }}" wire:navigate>{{__('nav.About Us')}}</a></li>
                     <li><a href="#">{{__('nav.Committee')}}</a>
