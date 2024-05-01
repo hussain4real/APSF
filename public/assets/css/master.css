@@ -723,7 +723,18 @@ img {
 .pos-inherit {
     position: inherit;
 }
+/*.g-0{*/
+/*    display: flex;*/
+/*}*/
 
+/*added by Aminu:*/
+
+.chairman-flex{
+    display: flex;
+    width: 100%;
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+}
 @media only screen and (max-width: 767px) {
     .g-0 {
         padding-right: 15px;
@@ -10873,6 +10884,7 @@ img {
         padding-bottom: 20px;
     }
 }
+
 .testimonial__area-2 .line-3 {
     z-index: 5;
 }
@@ -11241,7 +11253,8 @@ img {
 }
 .testimonial__video {
     margin-right: -112px;
-    max-height: 785px;
+    max-width: 50rem;
+    max-height: 50rem;
     overflow: hidden;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -13677,9 +13690,14 @@ img {
 .portfolio__service-list {
     padding-top: 62px;
 }
+
 .portfolio__service-item {
-    padding: 0 2rem 1rem 2rem;
-    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem ;
+    height: 30rem;
     border: 1.3px solid var(--black-2);
     border-radius: 21px;
     position: relative;
@@ -13725,7 +13743,7 @@ img {
     font-weight: 500;
     font-size: 24px;
     line-height: 1.5;
-    margin-top: 0.5rem;
+    margin-top: -0.5rem;
     text-transform: uppercase;
     color: var(--black-2);
     padding-bottom: 1rem;
@@ -13766,6 +13784,10 @@ img {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
+
+/*modification for board of trustees*/
+
+
 .portfolio__service .ps-btn {
     text-align: center;
 }
@@ -29207,6 +29229,7 @@ body {
 }
 .dir-rtl .testimonial__slide {
     margin-left: -1px;
+    /*width: 50rem;*/
 }
 .dir-rtl .testimonial__slide-4 {
     text-align: right;
@@ -29375,8 +29398,8 @@ body {
     right: 40px;
 }
 .dir-rtl .solution__img-3 {
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .dir-rtl .solution__img-3 {

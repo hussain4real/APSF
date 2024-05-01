@@ -93,7 +93,7 @@
             </div>
 
             <div class="solution__mid">
-                <h1 class="solution__title animation__char_come orange_color">{{__("frontend.service.heading")}}</h1>
+                <h1 class="solution__title orange_color">{{__("frontend.service.heading")}}</h1>
                 <p class="to_justify">{{__("frontend.service.description")}}</p>
             </div>
 

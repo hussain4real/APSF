@@ -164,7 +164,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
         <div class="container g-0 line pb-140">
             <span class="line-3"></span>
 
-            <div class="row g-0">
+            <div class="row g-0 chairman-flex">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
                     <div class="testimonial__video">
                         <img src="assets/imgs/apsf/chairman-message/chairman.webp" alt="Brand Logo" class="chairman-image">
