@@ -36,7 +36,6 @@ class Livefeed extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('livefeed_images')
-            ->useDisk('livefeeds');
+        $this->addMediaCollection('livefeed_images');
     }
 }
