@@ -32,15 +32,15 @@ new class extends Component {
                 <ul class="main-menu-4 ">
                     <li><a href="{{ route('welcome') }}" >{{__('nav.Home')}}</a></li>
 
-                    <li><a href="{{ route('about') }}" wire:navigate>{{__('nav.About Us')}}</a></li>
+                    <li><a href="{{ route('about') }}" >{{__('nav.About Us')}}</a></li>
                     <li><a href="#">{{__('nav.Committee')}}</a>
                         <ul class="main-dropdown">
-                            <li><a href="{{ route('founders-committee') }}" wire:navigate>{{__('nav.Founders Committee')}}</a></li>
-                            <li><a href="{{ route('board-of-trustees') }}" wire:navigate>{{__('nav.Board of Trustees')}}</a></li>
-                            <li><a href="{{ route('general-secretariat') }}" wire:navigate>{{__('nav.General Secretariat')}}</a></li>
+                            <li><a href="{{ route('founders-committee') }}" >{{__('nav.Founders Committee')}}</a></li>
+                            <li><a href="{{ route('board-of-trustees') }}" >{{__('nav.Board of Trustees')}}</a></li>
+                            <li><a href="{{ route('general-secretariat') }}" >{{__('nav.General Secretariat')}}</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('services') }}" wire:navigate>{{__('nav.Services')}}</a>
+                    <li><a href="{{ route('services') }}" >{{__('nav.Services')}}</a>
 
                         <!-- <ul class="main-dropdown">
               <li><a href="#">Academic Support</a></li>
@@ -51,7 +51,7 @@ new class extends Component {
               <li><a href="#">Membership</a></li>
             </ul> -->
                     </li>
-                    <li><a href="{{ route('events') }}" wire:navigate>{{__('nav.Events')}}</a></li>
+                    <li><a href="{{ route('events') }}" >{{__('nav.Events')}}</a></li>
                     <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
                     @guest
                         <li>
