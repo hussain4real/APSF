@@ -95,10 +95,10 @@ new
                 @else
                     <p class="mt-4 text-lg text-gray-900 line-clamp-4 ">{{ $livefeed->message }}</p>
                     @if ($livefeed->media->isNotEmpty())
-                        <div class="flex flex-wrap mt-4">
+                        <div class="flex flex-wrap gap-2 mt-4">
                             @foreach ($livefeed->media as $media)
                                 <img src="{{ $media->getUrl() }}" alt="{{ $media->name }}"
-                                    class="w-lg h-lg object-cover rounded-lg shadow-sm">
+                                    class="w-[15rem] h-lg object-cover rounded-lg shadow-sm">
                             @endforeach
                         </div>
                     @endif
