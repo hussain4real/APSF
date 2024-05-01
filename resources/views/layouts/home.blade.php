@@ -341,22 +341,23 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
 
 
 <script>
-    window.onload = function() {
-        var ltrButton = document.querySelector('button[data-mode="ltr"]');
-        var rtlButton = document.querySelector('button[data-mode="rtl"]');
+    function updateDirection() {
+    var ltrButton = document.querySelector('button[data-mode="ltr"]');
+    var rtlButton = document.querySelector('button[data-mode="rtl"]');
 
-        var mode = "{{App::getLocale()}}";
-        console.log(mode);
+    var mode = "{{App::getLocale()}}";
+    console.log(mode);
 
-        if(mode === 'ar') {
-            rtlButton.click();
-            console.log('rtl');
-        } else {
-            ltrButton.click();
-            console.log('ltr');
-        }
-
+    if(mode === 'ar'){
+        rtlButton.click();
+        console.log('rtl');
+    } else {
+        ltrButton.click();
+        console.log('ltr');
     }
+}
+
+window.onload = updateDirection;
     // if (mode && ltrButton.getAttribute('data-mode') === 'ltr') {
     //     ltrButton.click();
     //     console.log('ltr');
