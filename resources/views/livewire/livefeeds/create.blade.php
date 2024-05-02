@@ -37,7 +37,7 @@ new class extends Component implements HasForms {
                     ->autofocus()
                     ->maxLength(length: 500)
                     ->hiddenLabel()
-                ->live(onBlur: true)
+                ->live(debounce: 500)
                 ,
                 \Filament\Forms\Components\Placeholder::make('character_count')
                     ->content(function (Get $get){

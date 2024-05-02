@@ -34,8 +34,9 @@ new class extends Component implements \Filament\Forms\Contracts\HasForms {
                     ->rows(10)
 //                ->autosize()
                     ->autofocus()
-                    ->maxLength(length: 1000)
+                    ->maxLength(length: 500)
                     ->hiddenLabel()
+                    ->live(debounce: 500)
                 ,
                 Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('attachment')
                     ->collection('livefeed_images')
