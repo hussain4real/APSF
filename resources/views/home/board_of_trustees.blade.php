@@ -4,17 +4,8 @@
         return \App\Models\BoardOfTrustee::get();
     });
 //    dd($boardOfTrusteesModel);
-    $names = [];
-    foreach ($boardOfTrusteesModel as $boardOfTrustee) {
-        $names[] = $boardOfTrustee->name;
-//        dd($names);
-    }
-    $firstTrustee = $names[0] ?? null;
-    $secondTrustee = $names[1] ?? null;
-    $thirdTrustee = $names[2] ?? null;
-    $fourthTrustee = $names[3] ?? null;
-    $fifthTrustee = $names[4] ?? null;
-    $sixthTrustee = $names[5] ?? null;
+
+
     @endphp
    <!-- Team area start -->
     <section class="portfolio__service service-v5 pt-140 pb-140">
@@ -26,44 +17,16 @@
             </div>
             <div class="portfolio__service-list">
                 <div class="row">
+                    @foreach($boardOfTrusteesModel as $boardOfTrustees)
                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
-                        <div class="portfolio__service-item">
-                            <h3 class="ps-title">{{__($firstTrustee)}}</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_05.webp" width="80%" alt="">
+                        <div class="portfolio__service-item ">
+                            @if($boardOfTrustees->media->isNotEmpty())
+                            <img src="{{$boardOfTrustees->media->first()->getUrl()}}" width="80%" alt="">
+                            @endif
+                            <h3 class="ps-title mt-4">{{__($boardOfTrustees->name)}}</h3>
                         </div>
                     </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
-                        <div class="portfolio__service-item">
-                            <h3 class="ps-title">{{__($secondTrustee)}}</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_04.webp" width="80%" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
-                        <div class="portfolio__service-item">
-                            <h3 class="ps-title">{{__($thirdTrustee)}}<br><br></h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_03.webp" width="80%" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 ">
-                        <div class="portfolio__service-item">
-                            <h3 class="ps-title">{{__($fourthTrustee)}}<br><br></h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/08.webp" width="80%" alt="">
-{{--                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">--}}
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
-                        <div class="portfolio__service-item">
-                            <h3 class="ps-title">{{__($fifthTrustee)}}</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_02.webp" width="80%" alt="">
-{{--                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">--}}
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
-                        <div class="portfolio__service-item">
-                            <h3 class="ps-title">{{__($sixthTrustee)}}</h3>
-                            <img src="assets/imgs/apsf/board-of-trustees/bot_01.webp" width="80%" alt="">
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

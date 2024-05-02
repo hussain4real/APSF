@@ -3,7 +3,6 @@
 namespace App\Filament\Clusters\Frontends\Resources;
 
 use App\Filament\Clusters\Frontends;
-use App\Filament\Clusters\Frontends\Resources\GeneralSecretariatResource\Pages;
 use App\Models\GeneralSecretariat;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Concerns\Translatable;
@@ -33,10 +32,10 @@ class GeneralSecretariatResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGeneralSecretariats::route('/'),
-            'create' => Pages\CreateGeneralSecretariat::route('/create'),
-            'view' => Pages\ViewGeneralSecretariat::route('/{record}'),
-            'edit' => Pages\EditGeneralSecretariat::route('/{record}/edit'),
+            'index' => Frontends\Resources\GeneralSecretariatResource\Pages\ListGeneralSecretariats::route('/'),
+            'create' => Frontends\Resources\GeneralSecretariatResource\Pages\CreateGeneralSecretariat::route('/create'),
+            'view' => Frontends\Resources\GeneralSecretariatResource\Pages\ViewGeneralSecretariat::route('/{record}'),
+            'edit' => Frontends\Resources\GeneralSecretariatResource\Pages\EditGeneralSecretariat::route('/{record}/edit'),
         ];
     }
 }

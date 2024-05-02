@@ -276,11 +276,11 @@
                                     <div class="animation__service_page">
                                         <h2 class="service__title-6 orange_color">{{__($sixthServiceTitle)}}</h2>
                                         <p class="services-p">{{__($sixthServiceDescription)}}</p>
-                                        <ul>
-                                            <li>{{__($sixthServiceTagOne)}}</li>
-                                            <li>{{__($sixthServiceTagTwo)}}</li>
-                                            <li>{{__($sixthServiceTagThree)}}</li>
-                                        </ul>
+{{--                                        <ul>--}}
+{{--                                            <li>{{__($sixthServiceTagOne)}}</li>--}}
+{{--                                            <li>{{__($sixthServiceTagTwo)}}</li>--}}
+{{--                                            <li>{{__($sixthServiceTagThree)}}</li>--}}
+{{--                                        </ul>--}}
                                         <div class="btn_wrapper">
                                             <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>

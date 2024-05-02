@@ -3,7 +3,6 @@
 namespace App\Filament\Clusters\Frontends\Resources;
 
 use App\Filament\Clusters\Frontends;
-use App\Filament\Clusters\Frontends\Resources\FoundersCommitteeResource\Pages;
 use App\Models\FoundersCommittee;
 use Filament\Forms\Form;
 use Filament\Pages\SubNavigationPosition;
@@ -64,10 +63,10 @@ class FoundersCommitteeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFoundersCommittees::route('/'),
-            'create' => Pages\CreateFoundersCommittee::route('/create'),
-            'view' => Pages\ViewFoundersCommittee::route('/{record}'),
-            'edit' => Pages\EditFoundersCommittee::route('/{record}/edit'),
+            'index' => Frontends\Resources\FoundersCommitteeResource\Pages\ListFoundersCommittees::route('/'),
+            'create' => Frontends\Resources\FoundersCommitteeResource\Pages\CreateFoundersCommittee::route('/create'),
+            'view' => Frontends\Resources\FoundersCommitteeResource\Pages\ViewFoundersCommittee::route('/{record}'),
+            'edit' => Frontends\Resources\FoundersCommitteeResource\Pages\EditFoundersCommittee::route('/{record}/edit'),
         ];
     }
 }

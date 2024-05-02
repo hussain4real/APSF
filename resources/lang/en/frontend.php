@@ -82,7 +82,7 @@ return [
         'institution' => 'Institutions',
     ],
     'founder' => [
-        'heading' => 'Founders Committee',
+        'heading' => 'Founders',
     ],
     'board' => [
         'heading' => 'Board of trustees',

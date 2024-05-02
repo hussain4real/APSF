@@ -33,6 +33,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
     $chairmanMessageThree = $homepageModel->chairman_message_three ?? null;
     $partnersTitle = $homepageModel->partners_title ?? null;
     $partnersDescription = $homepageModel->partners_description ?? null;
+    $chairmanImage = $homepageModel->media->first()->getUrl() ?? null;
 //    dd($heroTitle);
 
 @endphp
@@ -167,7 +168,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
             <div class="row g-0 chairman-flex">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
                     <div class="testimonial__video">
-                        <img src="assets/imgs/apsf/chairman-message/chairman.webp" alt="Brand Logo" class="chairman-image">
+                        <img src="{{$chairmanImage}}" alt="Brand Logo" class="chairman-image">
                     </div>
                 </div>
 

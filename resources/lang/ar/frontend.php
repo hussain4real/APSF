@@ -83,7 +83,7 @@ return [
         'institution' => 'المؤسسات',
     ],
     'founder' => [
-        'heading' => 'لجنةُ المؤسّسين',
+        'heading' => 'لجنةُ',
     ],
     'board' => [
         'heading' => 'مجلسُ الأمناء',

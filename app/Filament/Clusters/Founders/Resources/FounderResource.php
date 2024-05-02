@@ -20,6 +20,16 @@ class FounderResource extends Resource
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
+    public static function getModelLabel(): string
+    {
+        return __('founder');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('founders');
+    }
+
     public static function getNavigationBadge(): ?string
     {
         if (static::getModel()::count() > 0) {

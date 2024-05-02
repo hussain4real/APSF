@@ -3,7 +3,6 @@
 namespace App\Filament\Clusters\Frontends\Resources;
 
 use App\Filament\Clusters\Frontends;
-use App\Filament\Clusters\Frontends\Resources\HomepageResource\Pages;
 use App\Models\Homepage;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Concerns\Translatable;
@@ -80,10 +79,10 @@ class HomepageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHomepages::route('/'),
-            'create' => Pages\CreateHomepage::route('/create'),
-            'view' => Pages\ViewHomepage::route('/{record}'),
-            'edit' => Pages\EditHomepage::route('/{record}/edit'),
+            'index' => Frontends\Resources\HomepageResource\Pages\ListHomepages::route('/'),
+            'create' => Frontends\Resources\HomepageResource\Pages\CreateHomepage::route('/create'),
+            'view' => Frontends\Resources\HomepageResource\Pages\ViewHomepage::route('/{record}'),
+            'edit' => Frontends\Resources\HomepageResource\Pages\EditHomepage::route('/{record}/edit'),
         ];
     }
 }

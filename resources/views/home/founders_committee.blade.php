@@ -21,8 +21,12 @@
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
                             <a href="https://nis-eg.com/" target="_blank">
-                                <h3 class="ps-title orange_color">{{__($foundersCommittee->country)}} <br>{{__($foundersCommittee->name)}}</h3>
-                                <img src="assets/imgs/apsf/founder-flags/committee_Flag_of_Egypt.webp" alt="">
+                                <h3 class="ps-title orange_color"> {{__($foundersCommittee->name)}}</h3>
+                                @if($foundersCommittee->media->isNotEmpty())
+                                <img src="{{$foundersCommittee->media->first()->getUrl()}}" alt="">
+{{--                                <img src="{{$foundersCommittee->getUrl()}}" alt="">--}}
+                                @endif
+                                <p class="ps-title orange_color mt-4">{{__($foundersCommittee->country)}}</p>
                             </a>
                         </div>
                     </div>

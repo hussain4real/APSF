@@ -55,10 +55,10 @@ class EventResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListEvents::route('/'),
+            'index' => Frontends\Resources\EventResource\Pages\ListEvents::route('/'),
             'create' => Pages\CreateEvent::route('/create'),
-            'view' => Pages\ViewEvent::route('/{record}'),
-            'edit' => Pages\EditEvent::route('/{record}/edit'),
+            'view' => Frontends\Resources\EventResource\Pages\ViewEvent::route('/{record}'),
+            'edit' => Frontends\Resources\EventResource\Pages\EditEvent::route('/{record}/edit'),
         ];
     }
 }

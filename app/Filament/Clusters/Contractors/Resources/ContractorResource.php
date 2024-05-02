@@ -22,13 +22,23 @@ class ContractorResource extends Resource
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
-    public static function getNavigationBadge(): ?string
-    {
-        if (static::getModel()::count() > 0) {
-            return static::getModel()::count();
-        }
+    //    public static function getNavigationBadge(): ?string
+    //    {
+    //        if (static::getModel()::count() > 0) {
+    //            return static::getModel()::count();
+    //        }
+    //
+    //        return null;
+    //    }
 
-        return null;
+    public static function getNavigationLabel(): string
+    {
+        return __('contractors');
+    }
+
+    public static function getModel(): string
+    {
+        return __('contractor');
     }
 
     public static function getRelations(): array
