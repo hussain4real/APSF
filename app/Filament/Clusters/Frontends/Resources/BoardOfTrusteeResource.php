@@ -42,9 +42,9 @@ class BoardOfTrusteeResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListBoardOfTrustees::route('/'),
-            'create' => Pages\CreateBoardOfTrustee::route('/create'),
-            'view' => Pages\ViewBoardOfTrustee::route('/{record}'),
+            'index' => Frontends\Resources\BoardOfTrusteeResource\Pages\ListBoardOfTrustees::route('/'),
+            'create' => Frontends\Resources\BoardOfTrusteeResource\Pages\CreateBoardOfTrustee::route('/create'),
+            'view' => Frontends\Resources\BoardOfTrusteeResource\Pages\ViewBoardOfTrustee::route('/{record}'),
             'edit' => Pages\EditBoardOfTrustee::route('/{record}/edit'),
         ];
     }

@@ -19,7 +19,23 @@ class EducationalConsultantResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $cluster = EducationalConsultants::class;
+
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function getNavigationLabel(): string
+    {
+        return __('educational consultants');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('educational consultant');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('educational consultants');
+    }
 
     public static function table(Table $table): Table
     {

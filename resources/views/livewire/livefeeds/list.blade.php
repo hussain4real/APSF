@@ -119,7 +119,7 @@ new
                         <div class="flex flex-wrap gap-y-3 gap-x-2 mt-4">
                             @foreach ($livefeed->media as $media)
                                 @if($media->mime_type === 'video/mp4')
-                                <video controls class="w-full h-[20rem] object-cover rounded-lg shadow-sm">
+                                <video controls class="w-full h-[20rem] object-cover rounded-lg shadow-sm" autoplay muted>
                                     <source src="{{ $media->getUrl() }}" type="{{ $media->mime_type }}">
                                     Your browser does not support the video tag.
                                 </video>
@@ -230,3 +230,30 @@ new
         </div>
     @endforeach
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let videos = document.querySelectorAll('video');
+        // console.log(videos);
+        let options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.7
+        };
+
+        let observer = new IntersectionObserver(handleIntersect, options);
+
+        videos.forEach(video => observer.observe(video));
+
+        function handleIntersect(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play();
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }
+    });
+</script>
+

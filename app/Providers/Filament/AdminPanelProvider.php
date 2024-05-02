@@ -110,8 +110,8 @@ class AdminPanelProvider extends PanelProvider
                 // NavigationItem::make('livefeed')
                 // ->icon('heroicon-o-arrow-path-rounded-square')
                 // ->url('/livefeed'),
-                NavigationItem::make('Homepage')
-                    ->label(__('nav.Homepage'))
+                NavigationItem::make('homepage')
+                    ->label(__('homepage'))
                     ->icon('heroicon-o-arrow-uturn-up')
                     ->url('/')
                     ->sort(-1),

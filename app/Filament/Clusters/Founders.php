@@ -13,4 +13,9 @@ class Founders extends Cluster
     //    {
     //        return Founder::count();
     //    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('founders');
+    }
 }

@@ -33,9 +33,9 @@ class ServiceResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListServices::route('/'),
-            'create' => Pages\CreateService::route('/create'),
-            'view' => Pages\ViewService::route('/{record}'),
+            'index' => Frontends\Resources\ServiceResource\Pages\ListServices::route('/'),
+            'create' => Frontends\Resources\ServiceResource\Pages\CreateService::route('/create'),
+            'view' => Frontends\Resources\ServiceResource\Pages\ViewService::route('/{record}'),
             'edit' => Pages\EditService::route('/{record}/edit'),
         ];
     }

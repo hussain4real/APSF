@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\Frontends\Resources\HomepageResource\Pages;
 use App\Filament\Clusters\Frontends\Resources\HomepageResource;
 use Filament\Actions\LocaleSwitcher;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\Textarea;
@@ -136,6 +137,21 @@ class CreateHomepage extends CreateRecord
                                     ->label(__('Second Paragraph')),
                                 Textarea::make('chairman_message_three')
                                     ->label(__('Third Paragraph')),
+                                SpatieMediaLibraryFileUpload::make('attachment')
+                                    ->collection('board_of_trustees_images')
+                                    ->hiddenLabel()
+                                    ->responsiveImages()
+                                    ->maxSize(1024 * 3)
+                                    ->hint(__('Maximum size: 3MB.'))
+                                    ->hintIcon('heroicon-o-information-circle')
+                                    ->hintColor('warning')
+                                    ->imagePreviewHeight('150')
+                                    ->openable()
+                                    ->preserveFilenames()
+                                    ->downloadable()
+                                    ->imageEditor(2)
+                                    ->imageEditorEmptyFillColor('#dda581')
+                                    ->uploadingMessage(__('uploading, please wait...')),
                             ]),
                         Tab::make('Partners Section')
                             ->icon('heroicon-o-users')
