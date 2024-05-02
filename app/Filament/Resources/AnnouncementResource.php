@@ -19,6 +19,21 @@ class AnnouncementResource extends Resource
         ];
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return __('announcements');
+    }
+
+    public static function getModelLabel(): string
+    {
+        return __('announcement');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('announcements');
+    }
+
     public static function getPages(): array
     {
         return [

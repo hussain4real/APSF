@@ -13,7 +13,7 @@ return [
     'Login' => 'Login',
     'Contact' => 'Contact',
     'Faqs' => 'FAQS',
-    'Homepage' => 'Homepage',
+    //    'Homepage' => 'Homepage',
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
     'logout' => 'Logout',
