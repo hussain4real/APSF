@@ -7,6 +7,7 @@ use App\Filament\Pages\Auth\Register;
 use App\Filament\Resources\AnnouncementResource;
 use App\Http\Middleware\EnsureUserIsSubscribed;
 use App\Models\ChMessage;
+use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -84,6 +85,13 @@ class AdminPanelProvider extends PanelProvider
                 FilamentAnnouncePlugin::make()
                     ->defaultColor('info')
                     ->usingResource(AnnouncementResource::class),
+                FilamentDeveloperLoginsPlugin::make()
+                    ->enabled(app()->environment('local'))
+                    ->users([
+                        'Admin' => 'Admin',
+                        'User' => 'Robert',
+                    ])
+                    ->column('first_name'),
 
             ])
             ->navigationItems([
