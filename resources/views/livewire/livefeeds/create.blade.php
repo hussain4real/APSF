@@ -49,11 +49,11 @@ new class extends Component implements HasForms {
                         $remaining = 500 - $count;
                         //use a progress bar to show the remaining characters and change to red if remaining characters is less than 20
                         return new \Illuminate\Support\HtmlString('
-                      <div class="relative pt-1" name="progress">
+                      <div class="relative pt-1" id="progress-bar">
                             <div class="flex mb-2 items-center justify-end">
 
                                 <div class="text-right text-xs">
-                                    <span class="text-xs font-semibold inline-block text-primary-600">
+                                    <span class="text-xs font-semibold inline-block text-primary-600" id="character-count">
                                         '.$count.'/500
                                     </span>
                                 </div>
@@ -147,6 +147,25 @@ new class extends Component implements HasForms {
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        let textarea = document.querySelector('.livefeed');
+        let characterCount = document.getElementById('character-count');
+        let progressBar = document.getElementById('progress-bar');
 
+        textarea.addEventListener('input', function () {
+            let message = textarea.value;
+            let count = message.length;
+            let remaining = 500 - count;
+
+            characterCount.textContent = count + '/500';
+            progressBar.style.width = (1 - (count / 500)) * 100 + '%';
+
+            if (remaining < 20) {
+                progressBar.classList.remove('bg-blue-600');
+                progressBar.classList.add('bg-red-500');
+            } else {
+                progressBar.classList.remove('bg-red-500');
+                progressBar.classList.add('bg-blue-600');
+            }
+        });
     });
 </script>
