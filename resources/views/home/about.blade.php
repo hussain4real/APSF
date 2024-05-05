@@ -1,4 +1,6 @@
 <x-home-layout>
+
+{{--    <script src="https://cdn.tailwindcss.com"></script>--}}
     @php
     $aboutUsModel = \Illuminate\Support\Facades\Cache::remember('about_us', 60*60*24, function () {
         return \App\Models\AboutPage::first();
@@ -65,7 +67,8 @@
     <section class="faq__area">
         <div class="container g-0 line pb-140">
             <div class="line-3"></div>
-            <div class="row">
+{{--            row--}}
+            <div class="faq-container">
 
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                     <div class="faq__content">
@@ -239,9 +242,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                    <div style="padding-left: 50px;">
-                        <img src="assets/imgs/apsf/objectives/objectives.webp" alt="FAQ Image">
+{{--                class="col-xxl-6 col-xl-6 col-lg-6 col-md-6"--}}
+                <div >
+                    <div >
+{{--                        style="padding-left: 50px;"--}}
+                        <img src="assets/imgs/apsf/objectives/objectives.webp" alt="FAQ Image" class="faq-image">
                     </div>
                 </div>
             </div>
