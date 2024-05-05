@@ -49,5 +49,7 @@ class AboutPage extends Model
             'objective_description_nine',
             'objective_title_ten',
             'objective_description_ten',
+            'objective_title_eleven',
+            'objective_description_eleven',
         ];
 }
