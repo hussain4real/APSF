@@ -40,6 +40,10 @@ return new class extends Migration
             $table->text('objective_description_nine')->nullable();
             $table->string('objective_title_ten')->nullable();
             $table->text('objective_description_ten')->nullable();
+            $table->string('objective_title_eleven')->nullable();
+            $table->text('objective_description_eleven')->nullable();
+            $table->string('objective_title_twelve')->nullable();
+            $table->text('objective_description_twelve')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
