@@ -79,8 +79,8 @@ return [
         'heading' => 'بيانات إحصائية',
         'student' => 'الطلاب',
         'teacher' => 'المعلّمون',
-        'contractor' => 'المُقاوِلون',
-        'institution' => 'المؤسسات',
+        'contractor' => 'الموردون',
+        'institution' => 'المدارس',
     ],
     'founder' => [
         'heading' => 'المؤسّسون',

@@ -79,7 +79,7 @@ return [
         'student' => 'Students',
         'teacher' => 'Teachers',
         'contractor' => 'Contractors',
-        'institution' => 'Institutions',
+        'institution' => 'Schools',
     ],
     'founder' => [
         'heading' => 'Founders',
