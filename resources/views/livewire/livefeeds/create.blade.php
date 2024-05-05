@@ -150,6 +150,12 @@ new class extends Component implements HasForms {
         let textarea = document.querySelector('.livefeed');
         let characterCount = document.getElementById('character-count');
         let progressBar = document.getElementById('progress-bar');
+        // console.log(textarea, characterCount, progressBar);
+
+        if (!textarea) {
+            console.error("Textarea element with class 'livefeed' not found.");
+            return;
+        }
 
         textarea.addEventListener('input', function () {
             let message = textarea.value;
@@ -168,4 +174,5 @@ new class extends Component implements HasForms {
             }
         });
     });
+
 </script>
