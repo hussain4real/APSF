@@ -4,7 +4,7 @@ return [
     'Home' => 'Home',
     'About Us' => 'About Us',
     'Committee' => 'Committee',
-    'Founders Committee' => 'Founders Committee',
+    'Founders Committee' => 'Founders',
     'Board of Trustees' => 'Board of Trustees',
     'General Secretariat' => 'General Secretariat',
     'Services' => 'Services',
