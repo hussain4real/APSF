@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                     <div class="sec-title-wrapper">
-                        <h2 class="sec-title-2 animation__char_come orange_color">{{__("frontend.contact.heading")}}</h2>
+                        <h2 class="sec-title-2 orange_color">{{__("frontend.contact.heading")}}</h2>
                     </div>
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
