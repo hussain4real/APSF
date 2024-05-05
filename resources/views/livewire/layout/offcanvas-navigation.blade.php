@@ -20,7 +20,7 @@ new class extends Component
     <div class="offcanvas__body">
         <div class="offcanvas__left">
             <div class="offcanvas__logo">
-                <a href="/" wire:navigate><img src="assets/imgs/apsf/logo/apsflogo_271x69_white.webp"
+                <a href="/" wire:navigate><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp')}}"
                         alt="Offcanvas Logo"></a>
             </div>
             <div class="offcanvas__social">
@@ -51,7 +51,7 @@ new class extends Component
                         <li><a>{{__('nav.Committee')}}</a>
                             <ul>
                                 <li><a href="{{route('founders-committee')}}" wire:navigate>{{__('nav.Founders Committee')}}</a></li>
-                                <li><a href="{{route('board-of-trustees')}}" wire:navigate>{{__('nav.Board of Trustees')}}</a></li>
+                                <li><a href="{{route('board-of-trustees.index')}}" wire:navigate>{{__('nav.Board of Trustees')}}</a></li>
                                 <li><a href="{{route('general-secretariat')}}" wire:navigate>{{__('nav.General Secretariat')}}</a></li>
                             </ul>
                         </li>
@@ -77,8 +77,8 @@ new class extends Component
                     <li>Doha Qatar</li>
                 </ul>
             </div>
-            <img src="assets/imgs/shape/11.png" alt="shape" class="shape-1">
-            <img src="assets/imgs/shape/12.png" alt="shape" class="shape-2">
+            <img src="{{asset('assets/imgs/shape/11.png')}}" alt="shape" class="shape-1">
+            <img src="{{asset('assets/imgs/shape/12.png')}}" alt="shape" class="shape-2">
         </div>
         <div class="offcanvas__close">
             <button type="button" id="close_offcanvas"><i class="fa-solid fa-xmark"></i></button>

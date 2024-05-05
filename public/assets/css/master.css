@@ -106,7 +106,7 @@
 /*added by aminu*/
 @font-face {
     font-family: 'Bahij_TheSansArabic-Bold';
-    src: url('/assets/fonts/Bahij_TheSansArabic-Plain.ttf');
+    src: url(asset('/assets/fonts/Bahij_TheSansArabic-Plain.ttf'));
     font-weight: 500;
     font-style: normal;
 
@@ -8735,6 +8735,15 @@ img {
         padding-top: 60px;
     }
 }
+.main-content{
+    padding-top: 6rem;
+
+}
+
+/*.bg-blue-500{*/
+/*    margin-top:5rem;*/
+/*    !*background-color: #3b82f6;*!*/
+/*}*/
 .service__item {
     display: -ms-grid;
     display: grid;
@@ -13696,6 +13705,7 @@ img {
 }
 .portfolio__service-list {
     padding-top: 62px;
+
 }
 
 .portfolio__service-item {
