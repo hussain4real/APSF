@@ -11256,6 +11256,13 @@ img {
     max-width: 50rem;
     max-height: 50rem;
     overflow: hidden;
+
+}
+.chairman-image{
+    /*display:none;*/
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .testimonial__video {
@@ -17394,10 +17401,11 @@ img {
 .faq-image{
     max-width: 100%;
     max-height: 100%;
-    width: 33.2rem;
-    height: 73rem;
+    width: 37.25rem;
+    height: 69rem;
     object-fit: contain;
     object-position: center;
+    /*margin-left: 2rem;*/
 }
 @media only screen and (max-width: 480px) {
     .faq-image{
