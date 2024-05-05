@@ -2,7 +2,7 @@
 
 return [
     'Home' => 'الصّفحة الرّئيسيّة',
-    'About Us' => 'التّمهيد',
+    'About Us' => 'من نحن',
     'Committee' => 'اللّجنة',
     'Founders Committee' => 'لجنةُ المؤسّسين',
     'Board of Trustees' => 'مجلسُ الأمناء',
