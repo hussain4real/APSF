@@ -184,7 +184,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
 
     <div id="smooth-wrapper">
         <div id="smooth-content">
-            <main>
+            <main class="main-content">
 
                 {{ $slot }}
                 <!-- Brand area start -->
@@ -200,16 +200,16 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                             </div>
                             <div class="brand__list-3">
                                 <div class="brand__item-2 fade_bottom">
-                                    <img src="assets/imgs/apsf/partners/tamkeen.webp" alt="Brand Logo">
+                                    <img src="{{asset('assets/imgs/apsf/partners/tamkeen.webp')}}" alt="Brand Logo">
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
-                                    <img src="assets/imgs/apsf/partners/aief.webp" alt="Brand Logo">
+                                    <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo">
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
-                                    <img src="assets/imgs/apsf/partners/uv.webp" alt="Brand Logo">
+                                    <img src="{{asset('assets/imgs/apsf/partners/uv.webp')}}" alt="Brand Logo">
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
-                                    <img src="assets/imgs/apsf/partners/ge.webp" alt="Brand Logo">
+                                    <img src="{{asset('assets/imgs/apsf/partners/ge.webp')}}" alt="Brand Logo">
                                 </div>
                             </div>
 
@@ -229,22 +229,22 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 </div>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
-                                <img src="assets/imgs/apsf/dashboard/students.webp" alt="Brand Logo"><br><br>
+                                <img src="{{asset('assets/imgs/apsf/dashboard/students.webp')}}" alt="Brand Logo"><br><br>
                                 <h1>829</h1>
                                 <h2>{{__("frontend.stats.student")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
-                                <img src="assets/imgs/apsf/dashboard/teachers.webp" alt="Brand Logo"><br><br>
+                                <img src="{{asset('assets/imgs/apsf/dashboard/teachers.webp')}}" alt="Brand Logo"><br><br>
                                 <h1>483</h1>
                                 <h2>{{__("frontend.stats.teacher")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
-                                <img src="assets/imgs/apsf/dashboard/contractors.webp" alt="Brand Logo"><br><br>
+                                <img src="{{asset('assets/imgs/apsf/dashboard/contractors.webp')}}" alt="Brand Logo"><br><br>
                                 <h1>620</h1>
                                 <h2>{{__("frontend.stats.contractor")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
-                                <img src="assets/imgs/apsf/dashboard/institutions.webp" alt="Brand Logo"><br><br>
+                                <img src="{{asset('assets/imgs/apsf/dashboard/institutions.webp')}}" alt="Brand Logo"><br><br>
                                 <h1>150</h1>
                                 <h2>{{__("frontend.stats.institution")}}</h2>
                             </div>
@@ -304,7 +304,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 <div class="footer__subscribe-2">
                                     <form action="#">
                                         <input type="text" name="email" placeholder="{{__("frontend.input.email")}}">
-                                        <button type="submit" class="submit"><img src="assets/imgs/apsf/icon/arrow-black.png"
+                                        <button type="submit" class="submit"><img src="{{asset('assets/imgs/apsf/icon/arrow-black.png')}}"
                                                                                   alt="Arrow Icon"></button>
                                     </form>
                                 </div>
@@ -367,20 +367,20 @@ window.onload = updateDirection;
     // }
 </script>
 <!-- All JS files -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/counter.js"></script>
-    <script src="assets/js/gsap.min.js"></script>
-    <script src="assets/js/ScrollTrigger.min.js"></script>
-    <script src="assets/js/ScrollToPlugin.min.js"></script>
-    <script src="assets/js/ScrollSmoother.min.js"></script>
-    <script src="assets/js/SplitText.min.js"></script>
-    <script src="assets/js/chroma.min.js"></script>
-    <script src="assets/js/mixitup.min.js"></script>
-    <script src="assets/js/vanilla-tilt.js"></script>
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/js/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('assets/js/counter.js')}}"></script>
+    <script src="{{asset('assets/js/gsap.min.js')}}"></script>
+    <script src="{{asset('assets/js/ScrollTrigger.min.js')}}"></script>
+    <script src="{{asset('assets/js/ScrollToPlugin.min.js')}}"></script>
+    <script src="{{asset('assets/js/ScrollSmoother.min.js')}}"></script>
+    <script src="{{asset('assets/js/SplitText.min.js')}}"></script>
+    <script src="{{asset('assets/js/chroma.min.js')}}"></script>
+    <script src="{{asset('assets/js/mixitup.min.js')}}"></script>
+    <script src="{{asset('assets/js/vanilla-tilt.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.meanmenu.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 
     @livewire('notifications')
 
