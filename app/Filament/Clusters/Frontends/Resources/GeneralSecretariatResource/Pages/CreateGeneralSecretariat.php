@@ -28,6 +28,8 @@ class CreateGeneralSecretariat extends CreateRecord
                 TextInput::make('name')
                     ->label(__('Name'))
                     ->required(),
+                TextInput::make('position')
+                    ->label(__('Position')),
             ]);
     }
 }

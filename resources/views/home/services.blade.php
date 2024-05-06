@@ -99,7 +99,7 @@
 
             <div class="solution__right">
                 <div class="solution__img-3">
-                    <img src="assets/imgs/apsf/services/services-offered/services_459x414.jpg" alt="Solution Image">
+                    <img src="assets/imgs/apsf/services/services-offered/img.png" alt="Solution Image">
                 </div>
             </div>
         </div>
