@@ -47,7 +47,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
                             <img src="assets/imgs/apsf/home-header/home-435x472.webp" alt="Image" class="image-1">
                             <img src="assets/imgs/apsf/home-header/home-240x240.webp" alt="Image" class="image-2">
                             <!-- <img src="assets/imgs/apsf/header-area/student.webp" alt="Image" class="image-3"> -->
-                            <img src="assets/imgs/apsf/home-header/home-300x450.webp" alt="Image" class="image-4">
+                            <img src="assets/imgs/apsf/home-header/img.png" alt="Image" class="image-4">
                         </div>
                         <div class="service__hero-right-2 hero7__thum-anim">
 {{--                            part of css animation: creative--}}

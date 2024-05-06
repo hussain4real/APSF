@@ -9687,6 +9687,7 @@ img {
 }
 .service__hero-left-2 img {
     margin-bottom: 15px;
+
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .service__hero-left-2 img {
@@ -9746,6 +9747,8 @@ img {
 }
 .service__hero-left-2 .image-4 {
     position: absolute;
+    max-width: 18.75rem;
+    max-height: 28.13rem;
     left: 350px;
     bottom: 40px;
 }
@@ -16536,6 +16539,8 @@ img {
 @media only screen and (min-width: 1400px) and (max-width: 1919px) {
     .solution__img-3 img {
         max-width: 360px;
+        max-height: 17rem;
+
     }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {

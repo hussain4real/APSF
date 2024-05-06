@@ -20,7 +20,7 @@
                     @foreach($foundersCommitteeModel as $foundersCommittee)
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                         <div class="portfolio__service-item">
-                            <a href="https://nis-eg.com/" target="_blank">
+                            <a href="{{$foundersCommittee->url}}" target="_blank">
                                 <h3 class="ps-title orange_color"> {{__($foundersCommittee->name)}}</h3>
                                 @if($foundersCommittee->media->isNotEmpty())
                                 <img src="{{$foundersCommittee->media->first()->getUrl()}}" alt="">

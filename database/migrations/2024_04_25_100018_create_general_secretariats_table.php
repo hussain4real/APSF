@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('general_secretariats', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('position')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
