@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-xxl-4 col-xl-7 col-lg-6 col-md-6">
                     <div class="portfolio__service-item">
-                        <h3 class="ps-title-position">{{__($generalSecretariatModel->name)}}<br><br></h3>
+                        <h3 class="ps-title-position">{{__($generalSecretariatModel->position ?? null)}}<br><br></h3>
                         <img src="assets/imgs/apsf/gen-sec/gen-sec.webp" width="80%" alt="">
                         <h3 class="ps-title-name">{{__($generalSecretariatModel->name)}}<br><br></h3>
                     </div>
