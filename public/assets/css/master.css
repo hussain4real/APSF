@@ -97,18 +97,18 @@
     --d-black-3: #1A1A1A;
 }
 
-@font-face {
-    font-family: newYork;
-    src: url("/assets/fonts/newyork/FontsFree-Net-NewYork.ttf");
-    font-weight: 400;
-}
+/*@font-face {*/
+/*    font-family: newYork;*/
+/*    src: url("/assets/fonts/newyork/FontsFree-Net-NewYork.ttf");*/
+/*    font-weight: 400;*/
+/*}*/
 
 /*added by aminu*/
 @font-face {
-    font-family: 'Bahij_TheSansArabic-Bold';
-    src: url(asset('/assets/fonts/Bahij_TheSansArabic-Plain.ttf'));
-    font-weight: 500;
-    font-style: normal;
+    font-family: Bahij_TheSansArabic-Plain;
+    src: url(asset("/assets/fonts/Bahij_TheSansArabic-Plain.ttf")) format("truetype");
+    /*font-weight: 500;*/
+    /*font-style: normal;*/
 
 }
 
@@ -593,7 +593,7 @@
 }
 
 body {
-    font-family: 'Bahij_TheSansArabic-Bold',"Kanit", sans-serif;
+    font-family:'Bahij_TheSansArabic-Plain', "Kanit", sans-serif;
 }
 
 html {
@@ -13746,6 +13746,8 @@ img {
     border-radius: 15px 0px 0px 15px;
 }
 .portfolio__service-item:hover .ps-title,
+.portfolio__service-item:hover .ps-title-name,
+.portfolio__service-item:hover .ps-title-position,
 .portfolio__service-item:hover ul li {
     color: var(--white);
 }
@@ -13766,6 +13768,31 @@ img {
     padding-bottom: 1rem;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+}
+
+.ps-title-position{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.5;
+    padding-top: 2rem;
+    text-transform: uppercase;
+    color: var(--black-2);
+    padding-bottom: 0rem;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.ps-title-name{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.5;
+    margin-top: 0rem;
+    text-transform: uppercase;
+    color: var(--black-2);
+    padding:0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+
 }
 
 
