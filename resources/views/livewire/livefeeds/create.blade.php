@@ -33,6 +33,9 @@ new class extends Component implements HasForms {
                 Filament\Forms\Components\Textarea::make('message')
                     ->placeholder(__('What\'s on your mind?'))
                     ->rows(10)
+                    ->extraAttributes([
+                       'class'=>'livefeed'
+                    ])
 //                ->autosize()
                     ->autofocus()
                     ->maxLength(length: 500)
@@ -44,8 +47,40 @@ new class extends Component implements HasForms {
                         $message = $get('message');
                         $count = strlen($message);
                         $remaining = 500 - $count;
-                        return "Characters remaining: $remaining";
+                        //use a progress bar to show the remaining characters and change to red if remaining characters is less than 20
+                        return new \Illuminate\Support\HtmlString('
+                      <div class="relative pt-1" id="progress-bar">
+                            <div class="flex mb-2 items-center justify-end">
+
+                                <div class="text-right text-xs">
+                                    <span class="text-xs font-semibold inline-block text-primary-600" id="character-count">
+                                        '.$count.'/500
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-primary-100">
+                                <div style="width:'.($count/500)*100 .'%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-warning-600"></div>
+                            </div>
+                        </div>
+
+                        ');
+
                     })
+//                    ->content(function (Get $get){
+//                        $message = $get('message');
+//                        $count = strlen($message);
+//                        $remaining = 500 - $count;
+//                        return "Characters remaining: $remaining";
+//                    })
+//                    ->extraAttributes(function(Get $get){
+//                        $message = $get('message');
+//                        $count = strlen($message);
+//                        $remaining = 500 - $count;
+//                        return [
+//                            'class' =>  $remaining < 10 ? 'text-red-500 character-count' : 'text-gray-500 character-count',
+//
+//                        ];
+//                    })
                 ->hiddenLabel(),
                 Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('attachment')
                     ->collection('livefeed_images')
@@ -110,20 +145,34 @@ new class extends Component implements HasForms {
     <livewire:livefeeds.list/>
 
 </div>
-@push('styles')
-    @once
-        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-        <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-              rel="stylesheet">
-    @endonce
-@endpush
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let textarea = document.querySelector('.livefeed');
+        let characterCount = document.getElementById('character-count');
+        let progressBar = document.getElementById('progress-bar');
+        // console.log(textarea, characterCount, progressBar);
 
-@push('scripts')
-    @once
-        <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-        <script>
-            FilePond.registerPlugin(FilePondPluginImagePreview);
-        </script>
-    @endonce
-@endpush
+        if (!textarea) {
+            console.error("Textarea element with class 'livefeed' not found.");
+            return;
+        }
+
+        textarea.addEventListener('input', function () {
+            let message = textarea.value;
+            let count = message.length;
+            let remaining = 500 - count;
+
+            characterCount.textContent = count + '/500';
+            progressBar.style.width = (1 - (count / 500)) * 100 + '%';
+
+            if (remaining < 20) {
+                progressBar.classList.remove('bg-blue-600');
+                progressBar.classList.add('bg-red-500');
+            } else {
+                progressBar.classList.remove('bg-red-500');
+                progressBar.classList.add('bg-blue-600');
+            }
+        });
+    });
+
+</script>

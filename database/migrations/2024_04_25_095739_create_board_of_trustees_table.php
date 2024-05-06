@@ -14,7 +14,17 @@ return new class extends Migration
         Schema::create('board_of_trustees', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-
+            $table->string('position')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->text('address')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('twitter_url')->nullable();
+            $table->string('linkedin_url')->nullable();
+            $table->string('instagram_url')->nullable();
+            $table->string('medium_url')->nullable();
+            $table->string('publication_url')->nullable();
+            $table->string('website_url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

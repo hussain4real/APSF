@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardOfTrusteeController;
 use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\PayPalController;
@@ -25,12 +26,18 @@ Route::get('language/{locale}', function ($locale) {
     return redirect()->back();
 });
 
+Route::resource('board-of-trustees', BoardOfTrusteeController::class)
+    ->only(['index', 'show'])
+    ->names([
+        'index' => 'board-of-trustees.index',
+        'show' => 'board-of-trustees.show',
+    ]);
 Route::view('/about', 'home.about')
     ->name('about');
 Route::view('/founders-committee', 'home.founders_committee')
     ->name('founders-committee');
-Route::view('/board-of-trustees', 'home.board_of_trustees')
-    ->name('board-of-trustees');
+//Route::view('/board-of-trustees', 'home.board.board_of_trustees')
+//    ->name('board-of-trustees');
 Route::view('/general-secretariat', 'home.general_secretariat')
     ->name('general-secretariat');
 Route::view('/services', 'home.services')
