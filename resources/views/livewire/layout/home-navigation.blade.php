@@ -18,7 +18,7 @@ new class extends Component {
 
 
     <header class="header__area-7">
-        @include('partials/language_switcher')
+{{--        @include('partials/language_switcher')--}}
         <div class="header__inner-2">
             <div class="header__logo-2">
                 <a href="/" class="logo-dark" ><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69.webp')}}"
@@ -27,7 +27,9 @@ new class extends Component {
                         src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
 
             </div>
+
             <div class="header__nav-2">
+                @include('partials/language_switcher')
 {{--                animation style class: menu-anim--}}
                 <ul class="main-menu-4 ">
                     <li><a href="{{ route('welcome') }}" >{{__('nav.Home')}}</a></li>
@@ -61,6 +63,7 @@ new class extends Component {
 {{--                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>--}}
                             </span>
                         </li>
+
                     @endguest
                     @auth
 
@@ -123,8 +126,8 @@ new class extends Component {
                 </ul>
             </div>
 
-            <div class="header__nav-icon-7">
 
+            <div class="header__nav-icon-7">
                 <button class="menu-icon-2" id="open_offcanvas"><img src="{{asset('assets/imgs/apsf/icon/menu-dark.png')}}"
                         alt="Menubar Icon"></button>
             </div>

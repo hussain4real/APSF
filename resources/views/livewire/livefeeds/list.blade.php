@@ -127,7 +127,7 @@ new
 
                                     <div x-data="{ modalOpen: false, imgSrc: '' }"
                                          @keydown.escape.window="modalOpen = false"
-                                         class="relative z-50 w-[18rem] h-[20rem]">
+                                         class="relative w-[18rem] h-[20rem]">
                                         <!-- Image -->
                                         <img src="{{ $media->getUrl() }}" alt="{{ $media->name }}"
                                              class="w-full h-full object-cover rounded-lg shadow-sm cursor-zoom-in"

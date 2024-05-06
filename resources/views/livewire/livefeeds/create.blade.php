@@ -145,34 +145,46 @@ new class extends Component implements HasForms {
     <livewire:livefeeds.list/>
 
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let textarea = document.querySelector('.livefeed');
-        let characterCount = document.getElementById('character-count');
-        let progressBar = document.getElementById('progress-bar');
-        // console.log(textarea, characterCount, progressBar);
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', function () {--}}
+{{--    let textarea = document.querySelector('.livefeed');--}}
+{{--    let characterCount = document.getElementById('character-count');--}}
+{{--    let progressBar = document.querySelector('#progress-bar .shadow-none');--}}
 
-        if (!textarea) {
-            console.error("Textarea element with class 'livefeed' not found.");
-            return;
-        }
+{{--    if (!textarea) {--}}
+{{--        console.error("Textarea element with class 'livefeed' not found.");--}}
+{{--        return;--}}
+{{--    }--}}
 
-        textarea.addEventListener('input', function () {
-            let message = textarea.value;
-            let count = message.length;
-            let remaining = 500 - count;
+{{--    textarea.addEventListener('input', function () {--}}
+{{--        let message = textarea.value;--}}
+{{--        if (typeof message !== 'string') {--}}
+{{--            message = '';--}}
+{{--            console.error('message is not a string:', message);--}}
+{{--        }--}}
 
-            characterCount.textContent = count + '/500';
-            progressBar.style.width = (1 - (count / 500)) * 100 + '%';
+{{--        let count = message.length;--}}
+{{--        let remaining = 500 - count;--}}
 
-            if (remaining < 20) {
-                progressBar.classList.remove('bg-blue-600');
-                progressBar.classList.add('bg-red-500');
-            } else {
-                progressBar.classList.remove('bg-red-500');
-                progressBar.classList.add('bg-blue-600');
-            }
-        });
-    });
+{{--        characterCount.textContent = count + '/500';--}}
+{{--        progressBar.style.width = (count / 500) * 100 + '%';--}}
 
-</script>
+{{--        if (remaining < 20) {--}}
+{{--            if (!progressBar.classList.contains('bg-red-500')) {--}}
+{{--                progressBar.classList.remove('bg-warning-600', 'bg-blue-600');--}}
+{{--                progressBar.classList.add('bg-red-500');--}}
+{{--            }--}}
+{{--        } else if (remaining < 50) {--}}
+{{--            if (!progressBar.classList.contains('bg-warning-600')) {--}}
+{{--                progressBar.classList.remove('bg-red-500', 'bg-blue-600');--}}
+{{--                progressBar.classList.add('bg-warning-600');--}}
+{{--            }--}}
+{{--        } else {--}}
+{{--            if (!progressBar.classList.contains('bg-blue-600')) {--}}
+{{--                progressBar.classList.remove('bg-red-500', 'bg-warning-600');--}}
+{{--                progressBar.classList.add('bg-blue-600');--}}
+{{--            }--}}
+{{--        }--}}
+{{--    });--}}
+{{--});--}}
+{{--</script>--}}
