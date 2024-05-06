@@ -32,6 +32,9 @@ class CreateFoundersCommittee extends CreateRecord
                 TextInput::make('name')
                     ->label(__('Name'))
                     ->required(),
+                TextInput::make('url')
+                    ->label(__('Link'))
+                    ->url(),
                 SpatieMediaLibraryFileUpload::make('attachment')
                     ->collection('founders_committee_images')
                     ->hiddenLabel()

@@ -4,7 +4,7 @@ return [
     'Home' => 'الصّفحة الرّئيسيّة',
     'About Us' => 'من نحن',
     'Committee' => 'اللّجنة',
-    'Founders Committee' => 'المؤسّسين',
+    'Founders Committee' => ' المؤسّسون',
     'Board of Trustees' => 'مجلسُ الأمناء',
     'General Secretariat' => 'الأمانةُ العامّة',
     'Services' => 'الخدمات',

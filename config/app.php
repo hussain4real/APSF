@@ -95,7 +95,7 @@ return [
 
     'available_locales' => [
         'English' => 'en',
-        'Arabic' => 'ar',
+        'عربي' => 'ar',
     ],
 
     /*

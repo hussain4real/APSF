@@ -30,11 +30,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/imgs/apsf/logo/apsf_favicon.png') }}">
 
     <!-- Google Fonts -->
-{{--    <link rel="preconnect" href="https://fonts.googleapis.com">--}}
-{{--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>--}}
-{{--    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">--}}
-
-{{--    <link href="{{ Vite::asset('resources/fonts/Bahij_TheSansArabic-Bold.ttf') }}">--}}
     <!-- All CSS files -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
@@ -51,13 +46,16 @@
 
     @vite('public/assets/css/master.css')
 {{--    @vite('resources/css/app.css')--}}
-{{--    <style type="text/css">--}}
-{{--        @font-face {--}}
-{{--            font-family: Bahij_TheSansArabic-Bold;--}}
-{{--            src: url('{{ public_path('assets/fonts/Bahij_TheSansArabic-Bold.tff') }}');--}}
-{{--            font-weight: bold;--}}
-{{--        }--}}
-{{--    </style>--}}
+    <style type="text/css">
+        @font-face {
+            font-family: Bahij_TheSansArabic-Plain;
+            src: url('{{ asset('assets/fonts/Bahij_TheSansArabic-Plain.ttf') }}') format('truetype');
+            font-weight: normal;
+        }
+        body{
+            font-family: 'Bahij_TheSansArabic-Plain', sans-serif;
+        }
+    </style>
 </head>
 
 <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">

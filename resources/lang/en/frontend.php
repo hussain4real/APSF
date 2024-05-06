@@ -88,4 +88,9 @@ return [
         'heading' => 'Board of trustees',
     ],
     'secretariat' => 'General Secretariat',
+    'event' => [
+        'heading' => 'Events',
+        'description' => 'Stay updated with our upcoming events and activities. Join us and be part of our community.',
+        'action' => 'Read More',
+    ],
 ];

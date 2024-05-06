@@ -18,7 +18,7 @@
             <div class="row contact__btm">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
                     <div class="contact__info">
-                        <h3 class="sub-title-anim-top animation__word_come">{{__("frontend.contact.description")}}<br>{{__("frontend.contact.miniDescription")}}</h3>
+                        <h3 class="sub-title-anim-top ">{{__("frontend.contact.description")}}<br>{{__("frontend.contact.miniDescription")}}</h3>
                         <ul>
                             <li><a href="mailto:info@arab-psf.com">info@arab-psf.com</a></li>
                             <li><span>{{__("frontend.address.title")}}</span></li>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="row g-3">
                                 <div class="col-xxl-6 col-xl-6 col-12">
-                                    <input type="tel" name="phone" placeholder="{{__("frontend.contact.phone")}}">
+                                    <input type="text" name="phone" placeholder="{{__("frontend.contact.phone")}}">
                                 </div>
                                 <div class="col-xxl-6 col-xl-6 col-12">
                                     <input type="text" name="subject" placeholder="{{__("frontend.contact.subject")}} *">
