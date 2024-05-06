@@ -125,20 +125,20 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
                             <p>{{__($valueDescriptionThree)}}</p>
                         </div>
                         <div class="service__item-7">
-                            <img src="assets/imgs/apsf/values-icons/studentcenterdness.webp" alt="">
+                            <img src="assets/imgs/apsf/values-icons/Integration.webp" alt="">
                             <h3 class="service__title-7">{{__($valueTitleFour)}}</h3>
                             <p>{{__($valueDescriptionFour)}}</p>
                         </div>
                         <div class="service__item-7">
-                            <img src="assets/imgs/apsf/values-icons/leadership.webp" alt="">
+                            <img src="assets/imgs/apsf/values-icons/Sustainability.webp" alt="">
                             <h3 class="service__title-7">{{__($valueTitleFive)}}</h3>
                             <p>{{__($valueDescriptionFive)}}</p>
                         </div>
-                        <div class="service__item-7">
-                            <img src="assets/imgs/apsf/values-icons/communityengagement.webp" alt="">
-                            <h3 class="service__title-7">{{__($valueTitleSix)}}</h3>
-                            <p>{{__($valueDescriptionSix)}}</p>
-                        </div>
+{{--                        <div class="service__item-7">--}}
+{{--                            <img src="assets/imgs/apsf/values-icons/communityengagement.webp" alt="">--}}
+{{--                            <h3 class="service__title-7">{{__($valueTitleSix)}}</h3>--}}
+{{--                            <p>{{__($valueDescriptionSix)}}</p>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
