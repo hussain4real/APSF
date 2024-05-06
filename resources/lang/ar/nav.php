@@ -3,7 +3,7 @@
 return [
     'Home' => 'الصّفحة الرّئيسيّة',
     'About Us' => 'من نحن',
-    'Committee' => 'اللّجنة',
+    'Committee' => 'اللجان',
     'Founders Committee' => ' المؤسّسون',
     'Board of Trustees' => 'مجلسُ الأمناء',
     'General Secretariat' => 'الأمانةُ العامّة',
