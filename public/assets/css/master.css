@@ -11264,21 +11264,23 @@ img {
     }
 }
 .testimonial__video {
-    margin-right: -112px;
-    max-width: 50rem;
-    max-height: 50rem;
-    overflow: hidden;
+    margin-right: -18rem;
+    max-width: 70rem;
+    max-height: 100%;
+
 
 }
 .chairman-image{
     /*display:none;*/
     max-width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
+    overflow: hidden;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .testimonial__video {
-        max-height: 740px;
+        max-height: 100%;
     }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -11294,7 +11296,7 @@ img {
 }
 .testimonial__video img {
     width: 100%;
-    height: 45.2rem;
+    /*height: 45.2rem;*/
 }
 .testimonial__author {
     font-weight: 500;
@@ -29344,9 +29346,10 @@ body {
     transform: rotate(180deg);
 }
 .dir-rtl .testimonial__video {
-    margin-right: 0;
+    margin-right: -15rem;
     margin-left: 0rem;
     padding-left:-10rem;
+    overflow:hidden;
 }
 @media only screen and (max-width: 767px) {
     .dir-rtl .testimonial__video {
