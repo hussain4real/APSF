@@ -13721,16 +13721,15 @@ img {
 
 }
 .hello-trouble{
-
+width: 25rem;
 }
 
 .portfolio__service-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
-    padding: 0 2rem ;
-    gap: 2rem;
+    align-items: center;
+    padding: 0 0 ;
     height: 30rem;
     border: 1.3px solid var(--black-2);
     border-radius: 21px;
@@ -13777,8 +13776,8 @@ img {
 }
 .portfolio__service-item img{
 
-    /*object-fit: contain;*/
-
+    object-fit: contain;
+margin-left: 2rem;
 
 }
 .portfolio__service-item .ps-title {
