@@ -24,5 +24,6 @@ class GeneralSecretariat extends Model
         [
             'name',
             'position',
+            'description',
         ];
 }

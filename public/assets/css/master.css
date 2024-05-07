@@ -29536,6 +29536,10 @@ body {
 .dir-rtl .research__area .sec-title-wrapper {
     text-align: right;
 }
+
+.sec-description{
+    font-size: large;
+}
 .dir-rtl .research__item {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;

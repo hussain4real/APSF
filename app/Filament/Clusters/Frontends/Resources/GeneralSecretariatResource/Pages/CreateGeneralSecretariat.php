@@ -4,6 +4,7 @@ namespace App\Filament\Clusters\Frontends\Resources\GeneralSecretariatResource\P
 
 use App\Filament\Clusters\Frontends\Resources\GeneralSecretariatResource;
 use Filament\Actions\LocaleSwitcher;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
@@ -30,6 +31,8 @@ class CreateGeneralSecretariat extends CreateRecord
                     ->required(),
                 TextInput::make('position')
                     ->label(__('Position')),
+                Textarea::make('description')
+                    ->label(__('Description')),
             ]);
     }
 }
