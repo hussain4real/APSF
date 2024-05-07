@@ -36,6 +36,10 @@ return [
         'description5' => 'Nurturing educational leadership at all levels, empowering educators and administrators to lead with vision, empathy, and effectiveness.',
         'description6' => 'Engaging actively with the community, parents, and stakeholders to build strong partnerships and enhance the educational experience for students.',
     ],
+    'chairman' => [
+        'name' => 'Dr. Khamis Obaid Al Ajmi',
+        'title' => 'President and founder of the Arab Federation of Private Schools',
+    ],
     'address' => [
         'title' => 'Sultanate of Oman',
         'description' => 'P O Box 755, Postal Code 328, Al Rumais, Barka',
@@ -82,7 +86,7 @@ return [
         'institution' => 'Schools',
     ],
     'founder' => [
-        'heading' => 'Founders',
+        'heading' => 'Participants',
     ],
     'board' => [
         'heading' => 'Board of trustees',

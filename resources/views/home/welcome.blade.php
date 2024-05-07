@@ -78,10 +78,10 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
                 </div>
                 <div class="col-xxl-8 col-xl-5 col-lg-5 col-md-5">
                     <div class="text-anim objectives-inner" style="background-color: #f8f1e6;">
-                        <h2 class="sec-title title-anim orange_color">{{__($missionTitle)}}</h2>
-                        <p class="body-text-common to_justify"><br>{{__($missionDescription)}}</p>
                         <h2 class="sec-title title-anim orange_color">{{__($visionTitle)}}</h2>
                         <p class="body-text-common to_justify"><br>{{__($visionDescription)}}</p>
+                        <h2 class="sec-title title-anim orange_color">{{__($missionTitle)}}</h2>
+                        <p class="body-text-common to_justify"><br>{{__($missionDescription)}}</p>
                     </div>
                 </div>
             </div>
@@ -181,6 +181,8 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
                                     <div class="testimonial__inner-2" style="background-color: #f8f1e6;">
                                         <p class="testimonial__text-2 to_justify" >{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
                                             {{__($chairmanMessageThree)}} </p>
+                                        <blockquote>{{__("frontend.chairman.name")}}<br>
+                                            <cite>{{__("frontend.chairman.title")}}</cite></blockquote>
                                     </div>
                                 </div>
                             </div>
