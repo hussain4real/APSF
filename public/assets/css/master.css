@@ -29350,11 +29350,11 @@ body {
     transform: rotate(180deg);
 }
 .dir-rtl .testimonial__video  img{
-    margin-right: 0rem;
+    margin-right: 3rem;
     margin-left: 0rem;
-    height: 45.2rem;
-    padding-right:12rem;
-    overflow:hidden;
+    height: 43.2rem;
+    padding-right:10rem;
+
 }
 @media only screen and (max-width: 767px) {
     .dir-rtl .testimonial__video {
