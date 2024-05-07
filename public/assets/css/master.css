@@ -2465,7 +2465,7 @@ img {
 }
 .sec-sub-title {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.5rem;
     line-height: 1.2;
     color: var(--black-3);
     padding-bottom: 15px;
@@ -13720,13 +13720,17 @@ img {
     padding-top: 62px;
 
 }
+.hello-trouble{
+    width: 25rem;
+    height: 35rem;
+}
 
 .portfolio__service-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0 2rem ;
+    padding: 0 0 ;
     height: 30rem;
     border: 1.3px solid var(--black-2);
     border-radius: 21px;
@@ -13773,8 +13777,10 @@ img {
 }
 .portfolio__service-item img{
 
-    /*object-fit: contain;*/
-
+    object-fit: contain;
+    width: 14rem;
+    height: 17rem;
+    margin-bottom: 1rem;
 
 }
 .portfolio__service-item .ps-title {
@@ -13785,7 +13791,7 @@ img {
     width: 100%;
     text-transform: uppercase;
     color: var(--black-2);
-    padding-bottom: 1rem;
+    padding-bottom: 0rem;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
