@@ -29,11 +29,9 @@ class EditFoundersCommittee extends EditRecord
         return $form
             ->schema([
                 TextInput::make('country')
-                    ->label(__('Country'))
-                    ->required(),
+                    ->label(__('Country')),
                 TextInput::make('name')
-                    ->label(__('Name'))
-                    ->required(),
+                    ->label(__('Name')),
                 TextInput::make('url')
                     ->label(__('Link'))
                     ->url(),
