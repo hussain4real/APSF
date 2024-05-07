@@ -69,7 +69,7 @@ return [
         'phone' => 'Phone',
         'subject' => 'Subject',
         'message' => 'Messages',
-        'miniDescription' => 'Say Hello',
+
         'action1' => 'Send',
         'action2' => 'Messages',
     ],
