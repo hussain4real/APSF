@@ -22,7 +22,7 @@
                         <ul>
                             <li><a href="mailto:info@arab-psf.com">info@arab-psf.com</a></li>
                             <li><span>{{__("frontend.address.title")}}</span></li>
-                            <li><span>{{__("frontend.address.description")}}</span></li>
+{{--                            <li><span>{{__("frontend.address.description")}}</span></li>--}}
                         </ul>
                     </div>
                 </div>
