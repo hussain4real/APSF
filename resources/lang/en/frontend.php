@@ -63,7 +63,7 @@ return [
     'contact' => [
         'heading' => 'Reach out to us',
         'title' => 'Great! We\'re excited to hear from you and let\'s start something special together. call us for any inquiry.',
-        'description' => 'We\'re waiting for your! Say Hello',
+        //        'description' => 'We\'re waiting for your! Say Hello',
         'name' => 'Name',
         'email' => 'Email',
         'phone' => 'Phone',

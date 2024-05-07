@@ -16542,6 +16542,12 @@ img {
     float: right;
     margin-top: 60px;
 }
+.solution__img-3 img{
+    max-width: 27rem;
+    max-height: 100%;
+    height: 27rem;
+    object-fit: cover;
+}
 @media only screen and (min-width: 1400px) and (max-width: 1919px) {
     .solution__img-3 img {
         max-width: 360px;
@@ -29352,7 +29358,7 @@ body {
 .dir-rtl .testimonial__video  img{
     margin-right: 3rem;
     margin-left: 0rem;
-    height: 48.2rem;
+    height: 46rem;
     padding-right:10rem;
 
 }
