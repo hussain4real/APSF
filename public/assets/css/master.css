@@ -29540,6 +29540,19 @@ body {
 .sec-description{
     font-size: xx-large;
 }
+
+.chairman-name{
+    font-size: large;
+}
+
+.dir-rtl .chairman-name-title{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: flex-end;
+    align-items: flex-end;
+    /*padding-left: 2rem;*/
+}
 .dir-rtl .research__item {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;

@@ -181,8 +181,11 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
                                     <div class="testimonial__inner-2" style="background-color: #f8f1e6;">
                                         <p class="testimonial__text-2 to_justify" >{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
                                             {{__($chairmanMessageThree)}} </p>
-                                        <blockquote>{{__("frontend.chairman.name")}}<br>
-                                            <cite>{{__("frontend.chairman.title")}}</cite></blockquote>
+                                        <div class="chairman-name-title">
+
+                                            <p class="chairman-name">{{__("frontend.chairman.name")}}</p>
+                                            <small>{{__("frontend.chairman.title")}}</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
