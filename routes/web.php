@@ -13,9 +13,9 @@ use Laravel\Paddle\Checkout;
 use Laravel\Paddle\Transaction;
 use Livewire\Volt\Volt;
 
-Route::view('/', 'coming_soon')
+Route::view('/coming-soon', 'coming_soon')
     ->name('coming-soon');
-Route::view('/home', 'home.welcome')
+Route::view('/', 'home.welcome')
     ->name('welcome');
 //Volt::route('/livefeeds', 'livefeeds.list');
 
