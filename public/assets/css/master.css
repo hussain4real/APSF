@@ -13721,7 +13721,8 @@ img {
 
 }
 .hello-trouble{
-width: 25rem;
+    width: 25rem;
+    height: 35rem;
 }
 
 .portfolio__service-item {
@@ -13777,7 +13778,9 @@ width: 25rem;
 .portfolio__service-item img{
 
     object-fit: contain;
-margin-left: 2rem;
+    width: 14rem;
+    height: 17rem;
+    margin-bottom: 1rem;
 
 }
 .portfolio__service-item .ps-title {
