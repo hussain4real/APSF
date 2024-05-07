@@ -73,7 +73,6 @@ return [
         'phone' => 'رقم الهاتف',
         'subject' => 'الموضوع',
         'message' => 'الرسائل',
-        'miniDescription' => 'قل مرحبا',
         'action1' => 'ارسل',
         'action2' => ' الآن',
     ],
