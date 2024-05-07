@@ -23,6 +23,7 @@
                         <!-- <h2 class="sec-sub-title title-anim">Our Team</h2> -->
                         <br><br><br>
                         <h3 class="sec-title title-anim orange_color">{{__("frontend.secretariat")}}</h3>
+                        <p class="mt-4 sec-text title-anim">{{__($generalSecretariatModel->description ?? 'hello world everyone')}}</p>
                     </div>
                 </div>
                 <div class="col-xxl-4 col-xl-7 col-lg-6 col-md-6">
