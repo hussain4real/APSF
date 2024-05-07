@@ -4,6 +4,7 @@ namespace App\Filament\Clusters\Frontends\Resources\GeneralSecretariatResource\P
 
 use App\Filament\Clusters\Frontends\Resources\GeneralSecretariatResource;
 use Filament\Actions;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
@@ -32,6 +33,8 @@ class EditGeneralSecretariat extends EditRecord
                     ->required(),
                 TextInput::make('position')
                     ->label(__('Position')),
+                Textarea::make('description')
+                    ->label(__('Description')),
             ]);
     }
 }
