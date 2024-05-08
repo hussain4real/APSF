@@ -15,8 +15,14 @@ use Livewire\Volt\Volt;
 
 Route::view('/coming-soon', 'coming_soon')
     ->name('coming-soon');
+Route::view('/terms-and-conditions', 'home.terms-of-service')
+    ->name('terms-and-conditions');
 Route::view('/', 'home.welcome')
     ->name('welcome');
+Route::view('/privacy-policy', 'home.privacy-policy')
+    ->name('privacy-policy');
+Route::view('/refund-policy', 'home.refund-policy')
+    ->name('refund-policy');
 //Volt::route('/livefeeds', 'livefeeds.list');
 
 Route::get('language/{locale}', function ($locale) {
