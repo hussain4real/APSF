@@ -25987,7 +25987,7 @@ main {
 .service__area-7::before {
     position: absolute;
     content: "";
-    width: 1px;
+    width: 0px;
     height: 100%;
     left: 36%;
     bottom: 0;
@@ -26021,7 +26021,7 @@ main {
 .service__area-7::after {
     position: absolute;
     content: "";
-    width: 1px;
+    width: 0px;
     height: 100%;
     left: 59%;
     bottom: 0;
@@ -26057,6 +26057,8 @@ main {
     display: grid;
     -ms-grid-columns: (1fr)[3];
     grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
 }
 @media only screen and (max-width: 767px) {
     .service__items-7 {
@@ -26084,7 +26086,7 @@ main {
     position: absolute;
     content: "";
     width: 100%;
-    height: 1px;
+    height: 0px;
     left: 0;
     bottom: 35px;
     background: var(--white-6);

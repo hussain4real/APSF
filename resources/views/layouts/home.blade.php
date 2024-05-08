@@ -187,7 +187,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                 {{ $slot }}
                 <!-- Brand area start -->
                 <section class="brand__area">
-                    <div class="container g-0 line pt-140 pb-140">
+                    <div class="container pt-140 pb-140">
                         <span class="line-3"></span>
                         <div class="row g-0">
                             <div class="col-xxl-12">
