@@ -228,22 +228,22 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="{{asset('assets/imgs/apsf/dashboard/students.webp')}}" alt="Brand Logo"><br><br>
-                                <h1>829</h1>
+                                <h1 id="studentCount">829</h1>
                                 <h2>{{__("frontend.stats.student")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="{{asset('assets/imgs/apsf/dashboard/teachers.webp')}}" alt="Brand Logo"><br><br>
-                                <h1>483</h1>
+                                <h1 id="teacherCount">483</h1>
                                 <h2>{{__("frontend.stats.teacher")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="{{asset('assets/imgs/apsf/dashboard/contractors.webp')}}" alt="Brand Logo"><br><br>
-                                <h1>620</h1>
+                                <h1 id="contractorCount">620</h1>
                                 <h2>{{__("frontend.stats.contractor")}}</h2>
                             </div>
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4" style="text-align: center;">
                                 <img src="{{asset('assets/imgs/apsf/dashboard/institutions.webp')}}" alt="Brand Logo"><br><br>
-                                <h1>150</h1>
+                                <h1 id="institutionCount">150</h1>
                                 <h2>{{__("frontend.stats.institution")}}</h2>
                             </div>
                         </div>
@@ -341,6 +341,47 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
 
 
 <script>
+    function animateValue(id, start, end, duration) {
+        let obj = document.getElementById(id);
+        let range = end - start;
+        let minTimer = 50;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        stepTime = Math.max(stepTime, minTimer);
+        let startTime = new Date().getTime();
+        let endTime = startTime + duration;
+        let timer;
+
+        function run() {
+            let now = new Date().getTime();
+            let remaining = Math.max((endTime - now) / duration, 0);
+            let value = Math.round(end - (remaining * range));
+            obj.innerHTML = value;
+            if (value == end) {
+                clearInterval(timer);
+            }
+        }
+
+        timer = setInterval(run, stepTime);
+        run();
+    }
+
+    window.addEventListener('load', function() {
+        console.log('Hello world');
+        animateValue("studentCount", 0, 829, 2000);
+        animateValue("teacherCount", 0, 483, 2000);
+        animateValue("contractorCount", 0, 620, 2000);
+        animateValue("institutionCount", 0, 150, 2000);
+    });
+    // window.onload = function() {
+    //     console.log('Hello world');
+    //     animateValue("studentCount", 0, 829, 2000);
+    //     animateValue("teacherCount", 0, 483, 2000);
+    //     animateValue("contractorCount", 0, 620, 2000);
+    //     animateValue("institutionCount", 0, 150, 2000);
+    // };
+
+
+
     function updateDirection() {
     var ltrButton = document.querySelector('button[data-mode="ltr"]');
     var rtlButton = document.querySelector('button[data-mode="rtl"]');

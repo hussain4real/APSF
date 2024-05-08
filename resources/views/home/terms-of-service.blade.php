@@ -106,7 +106,7 @@
                                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                                      data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>These Terms of Service shall be governed by and construed in accordance with the laws of [Your Jurisdiction], without regard to its conflict of law provisions.
+                                        <p>These Terms of Service shall be governed by and construed in accordance with the laws of Qatar, without regard to its conflict of law provisions.
 
                                         </p>
                                     </div>
