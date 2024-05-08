@@ -299,12 +299,12 @@
     <!-- Scholarship CTA area start -->
     <div class="cta__area-4">
         <div class="container g-0 line_4 pb-150">
-            <div class="line-col-4">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+{{--            <div class="line-col-4">--}}
+{{--                <div></div>--}}
+{{--                <div></div>--}}
+{{--                <div></div>--}}
+{{--                <div></div>--}}
+{{--            </div>--}}
 
             <div class="cta__inner-4">
                 <div class="row">

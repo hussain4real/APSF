@@ -1,7 +1,7 @@
 <x-home-layout>
     <!-- Contact area start -->
     <section class="contact__area-6">
-        <div class="container g-0 line pt-120 pb-110">
+        <div class="container pt-120 pb-110">
             <span class="line-3"></span>
             <div class="row">
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
