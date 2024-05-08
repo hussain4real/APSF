@@ -36,7 +36,7 @@ new class extends Component
             <div class="offcanvas__links">
                 <ul>
                     <li><a href="{{route('about')}}" wire:navigate>About APSF</a></li>
-                    <li><a href="contact.html" wire:navigate>Contact Us</a></li>
+                    <li><a href="{{route('contact')}}" wire:navigate>{{__('nav.Contact Us')}}</a></li>
                     <li><a href="career.html" wire:navigate>Career</a></li>
                     <li><a href="faq.html" wire:navigate>FAQs</a></li>
                 </ul>
@@ -46,6 +46,7 @@ new class extends Component
             <div class="offcanvas__menu-wrapper">
                 <nav class="offcanvas__menu">
                     <ul class="menu-anim">
+                        @include('partials/language_switcher')
                         <li><a href="{{route('welcome')}}" wire:navigate>{{__('nav.Home')}}</a></li>
                         <li><a href="{{route('about')}}" wire:navigate>{{__('nav.About Us')}}</a></li>
                         <li><a>{{__('nav.Committee')}}</a>

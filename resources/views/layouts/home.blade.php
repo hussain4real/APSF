@@ -321,9 +321,11 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 <div class="footer__nav">
 {{--                                    animation style class: menu-anim--}}
                                     <ul class="footer-menu ">
-                                        <li><a href="about.html">{{__("nav.About Us")}}</a></li>
-                                        <li><a href="contact.html">{{__("nav.Contact")}}</a></li>
-                                        <li><a href="faq.html">{{__("nav.Faqs")}}</a></li>
+                                        <li><a href="{{route('about')}}">{{__("nav.About Us")}}</a></li>
+                                        <li><a href="{{route('contact')}}">{{__("nav.Contact")}}</a></li>
+                                        <li><a href="{{route('terms-and-conditions')}}">{{__("nav.terms_and_conditions")}}</a></li>
+                                        <li><a href="{{route('privacy-policy')}}">{{__("nav.privacy_policy")}}</a></li>
+                                        <li><a href="{{route('refund-policy')}}">{{__("nav.refund_policy")}}</a></li>
                                     </ul>
                                 </div>
                             </div>

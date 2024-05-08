@@ -17,4 +17,7 @@ return [
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
     'logout' => 'Logout',
+    'terms_and_conditions' => 'Terms and Conditions',
+    'privacy_policy' => 'Privacy Policy',
+    'refund_policy' => 'Refund Policy',
 ];
