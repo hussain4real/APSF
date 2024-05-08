@@ -17522,11 +17522,11 @@ img {
 }
 .faq__list .accordion-button, .faq__list-6 .accordion-button, .faq__list-3 .accordion-button {
     background-color: transparent;
-    font-weight: 500;
+    font-weight: 800;
     /* font-size: 18px; */
     font-size: 24px; /* Added by Rodel */
     line-height: 1.5;
-    color: var(--black-2);
+    color: rgb(229,97,49);
     padding-left: 0;
     padding-right: 10px;
     border-radius: 0;
