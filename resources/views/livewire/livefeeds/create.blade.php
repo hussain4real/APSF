@@ -58,7 +58,7 @@ new class extends Component implements HasForms {
                                     </span>
                                 </div>
                             </div>
-                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-primary-100">
+                            <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
                                 <div style="width:'.($count/500)*100 .'%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-warning-600"></div>
                             </div>
                         </div>
