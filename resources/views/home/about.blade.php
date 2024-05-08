@@ -37,7 +37,7 @@
     @endphp
     <!-- Story area start -->
     <section class="story__area">
-        <div class="container g-0 line pt-140">
+        <div class="container pt-140">
             <span class="line-3"></span>
             <div class="sec-title-wrapper">
 
@@ -65,7 +65,7 @@
 
     <!-- FAQ area start -->
     <section class="faq__area">
-        <div class="container g-0 line pb-140">
+        <div class="container pb-140">
             <div class="line-3"></div>
 {{--            row--}}
             <div class="faq-container">
