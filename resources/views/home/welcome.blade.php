@@ -207,11 +207,3 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 
 </x-home-layout>
 
-
-
-
-<script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-        console.log('DOM fully loaded and parsed');
-    })
-</script>

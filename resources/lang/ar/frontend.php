@@ -90,7 +90,7 @@ return [
         'institution' => 'المدارس',
     ],
     'founder' => [
-        'heading' => 'المشاركون',
+        'heading' => 'المشاركون في التأسيس',
     ],
     'board' => [
         'heading' => 'مجلسُ الأمناء',
