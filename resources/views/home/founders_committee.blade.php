@@ -26,7 +26,7 @@
                                 <img src="{{$foundersCommittee->media->first()->getUrl()}}" alt="">
 {{--                                <img src="{{$foundersCommittee->getUrl()}}" alt="">--}}
                                 @endif
-                                <p class="ps-title orange_color mt-4">{{__($foundersCommittee->country)}}</p>
+                                <p class="ps-title-name orange_color mt-4" >{{__($foundersCommittee->country)}}</p>
                             </a>
                         </div>
                     </div>
