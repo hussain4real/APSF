@@ -31,7 +31,11 @@ new class extends Component implements HasForms {
                     ->dehydrated()
                     ->default(auth()?->user()?->id ?? null),
                 Filament\Forms\Components\Textarea::make('message')
-                    ->placeholder(__('What\'s on your mind?'))
+                    ->placeholder(function(){
+                        $user = auth()->user();
+                        return __('What\'s on your mind, :first_name?', ['first_name' => $user->first_name]);
+                    })
+                    ->lazy()
                     ->rows(10)
                     ->extraAttributes([
                        'class'=>'livefeed'
