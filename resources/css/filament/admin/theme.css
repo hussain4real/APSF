@@ -4,6 +4,10 @@
 
 @layer utilities {
 
+    html {
+        font-size: 1.2rem;
+    }
+
     /* #name-column{
         @apply font-semibold !text-xl;
     } */
