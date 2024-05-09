@@ -20,6 +20,7 @@ use Filament\SpatieLaravelTranslatablePlugin;
 use Filament\Support\Assets\Css;
 use Filament\Support\Assets\Js;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Platform;
 use Filament\Support\Facades\FilamentView;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -144,7 +145,13 @@ class AdminPanelProvider extends PanelProvider
             ->spaUrlExceptions(fn (): array => [
                 url('/admin/chat'),
                 url('/admin/livefeed'),
-            ]);
+            ])
+            ->globalSearchFieldSuffix(fn (): ?string => match (Platform::detect()) {
+                Platform::Windows, Platform::Linux => 'CTRL+K',
+                Platform::Mac => '⌘K',
+                default => null,
+
+            });
     }
 
     public function register(): void
