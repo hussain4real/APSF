@@ -13755,6 +13755,13 @@ img {
     transition: all 0.3s;
     opacity: 0;
 }
+
+.portfolio__service-item a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .portfolio__service-item {
         padding: 20px;
@@ -13804,14 +13811,16 @@ img {
     font-size: 24px;
     line-height: 1.5;
     margin-top: -0.5rem;
-    width: 100%;
+text-align: center;
     text-transform: uppercase;
     color: var(--black-2);
     padding-bottom: 0rem;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-
+#founders_country{
+    padding: 0 5rem;
+}
 .ps-title-position{
     font-weight: 500;
     font-size: 24px;
