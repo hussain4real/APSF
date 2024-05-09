@@ -86,7 +86,7 @@ return [
         'institution' => 'Schools',
     ],
     'founder' => [
-        'heading' => 'Participants',
+        'heading' => 'Co-founders',
     ],
     'board' => [
         'heading' => 'Board of trustees',
