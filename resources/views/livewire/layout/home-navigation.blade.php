@@ -54,6 +54,7 @@ new class extends Component {
             </ul> -->
                     </li>
                     <li><a href="{{ route('events') }}" >{{__('nav.Events')}}</a></li>
+                    <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>
                     <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
                     @guest
                         <li>

@@ -24,7 +24,8 @@ Route::view('/privacy-policy', 'home.privacy-policy')
 Route::view('/refund-policy', 'home.refund-policy')
     ->name('refund-policy');
 //Volt::route('/livefeeds', 'livefeeds.list');
-
+Route::view('/pricing', 'home.pricing')
+    ->name('pricing');
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
