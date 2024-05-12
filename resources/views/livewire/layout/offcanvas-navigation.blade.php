@@ -37,8 +37,8 @@ new class extends Component
                 <ul>
                     <li><a href="{{route('about')}}" wire:navigate>About APSF</a></li>
                     <li><a href="{{route('contact')}}" wire:navigate>{{__('nav.Contact Us')}}</a></li>
-                    <li><a href="career.html" wire:navigate>Career</a></li>
-                    <li><a href="faq.html" wire:navigate>FAQs</a></li>
+{{--                    <li><a href="career.html" wire:navigate>Career</a></li>--}}
+{{--                    <li><a href="faq.html" wire:navigate>FAQs</a></li>--}}
                 </ul>
             </div>
         </div>
@@ -57,7 +57,7 @@ new class extends Component
                             </ul>
                         </li>
                         <li><a href="{{route('services')}}" wire:navigate>{{__('nav.Services')}}</a></li>
-                        <li><a href="{{route('events')}}" wire:navigate>{{__('nav.Events')}}</a></li>
+{{--                        <li><a href="{{route('events')}}" wire:navigate>{{__('nav.Events')}}</a></li>--}}
                         <li><a href="{{route('contact')}}">{{__('nav.Contact Us')}}</a></li>
                     </ul>
                 </nav>
