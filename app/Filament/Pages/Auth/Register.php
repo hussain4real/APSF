@@ -113,16 +113,16 @@ class Register extends BaseRegister
     public static function getEntityFormField(): ToggleButtons
     {
         return ToggleButtons::make('entity')
-            ->label(__('Profiles'))
+            ->label(__('profiles'))
             ->options([
-                'founder' => 'Founder',
-                'school' => 'School',
-                'teacher' => 'Teacher',
-                'student' => 'Student',
-                'member' => 'Member',
-                'contractor' => 'Contractor',
-                'training_provider' => 'Training Provider',
-                'educational_consultant' => 'Educational Consultant',
+                'founder' => __('founder'),
+                'school' => __('school'),
+                'teacher' => __('teacher'),
+                'student' => __('student'),
+                'member' => __('member'),
+                'contractor' => __('contractor'),
+                'training_provider' => __('training provider'),
+                'educational_consultant' => __('educational consultant'),
             ])
             ->inline();
     }
