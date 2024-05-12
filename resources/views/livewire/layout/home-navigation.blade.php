@@ -53,7 +53,7 @@ new class extends Component {
               <li><a href="#">Membership</a></li>
             </ul> -->
                     </li>
-{{--                    <li><a href="{{ route('events') }}" >{{__('nav.Events')}}</a></li>--}}
+                    <li><a href="{{ route('events') }}" >{{__('nav.Events')}}</a></li>
 {{--                    <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>--}}
                     <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
                     @guest
