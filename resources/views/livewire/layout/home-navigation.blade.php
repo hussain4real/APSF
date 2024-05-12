@@ -54,14 +54,14 @@ new class extends Component {
             </ul> -->
                     </li>
                     <li><a href="{{ route('events') }}" >{{__('nav.Events')}}</a></li>
-                    <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>
+{{--                    <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>--}}
                     <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
                     @guest
                         <li>
 
                             <span class="header__nav-icon-6">
                                 <i class="fa-solid fa-user"></i>
-{{--                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>--}}
+                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
                             </span>
                         </li>
 

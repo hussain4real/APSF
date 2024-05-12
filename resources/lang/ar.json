@@ -1,5 +1,5 @@
 {
-    "homepage": "hello world",
+    "homepage": "الصفحة الرئيسية",
     "livefeeds": "البث المباشر",
     "livefeed": "البث المباشر",
     "educational consultants": "المستشارين التعليميين",
@@ -29,5 +29,6 @@
     "users": "المستخدمين",
     "user": "مستخدم",
     "contractors": "المقاولين",
-    "contractor": "مقاول"
+    "contractor": "مقاول",
+    "what's on your mind, :first_name?": "ماذا يدور في ذهنك، :first_name؟"
 }

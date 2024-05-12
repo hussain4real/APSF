@@ -184,7 +184,7 @@
                                             <li>{{__($firstServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +204,7 @@
                                             <li>{{__($secondServiceTagFour)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@
                                             <li>{{__($thirdServiceTagFive)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                             <li>{{__($fourthServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
                                             <li>{{__($fifthServiceTagTwo)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -282,7 +282,7 @@
 {{--                                            <li>{{__($sixthServiceTagThree)}}</li>--}}
 {{--                                        </ul>--}}
                                         <div class="btn_wrapper">
-                                            <a href="#" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +321,7 @@
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                         <div class="cta__content-4 text-anim">
                             <p>{{__("frontend.scholarship.description")}} </p>
-                            <a class="btn-started" href="#">{{__("frontend.scholarship.action")}}<span><i
+                            <a class="btn-started" href="{{route('filament.admin.resources.resources.scholarships.index')}}">{{__("frontend.scholarship.action")}}<span><i
                                         class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>
