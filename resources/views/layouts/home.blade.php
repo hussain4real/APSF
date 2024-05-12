@@ -260,7 +260,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                     <!-- <p class="cta__sub-title">Sign Up Now!</p> -->
                                     <h2 class="cta__title title-anim">{{__($memberDescription)}}</h2>
                                     <div class="btn_wrapper">
-                                        <a href="#" class="wc-btn-primary btn-hover btn-item"><span></span>{{__($memberActionText)}}<i
+                                        <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-primary btn-hover btn-item"><span></span>{{__($memberActionText)}}<i
                                                 class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>

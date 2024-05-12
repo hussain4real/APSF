@@ -22,7 +22,7 @@ class CreateSchool extends CreateRecord
 
     public static function getNameFormField(): TextInput
     {
-        return TextInput::make('name')
+        return TextInput::make('school_name')
             ->label(__('Name'))
             ->required()
             ->maxLength(255);

@@ -19,28 +19,29 @@ class School extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'name',
-        'slug',
-        'description',
-        'address',
-        'city',
-        'state',
-        'zip',
-        'country',
-        'phone',
-        'email',
-        'website',
-        'date_founded',
-        'motto',
-        'logo_path',
-        'cover_path',
-        'number_of_students',
-        'number_of_teachers',
-        'type',
-        'status',
-    ];
+    protected $guarded = [];
+    //    protected $fillable = [
+    //        'user_id',
+    //        'name',
+    //        'slug',
+    //        'description',
+    //        'address',
+    //        'city',
+    //        'state',
+    //        'zip',
+    //        'country',
+    //        'phone',
+    //        'email',
+    //        'website',
+    //        'date_founded',
+    //        'motto',
+    //        'logo_path',
+    //        'cover_path',
+    //        'number_of_students',
+    //        'number_of_teachers',
+    //        'type',
+    //        'status',
+    //    ];
 
     protected $with = [
         'user',

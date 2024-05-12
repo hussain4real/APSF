@@ -24,6 +24,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Register extends BaseRegister
 {
@@ -322,8 +323,18 @@ class Register extends BaseRegister
 
             $user = $this->getUserModel()::create($data);
 
+            //            dd($user);
             match ($data['entity']) {
-                'school' => $this->getSchoolModel()::create(array_merge($data, ['user_id' => $user->id])),
+                //                'school' => $this->getSchoolModel()::create(array_merge($data, ['user_id' => $user->id])),
+                //user hasMany schools and school belongsTo user
+                'school' => $user->schools()->create([
+                    'school_name' => $data['school_name'],
+                    'slug' => Str::slug($data['school_name']),
+                    'description' => $data['description'],
+                    'address' => $data['address'],
+                    'city' => $data['city'],
+                    'state' => $data['state'],
+                ]),
                 'teacher' => $this->getTeacherModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
