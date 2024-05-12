@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('name')->virtualAs('CONCAT(first_name, " ", last_name)');
             $table->string('email')->unique();
+            //has_agreed_to_terms
+            $table->boolean('has_agreed_to_terms')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
