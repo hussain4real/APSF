@@ -298,7 +298,7 @@
 
     <!-- Scholarship CTA area start -->
     <div class="cta__area-4">
-        <div class="container g-0 line_4 pb-150">
+        <div class="container g-0 line_4 ">
 {{--            <div class="line-col-4">--}}
 {{--                <div></div>--}}
 {{--                <div></div>--}}
