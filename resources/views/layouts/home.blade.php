@@ -204,7 +204,10 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
-                                    <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo" width="170">
+                                    <a href="https://www.amief.org/" target="_blank">
+
+                                        <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo" width="170">
+                                    </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://uovl.uk/" target="_blank">
