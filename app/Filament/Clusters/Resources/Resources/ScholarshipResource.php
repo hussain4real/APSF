@@ -5,8 +5,6 @@ namespace App\Filament\Clusters\Resources\Resources;
 use App\Filament\Clusters\Resources;
 use App\Filament\Clusters\Resources\Resources\ScholarshipResource\Pages;
 use App\Models\Scholarship;
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -21,29 +19,6 @@ class ScholarshipResource extends Resource
     protected static ?string $cluster = Resources::class;
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('institution')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('country')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('start_date')
-                    ->required(),
-                Forms\Components\DatePicker::make('end_date')
-                    ->required(),
-            ]);
-    }
 
     public static function table(Table $table): Table
     {
