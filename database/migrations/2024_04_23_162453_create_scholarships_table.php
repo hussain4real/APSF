@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('scholarships', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->text('description');
-            $table->string('institution');
-            $table->string('country');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('institution')->nullable();
+            $table->string('country')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

@@ -67,7 +67,9 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
             'visibility' => 'public',
-            'root' => 'livefeeds',
+            //            'root' => 'livefeeds',
+            //i want the root name to be the name of the model
+
         ],
 
     ],

@@ -5,7 +5,7 @@
 @layer utilities {
 
     html {
-        font-size: larger;
+        @apply text-lg 2xl:text-2xl;
     }
 
     /* #name-column{

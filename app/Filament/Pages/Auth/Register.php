@@ -115,7 +115,7 @@ class Register extends BaseRegister
         return ToggleButtons::make('entity')
             ->label(__('profiles'))
             ->options([
-                'founder' => __('founder'),
+                //                'founder' => __('founder'),
                 'school' => __('school'),
                 'teacher' => __('teacher'),
                 'student' => __('student'),
@@ -210,22 +210,22 @@ class Register extends BaseRegister
                     CreateContractor::getBusinessWebsiteFormField(),
                     CreateContractor::getBusinessDescriptionFormField(),
                 ]),
-            Step::make('Founder Profile')
-                ->icon('heroicon-o-check-badge')
-                ->completedIcon('heroicon-m-hand-thumb-up')
-                ->visible(function (Get $get) {
-                    return $get('entity') === 'founder';
-                })
-                ->description(__('Please provide more details to complete your profile as a founder'))
-                ->schema([
-                    CreateFounder::getCompanyNameFormField(),
-                    CreateFounder::getCompanyPhoneFormField(),
-                    CreateFounder::getCompanyAddressFormField(),
-                    CreateFounder::getCompanyCityFormField(),
-                    CreateFounder::getCompanyStateFormField(),
-                    CreateFounder::getCompanyCountryFormField(),
-                    CreateFounder::getCompanyWebsiteFormField(),
-                ]),
+            //            Step::make('Founder Profile')
+            //                ->icon('heroicon-o-check-badge')
+            //                ->completedIcon('heroicon-m-hand-thumb-up')
+            //                ->visible(function (Get $get) {
+            //                    return $get('entity') === 'founder';
+            //                })
+            //                ->description(__('Please provide more details to complete your profile as a founder'))
+            //                ->schema([
+            //                    CreateFounder::getCompanyNameFormField(),
+            //                    CreateFounder::getCompanyPhoneFormField(),
+            //                    CreateFounder::getCompanyAddressFormField(),
+            //                    CreateFounder::getCompanyCityFormField(),
+            //                    CreateFounder::getCompanyStateFormField(),
+            //                    CreateFounder::getCompanyCountryFormField(),
+            //                    CreateFounder::getCompanyWebsiteFormField(),
+            //                ]),
             Step::make('Training Provider Profile')
                 ->icon('heroicon-o-clipboard-document-check')
                 ->completedIcon('heroicon-m-hand-thumb-up')
@@ -338,7 +338,7 @@ class Register extends BaseRegister
                 'teacher' => $this->getTeacherModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
-                'founder' => $this->getFounderModel()::create(array_merge($data, ['user_id' => $user->id])),
+                //                'founder' => $this->getFounderModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
