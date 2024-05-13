@@ -74,23 +74,26 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 //payment routes
-Route::get('/pay2m', [Pay2MController::class, 'index'])
-    ->name('pay2m');
-Route::post('/pay2m', [Pay2MController::class, 'processPayment'])
-    ->name('pay2m.process');
-Route::get('/subscribe', [SubscriptionController::class, 'create'])
-    ->middleware(['auth', RedirectIfSubscribed::class])
+Route::get('/subscribe', [Pay2MController::class, 'create'])
     ->name('subscribe');
 
-Route::get('/lemon-squeezy-subscription', [LemonSqueezySubscriptionController::class, 'create'])
-    ->middleware(['auth', RedirectIfSubscribed::class])
-    ->name('lemon-squeezy-subscription');
+//Route::post('/process', [Pay2MController::class, 'store'])
+//    ->name('subscribe.store');
+Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
+    ->name('payment.response');
+//Route::get('/subscribe', [SubscriptionController::class, 'create'])
+//    ->middleware(['auth', RedirectIfSubscribed::class])
+//    ->name('subscribe');
 
-Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
-    ->name('update-payment-method');
-
-Route::get('/confirmation', Subscribe::class)
-    ->name('confirmation');
+//Route::get('/lemon-squeezy-subscription', [LemonSqueezySubscriptionController::class, 'create'])
+//    ->middleware(['auth', RedirectIfSubscribed::class])
+//    ->name('lemon-squeezy-subscription');
+//
+//Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
+//    ->name('update-payment-method');
+//
+//Route::get('/confirmation', Subscribe::class)
+//    ->name('confirmation');
 
 //Route::get('/download-invoice/{transaction}', function (Request $request, Transaction $transaction) {
 //    return $transaction->redirectToInvoicePdf();
