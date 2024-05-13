@@ -29,5 +29,7 @@
     "users": "Users",
     "user": "User",
     "contractors": "Contractors",
-    "contractor": "Contractor"
+    "contractor": "Contractor",
+    "Entity": "Entity",
+    "Please select your profile": "Please select your profile"
 }
