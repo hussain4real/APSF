@@ -13,7 +13,7 @@ class BoardOfTrusteeController extends Controller
     public function index()
     {
         $boardOfTrusteesModel = \Illuminate\Support\Facades\Cache::remember('board_of_trustees', 60 * 60 * 24, function () {
-            return \App\Models\BoardOfTrustee::get();
+            return \App\Models\BoardOfTrustee::orderBy('order')->get();
         });
 
         return view('home.board.index', compact('boardOfTrusteesModel'));

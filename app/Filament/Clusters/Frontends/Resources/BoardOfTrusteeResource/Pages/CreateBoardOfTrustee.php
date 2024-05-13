@@ -26,6 +26,10 @@ class CreateBoardOfTrustee extends CreateRecord
     {
         return $form
             ->schema([
+                TextInput::make('order')
+                    ->label(__('Order'))
+                    ->numeric()
+                    ->required(),
                 TextInput::make('name')
                     ->label(__('Name'))
                     ->required(),
