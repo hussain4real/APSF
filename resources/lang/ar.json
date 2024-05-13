@@ -31,5 +31,27 @@
     "user": "مستخدم",
     "contractors": "المقاولين",
     "contractor": "مقاول",
-    "what's on your mind, :first_name?": "ماذا يدور في ذهنك، :first_name؟"
+    "what's on your mind, :first_name?": "ماذا يدور في ذهنك، :first_name؟",
+    "Entity": "الكيان",
+    "Please select your profile": "الرجاء اختيار ملفك الشخصي",
+    "Cancel": "إلغاء",
+    "Member Profile": "ملف العضو",
+    "Please provide more details to complete your profile as a member": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملفك كعضو",
+    "School Profile": "ملف المدرسة",
+    "Please provide your school details": "الرجاء تقديم تفاصيل مدرستك",
+    "Teacher Profile": "ملف المعلم",
+    "Please provide more details to complete your profile as a teacher": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملفك كمعلم",
+    "Student Profile": "ملف الطالب",
+    "Please provide more details to complete your profile as a student": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملفك كطالب",
+    "Contractor Profile": "ملف المقاول",
+    "Please provide more details to complete your profile as a contractor": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملفك كمقاول",
+    "Training Provider Profile": "ملف مقدم التدريب",
+    "Please provide more details to complete your profile as a training provider": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملفك كمقدم تدريب",
+    "Educational Consultant Profile": "ملف المستشار التعليمي",
+    "Please provide more details to complete your profile as an educational consultant": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملفك كمستشار تعليمي",
+    "Authentication credentials": "بيانات الاعتماد",
+    "Please provide your authentication credentials": "الرجاء تقديم بيانات الاعتماد الخاصة بك"
+
+
+
 }

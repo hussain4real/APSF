@@ -138,6 +138,7 @@ class Register extends BaseRegister
     {
         return [
             Step::make('Entity')
+                ->translateLabel()
                 ->icon('heroicon-o-clipboard')
                 ->description(__('Please select your profile'))
                 ->completedIcon('heroicon-m-hand-thumb-up')
@@ -147,6 +148,7 @@ class Register extends BaseRegister
                         ->default('member'),
                 ]),
             Step::make('School Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-building-library')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
@@ -164,12 +166,13 @@ class Register extends BaseRegister
                     CreateSchool::getStateFormField(),
                 ]),
             Step::make('Teacher Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-user-plus')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'teacher';
                 })
-                ->description(__('Please provide more details to complete your profile as teacher'))
+                ->description(__('Please provide more details to complete your profile as a teacher'))
                 ->schema([
                     CreateTeacher::getAddressFormField(),
                     CreateTeacher::getSubjectTaughtFormField(),
@@ -180,12 +183,13 @@ class Register extends BaseRegister
                     CreateTeacher::getPhoneFormField(),
                 ]),
             Step::make('Student Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-academic-cap')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
                     return $get('entity') === 'student';
                 })
-                ->description(__('Please provide more details to complete your profile as student'))
+                ->description(__('Please provide more details to complete your profile as a student'))
                 ->schema([
                     CreateStudent::getSchoolNameFormField(),
                     CreateStudent::getCurrentGradeFormField(),
@@ -195,6 +199,7 @@ class Register extends BaseRegister
                     CreateStudent::getPhoneFormField(),
                 ]),
             Step::make('Contractor Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-clipboard-document')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
@@ -227,6 +232,7 @@ class Register extends BaseRegister
             //                    CreateFounder::getCompanyWebsiteFormField(),
             //                ]),
             Step::make('Training Provider Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-clipboard-document-check')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
@@ -243,6 +249,7 @@ class Register extends BaseRegister
                     CreateTrainingProvider::getInstitutionDescriptionFormField(),
                 ]),
             Step::make('Educational Consultant Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-chart-pie')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
@@ -260,6 +267,7 @@ class Register extends BaseRegister
                     CreateEducationalConsultant::getCountryFormField(),
                 ]),
             Step::make('Member Profile')
+                ->translateLabel()
                 ->icon('heroicon-o-identification')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
@@ -273,6 +281,7 @@ class Register extends BaseRegister
                     CreateMember::getDateOfBirthFormField(),
                 ]),
             Step::make('Authentication credentials')
+                ->translateLabel()
                 ->icon('heroicon-o-key')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->description(__('Please provide your authentication credentials'))

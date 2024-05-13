@@ -3,6 +3,7 @@
 use App\Http\Controllers\BoardOfTrusteeController;
 use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
+use App\Http\Controllers\Pay2MController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\RedirectIfSubscribed;
@@ -72,6 +73,11 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+//payment routes
+Route::get('/pay2m', [Pay2MController::class, 'index'])
+    ->name('pay2m');
+Route::post('/pay2m', [Pay2MController::class, 'processPayment'])
+    ->name('pay2m.process');
 Route::get('/subscribe', [SubscriptionController::class, 'create'])
     ->middleware(['auth', RedirectIfSubscribed::class])
     ->name('subscribe');
