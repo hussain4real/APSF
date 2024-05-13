@@ -200,22 +200,22 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://tamkeen-edu.com/en/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/t.webp')}}" alt="Brand Logo">
+                                        <img src="{{asset('assets/imgs/apsf/partners/t.webp')}}" alt="Brand Logo" width="170">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
-                                    <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo">
+                                    <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo" width="170">
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://uovl.uk/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/uv.webp')}}" alt="Brand Logo">
+                                        <img src="{{asset('assets/imgs/apsf/partners/uv.webp')}}" alt="Brand Logo" width="170">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://genexinstitute.com/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/ge.webp')}}" alt="Brand Logo">
+                                        <img src="{{asset('assets/imgs/apsf/partners/ge.webp')}}" alt="Brand Logo" width="170">
                                     </a>
                                 </div>
                             </div>
