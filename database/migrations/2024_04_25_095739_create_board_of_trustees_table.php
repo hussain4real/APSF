@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('board_of_trustees', function (Blueprint $table) {
             $table->id();
+            //order number
+            $table->integer('order')->nullable();
             $table->string('name')->nullable();
             $table->string('position')->nullable();
             $table->string('email')->nullable();

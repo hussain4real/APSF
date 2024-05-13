@@ -32,7 +32,9 @@ class ListBoardOfTrustees extends ListRecords
             ->columns([
                 TextColumn::make('name')
                     ->label(__('Name'))
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('order'),
             ])
             ->filters([
                 //
