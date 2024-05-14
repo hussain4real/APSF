@@ -357,9 +357,9 @@ class Register extends BaseRegister
             return $user;
         });
 
-        event(new Registered($user));
-
-        $this->sendEmailVerificationNotification($user);
+        //        event(new Registered($user));
+        //
+        //        $this->sendEmailVerificationNotification($user);
 
         //        $user->createAsCustomer([
         //            'name' => $user->first_name.' '.$user->last_name,
