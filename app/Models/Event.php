@@ -16,7 +16,9 @@ class Event extends Model
     public function casts()
     {
         return [
-            //
+            'event_title' => 'json',
+            'event_description' => 'json',
+            'event_location' => 'json',
         ];
     }
 
@@ -24,8 +26,6 @@ class Event extends Model
         [
             'event_title',
             'event_description',
-            'event_date',
-            'event_time',
             'event_location',
         ];
 }

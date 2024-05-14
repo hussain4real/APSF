@@ -94,7 +94,14 @@ class AdminPanelProvider extends PanelProvider
                         'User' => 'Robert',
                     ])
                     ->column('first_name'),
-                FilamentFullCalendarPlugin::make(),
+                FilamentFullCalendarPlugin::make()
+//                    ->schedulerLicenseKey(null)
+                    ->selectable(false)
+                    ->editable(false)
+                    ->timezone('AST')
+                    ->locale('en')
+                    ->plugins(['dayGrid', 'timeGrid'], true)
+                    ->config([]),
 
             ])
             ->navigationItems([

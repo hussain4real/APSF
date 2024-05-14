@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('event_title')->nullable();
             $table->string('event_description')->nullable();
-            $table->string('event_date')->nullable();
-            $table->string('event_time')->nullable();
+            $table->string('event_start_date')->nullable();
+            $table->string('event_end_date')->nullable();
             $table->string('event_location')->nullable();
 
             $table->softDeletes();
