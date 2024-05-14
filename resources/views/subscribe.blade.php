@@ -14,7 +14,7 @@
                 <form id='pay2m_payment_form' name='pay2m-payment-form' method='post' action="https://payments.pay2m.com/Ecommerce/api/Transaction/PostTransaction" >
                     @csrf
                     <!-- ... -->
-                    Currency: <input type="TEXT" name="CURRENCY_CODE" value="QAR" /><br />
+                    Currency: <input type="TEXT" name="CURRENCY_CODE" value="QAR"  hidden="true"/><br />
                     Merchant ID: <input type="TEXT" name="MERCHANT_ID" value="{{$merchant_id}}" /><br />
                     Merchant Name: <input type="TEXT" name="MERCHANT_NAME" value="UAT Demo Merchant " /><br />
                     Token: <input type="TEXT" name="TOKEN" value="{{ $token }}" /><br />
