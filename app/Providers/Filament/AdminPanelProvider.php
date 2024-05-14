@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Rupadana\FilamentAnnounce\FilamentAnnouncePlugin;
+use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -93,6 +94,7 @@ class AdminPanelProvider extends PanelProvider
                         'User' => 'Robert',
                     ])
                     ->column('first_name'),
+                FilamentFullCalendarPlugin::make(),
 
             ])
             ->navigationItems([
