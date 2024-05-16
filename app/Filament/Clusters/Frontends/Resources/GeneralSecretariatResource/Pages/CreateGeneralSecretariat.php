@@ -26,6 +26,8 @@ class CreateGeneralSecretariat extends CreateRecord
     {
         return $form
             ->schema([
+                TextInput::make('seo_title')
+                    ->label(__('SEO Title')),
                 TextInput::make('name')
                     ->label(__('Name'))
                     ->required(),

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('billable_id');
-            $table->string('billable_type');
+            $table->foreignId('user_id');
+            $table->foreignId('transaction_id');
             $table->string('type');
-            $table->string('paddle_id')->unique();
+            //            $table->string('paddle_id')->unique();
             $table->string('status');
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('paused_at')->nullable();

@@ -28,6 +28,8 @@ class CreateBoardOfTrustee extends CreateRecord
             ->schema([
                 TextInput::make('order')
                     ->label(__('Order'))
+                    ->hint(__('The order of appearance of the board of trustee members.'))
+                    ->hintIcon('heroicon-o-information-circle')
                     ->numeric()
                     ->required(),
                 TextInput::make('name')

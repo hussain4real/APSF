@@ -37,6 +37,9 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 //    dd($heroTitle);
 
 @endphp
+    <x-slot:title>
+        {{$homepageModel->seo_title ?? 'Home'}}
+    </x-slot:title>
     <!-- Hero area start -->
     <section class="service__hero-2">
         <div class="container">

@@ -26,6 +26,7 @@ class CreateFoundersCommittee extends CreateRecord
     {
         return $form
             ->schema([
+
                 TextInput::make('country')
                     ->label(__('Country')),
                 TextInput::make('name')

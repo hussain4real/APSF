@@ -35,6 +35,8 @@ class CreateHomepage extends CreateRecord
                         Tab::make('Hero Section')
                             ->icon('heroicon-o-megaphone')
                             ->schema([
+                                TextInput::make('seo_title')
+                                    ->label(__('SEO Title')),
                                 TextInput::make('hero_title')
                                     ->label(__('Hero Title')),
                                 Textarea::make('hero_description_one')

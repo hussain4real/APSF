@@ -73,6 +73,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('/appsQARpay2m', 'appsQARpay2m')
+    ->name('appsQARpay2m');
 //payment routes
 Route::get('/subscribe', [Pay2MController::class, 'create'])
     ->name('subscribe');
@@ -105,9 +107,9 @@ Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
 //
 //    return view('subscribe', ['checkout' => $checkout]);
 //});
-Route::get('create-transactions', [PayPalController::class, 'create'])
-    ->name('create-transactions');
-Route::get('payment', [PayPalController::class, 'processTransaction'])->name('payment');
-Route::get('/cancel', [PayPalController::class, 'cancelTransaction'])->name('payment.cancel');
-Route::get('/payment/success', [PayPalController::class, 'successTransaction'])->name('payment.success');
+//Route::get('create-transactions', [PayPalController::class, 'create'])
+//    ->name('create-transactions');
+//Route::get('payment', [PayPalController::class, 'processTransaction'])->name('payment');
+//Route::get('/cancel', [PayPalController::class, 'cancelTransaction'])->name('payment.cancel');
+//Route::get('/payment/success', [PayPalController::class, 'successTransaction'])->name('payment.success');
 require __DIR__.'/auth.php';

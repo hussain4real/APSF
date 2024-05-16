@@ -36,5 +36,9 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'pay2m' => [
+        'merchant_id' => env('MERCHANT_ID'),
+        'secured_key' => env('SECURED_KEY'),
+    ],
 
 ];

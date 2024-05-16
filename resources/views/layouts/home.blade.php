@@ -23,7 +23,7 @@
 
 
 {{--    <link rel="manifest" href="{{asset('assets/imgs/site.webmanifest')}}">--}}
-    <title>Home - Arab Private Schools Federation</title>
+    <title>{{ $title ?? 'Home - Arab Private Schools Federation'}}</title>
 
     <!-- Fav Icon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/imgs/apsf/logo/apsf_favicon.png') }}">
