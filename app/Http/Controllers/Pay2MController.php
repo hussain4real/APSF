@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Integrations\PaymentGateway\Pay2mConnector;
 use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
+use App\Models\Subscription;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Saloon\Exceptions\Request\RequestException;
@@ -102,34 +104,82 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
-        dd($request->all());
+        //        dd($request->all());
+        //        $err_code = $request->err_code;
+        //        $err_msg = $request->err_msg;
+        //        $trans_id = $request->transaction_id;
+        //        $basket_id = $request->basket_id;
+        //        $order_date = $request->order_date;
+        //        $rdv_message_key = $request->Rdv_Message_Key;
+        //        $response_key = $request->Response_Key;
+        //        $payment_name = $request->PaymentName;
+        //        $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
+        //        $response_string = sprintf('%s%s%s%s%s', $this->merchant_id, $this->basket_id, $secretword, $this
 
         $this->processResponse($this->merchant_id, $this->basket_id, $this->trans_amount, $request->all());
-        //TODO: redirect to a thank you page
+
+        //TODO: redirect to a subscription confirmation you page
+        return redirect()->route('welcome');
     }
 
     public function processResponse($merchant_id, $original_basket_id, $txnamt, $response)
     {
+        //        dd($response);
         $trans_id = $response['transaction_id'];
         $err_code = $response['err_code'];
         $err_msg = $response['err_msg'];
         $basket_id = $response['basket_id'];
         $order_date = $response['order_date'];
-        $response_key = json_decode($response['Response_Key']);
-        $payment_name = $response['PaymentName'];
+        $response_key = $response['Response_Key'];
+        //        $payment_name = $response['PaymentName'];
         $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
-        $response_hash = hash('MD5', $response_string);
-        if (strtolower($response_hash) != strtolower($response_key)) {
-            echo '<br/>Transaction could not be varified<br/>';
+        $generated_hash = hash('sha256', $response_string);
+        //        dd([
+        //            'response Key' => $response_key,
+        //            'generated Hash' => $generated_hash,
+        //        ]);
+        //        if (strtolower($generated_hash) !== strtolower($response_key)) {
+        //            echo '<br/>Transaction could not be verified<br/>';
+        //
+        //            return;
+        //        } else {
+        //            dd('Transaction verified');
+        //
+        //        }
 
-            return;
+        if ($err_code == '000' || $err_code == '00') {
+            echo '<strong>Transaction Successfully Completed. Transaction ID: '.$trans_id.'</strong><br/>';
+            echo '<br/>Date: '.$order_date;
+            //TODO: save transaction to database
+
+            $transaction = new Transaction([
+                'transaction_id' => $trans_id,
+                'err_code' => $err_code,
+                'err_msg' => $err_msg,
+                'basket_id' => $basket_id,
+                'order_date' => $order_date,
+                'response_key' => $response_key,
+                'amount' => $txnamt,
+                'status' => 'success',
+            ]);
+            $user = Auth::user();
+            $user->transactions()->save($transaction);
+
+            //TODO: creates a new subscription for the user
+            $subscription = new Subscription([
+                'user_id' => $user->id,
+                'transaction_id' => $transaction->id,
+                'status' => 'active',
+                'type' => 'yearly',
+                'trial_ends_at' => now()->addDays(7),
+                'ends_at' => now()->addYear(),
+            ]);
+            $user->subscription()->save($subscription);
+        } else {
+            echo '<br/>Transaction Failed. Message: '.$err_msg;
         }
 
-        //TODO: save transaction to database
-
-        //        $response = $request->all();
-        //
         //        $transaction = new Transaction([
         //            'transaction_id' => $response['transaction_id'],
         //            'err_code' => $response['err_code'],

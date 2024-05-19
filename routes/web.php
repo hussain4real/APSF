@@ -4,7 +4,6 @@ use App\Http\Controllers\BoardOfTrusteeController;
 use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
-use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;

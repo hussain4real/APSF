@@ -26,11 +26,10 @@ new class extends Component
             <div class="offcanvas__social">
                 <h3 class="social-title">Follow Us</h3>
                 <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/arab_psf/">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/ArabPSF">Facebook</a></li>
+                    <li><a href="https://x.com/Arab_PSF">Twitter</a></li>
+                    <li><a href="https://www.linkedin.com/company/102934601/admin/feed/posts/">LinkedIn</a></li>
                 </ul>
             </div>
             <div class="offcanvas__links">

@@ -4,8 +4,8 @@
 {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">--}}
 <div class="container mx-auto pt-24">
 
-    <form id='pay2m_payment_form' name='pay2m-payment-form' method='post' action="https://payments.pay2m.com/Ecommerce/api/Transaction/PostTransaction" class="hidden">
-        @csrf
+    <form id='pay2m_payment_form' name='pay2m-payment-form' method='post' action="https://pay.pay2m.com/Ecommerce/api/Transaction/PostTransaction" class="hidden">
+{{--        @csrf--}}
         <!-- ... -->
 {{--        {{route('payment.response')}}--}}
         <input type="TEXT" name="CURRENCY_CODE" value="QAR" hidden="true" readonly /><br />
@@ -25,6 +25,7 @@
         <input type="TEXT" name="VERSION" value="MERCHANT-CART-0.1" hidden="true" readonly /><br />
         <input type="TEXT" name="TXNDESC" value="Item Purchased from Cart" hidden="true" readonly /><br />
         <input type="TEXT" name="PROCCODE" value="00" hidden="true" readonly /><br />
+{{--        <input type="TEXT" name="RECURRING_TXN" value="yes" hidden="true" readonly /><br />--}}
         <!-- ... -->
     </form>
 
@@ -93,6 +94,19 @@
     </div>
 
 
+{{--    <button popovertarget="dropdown" popovertargetaction="show" class="btn btn-primary">Show me</button>--}}
+{{--    <button popovertarget="dropdown" popovertargetaction="hide" class="btn btn-primary">Hide me</button>--}}
+{{--    <button popovertarget="dropdown" popovertargetaction="toggle" class="btn btn-primary">Toggle me</button>--}}
+
+{{--    <div popover id="dropdown">--}}
+{{--        <div >--}}
+{{--            <div >--}}
+{{--                <a href="#" class="dropdown-item">Item 1</a>--}}
+{{--                <a href="#" class="dropdown-item">Item 2</a>--}}
+{{--                <a href="#" class="dropdown-item">Item 3</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </x-home-layout>
@@ -101,6 +115,10 @@
         document.getElementById('form-submit').addEventListener('click', function () {
             console.log('clicked');
             document.getElementById('pay2m_payment_form').submit();
+            //log the form data
+            // console.log(document.getElementById('pay2m_payment_form').submit());
         });
+
+
     });
 </script>

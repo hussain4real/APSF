@@ -16,11 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('transaction_id');
             $table->string('err_code');
-            $table->string('err_msg');
+            $table->string('err_msg')->nullable();
             $table->string('basket_id');
             $table->dateTime('order_date');
             $table->string('response_key');
-            $table->string('payment_name');
+            $table->string('amount');
+            $table->string('status')->default('pending');
             $table->timestamps();
 
         });

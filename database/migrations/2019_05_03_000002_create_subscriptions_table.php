@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
 
-            $table->index(['billable_id', 'billable_type']);
+            //            $table->index(['billable_id', 'billable_type']);
         });
     }
 

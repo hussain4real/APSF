@@ -75,7 +75,7 @@
     ?>
     <!-- For data integrity purpose, transaction amount and basket_id should be the same as the ones sent in token request -->
 
-    <!-- 
+    <!--
         Actual Payment Request
     -->
  <div class="container">
@@ -103,7 +103,7 @@
         Item Description: <input type="TEXT" name="TXNDESC" value="Item Purchased from Cart" /><br />
         Proccode: <input type="TEXT" name="PROCCODE" value="00" /><br />
         <input type="SUBMIT" value="SUBMIT">
-          </form> 
+          </form>
                 </div>
             </div>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
