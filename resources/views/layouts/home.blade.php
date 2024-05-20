@@ -23,7 +23,7 @@
 
 
 {{--    <link rel="manifest" href="{{asset('assets/imgs/site.webmanifest')}}">--}}
-    <title>Home - Arab Private Schools Federation</title>
+    <title>{{ $title ?? 'Home - Arab Private Schools Federation'}}</title>
 
     <!-- Fav Icon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/imgs/apsf/logo/apsf_favicon.png') }}">
@@ -38,9 +38,13 @@
     <link rel="stylesheet" href="{{ asset('assets/css/meanmenu.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     {{-- <link rel="stylesheet" href="style.css"> --}}
-
-
-
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
 
 
 
@@ -328,6 +332,22 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 <div class="footer__copyright-2">
                                     <p>{{__("frontend.copyright")}}</p>
                                 </div>
+                                <div class="social-media">
+                                    <ul class="social-icon">
+                                        <li><a href="https://www.facebook.com/ArabPSF" target="_blank">
+                                                <i class="fab fa-facebook-f fa-lg"></i>
+                                            </a></li>
+                                        <li><a href="https://x.com/Arab_PSF" target="_blank">
+                                                <i class="fab fa-twitter fa-lg"></i>
+                                            </a></li>
+                                        <li><a href="https://www.instagram.com/arab_psf/" target="_blank">
+                                                <i class="fab fa-instagram fa-lg"></i>
+                                            </a></li>
+                                        <li><a href="https://www.linkedin.com/company/102934601/admin/feed/posts/" target="_blank">
+                                                <i class="fab fa-linkedin-in fa-lg"></i>
+                                            </a></li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-7">
                                 <div class="footer__nav">
@@ -351,7 +371,25 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
         </div>
     </div>
 
+<style>
+    .social-icon{
+        padding: 1rem 0.5rem 0 0;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 2rem;
+        color: teal;
+    }
 
+    .social-icon i{
+        color: #033731;
+    }
+    .social-icon i:hover{
+        /* add fa-beat class */
+        animation: fa-beat 1s infinite;
+    }
+
+</style>
 <script>
     function animateValue(id, start, end, duration) {
         let obj = document.getElementById(id);
@@ -399,14 +437,14 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
     var rtlButton = document.querySelector('button[data-mode="rtl"]');
 
     var mode = "{{App::getLocale()}}";
-    console.log(mode);
+
 
     if(mode === 'ar'){
         rtlButton.click();
-        console.log('rtl');
+
     } else {
         ltrButton.click();
-        console.log('ltr');
+
     }
 }
 

@@ -571,7 +571,7 @@ function fetchMessages(id, newFetch = false) {
           messagesElement.prepend(data.messages);
           messagesContainer.scrollTop(lastMsg.offset().top - curOffset);
         }
-        // trigger seen event
+        // trigger seen events
         makeSeen(true);
         // Pagination lock & messages page
         noMoreMessages = messagesPage >= data?.last_page;
@@ -613,7 +613,7 @@ function cancelUpdatingAvatar() {
 
 /**
  *-------------------------------------------------------------
- * Pusher channels and event listening..
+ * Pusher channels and events listening..
  *-------------------------------------------------------------
  */
 
@@ -661,7 +661,7 @@ clientListenChannel.bind("client-typing", function (data) {
   scrollToBottom(messagesContainer);
 });
 
-// listen to seen event
+// listen to seen events
 clientListenChannel.bind("client-seen", function (data) {
   if (data.from_id == getMessengerId() && data.to_id == auth_id) {
     if (data.seen == true) {
@@ -673,7 +673,7 @@ clientListenChannel.bind("client-seen", function (data) {
   }
 });
 
-// listen to contact item updates event
+// listen to contact item updates events
 clientListenChannel.bind("client-contactItem", function (data) {
   if (data.to == auth_id) {
     if (data.update) {
@@ -684,11 +684,11 @@ clientListenChannel.bind("client-contactItem", function (data) {
   }
 });
 
-// listen on message delete event
+// listen on message delete events
 clientListenChannel.bind("client-messageDelete", function (data) {
   $("body").find(`.message-card[data-id=${data.id}]`).remove();
 });
-// listen on delete conversation event
+// listen on delete conversation events
 clientListenChannel.bind("client-deleteConversation", function (data) {
   if (data.from == getMessengerId() && data.to == auth_id) {
     $("body").find(`.messages`).html("");
@@ -728,7 +728,7 @@ document.addEventListener("visibilitychange", handleVisibilityChange, false);
 
 /**
  *-------------------------------------------------------------
- * Trigger typing event
+ * Trigger typing events
  *-------------------------------------------------------------
  */
 function isTyping(status) {
@@ -741,7 +741,7 @@ function isTyping(status) {
 
 /**
  *-------------------------------------------------------------
- * Trigger seen event
+ * Trigger seen events
  *-------------------------------------------------------------
  */
 function makeSeen(status) {

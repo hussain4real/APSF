@@ -37,6 +37,9 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 //    dd($heroTitle);
 
 @endphp
+    <x-slot:title>
+        {{$homepageModel->seo_title ?? 'Home'}}
+    </x-slot:title>
     <!-- Hero area start -->
     <section class="service__hero-2">
         <div class="container">
@@ -206,4 +209,93 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 
 
 </x-home-layout>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
 
+        // const observer = new PerformanceObserver((list) => {
+        //     const entries = list.getEntries();
+        //     const lastEntry = entries[entries.length - 1]; // Use the latest LCP candidate
+        //     console.log("LCP:", lastEntry.startTime);
+        //     console.log(lastEntry);
+        // });
+        // observer.observe({ type: "largest-contentful-paint", buffered: true });
+
+
+        // let type = navigator.connection.effectiveType;
+        //
+        // console.log(`Connection type: ${type}`);
+        // function updateConnectionStatus() {
+        //     console.log(
+        //         `Connection type changed from ${type} to ${navigator.connection.effectiveType}`,
+        //     );
+        //     type = navigator.connection.effectiveType;
+        // }
+        //
+        // navigator.connection.addEventListener("change", updateConnectionStatus);
+
+
+        // navigator.getBattery().then((battery) => {
+        //     function updateAllBatteryInfo() {
+        //         updateChargeInfo();
+        //         updateLevelInfo();
+        //         updateChargingInfo();
+        //         updateDischargingInfo();
+        //     }
+        //     updateAllBatteryInfo();
+        //
+        //     battery.addEventListener("chargingchange", () => {
+        //         updateChargeInfo();
+        //     });
+        //     function updateChargeInfo() {
+        //         console.log(`Battery charging? ${battery.charging ? "Yes" : "No"}`);
+        //     }
+        //
+        //     battery.addEventListener("levelchange", () => {
+        //         updateLevelInfo();
+        //     });
+        //     function updateLevelInfo() {
+        //         console.log(`Battery level: ${battery.level * 100}%`);
+        //     }
+        //
+        //     battery.addEventListener("chargingtimechange", () => {
+        //         updateChargingInfo();
+        //     });
+        //     function updateChargingInfo() {
+        //         console.log(`Battery charging time: ${battery.chargingTime} seconds`);
+        //     }
+        //
+        //     battery.addEventListener("dischargingtimechange", () => {
+        //         updateDischargingInfo();
+        //     });
+        //     function updateDischargingInfo() {
+        //         console.log(`Battery discharging time: ${battery.dischargingTime} seconds`);
+        //     }
+        // });
+
+        //
+    //     // check compatibility
+    // if (!("BarcodeDetector" in globalThis)) {
+    // console.log("Barcode Detector is not supported by this browser.");
+    // } else {
+    // console.log("Barcode Detector supported!");
+    //
+    // // create new detector
+    // const barcodeDetector = new BarcodeDetector({
+    // formats: ["code_39", "codabar", "ean_13"],
+    // });
+    //
+    // barcodeDetector
+    //     .detect(imageEl)
+    //     .then((barcodes) => {
+    //         barcodes.forEach((barcode) => console.log(barcode.rawValue));
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
+    //
+    // }
+
+
+
+    });
+</script>

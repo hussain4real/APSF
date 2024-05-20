@@ -13,19 +13,17 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('billable_id');
-            $table->string('billable_type');
-            $table->string('paddle_id')->unique();
-            $table->string('paddle_subscription_id')->nullable()->index();
-            $table->string('invoice_number')->nullable();
-            $table->string('status');
-            $table->string('total');
-            $table->string('tax');
-            $table->string('currency', 3);
-            $table->timestamp('billed_at');
+            $table->foreignId('user_id')->constrained();
+            $table->string('transaction_id');
+            $table->string('err_code');
+            $table->string('err_msg')->nullable();
+            $table->string('basket_id');
+            $table->dateTime('order_date');
+            $table->string('response_key');
+            $table->string('amount');
+            $table->string('status')->default('pending');
             $table->timestamps();
 
-            $table->index(['billable_id', 'billable_type']);
         });
     }
 

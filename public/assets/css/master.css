@@ -104,13 +104,13 @@
 /*}*/
 
 /*added by aminu*/
-@font-face {
-    font-family: Bahij_TheSansArabic-Plain;
-    src: url(asset("/assets/fonts/Bahij_TheSansArabic-Plain.ttf")) format("truetype");
-    /*font-weight: 500;*/
-    /*font-style: normal;*/
+/*@font-face {*/
+/*    font-family: Bahij_TheSansArabic-Plain;*/
+/*    src: url(asset("/assets/fonts/Bahij_TheSansArabic-Plain.ttf")) format("truetype");*/
+/*    !*font-weight: 500;*!*/
+/*    !*font-style: normal;*!*/
 
-}
+/*}*/
 
 /*----------------------------------------*/
 /*  02. MIXIN CSS START

@@ -2,14 +2,18 @@
 
 namespace App\Filament\Clusters\Frontends\Resources\EventResource\Pages;
 
+use App\EventType;
 use App\Filament\Clusters\Frontends\Resources\EventResource;
 use Filament\Actions\LocaleSwitcher;
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Str;
 
 class CreateEvent extends CreateRecord
 {
@@ -30,19 +34,48 @@ class CreateEvent extends CreateRecord
             ->schema([
                 TextInput::make('event_title')
                     ->label(__('Event Name'))
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                        if (($get('event_slug') ?? '') !== Str::slug($old)) {
+                            return;
+                        }
+                        $set('event_slug', Str::slug($state));
+                    })
+                    ->required(),
+                TextInput::make('event_slug')
+                    ->label(__('Event Slug'))
                     ->required(),
                 Textarea::make('event_description')
-                    ->label(__('Event Description')),
-                DatePicker::make('event_date')
+                    ->label(__('Event Description'))
+                    ->live(onBlur: true)
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                        //                        if (($get('event_excerpt') ?? '') !== Str::limit($old, 100)) {
+                        //                            return;
+                        //                        }
+                        $set('event_excerpt', Str::limit($state, 100));
+                    }),
+                TextInput::make('event_excerpt')
+                    ->label(__('Event Excerpt')),
+                Select::make('type')
+                    ->label(__('Event Type'))
+                    ->options(EventType::class)
+                    ->default(EventType::NEWS)
+                    ->live(onBlur: true),
+                DateTimePicker::make('event_start_date')
                     ->label(__('Event Date'))
                     ->native(false)
-                    ->placeholder('MM/DD/YYYY')
+                    ->format('Y-m-d H:i:s')
+                    ->placeholder('Select a date and time')
                     ->date(true),
-                TimePicker::make('event_time')
-                    ->label(__('Event Time'))
+                DateTimePicker::make('event_end_date')
+                    ->label(__('Event End Date'))
+                    ->visible(function (Get $get) {
+                        return $get('type') !== EventType::NEWS;
+                    })
                     ->native(false)
                     ->seconds(false)
-                    ->placeholder('HH:MM')
+                    ->format('Y-m-d H:i:s')
+                    ->placeholder('Select a date and time')
                     ->time(true),
                 TextInput::make('event_location')
                     ->label(__('Event Location')),

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('about_pages', function (Blueprint $table) {
             $table->id();
+            //seo title
+            $table->string('seo_title')->nullable();
             $table->string('hero_title')->nullable();
             $table->string('hero_subtitle')->nullable();
             $table->text('hero_description_one')->nullable();

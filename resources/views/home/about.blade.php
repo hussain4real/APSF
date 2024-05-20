@@ -35,6 +35,10 @@
     $objectiveTitleEleven = $aboutUsModel->objective_title_eleven ?? null;
     $objectiveDescriptionEleven = $aboutUsModel->objective_description_eleven ?? null;
     @endphp
+
+    <x-slot:title>
+        {{$aboutUsModel->seo_title ?? 'About Arab Private schools Federation'}}
+    </x-slot:title>
     <!-- Story area start -->
     <section class="story__area">
         <div class="container pt-140">
