@@ -297,6 +297,28 @@ class CreateAboutPage extends CreateRecord
                                             ->live(onBlur: true),
                                     ])
                                     ->collapsed(),
+                                Section::make('Twelveth Objective')
+                                    ->description(__('Content for the twelveth objective'))
+                                    ->icon('heroicon-o-paper-clip')
+                                    ->iconColor(function (Get $get) {
+                                        $title = $get('objective_title_twelve');
+                                        $description = $get('objective_description_twelve');
+                                        //if both are empty return red color
+                                        if (! empty($title) && ! empty($description)) {
+                                            return Color::Teal;
+                                        }
+
+                                        return Color::Orange;
+                                    })
+                                    ->schema([
+                                        TextInput::make('objective_title_twelve')
+                                            ->label(__('Title'))
+                                            ->live(onBlur: true),
+                                        Textarea::make('objective_description_twelve')
+                                            ->label(__('Description'))
+                                            ->live(onBlur: true),
+                                    ])
+                                    ->collapsed(),
                             ]),
                     ])
                     ->columnSpanFull(),

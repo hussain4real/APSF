@@ -7,12 +7,14 @@ use App\Filament\Clusters\Frontends\Resources\EventResource;
 use Filament\Actions\LocaleSwitcher;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Number;
 use Illuminate\Support\Str;
 
 class CreateEvent extends CreateRecord
@@ -79,6 +81,26 @@ class CreateEvent extends CreateRecord
                     ->time(true),
                 TextInput::make('event_location')
                     ->label(__('Event Location')),
+                SpatieMediaLibraryFileUpload::make('attachment')
+                    ->collection('events_media')
+                    ->multiple()
+                    ->hiddenLabel()
+                    ->responsiveImages()
+                    ->maxSize(1024 * 1000)
+                    ->maxFiles(4)
+                    ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000).' bytes.'))
+                    ->hintIcon('heroicon-o-information-circle')
+                    ->hintColor('warning')
+                    ->imagePreviewHeight('250')
+                    ->openable()
+                    ->reorderable()
+                    ->appendFiles()
+                    ->moveFiles()
+                    ->preserveFilenames()
+                    ->downloadable()
+                    ->imageEditor(2)
+                    ->imageEditorEmptyFillColor('#dda581')
+                    ->uploadingMessage(__('uploading, please wait...')),
 
             ]);
     }

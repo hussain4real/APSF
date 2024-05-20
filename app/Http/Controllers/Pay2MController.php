@@ -121,16 +121,16 @@ class Pay2MController extends Controller
         $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
-        dd([
-            'response Key' => $response_key,
-            'generated Hash' => $generated_hash,
-        ]);
+        //        dd([
+        //            'response Key' => $response_key,
+        //            'generated Hash' => $generated_hash,
+        //        ]);
         if (strtolower($generated_hash) !== strtolower($response_key)) {
             echo '<br/>Transaction could not be verified<br/>';
 
             return;
         } else {
-            dd('Transaction verified');
+            //            dd('Transaction verified');
             if ($err_code == '000' || $err_code == '00') {
                 echo '<strong>Transaction Successfully Completed. Transaction ID: '.$trans_id.'</strong><br/>';
                 echo '<br/>Date: '.$order_date;

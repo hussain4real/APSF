@@ -15,7 +15,7 @@
 
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 hello-trouble">
                                 <div class="portfolio__service-item ">
-                                    <a href="{{route('board-of-trustees.show',$boardOfTrustees)}}">
+                                    <a href="{{route('board-of-trustee.show',$boardOfTrustees)}}">
                                     @if($boardOfTrustees->media->isNotEmpty())
                                     <img src="{{$boardOfTrustees->media->first()->getUrl()}}" width="80%" alt="">
                                     @endif

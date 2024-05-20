@@ -42,7 +42,7 @@ Route::resource('events', EventController::class)
     ->only(['index', 'show'])
     ->names([
         'index' => 'events.index',
-        'show' => 'events.show',
+        'show' => 'event.show',
     ]);
 Route::view('/about', 'home.about')
     ->name('about');
