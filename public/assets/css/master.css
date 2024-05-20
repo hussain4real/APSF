@@ -14888,10 +14888,21 @@ text-align: center;
     display: inline-block;
     font-weight: 400;
     font-size: 16px;
+    border-radius: 2rem;
+    background:#E56131 ;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
     line-height: 1.3;
-    color: var(--black-3);
+    color: #023A35;
     text-transform: capitalize;
 }
+
+.blog__btn,
+.blog__btn > span,
+.blog__btn > span > i {
+
+}
+
 .blog__btn span {
     overflow: hidden;
     position: absolute;
@@ -15279,6 +15290,7 @@ text-align: center;
 .img-box {
     position: relative;
     width: 100%;
+    border-radius: 2rem;
     /* height: 500px; */
     height: 350px; /* Added by Rodel */
     overflow: hidden;
@@ -15307,7 +15319,7 @@ text-align: center;
     position: absolute;
     top: 0;
     left: 0;
-    width: auto;
+    width: 100%;
     height: 100%;
     -webkit-transition: 0.5s;
     transition: 0.5s;
