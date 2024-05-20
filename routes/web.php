@@ -1,17 +1,15 @@
 <?php
 
 use App\Http\Controllers\BoardOfTrusteeController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
-use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Paddle\Checkout;
-use Laravel\Paddle\Transaction;
 use Livewire\Volt\Volt;
 
 Route::view('/coming-soon', 'coming_soon')
@@ -38,7 +36,13 @@ Route::resource('board-of-trustees', BoardOfTrusteeController::class)
     ->only(['index', 'show'])
     ->names([
         'index' => 'board-of-trustees.index',
-        'show' => 'board-of-trustees.show',
+        'show' => 'board-of-trustee.show',
+    ]);
+Route::resource('events', EventController::class)
+    ->only(['index', 'show'])
+    ->names([
+        'index' => 'events.index',
+        'show' => 'events.show',
     ]);
 Route::view('/about', 'home.about')
     ->name('about');
@@ -50,8 +54,6 @@ Route::view('/general-secretariat', 'home.general_secretariat')
     ->name('general-secretariat');
 Route::view('/services', 'home.services')
     ->name('services');
-Route::view('/events', 'home.events')
-    ->name('events');
 Route::view('/contact', 'home.contact')
     ->name('contact');
 
@@ -73,6 +75,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('/appsQARpay2m', 'appsQARpay2m')
+    ->name('appsQARpay2m');
 //payment routes
 Route::get('/subscribe', [Pay2MController::class, 'create'])
     ->name('subscribe');
@@ -105,9 +109,9 @@ Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
 //
 //    return view('subscribe', ['checkout' => $checkout]);
 //});
-Route::get('create-transactions', [PayPalController::class, 'create'])
-    ->name('create-transactions');
-Route::get('payment', [PayPalController::class, 'processTransaction'])->name('payment');
-Route::get('/cancel', [PayPalController::class, 'cancelTransaction'])->name('payment.cancel');
-Route::get('/payment/success', [PayPalController::class, 'successTransaction'])->name('payment.success');
+//Route::get('create-transactions', [PayPalController::class, 'create'])
+//    ->name('create-transactions');
+//Route::get('payment', [PayPalController::class, 'processTransaction'])->name('payment');
+//Route::get('/cancel', [PayPalController::class, 'cancelTransaction'])->name('payment.cancel');
+//Route::get('/payment/success', [PayPalController::class, 'successTransaction'])->name('payment.success');
 require __DIR__.'/auth.php';

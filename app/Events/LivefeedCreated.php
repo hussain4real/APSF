@@ -13,7 +13,7 @@ class LivefeedCreated
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * Create a new event instance.
+     * Create a new events instance.
      */
     public function __construct(public Livefeed $livefeed)
     {
@@ -21,7 +21,7 @@ class LivefeedCreated
     }
 
     /**
-     * Get the channels the event should broadcast on.
+     * Get the channels the events should broadcast on.
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */

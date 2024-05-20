@@ -50,7 +50,7 @@ new
 
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y w-full">
     @foreach ($livefeeds as $livefeed)
-        <div class="p-6 flex space-x-2 " wire:key="{{ $livefeed->id }}">
+        <div class="p-6 flex space-x-2 overflow-scroll text-wrap" wire:key="{{ $livefeed->id }}">
             <img src="{{ $livefeed->user->profile_photo_url }}" alt="{{ $livefeed->user->name }}"
                 class="w-12 h-12 rounded-full object-cover">
 {{--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none"--}}
@@ -64,7 +64,10 @@ new
                         <span class="text-gray-700 font-semibold">{{ $livefeed->user->name }}</span>
                         <small
                             class="ml-2 text-sm text-gray-600">{{ $livefeed->created_at->format('j M Y, g:i a') }}</small>
-                        @unless ($livefeed->created_at->eq($livefeed->updated_at))
+                        @unless ($livefeed->created_at->eq($livefeed->updated_at) || $livefeed->media->contains(function($media){
+                            return !$media->created_at->eq($media->updated_at);
+
+}))
                             <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                         @endunless
                     </div>
@@ -247,13 +250,24 @@ new
 
         function handleIntersect(entries, observer) {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting || entry.target === document.pictureInPictureElement) {
                     entry.target.play();
                 } else {
                     entry.target.pause();
                 }
             });
         }
+
+        // if ("documentPictureInPicture" in window) {
+        //     document.querySelector(".no-picture-in-picture").remove();
+        //
+        //     const togglePipButton = document.createElement("button");
+        //     togglePipButton.textContent = "Toggle Picture-in-Picture";
+        //     togglePipButton.addEventListener("click", togglePictureInPicture, false);
+        //
+        //     document.getElementById("controlbar").appendChild(togglePipButton);
+        // }
+
     });
 </script>
 

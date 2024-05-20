@@ -10,7 +10,7 @@ use Laravel\Paddle\Events\WebhookReceived;
 class PaddleEventListener
 {
     /**
-     * Create the event listener.
+     * Create the events listener.
      */
     public function __construct()
     {
@@ -18,20 +18,20 @@ class PaddleEventListener
     }
 
     /**
-     * Handle the event.
+     * Handle the events.
      */
     public function handle(WebhookReceived $event): void
     {
 
-        //        if (! isset($event->payload['event_type'])) {
-        //            Log::error('alert_name not found in payload', ['data' => $event->payload]);
+        //        if (! isset($events->payload['event_type'])) {
+        //            Log::error('alert_name not found in payload', ['data' => $events->payload]);
         //
         //            return;
         //        } else {
-        //            Log::info('alert_name found in payload', ['data' => $event->payload]);
+        //            Log::info('alert_name found in payload', ['data' => $events->payload]);
         //        }
         if ($event->payload['event_type'] === 'customer.updated') {
-            Log::info('Customer updated event received', ['data' => $event->payload]);
+            Log::info('Customer updated events received', ['data' => $event->payload]);
             Notification::make('customer-updated')
                 ->success()
                 ->color('success')
@@ -40,13 +40,13 @@ class PaddleEventListener
                 ->send();
         }
         if ($event->payload['event_type'] === 'subscription.created') {
-            Log::info('Subscription created event received', ['data' => $event->payload]);
+            Log::info('Subscription created events received', ['data' => $event->payload]);
             Session::flash('subscribed', 'Your transaction has been completed. Thank you for your purchase.');
         }
         if ($event->payload['event_type'] === 'transaction.completed') {
             //create a session
 
-            Log::info('Transaction completed event received', ['data' => $event->payload]);
+            Log::info('Transaction completed events received', ['data' => $event->payload]);
             //            Notification::make('transaction-completed')
             //                ->success()
             //                ->color('success')
