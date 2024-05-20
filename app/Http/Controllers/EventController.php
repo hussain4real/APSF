@@ -12,8 +12,17 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        //        dd($events);
+        $events = Event::with('media')->get();
+
+        $events = $events->map(function ($event) {
+            $firstTwoImages = $event->media->filter(function ($media) {
+                return $media->mime_type !== 'video/mp4';
+            })->take(2);
+
+            $event->firstTwoImages = $firstTwoImages;
+
+            return $event;
+        });
 
         return view('home.events.index', compact('events'));
     }
@@ -39,7 +48,9 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event->load('media');
+
+        return view('home.events.show', compact('event'));
     }
 
     /**

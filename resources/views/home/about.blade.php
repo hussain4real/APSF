@@ -34,6 +34,8 @@
     $objectiveDescriptionTen = $aboutUsModel->objective_description_ten ?? null;
     $objectiveTitleEleven = $aboutUsModel->objective_title_eleven ?? null;
     $objectiveDescriptionEleven = $aboutUsModel->objective_description_eleven ?? null;
+    $objectiveTitleTwelve = $aboutUsModel->objective_title_twelve ?? null;
+    $objectiveDescriptionTwelve = $aboutUsModel->objective_description_twelve ?? null;
     @endphp
 
     <x-slot:title>
@@ -238,6 +240,22 @@
                                         <div class="accordion-body">
                                             <p>
                                                 {{__($objectiveDescriptionEleven)}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwelve">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseEleven">
+                                            {{__($objectiveTitleTwelve)}}
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingEleven"
+                                         data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p>
+                                                {{__($objectiveDescriptionTwelve)}}
                                             </p>
                                         </div>
                                     </div>
