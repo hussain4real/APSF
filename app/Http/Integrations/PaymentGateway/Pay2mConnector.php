@@ -25,7 +25,7 @@ class Pay2mConnector extends Connector
      */
     public function resolveBaseUrl(): string
     {
-        return 'https://pay.pay2m.com/Ecommerce/api/Transaction/';
+        return 'https://payments.pay2m.com/Ecommerce/api/Transaction/';
     }
 
     /**

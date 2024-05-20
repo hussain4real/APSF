@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendLivefeedCreatedNotification implements ShouldQueue
 {
     /**
-     * Create the event listener.
+     * Create the events listener.
      */
     public function __construct()
     {
@@ -18,7 +18,7 @@ class SendLivefeedCreatedNotification implements ShouldQueue
     }
 
     /**
-     * Handle the event.
+     * Handle the events.
      */
     public function handle(LivefeedCreated $event): void
     {

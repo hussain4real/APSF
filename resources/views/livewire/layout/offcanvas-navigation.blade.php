@@ -56,7 +56,7 @@ new class extends Component
                             </ul>
                         </li>
                         <li><a href="{{route('services')}}" wire:navigate>{{__('nav.Services')}}</a></li>
-                        <li><a href="{{route('events')}}" wire:navigate>{{__('nav.Events')}}</a></li>
+                        <li><a href="{{route('events.index')}}" wire:navigate>{{__('nav.Events')}}</a></li>
                         <li><a href="{{route('contact')}}">{{__('nav.Contact Us')}}</a></li>
                     </ul>
                 </nav>

@@ -46,14 +46,14 @@ class CalendarWidget extends FullCalendarWidget
     }
 
     /**
-     * FullCalendar will call this function whenever it needs new event data.
+     * FullCalendar will call this function whenever it needs new events data.
      * This is triggered when the user clicks prev/next or switches views on the calendar.
      */
     public function fetchEvents(array $fetchInfo): array
     {
 
         // You can use $fetchInfo to filter events by date.
-        // This method should return an array of event-like objects. See: https://github.com/saade/filament-fullcalendar/blob/3.x/#returning-events
+        // This method should return an array of events-like objects. See: https://github.com/saade/filament-fullcalendar/blob/3.x/#returning-events
         // You can also return an array of EventData objects. See: https://github.com/saade/filament-fullcalendar/blob/3.x/#the-eventdata-class
 
         return Event::query()
@@ -68,7 +68,7 @@ class CalendarWidget extends FullCalendarWidget
                     'end' => $event->event_end_date,
                     'location' => $event->event_location,
                     'description' => $event->event_description,
-                    //                    'url' => EventResource::getUrl(name: 'view', parameters: ['record' => $event]),
+                    //                    'url' => EventResource::getUrl(name: 'view', parameters: ['record' => $events]),
                     //                    'shouldOpenUrlInNewTab' => true,
                 ]
             )
@@ -79,9 +79,9 @@ class CalendarWidget extends FullCalendarWidget
     public function eventDidMount(): string
     {
         return <<<'JS'
-        function({ event, timeText, isStart, isEnd, isMirror, isPast, isFuture, isToday, el, view }){
+        function({ events, timeText, isStart, isEnd, isMirror, isPast, isFuture, isToday, el, view }){
             el.setAttribute("x-tooltip", "tooltip");
-            el.setAttribute("x-data", "{ tooltip: '"+event.event_title+"' }");
+            el.setAttribute("x-data", "{ tooltip: '"+events.event_title+"' }");
         }
     JS;
     }

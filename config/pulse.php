@@ -128,7 +128,7 @@ return [
     |
     | The following array lists the "recorders" that will be registered with
     | Pulse, along with their configuration. Recorders gather application
-    | event data from requests and tasks to pass to your ingest driver.
+    | events data from requests and tasks to pass to your ingest driver.
     |
     */
 

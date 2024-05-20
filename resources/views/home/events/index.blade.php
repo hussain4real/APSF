@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
                     <div class="sec-title-wrapper">
-                        <h3 class="sec-title title-anim orange_color">{{__("frontend.event.heading")}}</h3>
+                        <h3 class="sec-title title-anim orange_color">{{__("frontend.events.heading")}}</h3>
                     </div>
                 </div>
                 <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">

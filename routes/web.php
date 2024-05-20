@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardOfTrusteeController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
@@ -9,8 +10,6 @@ use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Paddle\Checkout;
-use Laravel\Paddle\Transaction;
 use Livewire\Volt\Volt;
 
 Route::view('/coming-soon', 'coming_soon')
@@ -37,7 +36,13 @@ Route::resource('board-of-trustees', BoardOfTrusteeController::class)
     ->only(['index', 'show'])
     ->names([
         'index' => 'board-of-trustees.index',
-        'show' => 'board-of-trustees.show',
+        'show' => 'board-of-trustee.show',
+    ]);
+Route::resource('events', EventController::class)
+    ->only(['index', 'show'])
+    ->names([
+        'index' => 'events.index',
+        'show' => 'events.show',
     ]);
 Route::view('/about', 'home.about')
     ->name('about');
@@ -49,8 +54,6 @@ Route::view('/general-secretariat', 'home.general_secretariat')
     ->name('general-secretariat');
 Route::view('/services', 'home.services')
     ->name('services');
-Route::view('/events', 'home.events')
-    ->name('events');
 Route::view('/contact', 'home.contact')
     ->name('contact');
 

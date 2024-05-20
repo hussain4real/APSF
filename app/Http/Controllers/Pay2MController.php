@@ -62,20 +62,6 @@ class Pay2MController extends Controller
             // Handle the exception
             dd($exception->getMessage());
         }
-        //        $response = $pay2m->send($tokenRequest);
-        //
-        //        $status = $response->status();
-        //
-        //        $body = $response->object();
-        //
-        //        $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
-        //
-        //        return view('subscribe', [
-        //            'token' => $token,
-        //            'merchant_id' => $this->merchant_id,
-        //            'basket_id' => $this->basket_id,
-        //            'trans_amount' => $this->trans_amount,
-        //        ]);
     }
 
     public function getAccessToken($merchant_id, $secured_key, $basket_id, $trans_amount)
@@ -104,7 +90,7 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
-        //        dd($request->all());
+        dd($request->all());
         //        $err_code = $request->err_code;
         //        $err_msg = $request->err_msg;
         //        $trans_id = $request->transaction_id;
@@ -135,49 +121,48 @@ class Pay2MController extends Controller
         $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
-        //        dd([
-        //            'response Key' => $response_key,
-        //            'generated Hash' => $generated_hash,
-        //        ]);
-        //        if (strtolower($generated_hash) !== strtolower($response_key)) {
-        //            echo '<br/>Transaction could not be verified<br/>';
-        //
-        //            return;
-        //        } else {
-        //            dd('Transaction verified');
-        //
-        //        }
+        dd([
+            'response Key' => $response_key,
+            'generated Hash' => $generated_hash,
+        ]);
+        if (strtolower($generated_hash) !== strtolower($response_key)) {
+            echo '<br/>Transaction could not be verified<br/>';
 
-        if ($err_code == '000' || $err_code == '00') {
-            echo '<strong>Transaction Successfully Completed. Transaction ID: '.$trans_id.'</strong><br/>';
-            echo '<br/>Date: '.$order_date;
-            //TODO: save transaction to database
-
-            $transaction = new Transaction([
-                'transaction_id' => $trans_id,
-                'err_code' => $err_code,
-                'err_msg' => $err_msg,
-                'basket_id' => $basket_id,
-                'order_date' => $order_date,
-                'response_key' => $response_key,
-                'amount' => $txnamt,
-                'status' => 'success',
-            ]);
-            $user = Auth::user();
-            $user->transactions()->save($transaction);
-
-            //TODO: creates a new subscription for the user
-            $subscription = new Subscription([
-                'user_id' => $user->id,
-                'transaction_id' => $transaction->id,
-                'status' => 'active',
-                'type' => 'yearly',
-                'trial_ends_at' => now()->addDays(7),
-                'ends_at' => now()->addYear(),
-            ]);
-            $user->subscription()->save($subscription);
+            return;
         } else {
-            echo '<br/>Transaction Failed. Message: '.$err_msg;
+            dd('Transaction verified');
+            if ($err_code == '000' || $err_code == '00') {
+                echo '<strong>Transaction Successfully Completed. Transaction ID: '.$trans_id.'</strong><br/>';
+                echo '<br/>Date: '.$order_date;
+                //TODO: save transaction to database
+
+                $transaction = new Transaction([
+                    'transaction_id' => $trans_id,
+                    'err_code' => $err_code,
+                    'err_msg' => $err_msg,
+                    'basket_id' => $basket_id,
+                    'order_date' => $order_date,
+                    'response_key' => $response_key,
+                    'amount' => $txnamt,
+                    'status' => 'success',
+                ]);
+                $user = Auth::user();
+                $user->transactions()->save($transaction);
+
+                //TODO: creates a new subscription for the user
+                $subscription = new Subscription([
+                    'user_id' => $user->id,
+                    'transaction_id' => $transaction->id,
+                    'status' => 'active',
+                    'type' => 'yearly',
+                    'trial_ends_at' => now()->addDays(7),
+                    'ends_at' => now()->addYear(),
+                ]);
+                $user->subscription()->save($subscription);
+            } else {
+                echo '<br/>Transaction Failed. Message: '.$err_msg;
+            }
+
         }
 
         //        $transaction = new Transaction([
