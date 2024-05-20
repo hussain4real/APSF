@@ -14,7 +14,7 @@
         <input type="TEXT" name="TOKEN" value="{{ $token }}" hidden="true" readonly /><br />
         <input type="TEXT" name="SUCCESS_URL" value="{{route('payment.response')}}" hidden="true" readonly /><br />
         <input type="TEXT" name="FAILURE_URL" value="{{route('payment.response')}}" hidden="true" readonly /><br />
-        <input type="TEXT" name="CHECKOUT_URL" value="{{route('payment.response')}}" hidden="true" readonly /><br />
+        <input type="TEXT" name="CHECKOUT_URL" value="{{route('checkout')}}" hidden="true" readonly /><br />
         <input type="TEXT" name="CUSTOMER_EMAIL_ADDRESS" value="some-email@example.com" hidden="true" readonly /><br />
         <input type="TEXT" name="CUSTOMER_MOBILE_NO" value="+974-34312767" hidden="true" readonly /><br />
         <input type="TEXT" name="TXNAMT" value="{{$trans_amount}}" hidden="true" readonly /><br />

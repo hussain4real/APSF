@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
-class Order extends \LemonSqueezy\Laravel\Order
+use Illuminate\Database\Eloquent\Model;
+
+class Order extends Model
 {
 }

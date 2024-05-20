@@ -48,9 +48,18 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        $event->load('media');
+        $event = $event->load('media');
 
-        return view('home.events.show', compact('event'));
+        //get video media
+        $videos = $event->media->filter(function ($media) {
+            return $media->mime_type === 'video/mp4';
+        })->take(2);
+
+        return view('home.events.show', [
+            'event' => $event,
+            'videos' => $videos,
+        ]);
+
     }
 
     /**

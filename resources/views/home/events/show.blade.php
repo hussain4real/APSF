@@ -14,9 +14,9 @@ URL: https://flowbite.com/docs/components/typography/
                     <div class="inline-flex items-center gap-4 mr-3 text-sm text-gray-900 dark:text-white">
                         <img class="w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos">
                         <div>
-                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Jese Leos</a>
+                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Rebhi Hatamleh</a>
                             <p class="text-base text-gray-500 dark:text-gray-400">Editor in Chief, Arab Private Schools Federation</p>
-                            <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="{{$event->event_start_date}}" title="{{$event->event_start_date}}">{{$event->event_start_date}}</time></p>
+                            <p class="text-base text-gray-500 dark:text-gray-400"><time pubdate datetime="{{$event->event_date}}" title="{{$event->event_date}}">{{$event->event_date}}</time></p>
                         </div>
                     </div>
                 </address>
@@ -24,10 +24,17 @@ URL: https://flowbite.com/docs/components/typography/
                     {{$event->event_title}}</h1>
             </header>
             <p class="lead my-2 ">{{$event->event_excerpt}}</p>
+            @forelse($videos as $video)
+                <video controls class="w-full h-[20rem] object-cover rounded-lg shadow-sm" autoplay muted>
+                    <source src="{{ $video->getUrl() }}" type="{{ $video->mime_type }}">
+                    Your browser does not support the video tag.
+                </video>
+            @empty
 
             <figure><img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt="">
                 <figcaption class="my-1 text-center">Digital art by Anonymous</figcaption>
             </figure>
+            @endforelse
             <p class="my-4 antialiased text-base lg:text-lg xl:text-xl">{{$event->event_description}}</p>
 
             <section class="not-format my-4">
@@ -306,3 +313,29 @@ URL: https://flowbite.com/docs/components/typography/
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </x-home-layout>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let videos = document.querySelectorAll('video');
+        // console.log(videos);
+        let options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 1.0
+        };
+
+        let observer = new IntersectionObserver(handleIntersect, options);
+
+        videos.forEach(video => observer.observe(video));
+
+        function handleIntersect(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting || entry.target === document.pictureInPictureElement) {
+                    entry.target.play();
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }
+
+    });
+</script>
