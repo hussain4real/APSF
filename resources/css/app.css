@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .rtl\:start-auto {
+        start: auto;
+    }
+    .rtl\:end-0 {
+        end: 0;
+    }
+    .rtl\:end-auto {
+        end: auto;
+    }
+    .rtl\:start-0 {
+        start: 0;
+    }
+}

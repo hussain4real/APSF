@@ -88,7 +88,7 @@ class CreateEvent extends CreateRecord
                     ->hiddenLabel()
                     ->responsiveImages()
                     ->maxSize(1024 * 1000 * 2)
-                    ->maxFiles(15)
+                    ->maxFiles(20)
                     ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 2).' bytes.'))
                     ->hintIcon('heroicon-o-information-circle')
                     ->hintColor('warning')
