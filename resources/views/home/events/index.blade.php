@@ -56,6 +56,7 @@
 <style>
     .blog__item{
         width: 23rem; /*added by Aminu*/
+        margin: 0 4rem;
     }
 
     .image-box img{

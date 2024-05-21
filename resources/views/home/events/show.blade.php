@@ -40,7 +40,7 @@ URL: https://flowbite.com/docs/components/typography/
                 <figcaption class="my-1 text-center">Digital art by Anonymous</figcaption>
             </figure>
             @endforelse
-            <p class="my-4 antialiased text-base lg:text-lg xl:text-xl">{{$event->event_description}}</p>
+            <p class="my-4 antialiased text-lg lg:text-xl xl:text-2xl">{{$event->event_description}}</p>
 
 
             <div id="controls-carousel" class="relative w-full" data-carousel="static">
