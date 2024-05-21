@@ -52,7 +52,7 @@
                         <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
                         <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
                         <br><br>
-                        <img src="assets/imgs/apsf/who-we-are/who-we-are.webp" alt="Who We Are">
+                        <img src="assets/imgs/apsf/who-we-are/Hamid AlQasimi-01-62.jpg" alt="Who We Are">
                     </div>
                     <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7">
                         <div class="story__text">
@@ -68,6 +68,12 @@
         </div>
     </section>
     <!-- Story area end --><br><br><br><br><br><br><br><br><br><br>
+    <div  id="video-wrapper">
+        <video autoplay muted loop>
+            <source src="#" type="">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
     <!-- FAQ area start -->
     <section class="faq__area">
@@ -279,5 +285,5 @@
 
 
 
-
 </x-home-layout>
+
