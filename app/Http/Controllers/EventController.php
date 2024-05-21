@@ -55,9 +55,19 @@ class EventController extends Controller
             return $media->mime_type === 'video/mp4';
         })->take(2);
 
+        //get images only
+        //        $images = $event->media->filter(function ($media) {
+        //            return $media->mime_type !== 'video/mp4';
+        //        });
+        //get images that are not the first two
+        $images = $event->media->filter(function ($media) {
+            return $media->mime_type !== 'video/mp4';
+        })->slice(2);
+
         return view('home.events.show', [
             'event' => $event,
             'videos' => $videos,
+            'images' => $images,
         ]);
 
     }
