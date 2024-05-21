@@ -258,16 +258,6 @@ new
             });
         }
 
-        // if ("documentPictureInPicture" in window) {
-        //     document.querySelector(".no-picture-in-picture").remove();
-        //
-        //     const togglePipButton = document.createElement("button");
-        //     togglePipButton.textContent = "Toggle Picture-in-Picture";
-        //     togglePipButton.addEventListener("click", togglePictureInPicture, false);
-        //
-        //     document.getElementById("controlbar").appendChild(togglePipButton);
-        // }
-
     });
 </script>
 

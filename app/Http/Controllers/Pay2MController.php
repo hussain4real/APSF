@@ -8,6 +8,7 @@ use App\Models\Subscription;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\Response;
 
@@ -182,5 +183,16 @@ class Pay2MController extends Controller
         //
         //TODO: creates a new subscription for the user
 
+    }
+
+    public function checkout(Request $request)
+    {
+        // Get the data sent by the payment gateway
+        $data = $request->all();
+
+        // Log the data for debugging purposes
+        Log::info('Received checkout data:', $data);
+
+        dd($data);
     }
 }

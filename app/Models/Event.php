@@ -51,7 +51,7 @@ class Event extends Model implements HasMedia
     }
 
     //event_start_date getter with human readable format
-    public function getEventStartDateAttribute($value)
+    public function getEventDateAttribute($value)
     {
         // Convert the database value to a Carbon instance
         $eventStartDate = Carbon::parse($value);
