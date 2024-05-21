@@ -16,6 +16,7 @@ use Filament\Forms\Set;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Number;
 use Illuminate\Support\Str;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CreateEvent extends CreateRecord
 {
@@ -93,6 +94,10 @@ class CreateEvent extends CreateRecord
                     ->hintColor('warning')
                     ->imagePreviewHeight('250')
                     ->openable()
+                    ->getUploadedFileNameForStorageUsing(
+                        fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                            ->prepend('events_media/'),
+                    )
                     ->reorderable()
                     ->appendFiles()
                     ->moveFiles()
