@@ -42,43 +42,44 @@ URL: https://flowbite.com/docs/components/typography/
             @endforelse
             <p class="my-4 antialiased text-lg lg:text-xl xl:text-2xl">{{$event->event_description}}</p>
 
+{{--            image Carousel--}}
 
-            <div id="controls-carousel" class="relative w-full" data-carousel="static">
-                <!-- Carousel wrapper -->
-                <div class="relative blog-image-wrapper overflow-hidden rounded-lg">
-                    <!-- Item 1 -->
-                    @forelse($images as $image)
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{$image->getUrl()}}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    @empty
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{asset('assets/imgs/apsf/story/920x450 banner copy.webp')}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-                    </div>
-                    @endforelse
+{{--            <div id="controls-carousel" class="relative w-full" data-carousel="static">--}}
+{{--                <!-- Carousel wrapper -->--}}
+{{--                <div class="relative overflow-hidden rounded-lg">--}}
+{{--                    <!-- Item 1 -->--}}
+{{--                    @forelse($images as $image)--}}
+{{--                    <div class="blog-image-wrapper duration-700 ease-in-out" data-carousel-item>--}}
+{{--                        <img src="{{$image->getUrl()}}" class="block w-full object-contain -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">--}}
+{{--                    </div>--}}
+{{--                    @empty--}}
+{{--                    <div class="hidden duration-700 ease-in-out" data-carousel-item>--}}
+{{--                        <img src="{{asset('assets/imgs/apsf/story/920x450 banner copy.webp')}}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">--}}
+{{--                    </div>--}}
+{{--                    @endforelse--}}
 
-                </div>
-                <!-- Slider controls -->
-                <button type="button" class="absolute top-1/2 transform -translate-y-1/2 start-0 rtl:start-auto rtl:end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button" class="absolute top-1/2 transform -translate-y-1/2 end-0 rtl:end-auto rtl:start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
+{{--                </div>--}}
+{{--                <!-- Slider controls -->--}}
+{{--                <button type="button" class="absolute top-1/2 transform -translate-y-1/2 start-0 rtl:start-auto rtl:end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>--}}
+{{--                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">--}}
+{{--                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">--}}
+{{--                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>--}}
+{{--                        </svg>--}}
+{{--                        <span class="sr-only">Previous</span>--}}
+{{--                    </span>--}}
+{{--                </button>--}}
+{{--                <button type="button" class="absolute top-1/2 transform -translate-y-1/2 end-0 rtl:end-auto rtl:start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>--}}
+{{--                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">--}}
+{{--                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">--}}
+{{--                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>--}}
+{{--                        </svg>--}}
+{{--                        <span class="sr-only">Next</span>--}}
+{{--                    </span>--}}
+{{--                </button>--}}
 
 
 
-                {{--                <button type="button" class="absolute top-0 start-0 rtl:top-0 rtl:end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>--}}
+{{--                --}}{{--                <button type="button" class="absolute top-0 start-0 rtl:top-0 rtl:end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>--}}
 {{--                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">--}}
 {{--                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">--}}
 {{--                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>--}}
@@ -94,7 +95,7 @@ URL: https://flowbite.com/docs/components/typography/
 {{--                        <span class="sr-only">Next</span>--}}
 {{--                    </span>--}}
 {{--                </button>--}}
-            </div>
+{{--            </div>--}}
 
 
             <section class="not-format my-4">
@@ -375,7 +376,11 @@ URL: https://flowbite.com/docs/components/typography/
 </x-home-layout>
 <style>
     .blog-image-wrapper{
-        height: 35rem;
+        height: 40rem;
+    }
+    .blog-image-wrapper img{
+        height: 100%;
+        width: 100%;
     }
     /*.video-container {*/
     /*    width: 100%;*/
@@ -393,27 +398,6 @@ URL: https://flowbite.com/docs/components/typography/
     /*    border: 2px solid blue; !* Debugging border *!*/
     /*}*/
 </style>
-
-{{--<script>--}}
-{{--    document.addEventListener('DOMContentLoaded', function() {--}}
-{{--        let videos = document.querySelectorAll('video');--}}
-{{--        let pipButtons = document.querySelectorAll('.pip-button');--}}
-
-{{--        // Iterate over each video--}}
-{{--        videos.forEach((video, index) => {--}}
-{{--            let pipButton = pipButtons[index];--}}
-
-{{--            // Add click event listener to the PiP button--}}
-{{--            pipButton.addEventListener('click', async () => {--}}
-{{--                try {--}}
-{{--                    await video.requestPictureInPicture();--}}
-{{--                } catch (error) {--}}
-{{--                    console.error("Failed to enter PiP mode:", error);--}}
-{{--                }--}}
-{{--            });--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
 
 
 
