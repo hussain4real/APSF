@@ -14738,7 +14738,7 @@ text-align: center;
     z-index: 1;
 }
 .blog__item{
-    width: 25rem;
+    width: 25rem; /*added by Aminu*/
 }
 .blog__item, .blog__item-2 {
     position: relative;
