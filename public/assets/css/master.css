@@ -14737,6 +14737,9 @@ text-align: center;
     position: relative;
     z-index: 1;
 }
+.blog__item{
+    width: 25rem;
+}
 .blog__item, .blog__item-2 {
     position: relative;
     z-index: 5;
