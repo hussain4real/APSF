@@ -53,3 +53,13 @@
 
     <!-- Blog area end -->
 </x-home-layout>
+<style>
+    .blog__item{
+        width: 23rem; /*added by Aminu*/
+    }
+
+    .image-box img{
+        width: 100%;
+        object-fit: contain;
+    }
+</style>
