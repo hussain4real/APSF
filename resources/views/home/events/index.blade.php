@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 @forelse($events as $event)
-                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4">
+                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 blog-grid">
                     <article class="blog__item">
                         <div class="blog__img-wrapper">
                             <a href="{{route('event.show', $event)}}">
@@ -54,9 +54,9 @@
     <!-- Blog area end -->
 </x-home-layout>
 <style>
-    .blog__item{
+    .blog-grid{
         width: 23rem; /*added by Aminu*/
-        margin: 0 4rem;
+        margin: 0 2rem;
     }
 
     .image-box img{
