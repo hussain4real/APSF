@@ -339,17 +339,14 @@ URL: https://flowbite.com/docs/components/typography/
         <div class="content-container">
             <article class="article-container">
                 <header class="article-header">
+                    <h1 class="article-title">{{$event->event_title}}</h1>
                     <address class="article-address">
                         <div class="author-info">
-                            <img class="author-img" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos">
                             <div>
-                                <a href="#" rel="author" class="author-name">Rebhi Hatamleh</a>
-                                <p class="author-title">Editor in Chief, Arab Private Schools Federation</p>
                                 <p class="author-date"><time pubdate datetime="{{$event->event_date}}" title="{{$event->event_date}}">{{$event->event_date}}</time></p>
                             </div>
                         </div>
                     </address>
-                    <h1 class="article-title">{{$event->event_title}}</h1>
                 </header>
                 <p class="lead-text">{{$event->event_excerpt}}</p>
                 @forelse($videos as $video)
@@ -360,10 +357,9 @@ URL: https://flowbite.com/docs/components/typography/
                         </video>
                     </div>
                 @empty
-                    <figure>
-                        <img src="{{asset('assets/imgs/apsf/story/920x450 banner copy.webp')}}" alt="">
-                        <figcaption class="image-caption">Digital art by Anonymous</figcaption>
-                    </figure>
+                    <div class="empty-image-container">
+                        <img src="{{asset('assets/imgs/apsf/who-we-are/Hamid AlQasimi-01-62.jpg')}}" alt="">
+                    </div>
                 @endforelse
                 <p class="description-text">{{$event->event_description}}</p>
 
@@ -477,6 +473,18 @@ URL: https://flowbite.com/docs/components/typography/
         height: 4rem;
         border-radius: 9999px;
     }
+    .empty-image-container{
+        width: 100%;
+
+    }
+
+    .empty-image-container img{
+        width: 100%;
+        height: 35rem;
+        object-fit: cover;
+        border-radius: 1rem;
+
+    }
 
     .author-name {
         font-size: 1.25rem;
@@ -507,7 +515,7 @@ URL: https://flowbite.com/docs/components/typography/
     .lead-text {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
-        font-size: 1.125rem;
+        font-size: 1.4rem;
         line-height: 1.75rem;
         color: #1a202c;
     }
