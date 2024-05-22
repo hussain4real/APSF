@@ -55,7 +55,7 @@
 </x-home-layout>
 <style>
     .blog-grid{
-        width: 23rem; /*added by Aminu*/
+        width: 30rem; /*added by Aminu*/
         margin: 0 2rem;
     }
 
