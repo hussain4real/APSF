@@ -68,6 +68,7 @@
 
     .image-box img{
         width: 100%;
+        /*height: 40rem;*/
         object-fit: cover;
     }
 </style>
