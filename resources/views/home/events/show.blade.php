@@ -371,6 +371,7 @@ URL: https://flowbite.com/docs/components/typography/
                             id="img-{{ $index + 1 }}"
                             src="{{ $image->getUrl() }}"
                             alt="Image {{ $index + 1 }}"
+                            class=""
 {{--                            style="{{ $index == 0 ? 'opacity: 1;' : 'opacity: 0;' }}"--}}
                         />
                     @endforeach
@@ -381,66 +382,19 @@ URL: https://flowbite.com/docs/components/typography/
                         <span class="dot {{ $index == 0 ? 'active' : '' }}" onclick="changeSlide({{ $index }})"></span>
                     @endforeach
                 </div>
-{{--                <div class="slider">--}}
-{{--                    <img--}}
-{{--                        id="img-1"--}}
-{{--                        src="https://images.unsplash.com/photo-1714997219788-660af304f464?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"--}}
-{{--                        alt="Image 1"--}}
-{{--                    />--}}
-{{--                    <img--}}
-{{--                        id="img-2"--}}
-{{--                        src="https://images.bannerbear.com/direct/EjJywNMlJm5zmerB8a/requests/000/033/000/213/0Mn5r3E1XY0gmWDZQWPoD9kg7/9e42168a169264bb575a5ec10acd1c8942967845.jpg"--}}
-{{--                        alt="Image 2"--}}
-{{--                    />--}}
-{{--                    <img--}}
-{{--                        id="img-3"--}}
-{{--                        src="https://images.bannerbear.com/direct/EjJywNMlJm5zmerB8a/requests/000/033/000/213/0Mn5r3E1XY0gmWDZQWPoD9kg7/9e42168a169264bb575a5ec10acd1c8942967845.jpg"--}}
-{{--                        alt="Image 3"--}}
-{{--                    />--}}
-{{--                </div>--}}
-{{--                <div class="navigation-button">--}}
-{{--                    <span class="dot active" onclick="changeSlide(0)"></span>--}}
-{{--                    <span class="dot" onclick="changeSlide(1)"></span>--}}
-{{--                    <span class="dot" onclick="changeSlide(2)"></span>--}}
-{{--                </div>--}}
 
-{{--                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">--}}
-{{--                    <ol class="carousel-indicators">--}}
-{{--                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>--}}
-{{--                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--}}
-{{--                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--}}
-{{--                    </ol>--}}
-{{--                    <div class="carousel-inner">--}}
-{{--                        @if($images)--}}
-{{--                            @foreach($images as $image)--}}
-{{--                            <div class="carousel-item @if($loop->first) active @endif ">--}}
-{{--                                <img class="{{$image->id}}-slide rounded mx-auto d-block h-50" src="{{$image->getUrl()}}" alt="{{$image->id}} slide">--}}
-{{--                            </div>--}}
-{{--                            @endforeach--}}
-{{--                        @endif--}}
+{{--                <section class="discussion-section">--}}
+{{--                    <div class="discussion-header">--}}
+{{--                        <h2 class="discussion-title">Discussion (20)</h2>--}}
 {{--                    </div>--}}
-{{--                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">--}}
-{{--                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-{{--                        <span class="sr-only">Previous</span>--}}
-{{--                    </a>--}}
-{{--                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">--}}
-{{--                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-{{--                        <span class="sr-only">Next</span>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-
-                <section class="discussion-section">
-                    <div class="discussion-header">
-                        <h2 class="discussion-title">Discussion (20)</h2>
-                    </div>
-                    <form class="comment-form">
-                        <div class="comment-input-container">
-                            <label for="comment" class="sr-only">Your comment</label>
-                            <textarea id="comment" rows="6" class="comment-textarea" placeholder="Write a comment..." required></textarea>
-                        </div>
-                        <button type="submit" class="comment-button">Post comment</button>
-                    </form>
-                </section>
+{{--                    <form class="comment-form">--}}
+{{--                        <div class="comment-input-container">--}}
+{{--                            <label for="comment" class="sr-only">Your comment</label>--}}
+{{--                            <textarea id="comment" rows="6" class="comment-textarea" placeholder="Write a comment..." required></textarea>--}}
+{{--                        </div>--}}
+{{--                        <button type="submit" class="comment-button">Post comment</button>--}}
+{{--                    </form>--}}
+{{--                </section>--}}
             </article>
         </div>
     </main>
@@ -598,9 +552,16 @@ URL: https://flowbite.com/docs/components/typography/
 /*carousel image*/
     .slider {
         width: 100%;
-        height: 35rem;
+        height: auto;
         position: relative;
         margin-bottom: 4rem;
+        overflow: hidden;
+    }
+
+    .slider::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio (e.g., 9 / 16 = 0.5625 or 56.25%) */
     }
 
     .slider img {
@@ -608,7 +569,7 @@ URL: https://flowbite.com/docs/components/typography/
         height: 100%;
         position: absolute;
         object-fit: contain;
-        object-position: 50% 50%;
+        object-position: center center;
         top: 0;
         left: 0;
         transition: all 0.5s ease-in-out;
