@@ -69,7 +69,7 @@
     </section>
     <!-- Story area end --><br><br><br><br><br><br><br><br><br><br>
     <div  id="video-wrapper">
-        <video autoplay muted loop>
+        <video autoplay loop>
             <source src="{{asset('assets/imgs/apsf/who-we-are/Sequence 01 Copy 01_7_1.mp4')}}" type="">
             Your browser does not support the video tag.
         </video>
