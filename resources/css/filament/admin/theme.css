@@ -5,7 +5,7 @@
 @layer utilities {
 
     html {
-        @apply text-sm lg:text-lg 2xl:text-2xl;
+        @apply text-base lg:text-lg 2xl:text-xl;
     }
 
     /* #name-column{
