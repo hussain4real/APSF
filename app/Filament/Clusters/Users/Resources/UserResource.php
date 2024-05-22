@@ -61,8 +61,8 @@ class UserResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
-                // MemberScope::class,
-            ]);
-        //            ->withGlobalScope('member', new MemberScope);
+                //                MemberScope::class,
+            ])
+            ->withGlobalScope('member', new MemberScope);
     }
 }

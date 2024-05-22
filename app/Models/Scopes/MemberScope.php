@@ -20,6 +20,7 @@ class MemberScope implements Scope
             ->whereDoesntHave('student')
             ->whereDoesntHave('teacher')
             ->whereDoesntHave('founder')
+            ->whereDoesntHave('member')
             ->whereDoesntHave('educationalConsultant')
             ->whereDoesntHave('trainingProvider');
 

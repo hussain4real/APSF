@@ -46,12 +46,13 @@ class ListUsers extends ListRecords
         ];
     }
 
-    // protected function getTableQuery(): ?Builder
-    // {
-    //     return User::query()->withoutGlobalScopes([
-    //         \App\Models\Scopes\MemberScope::class,
-    //     ]);
-    // }
+    //    protected function getTableQuery(): ?Builder
+    //    {
+    //        return User::query()->withoutGlobalScopes([
+    //            \App\Models\Scopes\MemberScope::class,
+    //        ]);
+    //    }
+
     public function table(Table $table): Table
     {
         return $table
