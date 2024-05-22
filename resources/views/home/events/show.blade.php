@@ -364,31 +364,70 @@ URL: https://flowbite.com/docs/components/typography/
                 <p class="description-text">{{$event->event_description}}</p>
 
                 <!-- Image Carousel -->
-
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        @if($images)
-                            @foreach($images as $image)
-                            <div class="carousel-item @if($loop->first) active @endif ">
-                                <img class="{{$image->id}}-slide rounded mx-auto d-block h-50" src="{{$image->getUrl()}}" alt="{{$image->id}} slide">
-                            </div>
-                            @endforeach
-                        @endif
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                <div class="slider">
+                    @if($images)
+                    @foreach($images as $index => $image)
+                        <img
+                            id="img-{{ $index + 1 }}"
+                            src="{{ $image->getUrl() }}"
+                            alt="Image {{ $index + 1 }}"
+{{--                            style="{{ $index == 0 ? 'opacity: 1;' : 'opacity: 0;' }}"--}}
+                        />
+                    @endforeach
+                    @endif
                 </div>
+                <div class="navigation-button">
+                    @foreach($images as $index => $image)
+                        <span class="dot {{ $index == 0 ? 'active' : '' }}" onclick="changeSlide({{ $index }})"></span>
+                    @endforeach
+                </div>
+{{--                <div class="slider">--}}
+{{--                    <img--}}
+{{--                        id="img-1"--}}
+{{--                        src="https://images.unsplash.com/photo-1714997219788-660af304f464?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"--}}
+{{--                        alt="Image 1"--}}
+{{--                    />--}}
+{{--                    <img--}}
+{{--                        id="img-2"--}}
+{{--                        src="https://images.bannerbear.com/direct/EjJywNMlJm5zmerB8a/requests/000/033/000/213/0Mn5r3E1XY0gmWDZQWPoD9kg7/9e42168a169264bb575a5ec10acd1c8942967845.jpg"--}}
+{{--                        alt="Image 2"--}}
+{{--                    />--}}
+{{--                    <img--}}
+{{--                        id="img-3"--}}
+{{--                        src="https://images.bannerbear.com/direct/EjJywNMlJm5zmerB8a/requests/000/033/000/213/0Mn5r3E1XY0gmWDZQWPoD9kg7/9e42168a169264bb575a5ec10acd1c8942967845.jpg"--}}
+{{--                        alt="Image 3"--}}
+{{--                    />--}}
+{{--                </div>--}}
+{{--                <div class="navigation-button">--}}
+{{--                    <span class="dot active" onclick="changeSlide(0)"></span>--}}
+{{--                    <span class="dot" onclick="changeSlide(1)"></span>--}}
+{{--                    <span class="dot" onclick="changeSlide(2)"></span>--}}
+{{--                </div>--}}
+
+{{--                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">--}}
+{{--                    <ol class="carousel-indicators">--}}
+{{--                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>--}}
+{{--                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--}}
+{{--                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--}}
+{{--                    </ol>--}}
+{{--                    <div class="carousel-inner">--}}
+{{--                        @if($images)--}}
+{{--                            @foreach($images as $image)--}}
+{{--                            <div class="carousel-item @if($loop->first) active @endif ">--}}
+{{--                                <img class="{{$image->id}}-slide rounded mx-auto d-block h-50" src="{{$image->getUrl()}}" alt="{{$image->id}} slide">--}}
+{{--                            </div>--}}
+{{--                            @endforeach--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">--}}
+{{--                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+{{--                        <span class="sr-only">Previous</span>--}}
+{{--                    </a>--}}
+{{--                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">--}}
+{{--                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+{{--                        <span class="sr-only">Next</span>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
 
                 <section class="discussion-section">
                     <div class="discussion-header">
@@ -445,12 +484,12 @@ URL: https://flowbite.com/docs/components/typography/
     }
 
     .article-header {
-        margin-bottom: 1rem;
+        margin: 1rem;
     }
 
     @media (min-width: 1024px) {
         .article-header {
-            margin-bottom: 1.5rem;
+            margin: 1.5rem;
         }
     }
 
@@ -498,7 +537,7 @@ URL: https://flowbite.com/docs/components/typography/
     }
 
     .article-title {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         font-size: 1.875rem;
         font-weight: 800;
         line-height: 1.25;
@@ -514,7 +553,7 @@ URL: https://flowbite.com/docs/components/typography/
 
     .lead-text {
         margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 2rem;
         font-size: 1.4rem;
         line-height: 1.75rem;
         color: #1a202c;
@@ -543,7 +582,7 @@ URL: https://flowbite.com/docs/components/typography/
     }
 
     .description-text {
-        margin-top: 1rem;
+        margin-top: 2rem;
         margin-bottom: 1rem;
         font-size: 1.125rem;
         line-height: 1.75rem;
@@ -556,10 +595,52 @@ URL: https://flowbite.com/docs/components/typography/
             line-height: 1.75rem;
         }
     }
- .carousel-item img{
-     height: 10rem;
- }
+/*carousel image*/
+    .slider {
+        width: 100%;
+        height: 35rem;
+        position: relative;
+        margin-bottom: 4rem;
+    }
 
+    .slider img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: contain;
+        object-position: 50% 50%;
+        top: 0;
+        left: 0;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .slider img:first-child {
+        z-index: 1;
+    }
+
+    .slider img:nth-child(2) {
+        z-index: 0;
+    }
+
+    .navigation-button {
+        text-align: center;
+        position: relative;
+    }
+
+    .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .active,
+    .dot:hover {
+        background-color: #717171;
+    }
 
     .discussion-section {
         margin-top: 1rem;
@@ -635,12 +716,43 @@ URL: https://flowbite.com/docs/components/typography/
 
 <script>
 
-    $(document).ready(function() {
-        console.log('dom ready for implementation');
-        $('.carousel').carousel('cycle');
-    });
+
+    // $(document).ready(function() {
+    //     console.log('dom ready for implementation');
+    //     $('.carousel').carousel('cycle');
+    // });
 
     document.addEventListener('DOMContentLoaded', function() {
+
+        // carousel section start
+
+        var currentImg = 0;
+        var imgs = document.querySelectorAll('.slider img');
+        let dots = document.querySelectorAll('.dot');
+        var interval = 3000;
+
+
+        var timer = setInterval(changeSlide, interval);
+        function changeSlide(n) {
+            for (var i = 0; i < imgs.length; i++) { // reset
+                imgs[i].style.opacity = 0;
+                dots[i].className = dots[i].className.replace(' active', '');
+            }
+
+            currentImg = (currentImg + 1) % imgs.length; // update the index number
+
+            if (n != undefined) {
+                clearInterval(timer);
+                timer = setInterval(changeSlide, interval);
+                currentImg = n;
+            }
+
+            imgs[currentImg].style.opacity = 1;
+            dots[currentImg].className += ' active';
+        }
+
+
+        //carousel section end
 
         let videos = document.querySelectorAll('video');
         // console.log(videos);
