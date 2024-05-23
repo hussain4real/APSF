@@ -12,4 +12,9 @@ class Frontends extends Cluster
     {
         return __('frontends');
     }
+
+    public static function canAccess(): bool
+    {
+        return false;
+    }
 }
