@@ -22,6 +22,7 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Platform;
 use Filament\Support\Facades\FilamentView;
+use Filament\View\PanelsRenderHook;
 use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -168,7 +169,11 @@ class AdminPanelProvider extends PanelProvider
         parent::register();
         FilamentView::registerRenderHook(
             'panels::body.end',
-            fn (): string => Blade::render("@vite('resources/js/app.js')")
+            fn (): string => Blade::render("@vite('resources/js/app.js')"),
+        );
+        FilamentView::registerRenderHook(
+            PanelsRenderHook::BODY_START,
+            fn (): string => '<script>const win=window,doc=document,docElem=doc.documentElement,body=doc.getElementsByTagName("body")[0],x=win.innerWidth||docElem.clientWidth||body.clientWidth;x<1024&&localStorage.setItem("isOpen","false");</script>',
         );
     }
 }

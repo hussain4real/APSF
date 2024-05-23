@@ -18,7 +18,7 @@ enum TraininingMode: string implements HasColor, HasDescription, HasIcon, HasLab
     {
         return match ($this) {
             self::ONLINE => 'primary',
-            self::OFFLINE => 'gray',
+            self::OFFLINE => 'warning',
             self::MIXED => 'success',
         };
     }
@@ -35,9 +35,9 @@ enum TraininingMode: string implements HasColor, HasDescription, HasIcon, HasLab
     public function getIcon(): ?string
     {
         return match ($this) {
-            self::ONLINE => 'heroicon-o-globe',
+            self::ONLINE => 'heroicon-o-globe-alt',
             self::OFFLINE => 'heroicon-o-home',
-            self::MIXED => 'heroicon-o-collection',
+            self::MIXED => 'heroicon-o-arrows-pointing-in',
         };
     }
 

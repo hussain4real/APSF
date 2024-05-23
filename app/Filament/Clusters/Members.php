@@ -13,4 +13,9 @@ class Members extends Cluster
     {
         return __('members');
     }
+
+    public static function canAccess(): bool
+    {
+        return false;
+    }
 }
