@@ -114,7 +114,10 @@ class ListUsers extends ListRecords
                                 ->alignCenter()
                                 ->allowZero(),
                         ])
-                        ->collapsed(),
+                        ->collapsed()
+                        ->extraAttributes([
+
+                        ]),
 
                 ])
                     ->alignment(Alignment::Start),
@@ -122,6 +125,7 @@ class ListUsers extends ListRecords
             ->contentGrid([
                 'md' => 2,
                 'xl' => 3,
+                '2xl' => 4,
             ])
             ->filters([
                 //                TrashedFilter::make(),
