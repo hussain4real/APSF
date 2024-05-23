@@ -44,9 +44,11 @@ class CreateTrainingProvider extends CreateRecord
     {
         return TextInput::make('institution_phone')
             ->label(__('Phone Number'))
-            ->placeholder('+123-4566-7890')
+            ->placeholder('+12345667890')
             ->tel()
-            ->telRegex('/^\+\d{1,3}-\d{3}-\d{4}$/')
+//            ->minValue(12)
+//            ->maxValue(12)
+            //please check the number you've entered
             ->prefixIcon('heroicon-o-phone')
             ->prefixIconColor('primary')
             ->required();

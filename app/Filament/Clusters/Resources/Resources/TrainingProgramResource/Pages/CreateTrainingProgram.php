@@ -9,12 +9,12 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
@@ -55,14 +55,30 @@ class CreateTrainingProgram extends CreateRecord
                                 ->disabled()
                                 ->dehydrated()
                                 ->default(auth()?->user()?->trainingProvider->id ?? null),
-                            Select::make('type')
+                            ToggleButtons::make('type')
                                 ->options(TrainingType::class)
-                                ->default('course'),
+                                ->default('course')
+                                ->inline()
+                                ->columnSpanFull(),
                             TextInput::make('title')
                                 ->label(__('Title'))
                                 ->placeholder(__('Training Program Title'))
                                 ->required()
                                 ->maxLength(255),
+                            //                                ->afterStateUpdated(function (Set $set) {
+                            //                                    $set('instructor_name', auth()->user()->name);
+                            //                                })
+                            //                                ->live(onBlur: true),
+                            TextInput::make('instructor_name')
+                                ->label(__('Instructor Name'))
+                                ->default(function () {
+                                    return auth()->user()->name;
+                                })
+                                ->hintIcon('heroicon-o-information-circle')
+                                ->hintColor('secondary')
+                                ->hintIconTooltip(__('If you are not the instructor, please enter the name of the instructor.'))
+                                ->maxLength(255)
+                                ->required(),
                             Textarea::make('description')
                                 ->label(__('Description'))
 
@@ -81,15 +97,14 @@ class CreateTrainingProgram extends CreateRecord
                                 ->placeholder(__('1000.00'))
                                 ->numeric()
                                 ->inputMode('decimal')
-                                ->step('5.00')
                                 ->prefix('$'),
-                            TextInput::make('instructor_name')
-                                ->maxLength(255),
+
                             ToggleButtons::make('mode_of_delivery')
                                 ->required()
                                 ->options(TraininingMode::class)
                                 ->default(TraininingMode::ONLINE)
-                                ->inline(),
+                                ->inline()
+                                ->columnSpanFull(),
                         ])
                         ->columns(2),
                     Section::make('Dates')
@@ -129,9 +144,9 @@ class CreateTrainingProgram extends CreateRecord
             $data['training_provider_id'] = auth()->user()->id;
         }
 
-        dd($data);
+        //        dd($data);
 
-        return parent::handleRecordCreation($data);
+        return static::getModel()::create($data);
 
     }
 }
