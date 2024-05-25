@@ -16,7 +16,7 @@ enum TrainingStatus: string implements HasColor, HasDescription, HasIcon, HasLab
     public function getColor(): string|array|null
     {
         return match ($this) {
-            self::UPCOMING => 'primary',
+            self::UPCOMING => 'info',
             self::ONGOING => 'warning',
             self::COMPLETED => 'success',
         };
