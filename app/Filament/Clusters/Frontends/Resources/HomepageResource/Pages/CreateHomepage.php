@@ -12,6 +12,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Number;
 
 class CreateHomepage extends CreateRecord
 {
@@ -43,6 +44,21 @@ class CreateHomepage extends CreateRecord
                                     ->label(__('First Description')),
                                 Textarea::make('hero_description_two')
                                     ->label(__('Second Description')),
+                                SpatieMediaLibraryFileUpload::make('attachment')
+                                    ->collection('hero_video')
+                                    ->hiddenLabel()
+                                    ->responsiveImages()
+                                    ->maxSize(1024 * 1000 * 2)
+                                    ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 2).' bytes.'))
+                                    ->hintIcon('heroicon-o-information-circle')
+                                    ->hintColor('warning')
+                                    ->imagePreviewHeight('150')
+                                    ->openable()
+                                    ->preserveFilenames()
+                                    ->downloadable()
+                                    ->imageEditor(2)
+                                    ->imageEditorEmptyFillColor('#dda581')
+                                    ->uploadingMessage(__('uploading, please wait...')),
                             ]),
                         Tab::make('Mission Section')
                             ->icon('heroicon-o-paper-clip')
@@ -140,7 +156,7 @@ class CreateHomepage extends CreateRecord
                                 Textarea::make('chairman_message_three')
                                     ->label(__('Third Paragraph')),
                                 SpatieMediaLibraryFileUpload::make('attachment')
-                                    ->collection('board_of_trustees_images')
+                                    ->collection('chairman_images')
                                     ->hiddenLabel()
                                     ->responsiveImages()
                                     ->maxSize(1024 * 3)
