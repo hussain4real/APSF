@@ -76,7 +76,7 @@ $video = $homepageModel->media->filter(function($media){
 
         .heading-primary {
             font-size: 5.2rem;
-            color: #333;
+            color: #e56131;
             font-weight: 700;
             letter-spacing: -0.5px;
             line-height: 1.05;
@@ -204,8 +204,8 @@ $video = $homepageModel->media->filter(function($media){
                 <p class="hero-description">
                     {{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}
                 </p>
-                <a href="#" class="btn btn--fill margin-right-btn"
-                >Be a member
+                <a href="{{ route('filament.admin.auth.register') }}" class="btn btn--fill margin-right-btn"
+                >{{__('frontend.hero.action')}}
                 </a>
                 <a href="#" class="btn btn--outline margin-right-btn"
                 >Learn more &darr;
