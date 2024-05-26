@@ -16,6 +16,6 @@ class Members extends Cluster
 
     public static function canAccess(): bool
     {
-        return false;
+        return true;
     }
 }

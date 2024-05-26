@@ -222,14 +222,14 @@ class ListUsers extends ListRecords
                         'class' => 'mx-16',
                         //                        ml-16 my-1
                     ]),
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
             ]);
+        //            ->bulkActions([
+        //                BulkActionGroup::make([
+        //                    DeleteBulkAction::make(),
+        //                    ForceDeleteBulkAction::make(),
+        //                    RestoreBulkAction::make(),
+        //                ]),
+        //            ]);
     }
 
     protected function handleRatingAndComment($entity, $user, $data): void

@@ -43,7 +43,6 @@ class CreateContractor extends CreateRecord
             ->label(__('Phone'))
             ->required()
             ->tel()
-            ->telRegex('/^\+\d{1,3}-\d{3}-\d{4}$/')
             ->prefixIcon('heroicon-o-phone')
             ->prefixIconColor('primary')
             ->placeholder('+123-4566-7890');

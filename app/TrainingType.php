@@ -21,7 +21,7 @@ enum TrainingType: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::COURSE => 'primary',
             self::CERTIFICATION => 'success',
             self::WORKSHOP => 'danger',
-            self::SEMINAR => 'gray',
+            self::SEMINAR => 'secondary',
             self::CONFERENCE => 'warning',
         };
     }
@@ -42,9 +42,9 @@ enum TrainingType: string implements HasColor, HasDescription, HasIcon, HasLabel
     {
         return match ($this) {
             self::COURSE => 'heroicon-o-book-open',
-            self::CERTIFICATION => 'heroicon-o-badge-check',
+            self::CERTIFICATION => 'heroicon-o-check-badge',
             self::WORKSHOP => 'heroicon-o-cog',
-            self::SEMINAR => 'heroicon-o-clipboard-check',
+            self::SEMINAR => 'heroicon-o-clipboard-document-check',
             self::CONFERENCE => 'heroicon-o-calendar',
         };
     }
