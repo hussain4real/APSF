@@ -44,12 +44,12 @@ class CreateHomepage extends CreateRecord
                                     ->label(__('First Description')),
                                 Textarea::make('hero_description_two')
                                     ->label(__('Second Description')),
-                                SpatieMediaLibraryFileUpload::make('attachment')
+                                SpatieMediaLibraryFileUpload::make('video_attachment')
                                     ->collection('hero_video')
                                     ->hiddenLabel()
                                     ->responsiveImages()
-                                    ->maxSize(1024 * 1000 * 2)
-                                    ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 2).' bytes.'))
+                                    ->maxSize(1024 * 1000 * 1)
+                                    ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 1).' bytes.'))
                                     ->hintIcon('heroicon-o-information-circle')
                                     ->hintColor('warning')
                                     ->imagePreviewHeight('150')
