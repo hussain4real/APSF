@@ -15,6 +15,10 @@ class Frontends extends Cluster
 
     public static function canAccess(): bool
     {
-        return true;
+        if (auth()->user()->id === 1 || auth()->user()->id === 8) {
+            return true;
+        }
+
+        return false;
     }
 }
