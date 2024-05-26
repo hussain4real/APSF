@@ -12,6 +12,7 @@ use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -494,5 +495,13 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function subscription(): HasOne
     {
         return $this->hasOne(Subscription::class);
+    }
+
+    public function trainingPrograms(): BelongsToMany
+    {
+        return $this->belongsToMany(TrainingProgram::class, 'training_program_users')
+            ->using(TrainingProgramUser::class)
+            ->withPivot('status', 'enrolled_at')
+            ->withTimestamps();
     }
 }

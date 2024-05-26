@@ -39,7 +39,10 @@ class ViewTrainingProgram extends ViewRecord
                         ->headerActions([
                             Action::make('enrol')
                                 ->action(function ($record) {
-                                    return redirect()->route('enrolment.create', ['trainingProgram' => $record->id]);
+                                    //attach the auth user to the training program
+                                    $record->users()->attach(auth()->user()->id);
+
+                                    return redirect()->route('enrolment.pay', ['trainingProgram' => $record->id]);
                                 })
                                 ->icon('heroicon-o-pencil-square')
                                 ->requiresConfirmation(),

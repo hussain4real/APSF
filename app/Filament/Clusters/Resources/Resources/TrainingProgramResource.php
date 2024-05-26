@@ -23,7 +23,7 @@ class TrainingProgramResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            Resources\Resources\TrainingProgramResource\RelationManagers\UsersRelationManager::class,
         ];
     }
 

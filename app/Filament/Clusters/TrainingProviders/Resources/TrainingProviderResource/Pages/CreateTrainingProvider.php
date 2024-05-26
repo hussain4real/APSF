@@ -45,7 +45,7 @@ class CreateTrainingProvider extends CreateRecord
         return TextInput::make('institution_phone')
             ->label(__('Phone Number'))
             ->placeholder('+12345667890')
-            ->tel()
+//            ->tel()
 //            ->minValue(12)
 //            ->maxValue(12)
             //please check the number you've entered

@@ -37,11 +37,195 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 //    dd($heroTitle);
 
 @endphp
+
+    <style>
+        #home-video{
+            display:flex;
+            max-width: 100%;
+            max-height: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        #home-video video{
+            width: 100%;
+            height: 20%;
+            object-fit: cover;
+
+        }
+
+        .section-hero {
+            background-color: #fdf2e9;
+            padding: 4rem 0;
+        }
+
+        .hero {
+            /* We'll not use px to define the length and will use rem. */
+            /* max-width: 1300px; */
+            max-width: 130rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0 3.2rem;
+            margin: 0 auto;
+            align-items: center;
+            gap: 0 9.6rem;
+        }
+
+        .heading-primary {
+            font-size: 5.2rem;
+            color: #333;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.05;
+            margin-bottom: 3.6rem;
+        }
+
+        .hero-description {
+            font-size: 2rem;
+            line-height: 1.5;
+            margin-bottom: 4.8rem;
+        }
+
+        .hero-img-box {
+            grid-column: 2/3;
+            grid-row: 1 / 3;
+        }
+
+        .hero-img {
+            width: 100%;
+            border-radius: 2rem;
+        }
+
+        .btn:link,
+        .btn:visited {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: 600;
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+            border-radius: 9px;
+            /* margin-top: 4.8rem; */
+            padding: 1.6rem 3.2rem;
+            margin-bottom: 2rem;
+            text-decoration: none;
+
+            transition: background-color 500ms;
+        }
+
+        .btn--fill:link,
+        .btn--fill:visited {
+            background-color: #e56131;
+            color: #fff;
+        }
+
+        .btn--outline:link,
+        .btn--outline:visited {
+            color: #555;
+            background-color: #fff;
+        }
+
+        .btn--fill:hover,
+        .btn--fill:active {
+            background-color: #e56131;
+            text-decoration: underline;
+        }
+
+        .btn--outline:hover,
+        .btn--outline:active {
+            background-color: #fdf2e9;
+            /* Now we'll not use border as in border the outlines are on the outside. Instead we'll use the outline or box-shadow property */
+            box-shadow: inset 0px 0px 0px 3px #fff;
+            text-decoration: underline;
+            /* outline: #fff solid 3px; */
+        }
+
+        /* We'll create a utility class that can be used for any element by simply adding a class. */
+        .margin-right-btn {
+            margin-right: 2.4rem;
+        }
+
+        .delivered-meals {
+            display: flex;
+            align-items: center;
+            gap: 3.2rem;
+        }
+
+        .delivered-imgs img {
+            width: 4.8rem;
+            height: 4.8rem;
+            border-radius: 50%;
+            margin-right: -1.6rem;
+            outline: #fdf2e9 solid 3px;
+        }
+
+        .delivered-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .delivered-text span {
+            color: #cf711f;
+        }
+    </style>
     <x-slot:title>
         {{$homepageModel->seo_title ?? 'Home'}}
     </x-slot:title>
-    <!-- Hero area start -->
-    <section class="service__hero-2">
+    <!--demo video hero-->
+    <div id="home-video">
+        <video autoplay muted loop>
+            <source src="{{asset('assets/imgs/apsf/who-we-are/Sequence 01 Copy 01_7_1.mp4')}}" type="">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Hero area start1 -->
+
+    <section class="section-hero">
+        <!-- 1.  Now we need to make our hero section display grid and need to center the content in the page.
+
+             2. To acheive that we need to create a div container inside of our section that contains all the text and img -->
+
+        <div class="hero">
+            <div class="hero-text-box">
+                <h1 class="heading-primary">
+                    {{ __($heroTitle) }}
+                </h1>
+                <p class="hero-description">
+                    {{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}
+                </p>
+                <a href="#" class="btn btn--fill margin-right-btn"
+                >Be a member
+                </a>
+                <a href="#" class="btn btn--outline margin-right-btn"
+                >Learn more &darr;
+                </a>
+            </div>
+            <div class="hero-img-box">
+                <img
+                    src="https://images.unsplash.com/photo-1604184221837-cd1c5fe094f0?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Woman enjoying food, meals in storage container, and food bowls on a table"
+                    class="hero-img"
+                />
+            </div>
+            <div class="delivered-meals">
+                <div class="delivered-imgs">
+                    <img src="https://ui-avatars.com/api/?background=random" alt="Customer photo" />
+                    <img src="https://prayagtandon.github.io/Omnifood-Project/Hero-section/img/customers/customer-2.jpg" alt="Customer photo" />
+                    <img src="https://ui-avatars.com/api/?name=Khamis+Obaid" alt="Customer photo" />
+                    <img src="https://prayagtandon.github.io/Omnifood-Project/Hero-section/img/customers/customer-4.jpg" alt="Customer photo" />
+                    <img src="https://prayagtandon.github.io/Omnifood-Project/Hero-section/img/customers/customer-5.jpg" alt="Customer photo" />
+                    <img src="https://ui-avatars.com/api/?name=Aminu+Hussain" alt="Customer photo" />
+                </div>
+                <p class="delivered-text">
+                    <span>25+</span> members signed up!
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Hero area start2 -->
+    <section class="service__hero-2" >
+
         <div class="container">
             <div class="row">
                 <div class="col-xxl-12">
@@ -64,13 +248,13 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
             </div>
         </div>
 
-        <img src="assets/imgs/home-7/shape-6.png" alt="Shape Image" class="shape-1">
+        <img src="assets/imgs/home-7/shape-6.png" alt="Shape Image" class="shape-1" id="content">
     </section>
     <!-- Hero area end -->
 
 
     <!-- About area start -->
-    <section class="about__area-7" style="background-color: #f8f1e6;">
+    <section class="about__area-7" style="background-color: #f8f1e6;" >
         <div class="container pt-130 pb-110">
             <div class="row">
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
@@ -211,6 +395,11 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
 </x-home-layout>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.btn--outline').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('#content').scrollIntoView({ behavior: 'smooth' });
+         });
+
 
         // const observer = new PerformanceObserver((list) => {
         //     const entries = list.getEntries();
