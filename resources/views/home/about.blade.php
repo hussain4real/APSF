@@ -38,6 +38,14 @@
     $objectiveDescriptionTwelve = $aboutUsModel->objective_description_twelve ?? null;
     @endphp
 
+    <style>
+        #about-hero img {
+            width: 100%;
+            height: 70vh;
+            object-fit: cover;
+            border-radius: 2rem;
+        }
+    </style>
     <x-slot:title>
         {{$aboutUsModel->seo_title ?? 'About Arab Private schools Federation'}}
     </x-slot:title>
@@ -48,7 +56,7 @@
             <div class="sec-title-wrapper">
 
                 <div class="row">
-                    <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
+                    <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5" id="about-hero">
                         <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
                         <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
                         <br><br>
@@ -68,12 +76,6 @@
         </div>
     </section>
     <!-- Story area end --><br><br><br><br><br><br><br><br><br><br>
-    <div  id="video-wrapper">
-        <video autoplay loop>
-            <source src="{{asset('assets/imgs/apsf/who-we-are/Sequence 01 Copy 01_7_1.mp4')}}" type="">
-            Your browser does not support the video tag.
-        </video>
-    </div>
 
     <!-- FAQ area start -->
     <section class="faq__area">

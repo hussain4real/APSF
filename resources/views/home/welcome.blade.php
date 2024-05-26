@@ -35,6 +35,9 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
     $partnersDescription = $homepageModel->partners_description ?? null;
     $chairmanImage = $homepageModel->media->first()->getUrl() ?? null;
 //    dd($heroTitle);
+$video = $homepageModel->media->filter(function($media){
+    return $media->mime_type == 'video/mp4';
+})->first();
 
 @endphp
 
@@ -49,7 +52,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
         }
         #home-video video{
             width: 100%;
-            height: 20%;
+            height: 88vh;
             object-fit: cover;
 
         }
@@ -173,10 +176,17 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
     </x-slot:title>
     <!--demo video hero-->
     <div id="home-video">
-        <video autoplay muted loop>
-            <source src="{{asset('assets/imgs/apsf/who-we-are/Sequence 01 Copy 01_7_1.mp4')}}" type="">
-            Your browser does not support the video tag.
-        </video>
+        @if($video)
+            <video autoplay muted loop>
+                <source src="{{$video->getUrl()}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+{{--        @else--}}
+{{--        <video autoplay muted loop>--}}
+{{--            <source src="{{asset('assets/imgs/apsf/who-we-are/Sequence 01 Copy 01_7_1.mp4')}}" type="">--}}
+{{--            Your browser does not support the video tag.--}}
+{{--        </video>--}}
+        @endif
     </div>
 
     <!-- Hero area start1 -->

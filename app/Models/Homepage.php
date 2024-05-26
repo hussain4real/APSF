@@ -69,5 +69,6 @@ class Homepage extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('chairman_images');
+        $this->addMediaCollection('hero_video');
     }
 }
