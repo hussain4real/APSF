@@ -120,7 +120,7 @@ class Register extends BaseRegister
                 'school' => __('school'),
                 'teacher' => __('teacher'),
                 'student' => __('student'),
-                'service provider' => __('service provider'),
+                'service provider' => __('Service Provider'),
                 'member' => __('Others'),
             ])
             ->prefixIcon('heroicon-o-user');
