@@ -15,6 +15,7 @@ use Filament\Actions\Action;
 use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Wizard\Step;
@@ -110,21 +111,43 @@ class Register extends BaseRegister
             ->required();
     }
 
-    public static function getEntityFormField(): ToggleButtons
+    public static function getEntityFormField(): Select
     {
-        return ToggleButtons::make('entity')
-            ->label(__('profiles'))
+        return Select::make('entity')
+            ->label(__('Profiles'))
             ->options([
                 //                'founder' => __('founder'),
                 'school' => __('school'),
                 'teacher' => __('teacher'),
                 'student' => __('student'),
-                'member' => __('member'),
+                'service provider' => __('service provider'),
+                'member' => __('Others'),
+            ])
+            ->prefixIcon('heroicon-o-user');
+        //        return ToggleButtons::make('entity')
+        //            ->label(__('profiles'))
+        //            ->options([
+        //                //                'founder' => __('founder'),
+        //                'school' => __('school'),
+        //                'teacher' => __('teacher'),
+        //                'student' => __('student'),
+        //                'member' => __('member'),
+        //                'contractor' => __('contractor'),
+        //                'training_provider' => __('training provider'),
+        //                'educational_consultant' => __('educational consultant'),
+        //            ])
+        //            ->inline();
+    }
+
+    public static function getServiceProviderFormField(): Select
+    {
+        return Select::make('service_provider')
+            ->label(__('Service Provider'))
+            ->options([
                 'contractor' => __('contractor'),
                 'training_provider' => __('training provider'),
                 'educational_consultant' => __('educational consultant'),
-            ])
-            ->inline();
+            ]);
     }
 
     public function getCancelFormAction(): Action
@@ -146,7 +169,23 @@ class Register extends BaseRegister
                     $this->getEntityFormField()
                         ->live(onBlur: false)
                         ->default('member'),
+                    $this->getServiceProviderFormField()
+                        ->live(onBlur: false)
+                        ->visible(function (Get $get) {
+                            return $get('entity') === 'service provider';
+                        }),
                 ]),
+            //            Step::make('Service Provider Selection')
+            //                ->translateLabel()
+            //                ->description(__('Please select the type of service you provide'))
+            //                ->schema([
+            //                    $this->getServiceProviderFormField()
+            //                        ->live(onBlur: false)
+            //                        ->default('contractor'),
+            //                ])
+            //                ->visible(function (Get $get) {
+            //                    return $get('entity') === 'service provider';
+            //                }),
             Step::make('School Profile')
                 ->translateLabel()
                 ->icon('heroicon-o-building-library')
@@ -154,9 +193,9 @@ class Register extends BaseRegister
                 ->visible(function (Get $get) {
                     return $get('entity') === 'school';
                 })
-                //                ->hidden(function (Get $get) {
-                //                    return $get('entity') !== 'school';
-                //                })
+            //                ->hidden(function (Get $get) {
+            //                    return $get('entity') !== 'school';
+            //                })
                 ->description(__('Please provide your school details'))
                 ->schema([
                     CreateSchool::getNameFormField(),
@@ -203,7 +242,7 @@ class Register extends BaseRegister
                 ->icon('heroicon-o-clipboard-document')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
-                    return $get('entity') === 'contractor';
+                    return $get('service_provider') === 'contractor';
                 })
                 ->description(__('Please provide more details to complete your profile as a contractor'))
                 ->schema([
@@ -236,7 +275,7 @@ class Register extends BaseRegister
                 ->icon('heroicon-o-clipboard-document-check')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
-                    return $get('entity') === 'training_provider';
+                    return $get('service_provider') === 'training_provider';
                 })
                 ->description(__('Please provide more details to complete your profile as a training provider'))
                 ->schema([
@@ -253,7 +292,7 @@ class Register extends BaseRegister
                 ->icon('heroicon-o-chart-pie')
                 ->completedIcon('heroicon-m-hand-thumb-up')
                 ->visible(function (Get $get) {
-                    return $get('entity') === 'educational_consultant';
+                    return $get('service_provider') === 'educational_consultant';
                 })
                 ->description(__('Please provide more details to complete your profile as an educational consultant'))
                 ->schema([
@@ -333,7 +372,7 @@ class Register extends BaseRegister
             $user = $this->getUserModel()::create($data);
 
             //            dd($user);
-            match ($data['entity']) {
+            match ($data['entity'] || $data['service_provider'] ?? null) {
                 //                'school' => $this->getSchoolModel()::create(array_merge($data, ['user_id' => $user->id])),
                 //user hasMany schools and school belongsTo user
                 'school' => $user->schools()->create([

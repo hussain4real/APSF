@@ -7,6 +7,9 @@
     html {
         @apply text-base xl:text-lg;
     }
+    #banner{
+        @apply w-fit max-w-full;
+    }
 
     /* #name-column{
         @apply font-semibold !text-xl;

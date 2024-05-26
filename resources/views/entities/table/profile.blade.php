@@ -1,6 +1,6 @@
 <!-- https://gist.github.com/goodreds/5b8a4a2bf11ff67557d38c5e727ea86c -->
 
-<div class="max-w-2xl sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-xl mt-4 bg-white shadow-md rounded-lg text-gray-900">
+<div class="max-w-2xl sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-xl bg-white shadow-md rounded-lg text-gray-900">
     <div class="rounded-t-lg h-32 overflow-hidden">
         <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'>
     </div>

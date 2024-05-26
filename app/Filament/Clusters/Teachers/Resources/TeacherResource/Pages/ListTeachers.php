@@ -198,13 +198,13 @@ class ListTeachers extends ListRecords
                         'class' => 'ml-16 my-1',
                     ]),
 
-            ])
-            ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
-                ]),
             ]);
+        //            ->bulkActions([
+        //                BulkActionGroup::make([
+        //                    DeleteBulkAction::make(),
+        //                    ForceDeleteBulkAction::make(),
+        //                    RestoreBulkAction::make(),
+        //                ]),
+        //            ]);
     }
 }

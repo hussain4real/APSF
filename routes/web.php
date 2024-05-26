@@ -25,6 +25,10 @@ Route::view('/refund-policy', 'home.refund-policy')
 //Volt::route('/livefeeds', 'livefeeds.list');
 Route::view('/pricing', 'home.pricing')
     ->name('pricing');
+
+//course enrollment
+Route::view('/enroll-payment', 'enrolment.pay')
+    ->name('enrolment.pay');
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
