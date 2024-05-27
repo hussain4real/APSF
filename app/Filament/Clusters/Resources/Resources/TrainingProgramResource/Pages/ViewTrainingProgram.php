@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Resources\Resources\TrainingProgramResource\Pages;
 
 use App\Filament\Clusters\Resources\Resources\TrainingProgramResource;
+use App\Models\TrainingProgram;
 use Filament\Actions;
 use Filament\Infolists\Components\Actions\Action;
 use Filament\Infolists\Components\ImageEntry;
@@ -11,10 +12,12 @@ use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
 use Filament\Infolists\Components\Split;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\IconPosition;
+use Illuminate\Contracts\View\View;
 
 class ViewTrainingProgram extends ViewRecord
 {
@@ -37,15 +40,38 @@ class ViewTrainingProgram extends ViewRecord
                         ->iconColor('primary')
                         ->description(__('Information about the training program.'))
                         ->headerActions([
-                            Action::make('enrol')
+                            Action::make('enroll')
+                                ->registerModalActions([
+                                    Action::make('enroll')
+                                        ->requiresConfirmation()
+                                        ->action(function ($record) {
+                                            $record->users()->attach(auth()->user()->id);
+                                            Notification::make('enrolled')
+                                                ->info()
+                                                ->body(__('You have successfully enrolled in the training program. Pending Payment'))
+                                                ->send();
+
+                                            //                                            return redirect()->route('enrolment.pay', ['trainingProgram' => $record]);
+                                        }),
+                                ])
                                 ->action(function ($record) {
                                     //attach the auth user to the training program
-                                    $record->users()->attach(auth()->user()->id);
-
-                                    return redirect()->route('enrolment.pay', ['trainingProgram' => $record->id]);
+                                    //                                    $record->users()->attach(auth()->user()->id);
+                                    //                                    Notification::make('enrolled')
+                                    //                                        ->info()
+                                    //                                        ->body(__('You have successfully enrolled in the training program. Pending Payment'))
+                                    //                                        ->send();
+                                    //
+                                    //                                    return redirect()->route('enrolment.pay', ['trainingProgram' => $record]);
                                 })
-                                ->icon('heroicon-o-pencil-square')
-                                ->requiresConfirmation(),
+                                ->modalContent(fn (TrainingProgram $record, Action $action): View => view(
+                                    'enrolment.pay',
+                                    [
+                                        'trainingProgram' => $record,
+                                        'action' => $action,
+                                    ]
+                                ))
+                                ->icon('heroicon-o-pencil-square'),
                         ])
                         ->schema([
                             SpatieMediaLibraryImageEntry::make('attachment')
