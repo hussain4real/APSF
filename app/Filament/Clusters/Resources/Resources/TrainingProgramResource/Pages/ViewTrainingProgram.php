@@ -14,9 +14,11 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\IconPosition;
+use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
 
 class ViewTrainingProgram extends ViewRecord
@@ -42,10 +44,14 @@ class ViewTrainingProgram extends ViewRecord
                         ->headerActions([
                             Action::make('enroll')
                                 ->registerModalActions([
-                                    Action::make('enroll')
+                                    Action::make('make_payment')
+                                        ->button()
+                                        ->size(ActionSize::Medium)
+                                        ->color('primary')
                                         ->requiresConfirmation()
                                         ->action(function ($record) {
-                                            $record->users()->attach(auth()->user()->id);
+                                            //attach the auth user to the training program and set enrolled_at
+                                            $record->users()->attach(auth()->user()->id, ['enrolled_at' => now()]);
                                             Notification::make('enrolled')
                                                 ->info()
                                                 ->body(__('You have successfully enrolled in the training program. Pending Payment'))
@@ -71,6 +77,8 @@ class ViewTrainingProgram extends ViewRecord
                                         'action' => $action,
                                     ]
                                 ))
+                                ->modalWidth(MaxWidth::MinContent)
+                                ->modalSubmitAction(false)
                                 ->icon('heroicon-o-pencil-square'),
                         ])
                         ->schema([

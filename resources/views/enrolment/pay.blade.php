@@ -21,15 +21,16 @@
 
     .pricing-card {
         width: 700px;
-        font-family: 'Open Sans';
+        font-family: 'Puppins', sans-serif;
         display: flex;
         margin: 75px auto;
-        box-shadow: 15px 30px 30px 0 rgba(220, 36, 48, 0.15);
+        border-radius: 2rem;
+        box-shadow: 10px 10px 10px 0 rgba(2, 24, 6,0.5);
     }
 
     .card-left {
         text-align: center;
-        background: linear-gradient(65deg, #7b4397 , #dc2430);
+        background: linear-gradient(65deg, #033733 , #dc2430);
         color: #fff;
         width: 30%;
         padding: 85px 20px;
@@ -38,12 +39,13 @@
 
     .card-left h1 {
         text-transform: uppercase;
-        margin-bottom: 2px;
+        margin-bottom: 1rem;
         font-size: 24px;
     }
 
     .card-left p {
         font-size: 60px;
+        margin: 2rem 0;
     }
 
     .dollar {
@@ -90,17 +92,21 @@
 </style>
 <div class="pricing-card">
     <div class="card-left">
-        <h1>Gold</h1>
-        <p><span class="dollar">$</span>17</p>
+        <h1>{{$trainingProgram->title}}</h1>
+        <p><span class="dollar">$</span>{{$trainingProgram->cost}}</p>
+        <h4>{{$trainingProgram->instructor_name}}</h4>
     </div>
     <div class="card-right">
-        <h1>Features:</h1>
+        <h1>{{$trainingProgram->instructor}}</h1>
         <ul>
-            <li>&mdash; Looks great</li>
-            <li>&mdash; HTML / CSS only</li>
-            <li>&mdash; Feature 3</li>
-            <li>&mdash; Feature 4</li>
+            <li>&mdash; {{$trainingProgram->duration}}</li>
+            <li>&mdash; {{$trainingProgram->mode_of_delivery}}</li>
+            <li>&mdash; {{$trainingProgram->type}}</li>
+            <li>&mdash; {{$trainingProgram->start_date->diffForHumans()}}</li>
         </ul>
-        <a href="#" class="button">Pay</a>
+{{--        <a href="#" class="button">Pay</a>--}}
+        <div>
+            {{ $action->getModalAction('make_payment') }}
+        </div>
     </div>
 </div>
