@@ -255,9 +255,9 @@ $plans = collect( [
                                 @endforelse
                             </ul>
                             @if($plan['name'] == 'الطلبة')
-                                <button id="price-button" type="button" class="w-100 btn btn-lg">سجل مجانًا</button>
+                                <a href="{{ route('filament.admin.auth.register') }}" id="price-button" type="button" class="w-100 btn btn-lg">سجل مجانًا</a>
                             @else
-                            <button id="price-button" type="button" class="w-100 btn btn-lg">ابدأ الآن</button>
+                            <a href="{{ route('filament.admin.auth.register') }}" id="price-button" type="button" class="w-100 btn btn-lg">ابدأ الآن</a>
                                 @endif
                         </div>
                     </div>
