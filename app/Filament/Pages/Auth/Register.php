@@ -174,7 +174,8 @@ class Register extends BaseRegister
                         ->visible(function (Get $get) {
                             return $get('entity') === 'service provider';
                         }),
-                ]),
+                ])
+                ->columns(2),
             //            Step::make('Service Provider Selection')
             //                ->translateLabel()
             //                ->description(__('Please select the type of service you provide'))
@@ -372,7 +373,7 @@ class Register extends BaseRegister
             $user = $this->getUserModel()::create($data);
 
             //            dd($user);
-            match ($data['entity'] || $data['service_provider'] ?? null) {
+            match ($data['entity'] ?? null) {
                 //                'school' => $this->getSchoolModel()::create(array_merge($data, ['user_id' => $user->id])),
                 //user hasMany schools and school belongsTo user
                 'school' => $user->schools()->create([
@@ -385,10 +386,12 @@ class Register extends BaseRegister
                 ]),
                 'teacher' => $this->getTeacherModel()::create(array_merge($data, ['user_id' => $user->id])),
                 'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
-                'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
-                //                'founder' => $this->getFounderModel()::create(array_merge($data, ['user_id' => $user->id])),
-                'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
-                'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'service provider' => match ($data['service_provider'] ?? null) {
+                    'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
+                    'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
+                    'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
+                    default => null,
+                },
                 'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
                 default => null,
             };

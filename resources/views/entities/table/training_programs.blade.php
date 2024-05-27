@@ -2,7 +2,7 @@
 {{--sample cards for courses--}}
 <div
     class="max-w-2xl sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-xl bg-white dark:bg-slate-700 shadow-md rounded-lg text-gray-900 dark:text-gray-200 overflow-hidden ">
-    <img class="w-full" src="{{$getRecord()->media[0]->getUrl()}}" alt="Sunset in the mountains">
+    <img class="w-full max-h-full h-[13rem]" src="{{$getRecord()->media[0]->getUrl()}}" alt="Sunset in the mountains">
     {{--    @dd($getRecord())--}}
     <div class="px-2 py-4 text-center">
         <div class="font-bold text-xl mb-2">{{$getRecord()->title}}</div>

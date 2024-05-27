@@ -53,6 +53,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Orange,
             ])
+            ->databaseTransactions(true)
             ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
             ->brandLogoHeight('3rem')
             ->favicon(asset('assets/imgs/apsf/logo/apsf_favicon.png'))
