@@ -216,10 +216,10 @@ $plans = collect( [
             </div>
 
             <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 class="display-4 fw-normal text-body-emphasis heading">Pricing and Features</h1>
+                <h1 class="display-4 fw-normal text-body-emphasis heading">الفوائد والمزايا والأسعار</h1>
                 <p class="fs-5 text-body-secondary lh-base ">
 {{--                    generate a good description for the pricing and features for arab federation--}}
-                    The Arab Private Schools Federation is a non-profit organization that aims to provide a platform for educational institutions, training providers, and students to connect and collaborate. We offer a range of subscription plans to suit your needs, whether you are a service provider, supplier, school, educational institution, or student. Our plans include a variety of features to help you make the most of your membership. Contact us to learn more about our pricing and features.
+                    الاتحاد العربي للمدارس الخاصة هو منظمة غير ربحية تهدف إلى توفير منصة للمؤسسات التعليمية ومقدمي التدريب والطلاب للتواصل والتعاون. نقدم مجموعة متنوعة من خطط الاشتراك لتناسب احتياجاتكم، سواء كنتم مقدمين للخدمات أو موردين أو مدارس أو مؤسسات تعليمية أو طلاب. تشمل خططنا مجموعة من الميزات لمساعدتكم على الاستفادة القصوى من عضويتكم. اتصلوا بنا لمعرفة المزيد عن الأسعار والميزات.
                 </p>
             </div>
         </header>
@@ -254,7 +254,11 @@ $plans = collect( [
                                 <li>Email support</li>
                                 @endforelse
                             </ul>
-                            <button id="price-button" type="button" class="w-100 btn btn-lg">Contact us</button>
+                            @if($plan['name'] == 'الطلبة')
+                                <button id="price-button" type="button" class="w-100 btn btn-lg">سجل مجانًا</button>
+                            @else
+                            <button id="price-button" type="button" class="w-100 btn btn-lg">ابدأ الآن</button>
+                                @endif
                         </div>
                     </div>
                 </div>

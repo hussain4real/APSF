@@ -166,6 +166,7 @@
             align-items: center;
             margin:1rem 2rem;
             gap: 4rem;
+
             grid-template-columns: 1fr 1fr;
             background: var(--grape-0);
         }
@@ -190,7 +191,7 @@
         }
 
         .under-hero1 {
-            color: var(--gray-7);
+            color: var(--gray-8);
             font-size: 1.5rem;
             line-height: 3rem;
             margin-block-end: var(--size-3);
@@ -214,6 +215,7 @@
             width: max-content;
             height: 600px;
             object-fit: contain;
+            border-radius: 2rem;
         }
         /*second hero style end*/
 
@@ -259,10 +261,11 @@
 
             </section>
             <picture class="promo-art2">
-                <img src="https://images.unsplash.com/photo-1600880291319-1a7499c191e8?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="a random doodle">
+                <img src="{{asset('assets/imgs/apsf/services/services-body/400x600_services.webp')}}" alt="a random doodle">
             </picture>
         </div>
         <!-- third Hero area end -->
+        <hr>
         <div class="container hero-line"></div>
 
         <div class="solution__wrapper">
