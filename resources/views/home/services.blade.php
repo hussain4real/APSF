@@ -79,10 +79,200 @@
     $sixthServiceTagFive = $serviceTagFive[5] ?? null;
 //    dd($firstServiceSideTitle);
     @endphp
+    <style>
+        .trial-hero-wrapper{
+            /*make it a container with margin on left and right*/
+
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /*first hero style start
+        1500x600_banner copy
+        */
+        .hero {
+            position: relative;
+            background: url('assets/imgs/apsf/services/services-body/1500x600_banner copy.webp') center/cover no-repeat;
+            /*background: url('https://images.pexels.com/photos/2570062/pexels-photo-2570062.jpeg') center/cover no-repeat;*/
+            height: 100vh;
+            margin:1rem 0 4rem 0;
+            padding-right: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Black color with 60% opacity */
+            z-index: 1; /* Ensure the overlay is behind the content */
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #fff;
+            z-index: 2; /* Ensure the content is on top of the overlay */
+        }
+
+        .hero-title {
+            font-size: 5em;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .hero-subtitle {
+            font-size: 2em;
+            color: rgb(175, 175, 175);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-in-out 0.5s;
+        }
+
+        .hero-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            text-decoration: none;
+            color: #fff;
+            background-color: #a22817;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .hero-button:hover {
+            background-color: #d22912;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /*first hero style end*/
+
+        /*second hero style start*/
+        @import "https://unpkg.com/open-props";
+        @import "https://unpkg.com/open-props/normalize.min.css";
+
+
+        .hero1-container {
+            display: grid;
+            align-items: center;
+            margin:1rem 2rem;
+            gap: 4rem;
+
+            grid-template-columns: 1fr 1fr;
+            background: var(--grape-0);
+        }
+
+        .hero1 {
+            padding: 0;
+            display: grid;
+            gap: var(--size-5);
+        }
+
+        .hero-message1 {
+            display: grid;
+            grid-template-columns: max-content;
+            color: #e56131;
+            line-height: 1.2;
+            font-size: 6rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-message1 > div:last-child {
+            color: var(--indigo-7);
+        }
+
+        .under-hero1 {
+            color: var(--gray-8);
+            font-size: 1.5rem;
+            line-height: 3rem;
+            margin-block-end: var(--size-3);
+        }
+
+        .promo-art1 {
+            align-self: stretch;
+
+        }
+
+        .promo-art1 > img {
+            block-size: 100%;
+            object-fit: cover;
+        }
+
+        .promo-art2 {
+            align-self: stretch;
+        }
+
+        .promo-art2 > img {
+            width: max-content;
+            height: 600px;
+            object-fit: contain;
+            border-radius: 2rem;
+        }
+        /*second hero style end*/
+
+    </style>
     <!-- Hero area start -->
+    <div class="trial-hero-wrapper">
+        <!-- first Hero area start -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">{{__("frontend.service.heading")}}</h1>
+                <p class="hero-subtitle">{{__("frontend.service.description")}}</p>
+                <a href="#" class="hero-button">Get Started</a>
+            </div>
+        </div>
+        <!-- first Hero area end -->
+
+    </div>
     <section class="solution__area">
+        <!-- second Hero area start -->
+        <div class="hero1-container">
+            <section class="hero1">
+                <h1 class="hero-message1">
+                    <div>{{__("frontend.service.heading")}}</div>
+
+                </h1>
+                <p class="under-hero1">{{__("frontend.service.description")}}</p>
+
+            </section>
+            <picture class="promo-art1">
+                <img src="https://doodleipsum.com/700/outline?i=513477ea4837ed87ff2fc8e64ae66968" height="900"  alt="a random doodle">
+            </picture>
+        </div>
+        <!-- second Hero area end -->
+        <hr>
+        <!-- third Hero area start -->
+        <div class="hero1-container">
+            <section class="hero1">
+                <h1 class="hero-message1">
+                    <div>{{__("frontend.service.heading")}}</div>
+
+                </h1>
+                <p class="under-hero1">{{__("frontend.service.description")}}</p>
+
+            </section>
+            <picture class="promo-art2">
+                <img src="{{asset('assets/imgs/apsf/services/services-body/400x600_services.webp')}}" alt="a random doodle">
+            </picture>
+        </div>
+        <!-- third Hero area end -->
+        <hr>
         <div class="container hero-line"></div>
+
         <div class="solution__wrapper">
+
             <div class="solution__left">
                 <div class="solution__img-1">
                     <img src="assets/imgs/apsf/services/services-offered/services_435x472.jpg" alt="Solution Image">
