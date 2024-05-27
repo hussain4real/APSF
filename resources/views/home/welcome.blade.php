@@ -44,6 +44,7 @@ $video = $homepageModel->media->filter(function($media){
     <style>
         #home-video{
             display:flex;
+            position: relative;
             max-width: 100%;
             max-height: 100%;
             justify-content: center;
@@ -52,9 +53,35 @@ $video = $homepageModel->media->filter(function($media){
         }
         #home-video video{
             width: 100%;
-            height: 88vh;
+            height: 94vh;
             object-fit: cover;
 
+
+        }
+        #customControls{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0,0,0,0.1);
+            padding: 1rem;
+            z-index: 100;
+        }
+
+        #muteButton{
+            background-color: #e56131;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            opacity: 0; /* Hide the button initially */
+            transition: opacity 0.5s; /* Smooth transition */
+        }
+        #home-video:hover #muteButton{
+            opacity: 1; /* Show the button on hover */
         }
 
         .section-hero {
@@ -177,15 +204,32 @@ $video = $homepageModel->media->filter(function($media){
     <!--demo video hero-->
     <div id="home-video">
         @if($video)
-            <video autoplay muted loop>
+            <video id="myVideo" autoplay loop >
                 <source src="{{$video->getUrl()}}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-{{--        @else--}}
-{{--        <video autoplay muted loop>--}}
-{{--            <source src="{{asset('assets/imgs/apsf/who-we-are/Sequence 01 Copy 01_7_1.mp4')}}" type="">--}}
-{{--            Your browser does not support the video tag.--}}
-{{--        </video>--}}
+            <div id="customControls">
+                <!-- audio icon -->
+
+                <button id="muteButton">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+                            <path d="M3.293 3.707a1 1 0 0 1 0 1.414L1.414 7H4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1.414l1.879 1.879a1 1 0 1 1-1.414 1.414L0 13.414A1 1 0 0 1 0 12V4a1 1 0 0 1 1.293-.707l1 1zM6 4.5v7l5 3V1l-5 3z"/>
+                            <path d="M10.5 5.5a1 1 0 0 1 1.555.832l-.666 2.5a1 1 0 0 1-1.555.832l-.666-.5a1 1 0 0 1 0-1.664l.666-.5a1 1 0 0 1 0-1.664l-.666-.5a1 1 0 0 1-.889-.277z"/>
+                        </svg>
+                    </span>
+                    Mute
+                </button>
+            </div>
+{{--            <div id="customControls" >--}}
+{{--                    audio icon--}}
+{{--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">--}}
+{{--                        <path d="M3.293 3.707a1 1 0 0 1 0 1.414L1.414 7H4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1.414l1.879 1.879a1 1 0 1 1-1.414 1.414L0 13.414A1 1 0 0 1 0 12V4a1 1 0 0 1 1.293-.707l1 1zM6 4.5v7l5 3V1l-5 3z"/>--}}
+{{--                        <path d="M10.5 5.5a1 1 0 0 1 1.555.832l-.666 2.5a1 1 0 0 1-1.555.832l-.666-.5a1 1 0 0 1 0-1.664l.666-.5a1 1 0 0 1 0-1.664l-.666-.5a1 1 0 0 1-.889-.277z"/>--}}
+{{--                    </svg>--}}
+
+{{--                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">--}}
+{{--            </div>--}}
         @endif
     </div>
 
@@ -213,7 +257,8 @@ $video = $homepageModel->media->filter(function($media){
             </div>
             <div class="hero-img-box">
                 <img
-                    src="https://images.unsplash.com/photo-1604184221837-cd1c5fe094f0?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="{{asset('assets/imgs/apsf/home_hero/600x800_with2 child copy.webp')}}"
+{{--                    src="https://images.unsplash.com/photo-1604184221837-cd1c5fe094f0?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"--}}
                     alt="Woman enjoying food, meals in storage container, and food bowls on a table"
                     class="hero-img"
                 />
@@ -234,32 +279,32 @@ $video = $homepageModel->media->filter(function($media){
         </div>
     </section>
     <!-- Hero area start2 -->
-    <section class="service__hero-2" >
+{{--    <section class="service__hero-2" >--}}
 
-        <div class="container">
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="service__hero-inner-2">
-                        <div class="service__hero-left-2">
-                            <img src="assets/imgs/apsf/home-header/home-435x472.webp" alt="Image" class="image-1">
-                            <img src="assets/imgs/apsf/home-header/home-240x240.webp" alt="Image" class="image-2">
-                            <!-- <img src="assets/imgs/apsf/header-area/student.webp" alt="Image" class="image-3"> -->
-                            <img src="assets/imgs/apsf/home-header/img.png" alt="Image" class="image-4">
-                        </div>
-                        <div class="service__hero-right-2 hero7__thum-anim">
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-xxl-12">--}}
+{{--                    <div class="service__hero-inner-2">--}}
+{{--                        <div class="service__hero-left-2">--}}
+{{--                            <img src="assets/imgs/apsf/home-header/home-435x472.webp" alt="Image" class="image-1">--}}
+{{--                            <img src="assets/imgs/apsf/home-header/home-240x240.webp" alt="Image" class="image-2">--}}
+{{--                            <!-- <img src="assets/imgs/apsf/header-area/student.webp" alt="Image" class="image-3"> -->--}}
+{{--                            <img src="assets/imgs/apsf/home-header/img.png" alt="Image" class="image-4">--}}
+{{--                        </div>--}}
+{{--                        <div class="service__hero-right-2 hero7__thum-anim">--}}
 {{--                            part of css animation: creative--}}
-                            <h2 class="title ">{{ __($heroTitle) }} </h2>
+{{--                            <h2 class="title ">{{ __($heroTitle) }} </h2>--}}
 {{--                            part of css animation: animate_content--}}
-                            <p class="to_justify ">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>
-                            <img src="assets/imgs/home-7/scroll.png" alt="scroll Image" class="scroll">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                            <p class="to_justify ">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>--}}
+{{--                            <img src="assets/imgs/home-7/scroll.png" alt="scroll Image" class="scroll">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <img src="assets/imgs/home-7/shape-6.png" alt="Shape Image" class="shape-1" id="content">
-    </section>
+{{--        <img src="assets/imgs/home-7/shape-6.png" alt="Shape Image" class="shape-1" id="content">--}}
+{{--    </section>--}}
     <!-- Hero area end -->
 
 
@@ -405,6 +450,35 @@ $video = $homepageModel->media->filter(function($media){
 </x-home-layout>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        var video = document.getElementById("myVideo");
+        var muteButton = document.getElementById("muteButton");
+
+// Hide the default controls
+        video.controls = false;
+
+// Add event listener for mute button
+        muteButton.addEventListener("click", function() {
+            if (video.muted) {
+                video.muted = false;
+                muteButton.textContent = "Mute";
+            } else {
+                video.muted = true;
+                muteButton.textContent = "Unmute";
+            }
+        });
+
+        // var video = document.getElementById("myVideo");
+        // var volumeControl = document.getElementById("volumeControl");
+        //
+        // // Hide the default controls
+        // video.controls = false;
+        //
+        // // Add event listener for volume control
+        // volumeControl.addEventListener("input", function() {
+        //     video.volume = volumeControl.value;
+        // });
+
         document.querySelector('.btn--outline').addEventListener('click', function(event) {
             event.preventDefault();
             document.querySelector('#content').scrollIntoView({ behavior: 'smooth' });
