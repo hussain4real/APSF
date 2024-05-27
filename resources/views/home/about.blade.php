@@ -45,6 +45,9 @@
             object-fit: cover;
             border-radius: 2rem;
         }
+        #about-description{
+            margin-top: 14px;
+        }
     </style>
     <x-slot:title>
         {{$aboutUsModel->seo_title ?? 'About Arab Private schools Federation'}}
@@ -55,15 +58,15 @@
             <span class="line-3"></span>
             <div class="sec-title-wrapper">
 
-                <div class="row">
-                    <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5" id="about-hero">
                         <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
                         <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
+                <div class="row">
+                    <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5" id="about-hero">
                         <br><br>
                         <img src="{{asset('assets/imgs/apsf/who-we-are/Hamid AlQasimi-01-62.jpg')}}" alt="Who We Are">
                     </div>
-                    <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7">
-                        <div class="story__text">
+                    <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 " id="about-description">
+                        <div class="story__text ">
                             <p class="animate_content to_justify">{{__($heroDescriptionOne)}}</p>
                             <p class="animate_content to_justify">{{__($heroDescriptionTwo)}}</p>
                             <p class="animate_content to_justify"> {{__($heroDescriptionThree)}}<br><br>{{__($heroDescriptionFour)}}</p>

@@ -336,6 +336,15 @@ URL: https://flowbite.com/docs/components/typography/
 
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>--}}
     <main class="main-container">
+        <!--add a back button or arrow-->
+        <a href="{{ route('events.index') }}" class="back-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="back-button-icon" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                      d="M10.707 4.293a1 1 0 0 1 1.414 1.414L8.414 10l3.707 3.707a1 1 0 1 1-1.414 1.414l-4-4a1 1 0 0 1 0-1.414l4-4z"
+                      clip-rule="evenodd"/>
+            </svg>
+            <span class="back-button-text">Back</span>
+        </a>
         <div class="content-container">
             <article class="article-container">
                 <header class="article-header">
@@ -407,6 +416,28 @@ URL: https://flowbite.com/docs/components/typography/
         padding-top: 2rem;
         padding-bottom: 4rem;
         background-color: #ffffff;
+    }
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        margin: 1rem 4rem;
+        color: #4d1506;
+        text-decoration: none;
+        border-radius: 0.375rem;
+        background-color: rgba(3, 55, 51, 0.8);
+        transition: all 0.3s ease;
+    }
+    .back-button-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        fill: #d22912;
+    }
+    .back-button-text {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #d22912;
     }
 
     @media (min-width: 1024px) {
