@@ -1,3 +1,4 @@
+
 <style>
 
        h1 {
@@ -100,6 +101,6 @@
             <li>&mdash; Feature 3</li>
             <li>&mdash; Feature 4</li>
         </ul>
-        <a href="#" class="button">Add To Cart</a>
+        <a href="#" class="button">Pay</a>
     </div>
 </div>
