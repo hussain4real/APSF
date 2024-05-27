@@ -34,7 +34,14 @@ class UsersRelationManager extends RelationManager
             ->recordTitleAttribute('id')
             ->columns([
                 Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make(''),
+                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('pivot.status')
+                    ->label(__('Status')),
+                Tables\Columns\TextColumn::make('pivot.enrolled_at')
+                    ->label(__('Enrolled At'))
+                    ->dateTime()
+                    ->badge()
+                    ->color('secondary'),
             ])
             ->filters([
                 //

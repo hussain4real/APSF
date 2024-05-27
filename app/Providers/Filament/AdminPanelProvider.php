@@ -51,7 +51,7 @@ class AdminPanelProvider extends PanelProvider
             ->emailVerification()
             ->passwordReset()
             ->colors([
-                'primary' => Color::Teal,
+                'primary' => Color::Orange,
             ])
             ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
             ->brandLogoHeight('3rem')
