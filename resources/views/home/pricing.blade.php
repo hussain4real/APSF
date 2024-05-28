@@ -259,7 +259,7 @@ $plans = collect( [
                                 <li>Email support</li>
                                 @endforelse
                             </ul>
-                            @if($plan['name'] == 'الطلبة')
+                            @if($plan['name'] == 'الطلبة' || $plan['name']=='الهيئة التعليمية')
                                 <a href="{{ route('filament.admin.auth.register') }}" id="price-button" type="button" class="w-100 btn btn-lg">سجل مجانًا</a>
                             @else
                             <a href="{{ route('filament.admin.auth.register') }}" id="price-button" type="button" class="w-100 btn btn-lg">ابدأ الآن</a>
