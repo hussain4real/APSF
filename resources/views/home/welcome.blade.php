@@ -49,12 +49,13 @@ $video = $homepageModel->media->filter(function($media){
             max-height: 100%;
             justify-content: center;
             align-items: center;
-            margin-bottom: 2rem;
+            /*margin-bottom: 2rem;*/
         }
         #home-video video{
             width: 100%;
             height: 94vh;
             object-fit: cover;
+            padding-bottom: 2rem;
 
 
         }
@@ -204,7 +205,7 @@ $video = $homepageModel->media->filter(function($media){
     <!--demo video hero-->
     <div id="home-video">
         @if($video)
-            <video id="myVideo" autoplay loop >
+            <video id="myVideo" autoplay loop muted>
                 <source src="{{$video->getUrl()}}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -257,7 +258,7 @@ $video = $homepageModel->media->filter(function($media){
             </div>
             <div class="hero-img-box">
                 <img
-                    src="{{asset('assets/imgs/apsf/home_hero/600x800_with2 child copy.webp')}}"
+                    src="{{asset('assets/imgs/apsf/home_hero/home-435x472.webp')}}"
 {{--                    src="https://images.unsplash.com/photo-1604184221837-cd1c5fe094f0?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"--}}
                     alt="Woman enjoying food, meals in storage container, and food bowls on a table"
                     class="hero-img"
@@ -451,23 +452,25 @@ $video = $homepageModel->media->filter(function($media){
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        var video = document.getElementById("myVideo");
-        var muteButton = document.getElementById("muteButton");
+      var video = document.getElementById("myVideo");
+var muteButton = document.getElementById("muteButton");
 
 // Hide the default controls
-        video.controls = false;
+video.controls = false;
+
+// Set initial button text
+muteButton.textContent = video.muted ? "Unmute" : "Mute";
 
 // Add event listener for mute button
-        muteButton.addEventListener("click", function() {
-            if (video.muted) {
-                video.muted = false;
-                muteButton.textContent = "Mute";
-            } else {
-                video.muted = true;
-                muteButton.textContent = "Unmute";
-            }
-        });
-
+muteButton.addEventListener("click", function() {
+    if (video.muted) {
+        video.muted = false;
+        muteButton.textContent = "Mute";
+    } else {
+        video.muted = true;
+        muteButton.textContent = "Unmute";
+    }
+});
         // var video = document.getElementById("myVideo");
         // var volumeControl = document.getElementById("volumeControl");
         //

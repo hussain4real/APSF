@@ -217,7 +217,7 @@
         .promo-art2 > img {
             width: max-content;
             height: 600px;
-            object-fit: contain;
+            object-fit: cover;
             border-radius: 2rem;
         }
         /*second hero style end*/
@@ -264,6 +264,8 @@
 
             </section>
             <picture class="promo-art2">
+{{--                400x600_services--}}
+{{--                1500x600_banner copy--}}
                 <img src="{{asset('assets/imgs/apsf/services/services-body/400x600_services.webp')}}" alt="a random doodle">
             </picture>
         </div>
