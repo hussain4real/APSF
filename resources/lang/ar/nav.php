@@ -1,13 +1,14 @@
 <?php
 
 return [
-    'Home' => 'الصّفحة الرّئيسيّة',
+    'Home' => ' الرّئيسيّة',
     'About Us' => 'من نحن',
     'Committee' => 'اللجان',
     'Founders Committee' => ' المشاركون في التأسيس',
     'Board of Trustees' => 'مجلسُ الأمناء',
     'General Secretariat' => 'الأمانةُ العامّة',
     'Services' => 'الخدمات',
+    'Membership' => 'العضوية',
     'Events' => 'الفعاليّات',
     'Contact Us' => 'تواصل معنا',
     'Login' => 'تسجيلُ الدّخول',
