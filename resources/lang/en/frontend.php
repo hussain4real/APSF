@@ -10,7 +10,8 @@ return [
                                 you\'ll find tailored support, collaboration opportunities and resources to facilitate
                                 the growth and excellence of your institution. Join us in shaping the future of
                                 education in the Arab region.',
-        'action' => 'Be A Member',
+        'action' => 'Join Us',
+        'learn more' => 'Learn More',
     ],
     'mission' => [
         'title' => 'Mission',

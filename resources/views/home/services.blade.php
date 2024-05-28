@@ -84,7 +84,8 @@
             /*make it a container with margin on left and right*/
 
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 ;
+
         }
         /*first hero style start
         1500x600_banner copy
@@ -99,6 +100,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-bottom-left-radius: 4rem;
+            border-bottom-right-radius: 4rem;
         }
 
         .hero::before {
@@ -113,6 +116,7 @@
         }
 
         .hero-content {
+
             text-align: center;
             color: #fff;
             z-index: 2; /* Ensure the content is on top of the overlay */
@@ -120,15 +124,15 @@
 
         .hero-title {
             font-size: 5em;
-            color: #fff;
-            margin-bottom: 20px;
+            color: #e56131;
+            margin: 2rem 0;
             animation: fadeInUp 1s ease-in-out;
         }
 
         .hero-subtitle {
             font-size: 2em;
-            color: rgb(175, 175, 175);
-            margin-bottom: 30px;
+            color: rgb(150, 149, 149);
+            margin: 3rem 0 4rem 0;
             animation: fadeInUp 1s ease-in-out 0.5s;
         }
 
@@ -138,8 +142,8 @@
             font-size: 1.2em;
             text-decoration: none;
             color: #fff;
-            background-color: #a22817;
-            border-radius: 5px;
+            background-color: #e56131;
+            border-radius: 0.5rem;
             transition: background-color 0.3s ease-in-out;
         }
 
@@ -230,7 +234,7 @@
             <div class="hero-content">
                 <h1 class="hero-title">{{__("frontend.service.heading")}}</h1>
                 <p class="hero-subtitle">{{__("frontend.service.description")}}</p>
-                <a href="#" class="hero-button">Get Started</a>
+                <a href="#" class="hero-button">{{__('frontend.hero.action')}}</a>
             </div>
         </div>
         <!-- first Hero area end -->
@@ -238,85 +242,85 @@
     </div>
     <section class="solution__area">
         <!-- second Hero area start -->
-        <div class="hero1-container">
-            <section class="hero1">
-                <h1 class="hero-message1">
-                    <div>{{__("frontend.service.heading")}}</div>
+{{--        <div class="hero1-container">--}}
+{{--            <section class="hero1">--}}
+{{--                <h1 class="hero-message1">--}}
+{{--                    <div>{{__("frontend.service.heading")}}</div>--}}
 
-                </h1>
-                <p class="under-hero1">{{__("frontend.service.description")}}</p>
+{{--                </h1>--}}
+{{--                <p class="under-hero1">{{__("frontend.service.description")}}</p>--}}
 
-            </section>
-            <picture class="promo-art1">
-                <img src="https://doodleipsum.com/700/outline?i=513477ea4837ed87ff2fc8e64ae66968" height="900"  alt="a random doodle">
-            </picture>
-        </div>
+{{--            </section>--}}
+{{--            <picture class="promo-art1">--}}
+{{--                <img src="https://doodleipsum.com/700/outline?i=513477ea4837ed87ff2fc8e64ae66968" height="900"  alt="a random doodle">--}}
+{{--            </picture>--}}
+{{--        </div>--}}
         <!-- second Hero area end -->
-        <hr>
+{{--        <hr>--}}
         <!-- third Hero area start -->
-        <div class="hero1-container">
-            <section class="hero1">
-                <h1 class="hero-message1">
-                    <div>{{__("frontend.service.heading")}}</div>
+{{--        <div class="hero1-container">--}}
+{{--            <section class="hero1">--}}
+{{--                <h1 class="hero-message1">--}}
+{{--                    <div>{{__("frontend.service.heading")}}</div>--}}
 
-                </h1>
-                <p class="under-hero1">{{__("frontend.service.description")}}</p>
+{{--                </h1>--}}
+{{--                <p class="under-hero1">{{__("frontend.service.description")}}</p>--}}
 
-            </section>
-            <picture class="promo-art2">
+{{--            </section>--}}
+{{--            <picture class="promo-art2">--}}
 {{--                400x600_services--}}
 {{--                1500x600_banner copy--}}
-                <img src="{{asset('assets/imgs/apsf/services/services-body/400x600_services.webp')}}" alt="a random doodle">
-            </picture>
-        </div>
+{{--                <img src="{{asset('assets/imgs/apsf/services/services-body/400x600_services.webp')}}" alt="a random doodle">--}}
+{{--            </picture>--}}
+{{--        </div>--}}
         <!-- third Hero area end -->
-        <hr>
-        <div class="container hero-line"></div>
+{{--        <hr>--}}
+{{--        <div class="container hero-line"></div>--}}
 
-        <div class="solution__wrapper">
+{{--        <div class="solution__wrapper">--}}
 
-            <div class="solution__left">
-                <div class="solution__img-1">
-                    <img src="assets/imgs/apsf/services/services-offered/services_435x472.jpg" alt="Solution Image">
-                </div>
-                <div class="solution__img-2">
-                    <img src="assets/imgs/apsf/services/services-offered/services_220x334.jpg" alt="Solution Image">
-                </div>
-            </div>
+{{--            <div class="solution__left">--}}
+{{--                <div class="solution__img-1">--}}
+{{--                    <img src="assets/imgs/apsf/services/services-offered/services_435x472.jpg" alt="Solution Image">--}}
+{{--                </div>--}}
+{{--                <div class="solution__img-2">--}}
+{{--                    <img src="assets/imgs/apsf/services/services-offered/services_220x334.jpg" alt="Solution Image">--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="solution__mid">
-                <h1 class="solution__title orange_color">{{__("frontend.service.heading")}}</h1>
-                <p class="to_justify">{{__("frontend.service.description")}}</p>
-            </div>
+{{--            <div class="solution__mid">--}}
+{{--                <h1 class="solution__title orange_color">{{__("frontend.service.heading")}}</h1>--}}
+{{--                <p class="to_justify">{{__("frontend.service.description")}}</p>--}}
+{{--            </div>--}}
 
-            <div class="solution__right">
-                <div class="solution__img-3">
-                    <img src="assets/imgs/apsf/services/services-offered/img.png" alt="Solution Image">
-                </div>
-            </div>
-        </div>
+{{--            <div class="solution__right">--}}
+{{--                <div class="solution__img-3">--}}
+{{--                    <img src="assets/imgs/apsf/services/services-offered/img.png" alt="Solution Image">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="container pb-130">
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="solution__btm">
-                        <ul>
+{{--        <div class="container pb-130">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-xxl-12">--}}
+{{--                    <div class="solution__btm">--}}
+{{--                        <ul>--}}
 {{--                            <li>{{__("frontend.service.tagOne")}}</li>--}}
 {{--                            <li>{{__("frontend.service.tagTwo")}}</li>--}}
 {{--                            <li>{{__("frontend.service.tagThree")}}</li>--}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
-        <div class="solution__shape">
-            <img src="assets/imgs/apsf/icon/1.png" alt="Shape Image" class="shape-1">
-            <img src="assets/imgs/apsf/icon/2.png" alt="Shape Image" class="shape-2">
-            <img src="assets/imgs/apsf/icon/3.png" alt="Shape Image" class="shape-3">
-            <img src="assets/imgs/apsf/icon/4.png" alt="Shape Image" class="shape-4">
-            <img src="assets/imgs/apsf/icon/5.png" alt="Shape Image" class="shape-5">
-        </div>
+{{--        <div class="solution__shape">--}}
+{{--            <img src="assets/imgs/apsf/icon/1.png" alt="Shape Image" class="shape-1">--}}
+{{--            <img src="assets/imgs/apsf/icon/2.png" alt="Shape Image" class="shape-2">--}}
+{{--            <img src="assets/imgs/apsf/icon/3.png" alt="Shape Image" class="shape-3">--}}
+{{--            <img src="assets/imgs/apsf/icon/4.png" alt="Shape Image" class="shape-4">--}}
+{{--            <img src="assets/imgs/apsf/icon/5.png" alt="Shape Image" class="shape-5">--}}
+{{--        </div>--}}
     </section>
     <!-- Hero area end -->
 
@@ -376,7 +380,7 @@
                                             <li>{{__($firstServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.hero.action")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -396,7 +400,7 @@
                                             <li>{{__($secondServiceTagFour)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.hero.action")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -418,7 +422,7 @@
                                             <li>{{__($thirdServiceTagFive)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.hero.action")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -437,7 +441,7 @@
                                             <li>{{__($fourthServiceTagThree)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.hero.action")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -455,7 +459,7 @@
                                             <li>{{__($fifthServiceTagTwo)}}</li>
                                         </ul>
                                         <div class="btn_wrapper">
-                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.hero.action")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +478,7 @@
 {{--                                            <li>{{__($sixthServiceTagThree)}}</li>--}}
 {{--                                        </ul>--}}
                                         <div class="btn_wrapper">
-                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.action.text")}} <i class="fa-solid fa-arrow-right"></i></a>
+                                            <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-secondary btn-item btn-hover orange_color2"><span></span>{{__("frontend.hero.action")}} <i class="fa-solid fa-arrow-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
