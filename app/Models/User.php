@@ -505,4 +505,14 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
             ->withPivot('status', 'enrolled_at')
             ->withTimestamps();
     }
+
+    public function subscribed(): bool
+    {
+        return $this->subscription()->exists();
+    }
+
+    public function subscriptionExpired(): bool
+    {
+        return $this->subscription->ends_at->isPast();
+    }
 }
