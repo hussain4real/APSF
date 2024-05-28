@@ -161,6 +161,7 @@ class Register extends BaseRegister
     {
         return [
             Step::make('Entity')
+                ->id('entity')
                 ->translateLabel()
                 ->icon('heroicon-o-clipboard')
                 ->description(__('Please select your profile'))
@@ -278,6 +279,7 @@ class Register extends BaseRegister
                 ->visible(function (Get $get) {
                     return $get('service_provider') === 'training_provider';
                 })
+
                 ->description(__('Please provide more details to complete your profile as a training provider'))
                 ->schema([
                     CreateTrainingProvider::getInstitutionNameFormField(),
@@ -342,6 +344,11 @@ class Register extends BaseRegister
         return Action::make('register')
             ->label(__('filament-panels::pages/auth/register.form.actions.register.label'))
             ->submit('register');
+    }
+
+    public function hasLogo(): bool
+    {
+        return true;
     }
 
     /**
