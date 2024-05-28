@@ -4,7 +4,7 @@
 $plans = collect( [
      [
         'name' => 'المدارس',
-        'price' => '650',
+        'price' => '$650',
         'features' => [
             'فرصة الاستفادة من خبرت وتجارب وممارسات الأعضاء ',
             'المشاركة  في اجتماعات الاتحاد والمعارض',
@@ -16,7 +16,7 @@ $plans = collect( [
     ],
     [
         'name' => 'الهيئة التعليمية',
-        'price' => '130',
+        'price' => '$130',
         'features' => [
             'منح دراسية جامعية',
             'دورات مجانية ',
@@ -29,7 +29,7 @@ $plans = collect( [
     ],
     [
         'name' => 'الطلبة',
-        'price' => '26',
+        'price' => '$26',
         'features' => [
             'منح دراسية جامعي',
             'منح الاتحاد المدرسية',
@@ -41,7 +41,7 @@ $plans = collect( [
     ],
       [
         'name' => 'الموردون   ',
-        'price' => '000',
+        'price' => 'اتصل بنا',
         'features' => [
             'فرصة الاستفادة من التعامل مع عدد كبير من المدارس الأعضاء ',
             'المشاركة في معارض الاتحاد',
@@ -50,7 +50,7 @@ $plans = collect( [
     ],
     [
         'name' => 'مقدم خدمة    ',
-        'price' => '000',
+        'price' => 'اتصل بنا',
         'features' => [
             'فرصة الاستفادة من التعامل مع جمهور المنصة وتقديم الخدمات التدريبية او الاستشارية مقابل رسوم. ',
             'المشاركة في معارض الاتحاد ',
@@ -237,7 +237,12 @@ $plans = collect( [
                             <h4 class="my-0 fw-normal">{{$plan['name']}}</h4>
                         </div>
                         <div class="card-body">
-                            <h1 class="card-title pricing-card-title mt-4">${{$plan['price']}}<small class="text-body-secondary fw-light">/سنويا</small></h1>
+                            <h1 class="card-title pricing-card-title mt-4">
+                                {{$plan['price']}}
+                                @if($plan['price'] != 'اتصل بنا')
+                                <small class="text-body-secondary fw-light">/سنويا</small>
+                                @endif
+                            </h1>
                             @if($plan['name'] == 'الطلبة' || $plan['name']=='الهيئة التعليمية')
                                 <p>مجانا في السنة الأولى للمدارس المشتركة
                                 </p>

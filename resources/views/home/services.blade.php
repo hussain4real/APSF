@@ -92,7 +92,7 @@
         */
         .hero {
             position: relative;
-            background: url('assets/imgs/apsf/services/services-body/1500x600_banner copy.webp') center/cover no-repeat;
+            background: url('assets/imgs/apsf/services/services-body/1500x600_banner copy (1).webp') center/cover no-repeat;
             /*background: url('https://images.pexels.com/photos/2570062/pexels-photo-2570062.jpeg') center/cover no-repeat;*/
             height: 100vh;
             margin:1rem 0 4rem 0;

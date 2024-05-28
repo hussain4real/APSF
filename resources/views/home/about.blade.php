@@ -41,7 +41,7 @@
     <style>
         #about-hero img {
             width: 100%;
-            height: 70vh;
+            height: 80vh;
             object-fit: cover;
             border-radius: 2rem;
         }
@@ -58,8 +58,8 @@
             <span class="line-3"></span>
             <div class="sec-title-wrapper">
 
-                        <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
-                        <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
+                <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
+                <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
                 <div class="row">
                     <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5" id="about-hero">
                         <br><br>
@@ -281,7 +281,7 @@
 {{--                        style="padding-left: 50px;"--}}
 {{--                        <img src="https://plus.unsplash.com/premium_photo-1663013506908-a6f66c941587?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="FAQ Image" class="faq-image" >--}}
 {{--                        <img src="assets/imgs/apsf/objectives/objectives.webp" alt="FAQ Image" class="faq-image">--}}
-                        <img src="{{asset('assets/imgs/apsf/objectives/596x1104_Objective copy.webp')}}" alt="FAQ Image" class="faq-image">
+                        <img src="{{asset('assets/imgs/apsf/objectives/596x1104_Objective copy (1).webp')}}" alt="FAQ Image" class="faq-image">
                     </div>
                 </div>
             </div>

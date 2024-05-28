@@ -408,12 +408,16 @@ class Register extends BaseRegister
 
         //        events(new Registered($user));
         //
-        //        $this->sendEmailVerificationNotification($user);
+        $this->sendEmailVerificationNotification($user);
 
-        //        $user->createAsCustomer([
-        //            'name' => $user->first_name.' '.$user->last_name,
-        //            'trial_ends_at' => now()->addDays(7)->format('Y-m-d H:i:s'),
-        //        ]);
+        //if user is a student or teacher create subscription with 1 year
+        if ($user->student || $user->teacher) {
+            $user->subscription()->create([
+                'type' => 'yearly',
+                'status' => 'active',
+                'ends_at' => now()->addYear(),
+            ]);
+        }
         Filament::auth()->login($user);
 
         session()->regenerate();
