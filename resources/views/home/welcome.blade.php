@@ -252,8 +252,8 @@ $video = $homepageModel->media->filter(function($media){
                 <a href="{{ route('filament.admin.auth.register') }}" class="btn btn--fill margin-right-btn"
                 >{{__('frontend.hero.action')}}
                 </a>
-                <a href="#" class="btn btn--outline margin-right-btn"
-                >Learn more &darr;
+                <a href="{{route('membership')}}" class="btn btn--outline margin-right-btn"
+                >{{__('frontend.hero.learn more')}}
                 </a>
             </div>
             <div class="hero-img-box">
@@ -453,24 +453,24 @@ $video = $homepageModel->media->filter(function($media){
     document.addEventListener('DOMContentLoaded', function() {
 
       var video = document.getElementById("myVideo");
-var muteButton = document.getElementById("muteButton");
+      var muteButton = document.getElementById("muteButton");
 
-// Hide the default controls
-video.controls = false;
+        // Hide the default controls
+        video.controls = false;
 
-// Set initial button text
-muteButton.textContent = video.muted ? "Unmute" : "Mute";
+        // Set initial button text
+        muteButton.textContent = video.muted ? "Unmute" : "Mute";
 
-// Add event listener for mute button
-muteButton.addEventListener("click", function() {
-    if (video.muted) {
-        video.muted = false;
-        muteButton.textContent = "Mute";
-    } else {
-        video.muted = true;
-        muteButton.textContent = "Unmute";
-    }
-});
+        // Add event listener for mute button
+        muteButton.addEventListener("click", function() {
+            if (video.muted) {
+                video.muted = false;
+                muteButton.textContent = "Mute";
+            } else {
+                video.muted = true;
+                muteButton.textContent = "Unmute";
+            }
+        });
         // var video = document.getElementById("myVideo");
         // var volumeControl = document.getElementById("volumeControl");
         //
@@ -482,10 +482,10 @@ muteButton.addEventListener("click", function() {
         //     video.volume = volumeControl.value;
         // });
 
-        document.querySelector('.btn--outline').addEventListener('click', function(event) {
-            event.preventDefault();
-            document.querySelector('#content').scrollIntoView({ behavior: 'smooth' });
-         });
+        // document.querySelector('.btn--outline').addEventListener('click', function(event) {
+        //     event.preventDefault();
+        //     document.querySelector('#content').scrollIntoView({ behavior: 'smooth' });
+        //  });
 
 
         // const observer = new PerformanceObserver((list) => {

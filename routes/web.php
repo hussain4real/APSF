@@ -23,8 +23,8 @@ Route::view('/privacy-policy', 'home.privacy-policy')
 Route::view('/refund-policy', 'home.refund-policy')
     ->name('refund-policy');
 //Volt::route('/livefeeds', 'livefeeds.list');
-Route::view('/pricing', 'home.pricing')
-    ->name('pricing');
+Route::view('/membership', 'home.pricing')
+    ->name('membership');
 
 //course enrollment
 Route::view('/enroll-payment', 'enrolment.pay')

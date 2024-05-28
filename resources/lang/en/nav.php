@@ -8,6 +8,7 @@ return [
     'Board of Trustees' => 'Board of Trustees',
     'General Secretariat' => 'General Secretariat',
     'Services' => 'Services',
+    'Membership' => 'Membership',
     'Events' => 'Events',
     'Contact Us' => 'Contact Us',
     'Login' => 'Login',

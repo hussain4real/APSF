@@ -43,6 +43,7 @@ new class extends Component {
                         </ul>
                     </li>
                     <li><a href="{{ route('services') }}" >{{__('nav.Services')}}</a>
+                    <li><a href="{{ route('membership') }}" >{{__('nav.Membership')}}</a>
 
                         <!-- <ul class="main-dropdown">
               <li><a href="#">Academic Support</a></li>
