@@ -15,7 +15,7 @@ $plans = collect( [
         ]
     ],
     [
-        'name' => 'الهيئة التعليمية  ',
+        'name' => 'الهيئة التعليمية',
         'price' => '130',
         'features' => [
             'منح دراسية جامعية',
@@ -201,7 +201,7 @@ $plans = collect( [
         .features li{
             /*wrap text after 3 words*/
             overflow: hidden;
-            text-align: center;
+            text-align: right;
             text-overflow: ellipsis;
             text-wrap: wrap;
             display: -webkit-box;
@@ -238,8 +238,13 @@ $plans = collect( [
                         </div>
                         <div class="card-body">
                             <h1 class="card-title pricing-card-title mt-4">${{$plan['price']}}<small class="text-body-secondary fw-light">/سنويا</small></h1>
+                            @if($plan['name'] == 'الطلبة' || $plan['name']=='الهيئة التعليمية')
+                                <p>مجانا في السنة الأولى للمدارس المشتركة
+                                </p>
+                            @endif
                             <ul class="mt-4 mb-4 features breadcrumb">
                                 @forelse($plan['features'] as $feature)
+
                                 <li>
                                     <span>
 {{--                                       bullet instead--}}
