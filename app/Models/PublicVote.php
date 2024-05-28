@@ -16,12 +16,18 @@ class PublicVote extends Model
     public function casts(): array
     {
         return [
-            //
+            'option1' => 'integer',
+            'option2' => 'integer',
+            'option3' => 'integer',
         ];
     }
 
     public array $translatable =
         [
-            //
+            'question',
+            'option1',
+            'option2',
+            'option3',
+            'ip_address',
         ];
 }

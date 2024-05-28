@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('public_votes', function (Blueprint $table) {
             $table->id();
             $table->text('question');
-            $table->json('options');
+            $table->unsignedBigInteger('option1')->default(0);
+            $table->unsignedBigInteger('option2')->default(0);
+            $table->unsignedBigInteger('option3')->default(0);
+            $table->ipAddress('ip_address')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\BoardOfTrusteeController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\LemonSqueezySubscriptionController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
+use App\Http\Controllers\PublicVoteController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
@@ -96,11 +96,14 @@ Route::post('/checkout', [Pay2MController::class, 'checkout'])
 //Route::get('/subscribe', [SubscriptionController::class, 'create'])
 //    ->middleware(['auth', RedirectIfSubscribed::class])
 //    ->name('subscribe');
-
-//Route::get('/lemon-squeezy-subscription', [LemonSqueezySubscriptionController::class, 'create'])
+Route::get('/vote', [PublicVoteController::class, 'create'])
+    ->name('vote.create');
+Route::post('/vote', [PublicVoteController::class, 'store'])
+    ->name('vote.store');
+//Route::get('/lemon-squeezy-subscription', [Pay2MController::class, 'create'])
 //    ->middleware(['auth', RedirectIfSubscribed::class])
 //    ->name('lemon-squeezy-subscription');
-//
+
 //Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
 //    ->name('update-payment-method');
 //
