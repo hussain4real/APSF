@@ -100,6 +100,8 @@ Route::get('/vote', [PublicVoteController::class, 'create'])
     ->name('vote.create');
 Route::post('/vote', [PublicVoteController::class, 'store'])
     ->name('vote.store');
+Route::get('/view-votes', [PublicVoteController::class, 'index'])
+    ->name('view-votes');
 //Route::get('/lemon-squeezy-subscription', [Pay2MController::class, 'create'])
 //    ->middleware(['auth', RedirectIfSubscribed::class])
 //    ->name('lemon-squeezy-subscription');

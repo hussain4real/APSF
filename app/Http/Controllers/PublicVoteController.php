@@ -13,7 +13,14 @@ class PublicVoteController extends Controller
      */
     public function index()
     {
-        //
+        $votes = PublicVote::all();
+        $totalVotes = [
+            'option1' => $votes->sum('option1'),
+            'option2' => $votes->sum('option2'),
+            'option3' => $votes->sum('option3'),
+        ];
+
+        return response()->json($totalVotes);
     }
 
     /**
@@ -22,8 +29,9 @@ class PublicVoteController extends Controller
     public function create()
     {
         $publicVote = PublicVote::first();
+        //        dd($publicVote);
 
-        return route('public-vote.create', compact('publicVote'));
+        return view('public-vote', compact('publicVote'));
     }
 
     /**
@@ -31,7 +39,7 @@ class PublicVoteController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //        dd($request->all());
         // Validation rules
         $validator = Validator::make($request->all(), [
             'option' => 'required|integer|between:1,3',
@@ -43,6 +51,7 @@ class PublicVoteController extends Controller
 
         $ipAddress = $request->ip();
 
+        dd($ipAddress);
         // Check if the IP address has already voted
         if (PublicVote::where('ip_address', $ipAddress)->exists()) {
             return response()->json(['error' => 'You have already voted'], 403);

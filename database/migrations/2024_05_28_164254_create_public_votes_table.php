@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('option1')->default(0);
             $table->unsignedBigInteger('option2')->default(0);
             $table->unsignedBigInteger('option3')->default(0);
-            $table->ipAddress('ip_address')->unique();
+            $table->ipAddress('ip_address')->unique()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

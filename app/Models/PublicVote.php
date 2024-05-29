@@ -25,9 +25,5 @@ class PublicVote extends Model
     public array $translatable =
         [
             'question',
-            'option1',
-            'option2',
-            'option3',
-            'ip_address',
         ];
 }
