@@ -12,6 +12,7 @@ return [
                                 education in the Arab region.',
         'action' => 'Join Us',
         'learn more' => 'Learn More',
+        'stats' => 'members signed up!',
     ],
     'mission' => [
         'title' => 'Mission',
@@ -98,5 +99,10 @@ return [
         'heading' => 'Events',
         'description' => 'Stay updated with our upcoming events and activities. Join us and be part of our community.',
         'action' => 'Read More',
+    ],
+    'votes' => [
+        'option1' => 'Excellent',
+        'option2' => 'Good',
+        'option3' => 'Acceptable',
     ],
 ];

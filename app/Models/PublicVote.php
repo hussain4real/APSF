@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
-class Membership extends Model
+class PublicVote extends Model
 {
     use HasFactory, HasTranslations, SoftDeletes;
 
@@ -16,15 +16,14 @@ class Membership extends Model
     public function casts(): array
     {
         return [
-            'benefits' => 'array',
+            'option1' => 'integer',
+            'option2' => 'integer',
+            'option3' => 'integer',
         ];
     }
 
     public array $translatable =
         [
-            'name',
-            'slug',
-            'price',
-            'benefits',
+            'question',
         ];
 }

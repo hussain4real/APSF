@@ -111,7 +111,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Black color with 60% opacity */
+            background-color: rgba(0, 0, 0, 0.5); /* Black color with 60% opacity */
             z-index: 1; /* Ensure the overlay is behind the content */
         }
 
@@ -131,7 +131,7 @@
 
         .hero-subtitle {
             font-size: 2em;
-            color: rgb(150, 149, 149);
+            color: rgb(199, 198, 198);
             margin: 3rem 0 4rem 0;
             animation: fadeInUp 1s ease-in-out 0.5s;
         }
@@ -148,7 +148,7 @@
         }
 
         .hero-button:hover {
-            background-color: #d22912;
+            background-color: #a14d2d;
         }
 
         @keyframes fadeInUp {
@@ -234,7 +234,7 @@
             <div class="hero-content">
                 <h1 class="hero-title">{{__("frontend.service.heading")}}</h1>
                 <p class="hero-subtitle">{{__("frontend.service.description")}}</p>
-                <a href="#" class="hero-button">{{__('frontend.hero.action')}}</a>
+                <a href="{{route('filament.admin.auth.register')}}" class="hero-button">{{__('frontend.hero.action')}}</a>
             </div>
         </div>
         <!-- first Hero area end -->
