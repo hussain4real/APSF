@@ -86,6 +86,8 @@ $video = $homepageModel->media->filter(function($media){
         }
 
         .section-hero {
+            display: flex;
+            flex-wrap: wrap;
             background-color: #fdf2e9;
             padding: 4rem 0;
         }

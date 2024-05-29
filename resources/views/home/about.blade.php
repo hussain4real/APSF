@@ -62,7 +62,8 @@
                 <div class="row">
                     <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5" id="about-hero">
                         <br><br>
-                        <img src="{{asset('assets/imgs/apsf/who-we-are/Hamid AlQasimi-01-62.jpg')}}" alt="Who We Are">
+{{--                        <img src="{{asset('assets/imgs/apsf/who-we-are/Hamid AlQasimi-01-62.jpg')}}" alt="Who We Are">--}}
+                        <img src="{{asset('assets/imgs/apsf/who-we-are/apsf_meeting.jpeg')}}" alt="Who We Are">
                     </div>
                     <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 " id="about-description">
                         <div class="story__text ">
