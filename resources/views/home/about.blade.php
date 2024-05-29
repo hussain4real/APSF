@@ -57,7 +57,6 @@
         <div class="container pt-140">
             <span class="line-3"></span>
             <div class="sec-title-wrapper">
-
                 <h2 class="sec-sub-title title-anim">{{__("frontend.about.name")}}</h2>
                 <h3 class="sec-title title-anim orange_color">{{__($heroTitle)}}</h3>
                 <div class="row">
@@ -277,11 +276,11 @@
                 </div>
 {{--                class="col-xxl-6 col-xl-6 col-lg-6 col-md-6"--}}
                 <div >
-                    <div >
-{{--                        style="padding-left: 50px;"--}}
-{{--                        <img src="https://plus.unsplash.com/premium_photo-1663013506908-a6f66c941587?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="FAQ Image" class="faq-image" >--}}
-{{--                        <img src="assets/imgs/apsf/objectives/objectives.webp" alt="FAQ Image" class="faq-image">--}}
-                        <img src="{{asset('assets/imgs/apsf/objectives/596x1104_Objective copy (1).webp')}}" alt="FAQ Image" class="faq-image">
+                    <div id="objective-video">
+                        <video id="myVideo" autoplay loop controls muted>
+                            <source src="{{asset('assets/imgs/apsf/objectives/objectives_video.mp4')}}" type="video/mp4" >
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </div>
@@ -290,7 +289,52 @@
     <!-- FAQ area end -->
 
 
+<style>
+    #objective-video{
+        display:flex;
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        justify-content: end;
+        align-items: end;
 
+        margin-top: 6rem;
+    }
+    #objective-video video{
+        /*width: 100%;*/
+        /*height: 94vh;*/
+        object-fit: cover;
+        border-radius: 2rem;
+        /*padding-bottom: 2rem;*/
+
+
+    }
+    #customControls{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.1);
+        padding: 1rem;
+        z-index: 100;
+    }
+
+    #muteButton{
+        background-color: #e56131;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        opacity: 0; /* Hide the button initially */
+        transition: opacity 0.5s; /* Smooth transition */
+    }
+    #home-video:hover #muteButton{
+        opacity: 1; /* Show the button on hover */
+    }
+</style>
 
 </x-home-layout>
 

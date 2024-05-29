@@ -172,8 +172,8 @@ $plans = collect( [
 
         }
         .heading{
-            color: #e56131 !important;
-            margin: 1rem auto;
+            /*color: #e56131 !important;*/
+            /*margin: 1rem auto;*/
          }
         .title-wrap{
             border-color: #0c5460;
@@ -209,6 +209,9 @@ $plans = collect( [
             -webkit-box-orient: vertical;
 
         }
+        #pricing-card{
+            background:url('assets/imgs/apsf/membership/bg_member.webp') center/cover no-repeat ;
+        }
     </style>
 
     <div class="container py-3 mt-4">
@@ -231,8 +234,8 @@ $plans = collect( [
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
                 @forelse($plans as $plan)
-                <div class="col" >
-                    <div id="pricing-card" class="card mb-4 rounded-3 shadow-sm title-wrap">
+                <div class="col" id="col-wrapper">
+                    <div id="pricing-card" class=" title-wrap">
                         <div class="card-header py-3 title-inner-wrap">
                             <h4 class="my-0 fw-normal">{{$plan['name']}}</h4>
                         </div>

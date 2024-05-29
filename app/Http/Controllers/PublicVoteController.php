@@ -46,33 +46,38 @@ class PublicVoteController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => 'Invalid vote option'], 400);
+            return response()
+                ->json(['error' => 'Invalid vote option'], 400);
         }
 
         $ipAddress = $request->ip();
 
-        dd($ipAddress);
         // Check if the IP address has already voted
         if (PublicVote::where('ip_address', $ipAddress)->exists()) {
+            //            return redirect()->to('/about')->with('error', 'You have already voted');
             return response()->json(['error' => 'You have already voted'], 403);
         }
 
-        // Create or update vote count
-        $vote = new PublicVote();
-        $vote->ip_address = $ipAddress;
+        // Retrieve the existing vote
+        $vote = PublicVote::first();
+        //        dd($vote);
 
+        // Update the IP address
+
+        //        dd($vote);
+        // Increment the selected option
         switch ($request->option) {
             case 1:
-                $vote->option1++;
+                $vote->increment('option1');
                 break;
             case 2:
-                $vote->option2++;
+                $vote->increment('option2');
                 break;
             case 3:
-                $vote->option3++;
+                $vote->increment('option3');
                 break;
         }
-
+        $vote->ip_address = $ipAddress;
         $vote->save();
 
         return response()->json(['success' => 'Vote recorded successfully']);
