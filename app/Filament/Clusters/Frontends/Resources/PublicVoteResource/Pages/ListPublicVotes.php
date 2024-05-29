@@ -33,6 +33,8 @@ class ListPublicVotes extends ListRecords
     {
         return $table
             ->columns([
+                TextColumn::make('question')
+                    ->translateLabel(),
                 TextColumn::make('option1')
                     ->numeric()
                     ->sortable(),

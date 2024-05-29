@@ -4,6 +4,7 @@ namespace App\Filament\Clusters\Frontends\Resources\PublicVoteResource\Pages;
 
 use App\Filament\Clusters\Frontends\Resources\PublicVoteResource;
 use Filament\Actions;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 
 class EditPublicVote extends EditRecord
@@ -21,5 +22,12 @@ class EditPublicVote extends EditRecord
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
         ];
+    }
+
+    public function form(Form $form): Form
+    {
+        $createForm = new CreatePublicVote();
+
+        return $createForm->form($form);
     }
 }
