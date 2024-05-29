@@ -67,10 +67,10 @@
                             <input type="radio" id="option3" name="option" value="3" class="form-check-input">
                             <label class="form-check-label" for="option3">{{__('frontend.votes.option3')}}</label>
                         </div>
-                        <button id="submit-button" type="submit" class="btn btn-primary">Vote</button>
+                        <button id="submit-button" type="submit" class="btn btn-primary">{{__('frontend.votes.rate')}}</button>
                     </form>
                     @auth
-                    <button id="viewVotes" class="btn btn-outline-info d-flex mt-3">View Votes</button>
+                    <button id="viewVotes" class="btn btn-outline-info d-flex mt-3">{{__('frontend.votes.view_ratings')}}</button>
                     @endauth
                 </div>
             </div>
