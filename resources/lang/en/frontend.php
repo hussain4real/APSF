@@ -104,7 +104,7 @@ return [
         'option1' => 'Excellent',
         'option2' => 'Good',
         'option3' => 'Acceptable',
-        'vote' => 'Vote',
-        'view_votes' => 'View Votes',
+        'rate' => 'Rate',
+        'view_ratings' => 'View Ratings',
     ],
 ];
