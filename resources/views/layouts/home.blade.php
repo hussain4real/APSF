@@ -300,17 +300,18 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                     @include('public-vote')
                     <div class="footer__middle-2">
                         <div class="row">
-                            <h2 class="mb-4">Offices:</h2>
+                            <h2 class="mb-4">{{__('frontend.offices')}}</h2>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                                 <div class="footer__location-2">
                                     <div class="location">
-                                        <h3>State of Qatar</h3>
-                                        <p>Bldg. No. 164, Zone 26 C-ring Road, Doha</p>
+                                        <h3>{{__("frontend.address1.title")}}</h3>
+                                        <p>{{__("frontend.address1.description")}}</p>
                                     </div>
                                     <div class="location">
-                                        <h3>{{__("frontend.address.title")}}</h3>
-                                        <p>{{__("frontend.address.description")}}</p>
+                                        <h3>{{__("frontend.address2.title")}}</h3>
+                                        <p>{{__("frontend.address2.description")}}</p>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
