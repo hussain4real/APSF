@@ -297,6 +297,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                         </div>
                     </div>
 
+                    @include('public-vote')
                     <div class="footer__middle-2">
                         <div class="row">
                             <h2 class="mb-4">Offices:</h2>
@@ -321,6 +322,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                     </form>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 

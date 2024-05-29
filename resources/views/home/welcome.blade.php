@@ -274,7 +274,7 @@ $video = $homepageModel->media->filter(function($media){
                     <img src="https://ui-avatars.com/api/?name=Aminu+Hussain" alt="Customer photo" />
                 </div>
                 <p class="delivered-text">
-                    <span>25+</span> members signed up!
+                    <span>25+ </span>{{__('frontend.hero.stats')}}
                 </p>
             </div>
         </div>

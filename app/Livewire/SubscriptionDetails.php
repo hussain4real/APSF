@@ -32,8 +32,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
 use Jeffgreco13\FilamentBreezy\Pages\MyProfilePage;
-use LemonSqueezy\Laravel\Order as OrderAlias;
-use LemonSqueezy\Laravel\Subscription as SubscriptionAlias;
 use Livewire\Attributes\On;
 
 class SubscriptionDetails extends MyProfileComponent implements HasActions, HasForms, HasInfolists, HasTable
@@ -58,7 +56,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
     {
         $this->user = auth()->user();
         $this->orders = $this->user->orders ?? new Collection();
-        $this->subscriptions = $this->user->subscriptions()->get() ?? new Collection();
+        $this->subscriptions = $this->user->subscription()->get() ?? new Collection();
         $this->subscriptionType = $this->subscriptions->first()->type ?? '';
         $this->subscribed = $this->user->subscription();
     }
@@ -98,10 +96,10 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
             ->emptyStateIcon('heroicon-o-banknotes')
             ->emptyStateActions([
                 \Filament\Tables\Actions\Action::make('subscribe')
-                ->label(__('Subscribe'))
-                ->url(route('lemon-squeezy-subscription'))
-                ->icon('heroicon-o-plus')
-                ->button()
+                    ->label(__('Subscribe'))
+                    ->url(route('lemon-squeezy-subscription'))
+                    ->icon('heroicon-o-plus')
+                    ->button(),
             ]);
     }
 
@@ -149,16 +147,17 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     \Filament\Infolists\Components\Actions\Action::make('manage')
                         ->icon('heroicon-o-cog')
                         ->button()
-                        ->disabled(fn()=> !auth()->user()->subscribed())
+                        ->disabled(fn () => ! auth()->user()->subscribed())
                         ->tooltip('Manage your payment details Subscription')
                         ->url(function () {
 
                             $user = auth()->user();
 
-                            if (!$user->subscribed()){
+                            if (! $user->subscribed()) {
 
-                            return null;
+                                return null;
                             }
+
                             return $user?->customerPortalUrl();
                         })
                         ->openUrlInNewTab(),
