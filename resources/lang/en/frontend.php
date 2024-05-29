@@ -43,9 +43,14 @@ return [
         'name' => 'Dr. Khamis Obaid Al Ajmi',
         'title' => 'President and founder of the Arab Federation of Private Schools',
     ],
-    'address' => [
+    'offices' => 'Offices:',
+    'address1' => [
         'title' => 'Sultanate of Oman',
         'description' => 'P O Box 755, Postal Code 328, Al Rumais, Barka',
+    ],
+    'address2' => [
+        'title' => 'State of Qatar',
+        'description' => 'Bldg. No. 164, Zone 26 C-ring Road, Doha',
     ],
     'input' => [
         'email' => 'Enter your email',
