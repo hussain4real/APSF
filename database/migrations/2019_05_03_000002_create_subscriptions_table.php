@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('transaction_id')->nullable();
             $table->string('type');
-            $table->string('status');
+            $table->string('status')->default(\App\SubscriptionStatus::PENDING);
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('paused_at')->nullable();
             $table->timestamp('ends_at')->nullable();

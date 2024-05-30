@@ -16,15 +16,7 @@
 //        $subscription = $user->subscription();
 //        $nextPayment = $subscription->nextPayment();
         $trial = auth()->user()->onTrial();
-        $genericTrial = auth()->user()->onGenericTrial();
-        $customer = auth()->user()->customer;
-//        $priceInQAR = \App\Models\User::find(auth()->user()->id)->previewPrices(['pri_01hsx4ytr4w9msrm8y666rkb2x'],['address'=>[
-//            'country_code' => 'GB',
-//            'postal_code' => 'WC1'
-//
-//        ],
-//        'currency_code' => 'GBP'
-//        ]);
+
         @endphp
         <div>
 {{--            <p>{{$subscribed->nextPayment()->date()}}</p>--}}
@@ -54,13 +46,13 @@
             @else
 {{--            {{$this->subscribeAction}}--}}
 {{--            <x-filament-actions::modals />--}}
-                <a href="{{route('lemon-squeezy-subscription')}}" >
+                <a href="{{route('subscribe')}}" >
                     <x-filament::button class="my-4 ">Subscribe</x-filament::button>
                 </a>
             @endif
         </div>
         <div>
-            @if ($genericTrial)
+            @if ($trial)
             <p class="text-yellow-400 my-2 ">Your trial ends at:
                 <span class="text-red-400">{{ $user->trialEndsAt()->diffForHumans() }}</span>
             </p>
