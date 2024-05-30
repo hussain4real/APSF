@@ -14,9 +14,19 @@ new class extends Component {
         $this->redirect('/', navigate: true);
     }
 }; ?>
+
+
 <nav>
 
+    <style>
+        @media only screen and (min-width: 992px) and (max-width: 1500px) {
+            #main-menu-wrapper{
 
+                padding-right: 2rem;
+                overflow-wrap: normal;
+            }
+        }
+    </style>
     <header class="header__area-7">
 {{--        @include('partials/language_switcher')--}}
         <div class="header__inner-2">
@@ -31,7 +41,7 @@ new class extends Component {
             <div class="header__nav-2">
                 @include('partials/language_switcher')
 {{--                animation style class: menu-anim--}}
-                <ul class="main-menu-4 ">
+                <ul class="main-menu-4 " id="main-menu-wrapper">
                     <li><a href="{{ route('welcome') }}" >{{__('nav.Home')}}</a></li>
 
                     <li><a href="{{ route('about') }}" >{{__('nav.About Us')}}</a></li>

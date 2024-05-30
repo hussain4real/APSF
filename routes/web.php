@@ -68,11 +68,19 @@ Route::view('dashboard', 'dashboard')
 // Route::get('livefeed', [LiveFeedController::class, 'index'])
 //     ->middleware(['auth'])
 //     ->name('livefeeds');
-Route::get('/testemail', function () {
+Route::get('/testtransactionemail', function () {
     $transaction = \App\Models\Transaction::first();
 
     return (new \App\Notifications\InvoicePaid($transaction))
         ->toMail($transaction->user);
+
+});
+
+Route::get('/testsubscriptionemail', function () {
+    $subscription = \App\Models\Subscription::first();
+
+    return (new \App\Notifications\SubscriptionStarted($subscription))
+        ->toMail($subscription->user);
 
 });
 Route::view('profile', 'profile')
