@@ -112,19 +112,42 @@ $video = $homepageModel->media->filter(function($media){
                 padding-bottom: 0;
             }
             .hero {
+                max-width: max-content;
                 display: flex;
                 flex-wrap: wrap;
-                padding: 0 2.4rem;
-                max-width: max-content;
+                padding: 0 3rem;
+                overflow-wrap: break-word;
             }
-            .heading-primary{
-                font-size: 3.2rem;
+            #heading-primary{
+                /*text-align: left;*/
+                width: 20rem;
+                text-wrap: wrap;
+                overflow-wrap: break-word;
+                font-size: 3.5rem;
 
             }
-            .hero-description {
+            #hero-description {
+                width: 20rem;
                 font-size: 1.5rem;
                 line-height: 1.5;
                 margin-bottom: 4.8rem;
+            }
+            #primary-button{
+                padding: 0.5rem 1rem;
+            }
+            #secondary-button{
+                padding: 0.5rem 1rem;
+            }
+            #chairman-message-wrapper{
+
+            }
+
+            #chairman-message{
+                padding: 0.5rem 1rem;
+                border-radius: 1rem;
+            }
+            .margin-right-btn {
+                margin-right: 0;
             }
         }
         .heading-primary {
@@ -268,16 +291,16 @@ $video = $homepageModel->media->filter(function($media){
 
         <div class="hero">
             <div class="hero-text-box">
-                <h1 class="heading-primary">
+                <h1 class="heading-primary" id="heading-primary">
                     {{ __($heroTitle) }}
                 </h1>
-                <p class="hero-description">
+                <p class="hero-description" id="hero-description">
                     {{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}
                 </p>
-                <a href="{{ route('filament.admin.auth.register') }}" class="btn btn--fill margin-right-btn"
+                <a id="primary-button" href="{{ route('filament.admin.auth.register') }}" class="btn btn--fill margin-right-btn"
                 >{{__('frontend.hero.action')}}
                 </a>
-                <a href="{{route('membership')}}" class="btn btn--outline margin-right-btn"
+                <a id="secondary-button" href="{{route('membership')}}" class="btn btn--outline margin-right-btn"
                 >{{__('frontend.hero.learn more')}}
                 </a>
             </div>
@@ -441,12 +464,12 @@ $video = $homepageModel->media->filter(function($media){
                 </div>
 
                 <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7">
-                    <div class="testimonial__slider-wrapper-2">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
+                    <div id="chairman-message-wrapper" class="testimonial__slider-wrapper-2">
+                        <div class="swiper" >
+                            <div class="swiper-wrapper" >
 
                                 <div class="swiper-slide testimonial__slide">
-                                    <div class="testimonial__inner-2" style="background-color: #f8f1e6;">
+                                    <div id="chairman-message" class="testimonial__inner-2" style="background-color: #f8f1e6;">
                                         <p class="testimonial__text-2 to_justify" >{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
                                             {{__($chairmanMessageThree)}} </p>
                                         <div class="chairman-name-title">
