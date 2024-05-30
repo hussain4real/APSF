@@ -115,7 +115,7 @@ $video = $homepageModel->media->filter(function($media){
                 max-width: max-content;
                 display: flex;
                 flex-wrap: wrap;
-                padding: 0 3rem;
+                padding: 0 1rem;
                 overflow-wrap: break-word;
             }
             #heading-primary{
@@ -285,9 +285,6 @@ $video = $homepageModel->media->filter(function($media){
     <!-- Hero area start1 -->
 
     <section class="section-hero">
-        <!-- 1.  Now we need to make our hero section display grid and need to center the content in the page.
-
-             2. To acheive that we need to create a div container inside of our section that contains all the text and img -->
 
         <div class="hero">
             <div class="hero-text-box">

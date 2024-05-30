@@ -299,7 +299,7 @@
 
         #objective-video video{
             height: 50vh;
-            width:23rem;
+            width:20rem;
             object-fit: contain;
             border-radius: 2rem;
         }
