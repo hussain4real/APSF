@@ -105,11 +105,26 @@ $video = $homepageModel->media->filter(function($media){
         }
         /*for mobile*/
         @media only screen and (max-width: 768px) {
+            #home-video video{
+                /*object-fit: cover;*/
+                height: 30vh;
+                object-position: center;
+                padding-bottom: 0;
+            }
             .hero {
-                grid-template-columns: 1fr;
-                gap: 3.2rem 0;
+                display: flex;
+                flex-wrap: wrap;
                 padding: 0 2.4rem;
-                max-width: 100%;
+                max-width: max-content;
+            }
+            .heading-primary{
+                font-size: 3.2rem;
+
+            }
+            .hero-description {
+                font-size: 1.5rem;
+                line-height: 1.5;
+                margin-bottom: 4.8rem;
             }
         }
         .heading-primary {
