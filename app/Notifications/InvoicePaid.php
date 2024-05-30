@@ -2,18 +2,20 @@
 
 namespace App\Notifications;
 
+use App\Models\Transaction;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TransactionBilled extends Notification
+class InvoicePaid extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public Transaction $transaction)
     {
         $this->afterCommit();
     }
@@ -25,7 +27,7 @@ class TransactionBilled extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -33,10 +35,16 @@ class TransactionBilled extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $transaction = $this->transaction;
+        $url = route('filament.admin.auth.profile');
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->subject('Payment Confirmation for Invoice #'.$transaction->transaction_id)
+            ->markdown('mail.invoice.paid',
+                [
+                    'transaction' => $transaction,
+                    'url' => $url,
+                ]);
     }
 
     /**
@@ -47,7 +55,7 @@ class TransactionBilled extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-
+            //
         ];
     }
 }
