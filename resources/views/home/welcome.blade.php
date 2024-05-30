@@ -103,7 +103,15 @@ $video = $homepageModel->media->filter(function($media){
             align-items: center;
             gap: 0 9.6rem;
         }
-
+        /*for mobile*/
+        @media only screen and (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 3.2rem 0;
+                padding: 0 2.4rem;
+                max-width: 100%;
+            }
+        }
         .heading-primary {
             font-size: 5.2rem;
             color: #e56131;
