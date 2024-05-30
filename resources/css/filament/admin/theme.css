@@ -5,7 +5,7 @@
 @layer utilities {
 
     html {
-        @apply text-base xl:text-lg;
+        @apply text-base 2xl:text-lg;
     }
     #banner{
         @apply w-fit max-w-full;

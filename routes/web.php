@@ -69,11 +69,11 @@ Route::view('dashboard', 'dashboard')
 //     ->middleware(['auth'])
 //     ->name('livefeeds');
 Route::get('/testemail', function () {
-    $user = App\Models\User::find(1);
-    $user->notify(new App\Notifications\TestEmail());
+    $transaction = \App\Models\Transaction::first();
 
-    //redirect to welcome page
-    return redirect('/');
+    return (new \App\Notifications\InvoicePaid($transaction))
+        ->toMail($transaction->user);
+
 });
 Route::view('profile', 'profile')
     ->middleware(['auth'])

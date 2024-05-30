@@ -111,5 +111,6 @@ return [
         'option3' => 'Acceptable',
         'rate' => 'Rate',
         'view_ratings' => 'View Ratings',
+        'success' => 'Thank you very much for the feedback. Your input is highly valued. If you have any additional comments or suggestions, please feel free to contact us at info@arab-psf.com.',
     ],
 ];

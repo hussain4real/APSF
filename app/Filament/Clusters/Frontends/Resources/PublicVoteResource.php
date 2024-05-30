@@ -17,7 +17,7 @@ class PublicVoteResource extends Resource
 
     protected static ?string $model = PublicVote::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-arrows-up-down';
 
     protected static ?string $cluster = Frontends::class;
 

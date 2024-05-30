@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('order_date');
             $table->string('response_key');
             $table->string('amount');
-            $table->string('status')->default('pending');
+            $table->string('status')->default(\App\TransactionStatus::PENDING);
             $table->timestamps();
 
         });

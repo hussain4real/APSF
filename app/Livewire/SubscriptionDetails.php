@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Order;
 use App\Models\Subscription;
+use App\Models\Transaction;
 use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
@@ -40,7 +41,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
 
     public array $data;
 
-    public Collection $orders;
+    public Collection $transactions;
 
     //    public $user;
 
@@ -55,49 +56,44 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
     public function mount()
     {
         $this->user = auth()->user();
-        $this->orders = $this->user->orders ?? new Collection();
+        $this->transactions = $this->user->transactions ?? new Collection();
         $this->subscriptions = $this->user->subscription()->get() ?? new Collection();
         $this->subscriptionType = $this->subscriptions->first()->type ?? '';
-        $this->subscribed = $this->user->subscription();
+        $this->subscribed = $this->user->subscribed();
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->query(Order::query()->where('billable_id', auth()->id())->where('billable_type', 'App\Models\User'))
+            ->query(Transaction::query()->where('user_id', auth()->id()))
             ->columns([
-                TextColumn::make('ordered_at')
+                TextColumn::make('order_date')
+                    ->label(__('Transaction Date'))
                     ->date()
-                    ->since()
                     ->color('info')
                     ->badge(),
-                TextColumn::make('total')
-                    ->money('OMR', 100),
+                TextColumn::make('amount')
+                    ->money('OMR'),
                 TextColumn::make('status')
-                    ->badge()
-                    ->color(fn (Order $order) => match ($order->status) {
-                        OrderAlias::STATUS_PENDING => 'warning',
-                        OrderAlias::STATUS_FAILED => 'danger',
-                        OrderAlias::STATUS_PAID => 'success',
-                        OrderAlias::STATUS_REFUNDED => 'info',
-                    }),
+                    ->badge(),
+
             ])
             ->filters([])
             ->actions([
                 \Filament\Tables\Actions\Action::make('view')
-                    ->label('View Order')
+                    ->label('View Transaction')
                     ->icon('heroicon-o-eye')
                     ->url(fn (Order $order) => $order->receipt_url)
                     ->openUrlInNewTab(),
             ])
             ->bulkActions([])
-            ->emptyStateHeading(__('No orders yet'))
-            ->emptyStateDescription(__('Once you purchase a subscription, your orders will appear here'))
-            ->emptyStateIcon('heroicon-o-banknotes')
+            ->emptyStateHeading(__('No Transaction yet'))
+            ->emptyStateDescription(__('Once you purchase a subscription, your transactions will appear here'))
+            ->emptyStateIcon('heroicon-o-credit-card')
             ->emptyStateActions([
                 \Filament\Tables\Actions\Action::make('subscribe')
                     ->label(__('Subscribe'))
-                    ->url(route('lemon-squeezy-subscription'))
+                    ->url(route('subscribe'))
                     ->icon('heroicon-o-plus')
                     ->button(),
             ]);
@@ -106,7 +102,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
     public function subscriptionInfolist(Infolist $infolist): Infolist
     {
         return $infolist
-            ->record($this->user?->subscription() ?? new Subscription())
+            ->record($this->user?->subscription ?? new Subscription())
             ->schema([
                 TextEntry::make('name')
                     ->label('Plan')
@@ -119,24 +115,13 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     ->size(size: TextEntry\TextEntrySize::Medium)
                     ->weight(weight: FontWeight::SemiBold)
                     ->color('info')
+                    ->icon('heroicon-o-ticket')
                     ->badge()
                     ->placeholder('No subscription found'),
                 TextEntry::make('status')
-
-                    ->color(function (SubscriptionAlias $subscription) {
-                        //                        dd($subscription);
-
-                        return match ($subscription->status) {
-                            SubscriptionAlias::STATUS_ACTIVE => 'success',
-                            SubscriptionAlias::STATUS_PAST_DUE => 'warning',
-                            SubscriptionAlias::STATUS_EXPIRED, SubscriptionAlias::STATUS_UNPAID => 'danger',
-                            SubscriptionAlias::STATUS_ON_TRIAL => 'info',
-                            default => 'gray',
-                        };
-                    })
                     ->badge()
                     ->placeholder('No subscription found'),
-                TextEntry::make('renews_at')
+                TextEntry::make('ends_at')
                     ->date()
                     ->since()
                     ->badge()
@@ -148,19 +133,19 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                         ->icon('heroicon-o-cog')
                         ->button()
                         ->disabled(fn () => ! auth()->user()->subscribed())
-                        ->tooltip('Manage your payment details Subscription')
-                        ->url(function () {
-
-                            $user = auth()->user();
-
-                            if (! $user->subscribed()) {
-
-                                return null;
-                            }
-
-                            return $user?->customerPortalUrl();
-                        })
-                        ->openUrlInNewTab(),
+                        ->tooltip('Manage your payment details Subscription'),
+                    //                        ->url(function () {
+                    //
+                    //                            $user = auth()->user();
+                    //
+                    //                            if (! $user->subscribed()) {
+                    //
+                    //                                return null;
+                    //                            }
+                    //
+                    //                            return $user?->customerPortalUrl();
+                    //                        })
+                    //                        ->openUrlInNewTab(),
                 ]),
             ])
             ->columns([
@@ -267,7 +252,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
     public function subscribeAction(): Action
     {
         return Action::make('subscribe')
-            ->url(route('lemon-squeezy-subscription'));
+            ->url(route('subscribe'));
         // ->steps([
         //     Step::make('Plan')
         //     ->description('Choose a plan')
@@ -385,7 +370,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
         }
 
         return view('livewire.subscription-details-component', [
-            'orders' => $this->orders,
+            'transactions' => $this->transactions,
             // 'checkout' => $this->checkout,
 
         ]);
