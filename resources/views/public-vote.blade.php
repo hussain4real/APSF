@@ -81,7 +81,7 @@
     const option1Text = @json(__('frontend.votes.option1'));
     const option2Text = @json(__('frontend.votes.option2'));
     const option3Text = @json(__('frontend.votes.option3'));
-    const successText = @@json(__('frontend.votes.success'));
+    const successText = @json(__('frontend.votes.success'));
 
     document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('voteForm').addEventListener('submit', function (event) {
