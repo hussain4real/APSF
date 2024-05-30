@@ -2708,6 +2708,7 @@ img {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .main-menu > li, .main-menu-4 > li {
         margin: 0 19px;
+        max-width: 60rem;
     }
 }
 .main-menu > li.has-megamenu, .main-menu-4 > li.has-megamenu {

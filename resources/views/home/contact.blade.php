@@ -21,7 +21,7 @@
 {{--                        <h3 class="sub-title-anim-top ">{{__("frontend.contact.description")}}<br>{{__("frontend.contact.miniDescription")}}</h3>--}}
                         <ul>
                             <li><a href="mailto:info@arab-psf.com">info@arab-psf.com</a></li>
-                            <li><span>{{__("frontend.address.title")}}</span></li>
+                            <li><span>{{__("frontend.address1.title")}}</span></li>
 {{--                            <li><span>{{__("frontend.address.description")}}</span></li>--}}
                         </ul>
                     </div>

@@ -15,14 +15,14 @@ We are pleased to inform you that your payment for invoice *{{$transaction->tran
 - **Start Date:** {{$transaction->subscription?->created_at->format('d M, Y')}}
 - **End Date:** {{$transaction->subscription?->ends_at->format('d M, Y')}}
 
-    Thank you for your subscription. We are thrilled to have you on board and hope you enjoy our services. If you have any questions or need assistance, please do not hesitate to contact our support team.
+Thank you for your subscription. We are thrilled to have you on board and hope you enjoy our services. If you have any questions or need assistance, please do not hesitate to contact our support team.
 
-    **Contact Information:**
-    - **Email:** [Support Email]
-    - **Phone:** [Support Phone Number]
-    - **Support Hours:** [Support Hours]
+**Contact Information:**
+- **Email:** info@arab-psf.com
+- **Phone:** [Support Phone Number]
+- **Support Hours:** [Support Hours]
 <x-mail::button url="{{$url}}">
-Button Text
+Visit Your Profile
 </x-mail::button>
 
 Thanks,<br>
