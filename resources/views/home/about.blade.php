@@ -38,17 +38,6 @@
     $objectiveDescriptionTwelve = $aboutUsModel->objective_description_twelve ?? null;
     @endphp
 
-    <style>
-        #about-hero img {
-            width: 100%;
-            height: 80vh;
-            object-fit: cover;
-            border-radius: 2rem;
-        }
-        #about-description{
-            margin-top: 14px;
-        }
-    </style>
     <x-slot:title>
         {{$aboutUsModel->seo_title ?? 'About Arab Private schools Federation'}}
     </x-slot:title>
@@ -291,6 +280,31 @@
 
 
 <style>
+    #about-hero img {
+        width: 100%;
+        height: 80vh;
+        object-fit: cover;
+        border-radius: 2rem;
+    }
+    #about-description{
+        margin-top: 14px;
+    }
+
+    /*for mobile*/
+    @media only screen and (max-width: 768px) {
+        #about-hero img {
+            height: 50vh;
+            margin-top: 1rem;
+        }
+
+        #objective-video video{
+            height: 50vh;
+            width:25rem;
+            object-fit: contain;
+            border-radius: 2rem;
+        }
+    }
+
     #objective-video{
         display:flex;
         position: relative;
