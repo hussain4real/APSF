@@ -518,7 +518,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function onTrial(): bool
     {
-        return $this->subscription->where('trial_ends_at', '>', now())->exists();
+        return $this->subscription?->where('trial_ends_at', '>', now())->exists() ?? false;
     }
 
     public function trialEndsAt()

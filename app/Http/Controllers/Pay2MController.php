@@ -6,9 +6,12 @@ use App\Http\Integrations\PaymentGateway\Pay2mConnector;
 use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
 use App\Models\Subscription;
 use App\Models\Transaction;
+use App\Notifications\InvoicePaid;
+use App\Notifications\SubscriptionStarted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\Response;
 
@@ -149,7 +152,8 @@ class Pay2MController extends Controller
                 ]);
                 $user = Auth::user();
                 $user->transactions()->save($transaction);
-
+                //send email notification
+                Notification::send($user, new InvoicePaid($transaction));
                 //TODO: creates a new subscription for the user
                 $subscription = new Subscription([
                     'user_id' => $user->id,
@@ -160,28 +164,19 @@ class Pay2MController extends Controller
                     'ends_at' => now()->addYear(),
                 ]);
                 $user->subscription()->save($subscription);
+                //send email notification
+                Notification::send($user, new SubscriptionStarted($subscription));
+
+                //return to profile route with success message
+                return redirect()->route('filament.admin.auth.profile')->with('success', 'Transaction completed successfully');
             } else {
-                echo '<br/>Transaction Failed. Message: '.$err_msg;
+                Log::info('Transaction Failed. Message: '.$err_msg);
+
+                return redirect()->route('subscribe')->with('error', 'Transaction Failed. Message: '.$err_msg);
+                //                echo '<br/>Transaction Failed. Message: '.$err_msg;
             }
 
         }
-
-        //        $transaction = new Transaction([
-        //            'transaction_id' => $response['transaction_id'],
-        //            'err_code' => $response['err_code'],
-        //            'err_msg' => $response['err_msg'],
-        //            'basket_id' => $response['basket_id'],
-        //            'order_date' => $response['order_date'],
-        //            'response_key' => $response['Response_Key'],
-        //            'payment_name' => $response['PaymentName'],
-        //        ]);
-        //
-        //        // Here, you need to get the authenticated user.
-        //        $user = Auth::user();
-        //
-        //        $user->transactions()->save($transaction);
-        //
-        //TODO: creates a new subscription for the user
 
     }
 
