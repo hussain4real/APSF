@@ -12,7 +12,12 @@ class MembershipController extends Controller
      */
     public function index()
     {
-        //
+        $memberships = Membership::all();
+        //        dd($memberships);
+
+        return view('home.pricing', [
+            'memberships' => $memberships,
+        ]);
     }
 
     /**

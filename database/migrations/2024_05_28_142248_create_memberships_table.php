@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->nullable();
             $table->string('price')->nullable();
+            $table->string('currency')->nullable();
+            $table->string('duration')->nullable();
+            $table->string('price_note')->nullable();
             $table->json('benefits')->nullable();
+            $table->string('action')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

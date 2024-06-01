@@ -25,6 +25,10 @@ class Membership extends Model
             'name',
             'slug',
             'price',
+            'currency',
+            'duration',
+            'price_note',
             'benefits',
+            'action',
         ];
 }

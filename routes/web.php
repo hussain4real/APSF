@@ -23,7 +23,7 @@ Route::view('/privacy-policy', 'home.privacy-policy')
 Route::view('/refund-policy', 'home.refund-policy')
     ->name('refund-policy');
 //Volt::route('/livefeeds', 'livefeeds.list');
-Route::view('/membership', 'home.pricing')
+Route::get('/membership', [\App\Http\Controllers\MembershipController::class, 'index'])
     ->name('membership');
 
 //course enrollment
@@ -81,6 +81,14 @@ Route::get('/testsubscriptionemail', function () {
 
     return (new \App\Notifications\SubscriptionStarted($subscription))
         ->toMail($subscription->user);
+
+});
+
+Route::get('/testwelcomeemail', function () {
+    $user = \App\Models\User::first();
+
+    return (new \App\Notifications\MemberWelcome())
+        ->toMail($user);
 
 });
 Route::view('profile', 'profile')
