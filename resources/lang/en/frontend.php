@@ -113,4 +113,9 @@ return [
         'view_ratings' => 'View Ratings',
         'success' => 'Thank you very much for the feedback. Your input is highly valued. If you have any additional comments or suggestions, please feel free to contact us at info@arab-psf.com.',
     ],
+    'membership' => [
+        'heading' => 'Membership and subscription benefits',
+        'description' => 'Join us to take advantage of the current benefits of membership packages, knowing that we are working to enhance the benefit packages continuously in order to serve the private sector schools’ sector in the Arab world.',
+        'note' => 'Note: - Benefits are subject to a set of terms and conditions and according to the nature of the service provided.',
+    ],
 ];
