@@ -41,6 +41,13 @@ class CreateMembership extends CreateRecord
                     ->maxLength(255),
                 TextInput::make('price')
                     ->maxLength(255),
+                TextInput::make('currency')
+                    ->default('USD')
+                    ->maxLength(255),
+                TextInput::make('duration')
+                    ->default('yearly'),
+                TextInput::make('price_note')
+                    ->maxLength(255),
                 Repeater::make('benefits')
                     ->schema([
                         Textarea::make('benefit')
@@ -51,6 +58,8 @@ class CreateMembership extends CreateRecord
 
                     ->collapsible()
                     ->columnSpanFull(),
+                TextInput::make('action')
+                    ->maxLength(255),
             ]);
     }
 }
