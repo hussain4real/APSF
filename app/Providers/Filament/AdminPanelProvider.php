@@ -106,6 +106,7 @@ class AdminPanelProvider extends PanelProvider
                     ->locale('en')
                     ->plugins(['dayGrid', 'timeGrid'], true)
                     ->config([]),
+                \RickDBCN\FilamentEmail\FilamentEmail::make(),
 
             ])
             ->navigationItems([
@@ -143,7 +144,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
 
-                //                EnsureUserIsSubscribed::class,
+                EnsureUserIsSubscribed::class,
 
             ])
             ->authMiddleware([
