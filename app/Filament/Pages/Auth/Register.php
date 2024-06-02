@@ -10,6 +10,7 @@ use App\Filament\Clusters\Schools\Resources\SchoolResource\Pages\CreateSchool;
 use App\Filament\Clusters\Students\Resources\StudentResource\Pages\CreateStudent;
 use App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages\CreateTeacher;
 use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource\Pages\CreateTrainingProvider;
+use App\Models\Contractor;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Events\Auth\Registered;
@@ -195,9 +196,9 @@ class Register extends BaseRegister
                 ->visible(function (Get $get) {
                     return $get('entity') === 'school';
                 })
-            //                ->hidden(function (Get $get) {
-            //                    return $get('entity') !== 'school';
-            //                })
+                //                ->hidden(function (Get $get) {
+                //                    return $get('entity') !== 'school';
+                //                })
                 ->description(__('Please provide your school details'))
                 ->schema([
                     CreateSchool::getNameFormField(),
@@ -279,7 +280,6 @@ class Register extends BaseRegister
                 ->visible(function (Get $get) {
                     return $get('service_provider') === 'training_provider';
                 })
-
                 ->description(__('Please provide more details to complete your profile as a training provider'))
                 ->schema([
                     CreateTrainingProvider::getInstitutionNameFormField(),
@@ -378,6 +378,7 @@ class Register extends BaseRegister
             $data = $this->form->getState();
 
             $user = $this->getUserModel()::create($data);
+            //            dd($data);
 
             //            dd($user);
             match ($data['entity'] ?? null) {
@@ -391,12 +392,56 @@ class Register extends BaseRegister
                     'city' => $data['city'],
                     'state' => $data['state'],
                 ]),
-                'teacher' => $this->getTeacherModel()::create(array_merge($data, ['user_id' => $user->id])),
-                'student' => $this->getStudentModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'teacher' => $user->teacher()->create([
+                    'address' => $data['address'],
+                    'subject_taught' => $data['subject_taught'],
+                    'qualification' => $data['qualification'],
+                    'date_of_birth' => $data['date_of_birth'],
+                    'previous_experience' => $data['previous_experience'],
+                    'country' => $data['country'],
+                    'phone' => $data['phone'],
+
+                ]),
+                'student' => $user->student()->create([
+                    'address' => $data['address'],
+                    'school_name' => $data['school_name'],
+                    'current_grade' => $data['current_grade'],
+                    'date_of_birth' => $data['date_of_birth'],
+                    'country' => $data['country'],
+                    'phone' => $data['phone'],
+                ]),
                 'service provider' => match ($data['service_provider'] ?? null) {
-                    'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
-                    'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
-                    'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
+                    'contractor' => $user->contractor()->create([
+                        'business_name' => $data['business_name'],
+                        'business_type' => $data['business_type'],
+                        'business_address' => $data['business_address'],
+                        'business_phone' => $data['business_phone'],
+                        'business_email' => $data['business_email'],
+                        'business_website' => $data['business_website'],
+                        'business_description' => $data['business_description'],
+                    ]),
+                    'training_provider' => $user->trainingProvider()->create([
+                        'institution_name' => $data['institution_name'],
+                        'institution_type' => $data['institution_type'],
+                        'institution_address' => $data['institution_address'],
+                        'institution_phone' => $data['institution_phone'],
+                        'institution_email' => $data['institution_email'],
+                        'institution_website' => $data['institution_website'],
+                        'institution_description' => $data['institution_description'],
+                    ]),
+                    'educational_consultant' => $user->educationalConsultant()->create([
+                        'qualification' => $data['qualification'],
+                        'years_of_experience' => $data['years_of_experience'],
+                        'specialization' => $data['specialization'],
+                        'phone_number' => $data['phone_number'],
+                        'address' => $data['address'],
+                        'city' => $data['city'],
+                        'state' => $data['state'],
+                        'country' => $data['country'],
+                    ]),
+                    //                    'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
+                    //                    'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
+                    //                    'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
                     default => null,
                 },
                 'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
@@ -418,6 +463,30 @@ class Register extends BaseRegister
                 'ends_at' => now()->addYear(),
             ]);
         }
+
+        //assign role to user based on profile
+        if ($user->student) {
+            $user->assignRole('student');
+        }
+        if ($user->teacher) {
+            $user->assignRole('teacher');
+        }
+        if ($user->schools) {
+            $user->assignRole('school');
+        }
+        if ($user->contractor) {
+            $user->assignRole('contractor');
+        }
+        if ($user->trainingProvider) {
+            $user->assignRole('service_provider');
+        }
+        if ($user->educationalConsultant) {
+            $user->assignRole('service_provider');
+        } else {
+            $user->assignRole('member');
+
+        }
+
         Filament::auth()->login($user);
 
         session()->regenerate();
