@@ -447,6 +447,37 @@ class Register extends BaseRegister
                 'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
                 default => null,
             };
+            //if user is a student or teacher create subscription with 1 year
+            if ($user->student || $user->teacher) {
+                $user->subscription()->create([
+                    'type' => 'yearly',
+                    'status' => 'active',
+                    'ends_at' => now()->addYear(),
+                ]);
+            }
+
+            //assign role to user based on profile
+            if ($user->student) {
+                $user->assignRole('student');
+            }
+            if ($user->teacher) {
+                $user->assignRole('educational_staff');
+            }
+            if ($user->schools) {
+                $user->assignRole('school');
+            }
+            if ($user->contractor) {
+                $user->assignRole('contractor');
+            }
+            if ($user->trainingProvider) {
+                $user->assignRole('service_provider');
+            }
+            if ($user->educationalConsultant) {
+                $user->assignRole('service_provider');
+            } else {
+                $user->assignRole('member');
+
+            }
 
             return $user;
         });
@@ -454,38 +485,6 @@ class Register extends BaseRegister
         //        events(new Registered($user));
         //
         $this->sendEmailVerificationNotification($user);
-
-        //if user is a student or teacher create subscription with 1 year
-        if ($user->student || $user->teacher) {
-            $user->subscription()->create([
-                'type' => 'yearly',
-                'status' => 'active',
-                'ends_at' => now()->addYear(),
-            ]);
-        }
-
-        //assign role to user based on profile
-        if ($user->student) {
-            $user->assignRole('student');
-        }
-        if ($user->teacher) {
-            $user->assignRole('teacher');
-        }
-        if ($user->schools) {
-            $user->assignRole('school');
-        }
-        if ($user->contractor) {
-            $user->assignRole('contractor');
-        }
-        if ($user->trainingProvider) {
-            $user->assignRole('service_provider');
-        }
-        if ($user->educationalConsultant) {
-            $user->assignRole('service_provider');
-        } else {
-            $user->assignRole('member');
-
-        }
 
         Filament::auth()->login($user);
 
