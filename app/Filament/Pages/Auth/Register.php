@@ -121,8 +121,8 @@ class Register extends BaseRegister
                 'school' => __('school'),
                 'teacher' => __('teacher'),
                 'student' => __('student'),
-                'service provider' => __('Service Provider'),
-                'member' => __('Others'),
+                'service provider' => __('service provider'),
+                'member' => __('others'),
             ])
             ->prefixIcon('heroicon-o-user');
         //        return ToggleButtons::make('entity')
@@ -143,7 +143,7 @@ class Register extends BaseRegister
     public static function getServiceProviderFormField(): Select
     {
         return Select::make('service_provider')
-            ->label(__('Service Provider'))
+            ->label(__('service provider'))
             ->options([
                 'contractor' => __('contractor'),
                 'training_provider' => __('training provider'),

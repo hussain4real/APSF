@@ -31,5 +31,7 @@
     "contractors": "Contractors",
     "contractor": "Contractor",
     "Entity": "Entity",
-    "Please select your profile": "Please select your profile"
+    "Please select your profile": "Please select your profile",
+    "service provider": "Service Provider",
+    "others": "Others"
 }
