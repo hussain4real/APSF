@@ -72,7 +72,7 @@ class AdminPanelProvider extends PanelProvider
                 //                Widgets\FilamentInfoWidget::class,
             ])
             ->plugins([
-                //                FilamentShieldPlugin::make(),
+                FilamentShieldPlugin::make(),
                 SpatieLaravelTranslatablePlugin::make()
                     ->defaultLocales(['en', 'ar']),
                 BreezyCore::make()
