@@ -84,35 +84,35 @@ class ListUsers extends ListRecords
                             //                                ->color('primary')
                             //                                ->sortable()
                             //                                ->alignCenter(),
-                            TextColumn::make('status')
-                                ->badge()
-                                ->state(function ($record) {
-                                    return match (true) {
-                                        $record->student !== null => $record->student->status,
-                                        $record->teacher !== null => $record->teacher->status,
-                                        $record->schools !== null && $record->schools->isNotEmpty() => $record->schools->first()->status,
-                                        $record->contractor !== null => $record->contractor->status,
-                                        $record->educationalConsultant !== null => $record->educationalConsultant->status,
-                                        $record->founder !== null => $record->founder->status,
-                                        $record->member !== null => $record->member->status,
-                                        $record->trainingProvider !== null => $record->trainingProvider->status,
-                                        default => $record->status,
-                                    };
-                                })
-                                ->alignCenter()
-                                ->extraAttributes([
-                                    'class' => 'my-2',
-                                ])
-                                ->sortable(),
-                            RatingColumn::make('rating')
-                                ->label(__('Rating'))
-                                ->state(function (Model $record) {
-                                    return $record->rating ?? 0;
-                                })
-                                ->size('sm')
-                                ->color('warning')
-                                ->alignCenter()
-                                ->allowZero(),
+                            //                            TextColumn::make('status')
+                            //                                ->badge()
+                            //                                ->state(function ($record) {
+                            //                                    return match (true) {
+                            //                                        $record->student !== null => $record->student->status,
+                            //                                        $record->teacher !== null => $record->teacher->status,
+                            //                                        $record->schools !== null && $record->schools->isNotEmpty() => $record->schools->first()->status,
+                            //                                        $record->contractor !== null => $record->contractor->status,
+                            //                                        $record->educationalConsultant !== null => $record->educationalConsultant->status,
+                            //                                        $record->founder !== null => $record->founder->status,
+                            //                                        $record->member !== null => $record->member->status,
+                            //                                        $record->trainingProvider !== null => $record->trainingProvider->status,
+                            //                                        default => $record->status,
+                            //                                    };
+                            //                                })
+                            //                                ->alignCenter()
+                            //                                ->extraAttributes([
+                            //                                    'class' => 'my-2',
+                            //                                ])
+                            //                                ->sortable(),
+                            //                            RatingColumn::make('rating')
+                            //                                ->label(__('Rating'))
+                            //                                ->state(function (Model $record) {
+                            //                                    return $record->rating ?? 0;
+                            //                                })
+                            //                                ->size('sm')
+                            //                                ->color('warning')
+                            //                                ->alignCenter()
+                            //                                ->allowZero(),
                         ])
                         ->collapsed()
                         ->extraAttributes([
@@ -134,79 +134,79 @@ class ListUsers extends ListRecords
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
-                    Action::make('rate')
-                        ->visible(function (Model $record) {
-                            $user = auth()->user();
-                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
-                            $record->loadCount($roles);
-                            foreach ($roles as $role) {
-                                if ($record->{"{$role}_count"} > 0 && $record->$role->user_id === $user->id) {
-                                    return false;
-                                }
-                            }
-
-                            return true;
-                        })
-                        ->icon('heroicon-o-star')
-                        ->fillForm(function (Model $record): array {
-                            $user = auth()->user();
-                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
-                            $record->load($roles);
-
-                            $rating = 0;
-                            $comment = '';
-
-                            foreach ($roles as $role) {
-                                if ($record->$role) {
-                                    if ($role === 'schools') {
-                                        foreach ($record->$role as $school) {
-                                            $review = $school->reviews()->where('user_id', $user->id)->first();
-                                            if ($review) {
-                                                $rating = $review->rating;
-                                                $comment = $review->comment;
-                                                break;
-                                            }
-                                        }
-                                    } else {
-                                        $review = $record->$role->reviews()->where('user_id', $user->id)->first();
-                                        if ($review) {
-                                            $rating = $review->rating;
-                                            $comment = $review->comment;
-                                        }
-                                    }
-                                }
-                            }
-
-                            return [
-                                'rating' => $rating,
-                                'comment' => $comment,
-                            ];
-                        })
-                        ->form([
-                            Rating::make('rating')
-                                ->stars(5)
-                                ->allowZero(true),
-                            Textarea::make('comment')
-                                ->label(__('Comment'))
-                                ->placeholder('Enter your comment here'),
-                        ])
-                        ->action(function (array $data, Model $record): void {
-                            $user = auth()->user();
-                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
-                            $record->loadCount($roles);
-
-                            foreach ($roles as $role) {
-                                if ($record->{"{$role}_count"} > 0) {
-                                    if ($role === 'schools') {
-                                        foreach ($record->$role as $school) {
-                                            $this->handleRatingAndComment($school, $user, $data);
-                                        }
-                                    } else {
-                                        $this->handleRatingAndComment($record->$role, $user, $data);
-                                    }
-                                }
-                            }
-                        }),
+                    //                    Action::make('rate')
+                    //                        ->visible(function (Model $record) {
+                    //                            $user = auth()->user();
+                    //                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                    //                            $record->loadCount($roles);
+                    //                            foreach ($roles as $role) {
+                    //                                if ($record->{"{$role}_count"} > 0 && $record->$role->user_id === $user->id) {
+                    //                                    return false;
+                    //                                }
+                    //                            }
+                    //
+                    //                            return true;
+                    //                        })
+                    //                        ->icon('heroicon-o-star')
+                    //                        ->fillForm(function (Model $record): array {
+                    //                            $user = auth()->user();
+                    //                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                    //                            $record->load($roles);
+                    //
+                    //                            $rating = 0;
+                    //                            $comment = '';
+                    //
+                    //                            foreach ($roles as $role) {
+                    //                                if ($record->$role) {
+                    //                                    if ($role === 'schools') {
+                    //                                        foreach ($record->$role as $school) {
+                    //                                            $review = $school->reviews()->where('user_id', $user->id)->first();
+                    //                                            if ($review) {
+                    //                                                $rating = $review->rating;
+                    //                                                $comment = $review->comment;
+                    //                                                break;
+                    //                                            }
+                    //                                        }
+                    //                                    } else {
+                    //                                        $review = $record->$role->reviews()->where('user_id', $user->id)->first();
+                    //                                        if ($review) {
+                    //                                            $rating = $review->rating;
+                    //                                            $comment = $review->comment;
+                    //                                        }
+                    //                                    }
+                    //                                }
+                    //                            }
+                    //
+                    //                            return [
+                    //                                'rating' => $rating,
+                    //                                'comment' => $comment,
+                    //                            ];
+                    //                        })
+                    //                        ->form([
+                    //                            Rating::make('rating')
+                    //                                ->stars(5)
+                    //                                ->allowZero(true),
+                    //                            Textarea::make('comment')
+                    //                                ->label(__('Comment'))
+                    //                                ->placeholder('Enter your comment here'),
+                    //                        ])
+                    //                        ->action(function (array $data, Model $record): void {
+                    //                            $user = auth()->user();
+                    //                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                    //                            $record->loadCount($roles);
+                    //
+                    //                            foreach ($roles as $role) {
+                    //                                if ($record->{"{$role}_count"} > 0) {
+                    //                                    if ($role === 'schools') {
+                    //                                        foreach ($record->$role as $school) {
+                    //                                            $this->handleRatingAndComment($school, $user, $data);
+                    //                                        }
+                    //                                    } else {
+                    //                                        $this->handleRatingAndComment($record->$role, $user, $data);
+                    //                                    }
+                    //                                }
+                    //                            }
+                    //                        }),
                 ])
                     ->link()
                     ->icon('heroicon-m-ellipsis-horizontal')
