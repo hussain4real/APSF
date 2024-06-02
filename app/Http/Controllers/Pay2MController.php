@@ -94,7 +94,7 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
-        dd($request->all());
+        //        dd($request->all());
         //        $err_code = $request->err_code;
         //        $err_msg = $request->err_msg;
         //        $trans_id = $request->transaction_id;
@@ -108,8 +108,6 @@ class Pay2MController extends Controller
 
         $this->processResponse($this->merchant_id, $this->basket_id, $this->trans_amount, $request->all());
 
-        //TODO: redirect to a subscription confirmation you page
-        return redirect()->route('welcome');
     }
 
     public function processResponse($merchant_id, $original_basket_id, $txnamt, $response)
