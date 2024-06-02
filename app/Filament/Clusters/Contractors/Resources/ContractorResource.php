@@ -14,32 +14,11 @@ class ContractorResource extends Resource
 {
     protected static ?string $model = Contractor::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-check';
+    protected static ?string $navigationIcon = 'heroicon-o-check-circle';
 
     protected static ?string $cluster = Members::class;
 
-    protected static ?int $navigationSort = 3;
-
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
-
-    //    public static function getNavigationBadge(): ?string
-    //    {
-    //        if (static::getModel()::count() > 0) {
-    //            return static::getModel()::count();
-    //        }
-    //
-    //        return null;
-    //    }
-
-    public static function getNavigationLabel(): string
-    {
-        return __('contractors');
-    }
-
-    public static function getModel(): string
-    {
-        return __('contractor');
-    }
 
     public static function getRelations(): array
     {
