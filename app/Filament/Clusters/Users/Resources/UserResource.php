@@ -33,15 +33,8 @@ class UserResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         if (static::getModel()::count() > 0) {
-            return static::getModel()::whereDoesntHave('contractor')
-                ->whereDoesntHave('schools')
-                ->whereDoesntHave('student')
-                ->whereDoesntHave('teacher')
-                ->whereDoesntHave('founder')
-                ->whereDoesntHave('member')
-                ->whereDoesntHave('educationalConsultant')
-                ->whereDoesntHave('trainingProvider')
-                ->count();
+            return static::getModel()::count();
+
         }
 
         return null;
@@ -70,7 +63,7 @@ class UserResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
                 //                MemberScope::class,
-            ])
-            ->withGlobalScope('member', new MemberScope);
+            ]);
+        //            ->withGlobalScope('member', new MemberScope);
     }
 }

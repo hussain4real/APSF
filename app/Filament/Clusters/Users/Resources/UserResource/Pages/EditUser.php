@@ -4,6 +4,7 @@ namespace App\Filament\Clusters\Users\Resources\UserResource\Pages;
 
 use App\Filament\Clusters\Users\Resources\UserResource;
 use Filament\Actions;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 
 class EditUser extends EditRecord
@@ -18,5 +19,12 @@ class EditUser extends EditRecord
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
         ];
+    }
+
+    public function form(Form $form): Form
+    {
+        $createForm = new CreateUser();
+
+        return $createForm->form($form);
     }
 }

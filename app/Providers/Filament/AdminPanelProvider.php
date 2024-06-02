@@ -106,6 +106,7 @@ class AdminPanelProvider extends PanelProvider
                     ->locale('en')
                     ->plugins(['dayGrid', 'timeGrid'], true)
                     ->config([]),
+                \RickDBCN\FilamentEmail\FilamentEmail::make(),
 
             ])
             ->navigationItems([
