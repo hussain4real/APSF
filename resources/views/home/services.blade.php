@@ -161,70 +161,22 @@
                 transform: translateY(0);
             }
         }
-        /*first hero style end*/
+       /* mobile version */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3em;
+            }
 
-        /*second hero style start*/
-        @import "https://unpkg.com/open-props";
-        @import "https://unpkg.com/open-props/normalize.min.css";
+            .hero-subtitle {
+                font-size: 1.5em;
+                padding:0 0.5rem ;
+            }
 
-
-        .hero1-container {
-            display: grid;
-            align-items: center;
-            margin:1rem 2rem;
-            gap: 4rem;
-
-            grid-template-columns: 1fr 1fr;
-            background: var(--grape-0);
+            .hero-button {
+                font-size: 1em;
+            }
         }
 
-        .hero1 {
-            padding: 0;
-            display: grid;
-            gap: var(--size-5);
-        }
-
-        .hero-message1 {
-            display: grid;
-            grid-template-columns: max-content;
-            color: #e56131;
-            line-height: 1.2;
-            font-size: 6rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero-message1 > div:last-child {
-            color: var(--indigo-7);
-        }
-
-        .under-hero1 {
-            color: var(--gray-8);
-            font-size: 1.5rem;
-            line-height: 3rem;
-            margin-block-end: var(--size-3);
-        }
-
-        .promo-art1 {
-            align-self: stretch;
-
-        }
-
-        .promo-art1 > img {
-            block-size: 100%;
-            object-fit: cover;
-        }
-
-        .promo-art2 {
-            align-self: stretch;
-        }
-
-        .promo-art2 > img {
-            width: max-content;
-            height: 600px;
-            object-fit: cover;
-            border-radius: 2rem;
-        }
-        /*second hero style end*/
 
     </style>
     <!-- Hero area start -->
@@ -240,88 +192,6 @@
         <!-- first Hero area end -->
 
     </div>
-    <section class="solution__area">
-        <!-- second Hero area start -->
-{{--        <div class="hero1-container">--}}
-{{--            <section class="hero1">--}}
-{{--                <h1 class="hero-message1">--}}
-{{--                    <div>{{__("frontend.service.heading")}}</div>--}}
-
-{{--                </h1>--}}
-{{--                <p class="under-hero1">{{__("frontend.service.description")}}</p>--}}
-
-{{--            </section>--}}
-{{--            <picture class="promo-art1">--}}
-{{--                <img src="https://doodleipsum.com/700/outline?i=513477ea4837ed87ff2fc8e64ae66968" height="900"  alt="a random doodle">--}}
-{{--            </picture>--}}
-{{--        </div>--}}
-        <!-- second Hero area end -->
-{{--        <hr>--}}
-        <!-- third Hero area start -->
-{{--        <div class="hero1-container">--}}
-{{--            <section class="hero1">--}}
-{{--                <h1 class="hero-message1">--}}
-{{--                    <div>{{__("frontend.service.heading")}}</div>--}}
-
-{{--                </h1>--}}
-{{--                <p class="under-hero1">{{__("frontend.service.description")}}</p>--}}
-
-{{--            </section>--}}
-{{--            <picture class="promo-art2">--}}
-{{--                400x600_services--}}
-{{--                1500x600_banner copy--}}
-{{--                <img src="{{asset('assets/imgs/apsf/services/services-body/400x600_services.webp')}}" alt="a random doodle">--}}
-{{--            </picture>--}}
-{{--        </div>--}}
-        <!-- third Hero area end -->
-{{--        <hr>--}}
-{{--        <div class="container hero-line"></div>--}}
-
-{{--        <div class="solution__wrapper">--}}
-
-{{--            <div class="solution__left">--}}
-{{--                <div class="solution__img-1">--}}
-{{--                    <img src="assets/imgs/apsf/services/services-offered/services_435x472.jpg" alt="Solution Image">--}}
-{{--                </div>--}}
-{{--                <div class="solution__img-2">--}}
-{{--                    <img src="assets/imgs/apsf/services/services-offered/services_220x334.jpg" alt="Solution Image">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-{{--            <div class="solution__mid">--}}
-{{--                <h1 class="solution__title orange_color">{{__("frontend.service.heading")}}</h1>--}}
-{{--                <p class="to_justify">{{__("frontend.service.description")}}</p>--}}
-{{--            </div>--}}
-
-{{--            <div class="solution__right">--}}
-{{--                <div class="solution__img-3">--}}
-{{--                    <img src="assets/imgs/apsf/services/services-offered/img.png" alt="Solution Image">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="container pb-130">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-xxl-12">--}}
-{{--                    <div class="solution__btm">--}}
-{{--                        <ul>--}}
-{{--                            <li>{{__("frontend.service.tagOne")}}</li>--}}
-{{--                            <li>{{__("frontend.service.tagTwo")}}</li>--}}
-{{--                            <li>{{__("frontend.service.tagThree")}}</li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <div class="solution__shape">--}}
-{{--            <img src="assets/imgs/apsf/icon/1.png" alt="Shape Image" class="shape-1">--}}
-{{--            <img src="assets/imgs/apsf/icon/2.png" alt="Shape Image" class="shape-2">--}}
-{{--            <img src="assets/imgs/apsf/icon/3.png" alt="Shape Image" class="shape-3">--}}
-{{--            <img src="assets/imgs/apsf/icon/4.png" alt="Shape Image" class="shape-4">--}}
-{{--            <img src="assets/imgs/apsf/icon/5.png" alt="Shape Image" class="shape-5">--}}
-{{--        </div>--}}
-    </section>
     <!-- Hero area end -->
 
 
@@ -510,12 +380,12 @@
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
-                        <div class="cta__content-4">
+                        <div id="heading-wrapper" class="cta__content-4">
                             <h2 class="cta__title-4 title-anim">{{__("frontend.scholarship.heading")}} </h2>
                         </div>
                     </div>
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
-                        <div class="cta__content-4 text-anim">
+                        <div class="cta__content-4 ">
                             <p>{{__("frontend.scholarship.description")}} </p>
                             <a class="btn-started" href="{{route('filament.admin.resources.resources.scholarships.index')}}">{{__("frontend.scholarship.action")}}<span><i
                                         class="fa-solid fa-arrow-right"></i></span></a>
@@ -531,3 +401,14 @@
     <!-- Scholarship CTA area end -->
 
 </x-home-layout>
+<style>
+   @media (max-width: 768px) {
+       .cta__content-4{
+           height:100% ;
+       }
+       #heading-wrapper{
+              margin: 1rem 0;
+       }
+
+   }
+</style>

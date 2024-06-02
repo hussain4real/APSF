@@ -246,6 +246,13 @@ $video = $homepageModel->media->filter(function($media){
         .delivered-text span {
             color: #cf711f;
         }
+
+        @media only screen and (max-width: 768px) {
+            .objectives-inner{
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+        }
     </style>
     <x-slot:title>
         {{$homepageModel->seo_title ?? 'Home'}}
@@ -324,34 +331,6 @@ $video = $homepageModel->media->filter(function($media){
             </div>
         </div>
     </section>
-    <!-- Hero area start2 -->
-{{--    <section class="service__hero-2" >--}}
-
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-xxl-12">--}}
-{{--                    <div class="service__hero-inner-2">--}}
-{{--                        <div class="service__hero-left-2">--}}
-{{--                            <img src="assets/imgs/apsf/home-header/home-435x472.webp" alt="Image" class="image-1">--}}
-{{--                            <img src="assets/imgs/apsf/home-header/home-240x240.webp" alt="Image" class="image-2">--}}
-{{--                            <!-- <img src="assets/imgs/apsf/header-area/student.webp" alt="Image" class="image-3"> -->--}}
-{{--                            <img src="assets/imgs/apsf/home-header/img.png" alt="Image" class="image-4">--}}
-{{--                        </div>--}}
-{{--                        <div class="service__hero-right-2 hero7__thum-anim">--}}
-{{--                            part of css animation: creative--}}
-{{--                            <h2 class="title ">{{ __($heroTitle) }} </h2>--}}
-{{--                            part of css animation: animate_content--}}
-{{--                            <p class="to_justify ">{{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}</p>--}}
-{{--                            <img src="assets/imgs/home-7/scroll.png" alt="scroll Image" class="scroll">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--        <img src="assets/imgs/home-7/shape-6.png" alt="Shape Image" class="shape-1" id="content">--}}
-{{--    </section>--}}
-    <!-- Hero area end -->
 
 
     <!-- About area start -->
