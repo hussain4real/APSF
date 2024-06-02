@@ -18,18 +18,7 @@ class Contractor extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'user_id', // 'user_id' is the foreign key that links the contractor to the user
-        'business_name',
-        'business_type',
-        'business_address',
-        'business_phone',
-        'business_email',
-        'business_website',
-        'business_logo',
-        'business_description',
-        'business_license',
-        'business_license_exp',
+    protected $guarded = [
     ];
 
     protected $with = [

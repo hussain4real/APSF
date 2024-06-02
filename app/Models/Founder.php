@@ -17,17 +17,8 @@ class Founder extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'company_name',
-        'company_website',
-        'company_phone',
-        'company_address',
-        'company_city',
-        'company_state',
-        'company_zip',
-        'company_country',
-        'status',
+    protected $guarded = [
+
     ];
 
     protected $with = [

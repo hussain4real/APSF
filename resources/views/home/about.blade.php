@@ -295,6 +295,7 @@
         #about-hero img {
             height: 50vh;
             margin-top: 1rem;
+            object-fit: contain;
         }
 
         #objective-video video{

@@ -220,11 +220,14 @@
         #card-body{
             height: 23rem;
             overflow: scroll;
+            /*remove the scoll bar*/
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
         #card-title{
             /*make it sticky*/
-            position: sticky;
-            top: 0;
+            /*position: sticky;*/
+            /*top: 0;*/
         }
         /*change the card title background color when sticky*/
         #card-title.sticky{
