@@ -4,9 +4,12 @@ namespace App\Filament\Clusters\Users\Resources\UserResource\Pages;
 
 use App\Filament\Clusters\Users\Resources\UserResource;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUser extends CreateRecord
 {
@@ -45,8 +48,14 @@ class CreateUser extends CreateRecord
                 DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
-                    ->required()
-                    ->maxLength(255),
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
+                    ->required(fn ($livewire) => ($livewire instanceof CreateRecord)),
+                Placeholder::make('profile')
+                    ->content(fn ($record): string => $record->profile_type),
+                Select::make('role')
+                    ->relationship('roles', 'name')
+                    ->required(),
             ]);
     }
 }
