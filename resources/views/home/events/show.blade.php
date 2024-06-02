@@ -9,7 +9,7 @@
                       d="M10.707 4.293a1 1 0 0 1 1.414 1.414L8.414 10l3.707 3.707a1 1 0 1 1-1.414 1.414l-4-4a1 1 0 0 1 0-1.414l4-4z"
                       clip-rule="evenodd"/>
             </svg>
-            <span class="back-button-text">Back</span>
+            <span class="back-button-text">{{__('nav.back')}}</span>
         </a>
         <div class="content-container">
             <article class="article-container">

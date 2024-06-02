@@ -10769,6 +10769,7 @@ img {
         -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
         margin-left: 0;
+        padding: 0.5rem 0;
     }
 }
 .brand__list-2 {
@@ -10833,6 +10834,10 @@ img {
 @media only screen and (max-width: 767px) {
     .brand__item-2 {
         padding-bottom: 20px;
+    }
+
+    .brand__item-2 img{
+        width: 8rem;
     }
 }
 .brand__title-2 {
