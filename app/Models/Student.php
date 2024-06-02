@@ -18,15 +18,8 @@ class Student extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'school_name',
-        'current_grade',
-        'address',
-        'date_of_birth',
-        'country',
-        'phone',
-        'status',
+    protected $guarded = [
+
     ];
 
     protected $with = [
