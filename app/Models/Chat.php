@@ -12,9 +12,9 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
-    protected $table = 'chats';
+    //    protected $guarded = ['id'];
+    //
+    //    protected $table = 'chats';
 
     public function participants(): BelongsToMany
     {
