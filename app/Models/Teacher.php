@@ -18,16 +18,8 @@ class Teacher extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'address',
-        'subject_taught',
-        'qualification',
-        'date_of_birth',
-        'previous_experience',
-        'country',
-        'phone',
-        'status',
+    protected $guarded = [
+
     ];
 
     protected $with = [

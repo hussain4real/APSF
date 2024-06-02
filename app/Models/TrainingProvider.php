@@ -19,19 +19,7 @@ class TrainingProvider extends Model
      *
      * @var string[]
      */
-    protected $fillable = [
-        'user_id',
-        'institution_name',
-        'institution_type',
-        'institution_address',
-        'institution_email',
-        'institution_phone',
-        'institution_website',
-        'institution_logo',
-        'institution_description',
-        'license',
-        'license_expiry_date',
-        'status',
+    protected $guarded = [
     ];
 
     protected $with = [

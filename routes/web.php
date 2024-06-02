@@ -5,10 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
 use App\Http\Controllers\PublicVoteController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Middleware\RedirectIfSubscribed;
 use App\Livewire\Subscribe;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -109,38 +106,12 @@ Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
 //route to handle checkout event coming from the payment gateway
 Route::post('/checkout', [Pay2MController::class, 'checkout'])
     ->name('checkout');
-//Route::get('/subscribe', [SubscriptionController::class, 'create'])
-//    ->middleware(['auth', RedirectIfSubscribed::class])
-//    ->name('subscribe');
+
 Route::get('/vote', [PublicVoteController::class, 'create'])
     ->name('vote.create');
 Route::post('/vote', [PublicVoteController::class, 'store'])
     ->name('vote.store');
 Route::get('/view-votes', [PublicVoteController::class, 'index'])
     ->name('view-votes');
-//Route::get('/lemon-squeezy-subscription', [Pay2MController::class, 'create'])
-//    ->middleware(['auth', RedirectIfSubscribed::class])
-//    ->name('lemon-squeezy-subscription');
 
-//Route::get('/update-payment-method', [SubscriptionController::class, 'updatePaymentMethod'])
-//    ->name('update-payment-method');
-//
-//Route::get('/confirmation', Subscribe::class)
-//    ->name('confirmation');
-
-//Route::get('/download-invoice/{transaction}', function (Request $request, Transaction $transaction) {
-//    return $transaction->redirectToInvoicePdf();
-//})->name('download-invoice');
-//
-//Route::get('/buy', function (Request $request) {
-//    $checkout = Checkout::guest(['pri_01hsb68jw5jmjbms2xbmr5ba9s'])
-//        ->returnTo(route('welcome'));
-//
-//    return view('subscribe', ['checkout' => $checkout]);
-//});
-//Route::get('create-transactions', [PayPalController::class, 'create'])
-//    ->name('create-transactions');
-//Route::get('payment', [PayPalController::class, 'processTransaction'])->name('payment');
-//Route::get('/cancel', [PayPalController::class, 'cancelTransaction'])->name('payment.cancel');
-//Route::get('/payment/success', [PayPalController::class, 'successTransaction'])->name('payment.success');
 require __DIR__.'/auth.php';

@@ -19,17 +19,8 @@ class EducationalConsultant extends Model
      *
      * @var string[]
      */
-    protected $fillable = [
-        'user_id',
-        'qualification',
-        'years_of_experience',
-        'specialization',
-        'phone_number',
-        'address',
-        'city',
-        'state',
-        'country',
-        'status',
+    protected $guarded = [
+
     ];
 
     protected $with = [

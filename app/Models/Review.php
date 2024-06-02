@@ -11,7 +11,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rating', 'comment', 'reviewable_id', 'reviewable_type', 'user_id'];
+    protected $guarded = [];
 
     /**
      * Get the attributes that should be cast.

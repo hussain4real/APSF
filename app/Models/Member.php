@@ -19,16 +19,9 @@ class Member extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable =
+    protected $guarded =
         [
-            'user_id',
-            'phone_number',
-            'address',
-            'city',
-            'state',
-            'country',
-            'date_of_birth',
-            'status',
+
         ];
 
     /**
