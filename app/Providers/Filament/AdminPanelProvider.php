@@ -144,7 +144,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
 
-                EnsureUserIsSubscribed::class,
+                //                EnsureUserIsSubscribed::class,
 
             ])
             ->authMiddleware([
