@@ -72,6 +72,8 @@
 
         #kno360{
             padding-top:2rem;
+            padding-left:2rem;
+            padding-right: 2rem;
             height: 5rem;
         }
     </style>
