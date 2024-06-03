@@ -119,7 +119,7 @@ class Register extends BaseRegister
             ->options([
                 //                'founder' => __('founder'),
                 'school' => __('school'),
-                'teacher' => __('teacher'),
+                'teacher' => __('educational staff'),
                 'student' => __('student'),
                 'service provider' => __('service provider'),
                 'member' => __('others'),
