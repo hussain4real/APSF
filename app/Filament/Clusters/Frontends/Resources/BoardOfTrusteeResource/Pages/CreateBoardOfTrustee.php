@@ -40,7 +40,7 @@ class CreateBoardOfTrustee extends CreateRecord
                     ->hiddenLabel()
                     ->responsiveImages()
                     ->maxSize(1024 * 5)
-                    ->hint(__('Maximum size: 3MB.'))
+                    ->hint(__('Maximum size: 5MB.'))
                     ->hintIcon('heroicon-o-information-circle')
                     ->hintColor('warning')
                     ->imagePreviewHeight('150')

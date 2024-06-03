@@ -13,9 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except: [
-            'lemon-squeezy/*',
             'payments.pay2m.com/*',
         ]);
+        $middleware->redirectGuestsTo('/admin/login');
         $middleware->appendToGroup('web', \App\Http\Middleware\Localization::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
