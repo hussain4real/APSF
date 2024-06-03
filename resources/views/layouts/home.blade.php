@@ -52,6 +52,28 @@
         body{
             font-family: 'Bahij_TheSansArabic-Plain', sans-serif;
         }
+
+        .social-icon{
+            padding: 1rem 0.5rem 0 0;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 2rem;
+            color: teal;
+        }
+
+        .social-icon i{
+            color: #033731;
+        }
+        .social-icon i:hover{
+            /* add fa-beat class */
+            animation: fa-beat 1s infinite;
+        }
+
+        #kno360{
+            padding-top:2rem;
+            height: 5rem;
+        }
     </style>
 </head>
 
@@ -197,25 +219,30 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://tamkeen-edu.com/en/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/t.webp')}}" alt="Brand Logo" width="170">
+                                        <img src="{{asset('assets/imgs/apsf/partners/t.webp')}}" alt="Brand Logo" width="200">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://www.amief.org/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo" width="170">
+                                        <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo" width="200">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://uovl.uk/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/uv.webp')}}" alt="Brand Logo" width="170">
+                                        <img src="{{asset('assets/imgs/apsf/partners/uv.webp')}}" alt="Brand Logo" width="200">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://genexinstitute.com/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/ge.webp')}}" alt="Brand Logo" width="170">
+                                        <img src="{{asset('assets/imgs/apsf/partners/ge.webp')}}" alt="Brand Logo" width="200">
+                                    </a>
+                                </div>
+                                <div class="brand__item-2 fade_bottom">
+                                    <a href="https://genexinstitute.com/" target="_blank">
+                                        <img src="{{asset('assets/imgs/apsf/partners/kno360.jpeg')}}" alt="Brand Logo" width="200" id="kno360">
                                     </a>
                                 </div>
                             </div>
@@ -372,25 +399,9 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
         </div>
     </div>
 
-<style>
-    .social-icon{
-        padding: 1rem 0.5rem 0 0;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        color: teal;
-    }
 
-    .social-icon i{
-        color: #033731;
-    }
-    .social-icon i:hover{
-        /* add fa-beat class */
-        animation: fa-beat 1s infinite;
-    }
 
-</style>
+
 <script>
     function animateValue(id, start, end, duration) {
         let obj = document.getElementById(id);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Integrations\PaymentGateway\Pay2mConnector;
 use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
+use App\Models\Membership;
 use App\Models\Subscription;
 use App\Models\Transaction;
 use App\Notifications\InvoicePaid;
@@ -28,6 +29,10 @@ class Pay2MController extends Controller
 
     private $trans_amount;
 
+    private $plan_name;
+
+    private $plan_price;
+
     //
     public function __construct()
     {
@@ -41,7 +46,33 @@ class Pay2MController extends Controller
 
     public function create()
     {
+        $userProfileType = Auth::user()->profile_type_for_membership;
 
+        // Get all memberships
+        $memberships = Membership::all();
+
+        //        dd($memberships);
+        $membershipData = [];
+        foreach ($memberships as $membership) {
+
+            //            dd($userProfileType);
+            //            dd($membership->name);
+            // Check if the membership name matches the user's profile type
+            if ($membership->name === $userProfileType) {
+                $membershipData[] = [
+                    'id' => $membership->id,
+                    'name' => $membership->name,
+                    'slug' => $membership->slug,
+                    'price' => $membership->price,
+                    'currency' => $membership->currency,
+                    'duration' => $membership->duration,
+                    'price_note' => $membership->price_note,
+                    'benefits' => $membership->benefits,
+                ];
+            }
+        }
+
+        //        dd($membershipData);
         $pay2m = new Pay2mConnector();
         $tokenRequest = new GetAccessTokenRequest(
             $this->merchant_id,
@@ -57,6 +88,8 @@ class Pay2MController extends Controller
             $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
 
             return view('subscribe', [
+                'userProfileType' => $userProfileType,
+                'membershipData' => $membershipData,
                 'token' => $token,
                 'merchant_id' => $this->merchant_id,
                 'basket_id' => $this->basket_id,
