@@ -1,5 +1,5 @@
 {
-    "homepage": "الصفحة الرئيسية",
+    "Homepage": "الصفحة الرئيسية",
     "livefeeds": "البث المباشر",
     "livefeed": "البث المباشر",
     "profiles": "الملفات الشخصية",
@@ -19,6 +19,7 @@
     "announcement": "إعلان",
     "settings": "الإعدادات",
     "setting": "إعداد",
+    "Settings": "الإعدادات",
     "schools": "المدارس",
     "school": "مدرسة",
     "students": "الطلاب",
