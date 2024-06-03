@@ -367,6 +367,79 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
         return 'User';
     }
+
+    /**
+     * get the user's profile type
+     */
+    public function getProfileTypeForMembershipAttribute(): ?string
+    {
+        if ($this->teacher) {
+            //return based on the language
+            if (app()->getLocale() === 'ar') {
+
+                return 'الهيئة التعليمية';
+            }
+
+            return 'Educational Staff';
+
+        }
+
+        if ($this->student) {
+            if (app()->getLocale() === 'ar') {
+                return 'الطلبة';
+            }
+
+            return 'Students';
+        }
+
+        //schools is hasMany relationship
+        if ($this->schools()->count() > 0) {
+            if (app()->getLocale() === 'ar') {
+                return 'المدارس';
+            }
+
+            return 'Schools';
+        }
+
+        if ($this->founder) {
+            return 'Founder';
+        }
+
+        if ($this->trainingProvider) {
+            if (app()->getLocale() === 'ar') {
+                return 'مقدم خدمة';
+            }
+
+            return 'Service Provider';
+        }
+
+        if ($this->contractor) {
+            if (app()->getLocale() === 'ar') {
+                return 'الموردون';
+            }
+
+            return 'Contractors';
+        }
+
+        if ($this->educationalConsultant) {
+            if (app()->getLocale() === 'ar') {
+                return 'مقدم خدمة';
+            }
+
+            return 'Service Provider';
+        }
+
+        if ($this->member) {
+            if (app()->getLocale() === 'ar') {
+                return 'عضو';
+            }
+
+            return 'Member';
+        }
+
+        return 'User';
+    }
+
     //
     //    /**
     //     * get the user's country
