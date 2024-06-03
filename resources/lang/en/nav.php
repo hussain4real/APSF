@@ -12,6 +12,7 @@ return [
     'Events' => 'Events',
     'Contact Us' => 'Contact Us',
     'Login' => 'Login',
+    'Register' => 'Register',
     'Contact' => 'Contact',
     'Faqs' => 'FAQS',
     //    'Homepage' => 'Homepage',

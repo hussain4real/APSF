@@ -56,8 +56,31 @@ new class extends Component
                             </ul>
                         </li>
                         <li><a href="{{route('services')}}" wire:navigate>{{__('nav.Services')}}</a></li>
+                        <li><a href="{{route('membership')}}" wire:navigate>{{__('nav.Membership')}}</a></li>
                         <li><a href="{{route('events.index')}}" wire:navigate>{{__('nav.Events')}}</a></li>
                         <li><a href="{{route('contact')}}">{{__('nav.Contact Us')}}</a></li>
+                        @guest
+                            <li><a href="{{route('filament.admin.auth.login')}}" wire:navigate>{{__('nav.Login')}}</a></li>
+                            <li><a href="{{route('filament.admin.auth.register')}}" wire:navigate>{{__('nav.Register')}}</a></li>
+                        @endguest
+                        @auth
+                           <!-- Settings Dropdown -->
+                            <div class="ml-3 relative" x-data="{ open: false }">
+                                <div>
+                                    <button @click="open = !open" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                                        <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}" />
+                                    </button>
+                                </div>
+                                <div x-show="open" @click="open = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                                    <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                        <a href="{{route('filament.admin.pages.dashboard')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">{{ __('Dashboard') }}</a>
+                                        <a href="{{ route('filament.admin.pages.my-profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">{{ __('Profile') }}</a>
+                                        <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" wire:click="logout">Log out</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @endauth
                     </ul>
                 </nav>
             </div>
