@@ -10,6 +10,7 @@ use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Table;
 
 class ListBoardOfTrustees extends ListRecords
@@ -34,7 +35,7 @@ class ListBoardOfTrustees extends ListRecords
                     ->label(__('Name'))
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('order'),
+                TextInputColumn::make('order'),
             ])
             ->filters([
                 //
