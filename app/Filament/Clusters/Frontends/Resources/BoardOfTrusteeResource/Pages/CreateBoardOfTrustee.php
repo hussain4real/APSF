@@ -39,7 +39,7 @@ class CreateBoardOfTrustee extends CreateRecord
                     ->collection('board_of_trustees_images')
                     ->hiddenLabel()
                     ->responsiveImages()
-                    ->maxSize(1024 * 3)
+                    ->maxSize(1024 * 5)
                     ->hint(__('Maximum size: 3MB.'))
                     ->hintIcon('heroicon-o-information-circle')
                     ->hintColor('warning')
