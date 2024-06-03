@@ -13,12 +13,12 @@ class Resources extends Cluster
         return __('resources');
     }
 
-    public static function canAccess(): bool
-    {
-        if (auth()->user()->id === 1 || auth()->user()->id === 8) {
-            return true;
-        }
-
-        return false;
-    }
+    //    public static function canAccess(): bool
+    //    {
+    //        if (auth()->user()->id === 1 || auth()->user()->id === 8) {
+    //            return true;
+    //        }
+    //
+    //        return false;
+    //    }
 }
