@@ -84,17 +84,20 @@ class ListTrainingPrograms extends ListRecords
             ])
             ->filters([
                 TrashedFilter::make(),
+            ])
+            ->actions([
+                //                ViewAction::make(),
+                EditAction::make()
+                    ->extraAttributes([
+                        //                        'class' => 'mx-auto',
+                    ]),
+            ])
+            ->bulkActions([
+                //                BulkActionGroup::make([
+                //                    DeleteBulkAction::make(),
+                //                    ForceDeleteBulkAction::make(),
+                //                    RestoreBulkAction::make(),
+                //                ]),
             ]);
-        //            ->actions([
-        //                ViewAction::make(),
-        //                EditAction::make(),
-        //            ]);
-        //            ->bulkActions([
-        //                BulkActionGroup::make([
-        //                    DeleteBulkAction::make(),
-        //                    ForceDeleteBulkAction::make(),
-        //                    RestoreBulkAction::make(),
-        //                ]),
-        //            ]);
     }
 }

@@ -67,7 +67,10 @@ class ListScholarships extends ListRecords
             ])
             ->actions([
                 //                ViewAction::make(),
-                EditAction::make(),
+                EditAction::make()
+                    ->extraAttributes([
+                        //                        'class' => 'mx-auto',
+                    ]),
             ])
             ->bulkActions([
                 //                BulkActionGroup::make([
