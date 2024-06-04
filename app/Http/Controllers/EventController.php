@@ -24,6 +24,8 @@ class EventController extends Controller
 
             return $event;
         });
+        //return the latest events first
+        $events = $events->sortByDesc('id');
 
         return view('home.events.index', compact('events'));
     }
