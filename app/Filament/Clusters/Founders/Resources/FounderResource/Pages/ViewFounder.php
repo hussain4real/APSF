@@ -21,6 +21,7 @@ use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Alignment;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -44,30 +45,44 @@ class ViewFounder extends ViewRecord
             ->schema([
                 Split::make([
                     Section::make([
-                        SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
-                            ->label(__('Profile Photo'))
-                            ->collection('profile_photos')
-                            ->defaultImageUrl(fn ($record) => $record->user->profile_photo_url)
-                            ->size(250),
                         Group::make([
-                            TextEntry::make('user.name')
-                                ->label(__('Name'))
-                                ->icon('heroicon-o-user-circle')
-                                ->iconColor('primary'),
+                            SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
+                                ->label(__('Profile Photo'))
+                                ->collection('profile_photos')
+                                ->defaultImageUrl(fn ($record) => $record->user->profile_photo_url)
+                                ->size(300)
+                                ->alignment(Alignment::Center)
+                                ->extraImgAttributes([
+                                    'class' => 'rounded-lg shadow-md object-cover object-center',
+                                    'alt' => 'Profile Photo',
+                                    'loading' => 'lazy',
+                                ]),
+                            Group::make([
+                                TextEntry::make('user.name')
+                                    ->label(__('Name'))
+                                    ->icon('heroicon-o-user-circle')
+                                    ->iconColor('primary'),
+                                TextEntry::make('user.email')
+                                    ->label(__('Email'))
+                                    ->icon('heroicon-o-envelope')
+                                    ->iconColor('primary'),
+                                TextEntry::make('school_phone')
+                                    ->label(__('Phone'))
+                                    ->icon('heroicon-o-phone')
+                                    ->iconColor('primary')
+                                    ->placeholder('No Phone Provided'),
+                            ]),
+                        ])
+                            ->columns(2),
+
+                        Group::make([
+
                             TextEntry::make('school_name')
                                 ->label(__('School Name'))
                                 ->icon('heroicon-o-building-office-2')
                                 ->iconColor('primary')
                                 ->placeholder('No School Name Provided'),
-                            TextEntry::make('user.email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary'),
-                            TextEntry::make('school_phone')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary')
-                                ->placeholder('No Phone Provided'),
+
                             TextEntry::make('school_address')
                                 ->label(__('Address'))
                                 ->icon('heroicon-o-map-pin')
@@ -219,18 +234,18 @@ class ViewFounder extends ViewRecord
                                 ->color(Color::Sky)
                                 ->icon('heroicon-o-arrows-right-left')
                                 ->iconColor('primary'),
-                                TextEntry::make('chat')
+                            TextEntry::make('chat')
                                 ->label(__('Chat'))
                                 ->hiddenLabel()
                                 ->default('Chat')
                                 ->prefixAction(
                                     Action::make('chat')
-                                    ->icon('heroicon-o-chat-bubble-left-right')
-                                    ->hiddenLabel()
-                                    ->color(Color::Blue)
-                                    ->link()
-                                    ->tooltip(__('Chat with this founder'))
-                                    ->url('/chat/' . $this->record->user_id)
+                                        ->icon('heroicon-o-chat-bubble-left-right')
+                                        ->hiddenLabel()
+                                        ->color(Color::Blue)
+                                        ->link()
+                                        ->tooltip(__('Chat with this founder'))
+                                        ->url('/chat/'.$this->record->user_id)
                                     // ->modalContent(function (Founder $record): View {
                                     //     $id = $record->user_id;
                                     //     $messengerColor = Auth::user()->messenger_color;
@@ -241,11 +256,12 @@ class ViewFounder extends ViewRecord
                                     //         'dark_mode' => $darkMode,
                                     // ]);
                                     // })
-                                )
+                                ),
                         ]),
                     ])
                         ->grow(false),
                 ])
+                    ->from('md')
                     ->columnSpanFull(),
             ]);
     }

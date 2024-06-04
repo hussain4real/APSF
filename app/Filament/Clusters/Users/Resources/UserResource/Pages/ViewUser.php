@@ -18,6 +18,7 @@ use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Alignment;
 use Illuminate\Database\Eloquent\Model;
 use Mokhosh\FilamentRating\Components\Rating;
 use Mokhosh\FilamentRating\Entries\RatingEntry;
@@ -39,25 +40,47 @@ class ViewUser extends ViewRecord
             ->schema([
                 Split::make([
                     Section::make([
-                        SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
-                            ->label(__('Profile Photo'))
-                            ->collection('profile_photos')
-                            ->defaultImageUrl(fn ($record) => $record->profile_photo_url)
-                            ->size(250),
                         Group::make([
-                            TextEntry::make('name')
-                                ->label(__('Name'))
-                                ->icon('heroicon-o-user-circle')
-                                ->iconColor('primary'),
+                            //                            TextEntry::make('id')
+                            //                                ->label(__('ID'))
+                            //                                ->icon('heroicon-o-identification')
+                            //                                ->iconColor('primary'),
+                            //                            TextEntry::make('username')
+                            //                                ->label(__('Username'))
+                            //                                ->icon('heroicon-o-user')
+                            //                                ->iconColor('primary'),
+                            SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
+                                ->label(__('Profile Photo'))
+                                ->hiddenLabel()
+                                ->collection('profile_photo')
+                                ->defaultImageUrl(fn ($record) => $record->profile_photo_url)
+                                ->size(300)
+                                ->alignment(Alignment::Center)
+                                ->extraImgAttributes([
+                                    'class' => 'rounded-lg shadow-md object-cover object-center',
+                                    'alt' => 'Profile Photo',
+                                    'loading' => 'lazy',
+                                ]),
+                            Group::make([
+                                TextEntry::make('name')
+                                    ->label(__('Name'))
+                                    ->icon('heroicon-o-user-circle')
+                                    ->iconColor('primary'),
 
-                            TextEntry::make('email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary'),
-                            TextEntry::make('phone_number')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary'),
+                                TextEntry::make('email')
+                                    ->label(__('Email'))
+                                    ->icon('heroicon-o-envelope')
+                                    ->iconColor('primary'),
+                                TextEntry::make('phone_number')
+                                    ->label(__('Phone'))
+                                    ->icon('heroicon-o-phone')
+                                    ->iconColor('primary'),
+                            ]),
+                        ])
+                            ->columns(2),
+
+                        Group::make([
+
                             TextEntry::make('address')
                                 ->label(__('Address'))
                                 ->icon('heroicon-o-map-pin')
@@ -245,6 +268,7 @@ class ViewUser extends ViewRecord
                     ])
                         ->grow(false),
                 ])
+                    ->from('md')
                     ->columnSpanFull(),
             ]);
     }
