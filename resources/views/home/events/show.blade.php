@@ -33,7 +33,11 @@
                     </div>
                 @empty
                     <div class="empty-image-container">
-                        <img src="{{asset('assets/imgs/apsf/who-we-are/Hamid AlQasimi-01-62.jpg')}}" alt="">
+                        @if($firstImage)
+                            <img src="{{$firstImage->getUrl()}}" alt="">
+                        @else
+                            <img src="{{asset('assets/imgs/apsf/news-updates/news-1.webp')}}" alt="">
+                        @endif
                     </div>
                 @endforelse
                 <p class="description-text">{{$event->event_description}}</p>
