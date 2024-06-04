@@ -18,7 +18,8 @@ class EventController extends Controller
             $firstTwoImages = $event->media->filter(function ($media) {
                 return $media->mime_type !== 'video/mp4';
             })->take(2);
-
+            //in descending order
+            $firstTwoImages = $firstTwoImages->sortByDesc('id');
             $event->firstTwoImages = $firstTwoImages;
 
             return $event;
