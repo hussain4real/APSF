@@ -18,6 +18,7 @@ use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Alignment;
 use Illuminate\Database\Eloquent\Model;
 use Mokhosh\FilamentRating\Components\Rating;
 use Mokhosh\FilamentRating\Entries\RatingEntry;
@@ -39,16 +40,37 @@ class ViewStudent extends ViewRecord
             ->schema([
                 Split::make([
                     Section::make([
-                        SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
-                            ->label(__('Profile Photo'))
-                            ->collection('profile_photos')
-                            ->defaultImageUrl(fn ($record) => $record->user->profile_photo_url)
-                            ->size(250),
                         Group::make([
-                            TextEntry::make('user.name')
-                                ->label(__('Name'))
-                                ->icon('heroicon-o-user-circle')
-                                ->iconColor('primary'),
+                            SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
+                                ->label(__('Profile Photo'))
+                                ->collection('profile_photos')
+                                ->defaultImageUrl(fn ($record) => $record->user->profile_photo_url)
+                                ->size(300)
+                                ->alignment(Alignment::Center)
+                                ->extraImgAttributes([
+                                    'class' => 'rounded-lg shadow-md object-cover object-center',
+                                    'alt' => 'Profile Photo',
+                                    'loading' => 'lazy',
+                                ]),
+                            Group::make([
+                                TextEntry::make('user.name')
+                                    ->label(__('Name'))
+                                    ->icon('heroicon-o-user-circle')
+                                    ->iconColor('primary'),
+                                TextEntry::make('user.email')
+                                    ->label(__('Email'))
+                                    ->icon('heroicon-o-envelope')
+                                    ->iconColor('primary'),
+                                TextEntry::make('phone')
+                                    ->label(__('Phone'))
+                                    ->icon('heroicon-o-phone')
+                                    ->iconColor('primary'),
+                            ]),
+                        ])
+                            ->columns(2),
+
+                        Group::make([
+
                             TextEntry::make('school_name')
                                 ->label(__('School Name'))
                                 ->icon('heroicon-o-building-office-2')
@@ -57,14 +79,7 @@ class ViewStudent extends ViewRecord
                                 ->label(__('Grade'))
                                 ->icon('heroicon-o-academic-cap')
                                 ->iconColor('primary'),
-                            TextEntry::make('user.email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary'),
-                            TextEntry::make('phone')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary'),
+
                             TextEntry::make('address')
                                 ->label(__('Address'))
                                 ->icon('heroicon-o-map-pin')
@@ -223,6 +238,7 @@ class ViewStudent extends ViewRecord
                     ])
                         ->grow(false),
                 ])
+                    ->from('md')
                     ->columnSpanFull(),
             ]);
     }

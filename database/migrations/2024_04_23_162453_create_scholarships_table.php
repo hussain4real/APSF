@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('institution')->nullable();
             $table->string('country')->nullable();
+            $table->string('status')->default(\App\ScholarshipStatus::UPCOMING);
+            $table->string('type')->default(\App\ScholarshipType::FULL);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();

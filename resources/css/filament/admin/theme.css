@@ -10,6 +10,13 @@
     #banner{
         @apply w-fit max-w-full;
     }
+    .fi-ta-record > div > div {
+        @apply py-0 pb-2 rounded-t-lg;
+    }
+
+    .fi-ta-record > div > div > div > a {
+        @apply px-0;
+    }
 
     /* #name-column{
         @apply font-semibold !text-xl;
