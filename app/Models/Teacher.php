@@ -48,6 +48,14 @@ class Teacher extends Model
     }
 
     /**
+     * BelongsTo School
+     */
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    /**
      * Get all the teacher's reviews.
      */
     public function reviews(): MorphMany

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('school_id')->nullable()->constrained()->onDelete('set null');
             $table->text('address')->nullable();
             $table->string('school_name')->nullable();
             $table->string('current_grade')->nullable();
@@ -21,7 +22,6 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('phone')->nullable();
             $table->string('status')->default(\App\Status::PENDING->value)->nullable();
-        
 
             $table->softDeletes();
             $table->timestamps();

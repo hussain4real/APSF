@@ -115,7 +115,7 @@ return [
     ],
     'membership' => [
         'heading' => 'Membership and subscription benefits',
-        'description' => 'Join us to take advantage of the current benefits of membership packages, knowing that we are working to enhance the benefit packages continuously in order to serve the private sector schools’ sector in the Arab world.',
+        'description' => 'Join us to enjoy the current benefits of our membership packages. Please note that we are continually improving these packages to better serve the private schools sector in the Arab world',
         'note' => 'Note: - Benefits are subject to a set of terms and conditions and according to the nature of the service provided.',
     ],
 ];
