@@ -39,16 +39,31 @@ class ViewSchool extends ViewRecord
             ->schema([
                 Split::make([
                     Section::make([
-                        SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
-                            ->label(__('Profile Photo'))
-                            ->collection('profile_photos')
-                            ->defaultImageUrl(fn ($record) => $record->user->profile_photo_url)
-                            ->size(250),
                         Group::make([
-                            TextEntry::make('user.name')
-                                ->label(__('Owner/Contact Person'))
-                                ->icon('heroicon-o-user-circle')
-                                ->iconColor('primary'),
+                            SpatieMediaLibraryImageEntry::make('user.profile_photo_path')
+                                ->label(__('Profile Photo'))
+                                ->collection('profile_photos')
+                                ->defaultImageUrl(fn ($record) => $record->user->profile_photo_url)
+                                ->size(250),
+                            Group::make([
+                                TextEntry::make('user.name')
+                                    ->label(__('Owner/Contact Person'))
+                                    ->icon('heroicon-o-user-circle')
+                                    ->iconColor('primary'),
+                                TextEntry::make('email')
+                                    ->label(__('Email'))
+                                    ->icon('heroicon-o-envelope')
+                                    ->iconColor('primary'),
+                                TextEntry::make('phone')
+                                    ->label(__('Phone'))
+                                    ->icon('heroicon-o-phone')
+                                    ->iconColor('primary'),
+                            ]),
+                        ])
+                            ->columns(2),
+
+                        Group::make([
+
                             TextEntry::make('name')
                                 ->label(__('School Name'))
                                 ->icon('heroicon-o-building-office-2')
@@ -61,14 +76,7 @@ class ViewSchool extends ViewRecord
                                 ->label(__('Website'))
                                 ->icon('heroicon-o-globe')
                                 ->iconColor('primary'),
-                            TextEntry::make('email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary'),
-                            TextEntry::make('phone')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary'),
+
                             TextEntry::make('address')
                                 ->label(__('Address'))
                                 ->icon('heroicon-o-map-pin')
@@ -239,6 +247,7 @@ class ViewSchool extends ViewRecord
                     ])
                         ->grow(false),
                 ])
+                    ->from('md')
                     ->columnSpanFull(),
             ]);
     }
