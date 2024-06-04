@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Filament\Clusters\Resources\Resources\ScholarshipResource;
+use App\ScholarshipStatus;
+use App\ScholarshipType;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
@@ -16,6 +19,17 @@ class Scholarship extends Model implements HasMedia
 
     protected $guarded = [];
 
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'date',
+            'end_date' => 'date',
+            'status' => ScholarshipStatus::class,
+            'type' => ScholarshipType::class,
+
+        ];
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
@@ -27,5 +41,10 @@ class Scholarship extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('scholarship_images');
+    }
+
+    public function getUrl()
+    {
+        return ScholarshipResource::getUrl('view', ['record' => $this->id]);
     }
 }

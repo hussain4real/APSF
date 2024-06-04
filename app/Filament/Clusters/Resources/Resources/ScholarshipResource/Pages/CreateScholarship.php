@@ -3,10 +3,13 @@
 namespace App\Filament\Clusters\Resources\Resources\ScholarshipResource\Pages;
 
 use App\Filament\Clusters\Resources\Resources\ScholarshipResource;
+use App\ScholarshipStatus;
+use App\ScholarshipType;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
 
@@ -42,6 +45,16 @@ class CreateScholarship extends CreateRecord
                     ->prefix('Ends')
                     ->suffix('at midnight')
                     ->after('start_date'),
+                ToggleButtons::make('status')
+                    ->translateLabel()
+                    ->options(ScholarshipStatus::class)
+                    ->default(ScholarshipStatus::UPCOMING)
+                    ->inline(),
+                ToggleButtons::make('type')
+                    ->translateLabel()
+                    ->options(ScholarshipType::class)
+                    ->default(ScholarshipType::class)
+                    ->inline(),
                 SpatieMediaLibraryFileUpload::make('attachment')
                     ->collection('scholarship_images')
                     ->hiddenLabel()

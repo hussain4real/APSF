@@ -1,7 +1,7 @@
 @php use App\TrainingStatus; @endphp
 {{--sample cards for courses--}}
 <div
-    class="max-w-2xl sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-xl bg-white dark:bg-slate-700 shadow-md rounded-lg text-gray-900 dark:text-gray-200 overflow-hidden ">
+    class="max-w-full bg-white dark:bg-slate-700 rounded-lg text-gray-900 dark:text-gray-200 overflow-hidden ">
     <img class="w-full max-h-full h-[13rem]" src="{{$getRecord()->media[0]->getUrl()}}" alt="Sunset in the mountains">
     {{--    @dd($getRecord())--}}
     <div class="px-2 py-4 text-center">
@@ -22,7 +22,7 @@
             </small>
         </div>
 
-        <p class="text-justify leading-tight tracking-tight text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
+        <p class="text-justify px-2 leading-tight tracking-tight text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
             {{$getRecord()->description}}
         </p>
     </div>
@@ -37,8 +37,8 @@
         <span
             class="bg-{{ $getRecord()->mode_of_delivery->getColor() }}-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">{{$getRecord()->mode_of_delivery}}</span>
     </div>
-    <div class="flex items-center justify-center my-2">
-        <img class="w-10 h-10 rounded-full mr-4" src="{{$getRecord()->trainingProvider->user->profile_photo_url}}"
+    <div class="flex items-center justify-center my-2 gap-4">
+        <img class="w-10 h-10 rounded-full" src="{{$getRecord()->trainingProvider->user->profile_photo_url}}"
              alt="Avatar of Jonathan Reinink">
         <div class="text-sm">
             <p class="text-gray-900 dark:text-gray-200 leading-none">{{$getRecord()->trainingProvider->institution_name}}</p>
