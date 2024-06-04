@@ -189,7 +189,7 @@
             padding-left: 1rem;
             padding-right: 1rem;
             margin: 1rem auto;
-            overflow: clip;
+            /*overflow: clip;*/
             /*list-style: decimal outside ;*/
             color: #0c5460;
             font-weight: bold;
@@ -201,12 +201,12 @@
         }
         .features li{
             /*wrap text after 3 words*/
-            overflow: hidden;
+            /*overflow: hidden;*/
             text-align: left;
-            text-overflow: ellipsis;
+            /*text-overflow: ;*/
             text-wrap: wrap;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            /*-webkit-line-clamp: 3;*/
             -webkit-box-orient: vertical;
 
         }

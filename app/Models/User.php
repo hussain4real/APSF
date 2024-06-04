@@ -306,15 +306,19 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('profile')
+        $this->addMediaCollection('profile_photo')
             ->singleFile();
     }
 
     public function getProfilePhotoUrlAttribute()
     {
-        if ($this->getFirstMediaUrl('profile_photos')) {
-            return $this->getFirstMediaUrl('profile_photos');
+        if ($this->getFirstMediaUrl('profile_photo')) {
+            return $this->getFirstMediaUrl('profile_photo');
         }
+        //grab grab the users avatar from the avatar column of the users table
+        //        if ($this->avatar) {
+        //            return $this->avatar;
+        //        }
 
         return 'https://ui-avatars.com/api/?name='.$this->name.'&color=#ff8503&background=ffd22b';
     }
