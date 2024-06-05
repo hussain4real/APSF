@@ -11,7 +11,6 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
-use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\IconPosition;
 use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
@@ -25,7 +24,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -50,53 +48,29 @@ class ListMembers extends ListRecords
             ->columns([
 
                 Stack::make([
-                    View::make('entities.table.profile')
-
+                    View::make('entities.table.member')
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Name'))
-                                ->alignCenter()
-                                ->searchable()
-                                ->size(TextColumnSize::Medium)
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('user.email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary')
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->label(__('Email')),
                             TextColumn::make('country')
-                                ->label(__('Country'))
-                                ->icon('heroicon-o-flag')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->hidden()
-                                ->alignCenter(),
+                                ->label(__('Country')),
                             TextColumn::make('phone_number')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary')
-                                ->hidden()
-                                ->alignCenter(),
-
+                                ->label(__('Phone')),
                             TextColumn::make('status')
-                                ->badge()
-                                ->grow(false)
-                                ->alignCenter()
-                                ->extraAttributes([
-                                    'class' => 'my-2',
-                                ]),
+                                ->badge(),
 
-                            RatingColumn::make('member.rating')
-                                ->label(__('Rating'))
-                                ->state(function (Model $record): string {
-                                    return $record->rating ?? 0;
-                                })
-                                ->color('warning')
-                                ->size('sm')
-                                ->alignCenter()
-                                ->allowZero(),
+                            //                            RatingColumn::make('member.rating')
+                            //                                ->label(__('Rating'))
+                            //                                ->state(function (Model $record): string {
+                            //                                    return $record->rating ?? 0;
+                            //                                })
+                            //                                ->color('warning')
+                            //                                ->size('sm')
+                            //                                ->alignCenter()
+                            //                                ->allowZero(),
 
                         ]),
 
