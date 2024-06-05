@@ -15,7 +15,9 @@
         </div>
         <div class="relative text-white px-2 pb-2 mt-6">
             @if($getRecord()->school()->exists())
-            <span class="block opacity-75 mb-1">{{$getRecord()->school?->school_name}}</span>
+                <span class="block opacity-75 mb-1">{{$getRecord()->school?->school_name}}</span>
+            @else
+                <span class="block opacity-75 mb-1">{{$getRecord()->school_name}}</span>
             @endif
             <span class="block font-semibold text-xl text-wrap">{{$getRecord()->user->name}}</span>
             <div class="flex justify-between items-center mt-2">
