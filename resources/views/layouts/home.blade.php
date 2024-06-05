@@ -65,7 +65,7 @@
         .social-icon i{
             color: #033731;
         }
-        .social-icon i:hover{
+        .social-icon i:hover, svg:hover{
             /* add fa-beat class */
             animation: fa-beat 1s infinite;
         }
@@ -368,7 +368,10 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                                 <i class="fab fa-facebook-f fa-lg"></i>
                                             </a></li>
                                         <li><a href="https://x.com/Arab_PSF" target="_blank">
-                                                <i class="fab fa-twitter fa-lg"></i>
+{{--                                                <i class="fab fa-x fa-lg"></i>--}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#033731" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                                                </svg>
                                             </a></li>
                                         <li><a href="https://www.instagram.com/arab_psf/" target="_blank">
                                                 <i class="fab fa-instagram fa-lg"></i>
