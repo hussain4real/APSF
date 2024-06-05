@@ -12,7 +12,6 @@ use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
-use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\IconPosition;
 use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
@@ -26,7 +25,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -58,23 +56,14 @@ class ListUsers extends ListRecords
         return $table
             ->columns([
                 Stack::make([
-                    View::make('entities.table.profile')
+                    View::make('entities.table.user')
                         ->components([
                             TextColumn::make('name')
                                 ->label(__('Name'))
-                                ->size(TextColumnSize::Medium)
-                                ->searchable()
-                                ->alignCenter()
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('email')
                                 ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconPosition(IconPosition::Before)
-                                ->searchable()
-                                ->iconColor('primary')
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->searchable(),
                             //                            TextColumn::make('created_at')
                             //                                ->label(__('Created'))
                             //                                ->date(format: 'M d, Y')

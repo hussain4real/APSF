@@ -10,7 +10,6 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
-use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -22,7 +21,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -46,66 +44,33 @@ class ListContractors extends ListRecords
             ->columns([
 
                 Stack::make([
-                    View::make('entities.table.profile')
+                    View::make('entities.table.contractor')
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Owner'))
-                                ->alignCenter()
-                                ->searchable()
-                                ->hidden()
-                                ->size(TextColumnSize::Medium)
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('name')
                                 ->label(__('school Name'))
-                                ->icon('heroicon-o-building-office-2')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->alignCenter()
-                                ->color('gray')
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('type')
                                 ->label(__('Type'))
-                                ->icon('heroicon-o-viewfinder-circle')
-                                ->iconColor('primary')
                                 ->searchable()
-                                ->sortable()
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->sortable(),
 
                             TextColumn::make('email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary')
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->label(__('Email')),
                             TextColumn::make('address')
                                 ->label(__('Address'))
-                                ->icon('heroicon-o-map-pin')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->hidden()
-                                ->alignCenter(),
+                                ->searchable(),
                             TextColumn::make('phone')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary')
-                                ->hidden()
-                                ->alignCenter(),
+                                ->label(__('Phone')),
                             TextColumn::make('status')
-                                ->badge()
-                                ->grow(false)
-                                ->alignCenter(),
+                                ->badge(),
                             RatingColumn::make('rating')
                                 ->label(__('Rating'))
                                 ->state(function (Model $record): string {
                                     return $record->rating;
-                                })
-                                ->color('warning')
-                                ->size('sm')
-                                ->alignCenter()
-                                ->allowZero(),
+                                }),
 
                         ]),
 

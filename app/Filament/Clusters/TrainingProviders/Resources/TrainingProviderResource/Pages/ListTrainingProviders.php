@@ -8,9 +8,7 @@ use Filament\Actions;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
-use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
-use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -19,11 +17,9 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -47,79 +43,42 @@ class ListTrainingProviders extends ListRecords
             ->columns([
 
                 Stack::make([
-                    View::make('entities.table.profile')
+                    View::make('entities.table.training_provider')
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Owner/Contact Person'))
-                                ->alignCenter()
-                                ->searchable()
-                                ->size(TextColumnSize::Medium)
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('institution_name')
                                 ->label(__('Institution Name'))
-                                ->icon('heroicon-o-building-office-2')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->alignCenter()
-                                ->color('gray')
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('institution_type')
                                 ->label(__('Type'))
-                                ->icon('heroicon-o-viewfinder-circle')
-                                ->iconColor('primary')
                                 ->searchable()
-                                ->sortable()
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
-
+                                ->sortable(),
                             TextColumn::make('institution_email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary')
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->label(__('Email')),
                             TextColumn::make('institution_address')
                                 ->label(__('Address'))
-                                ->icon('heroicon-o-map-pin')
-                                ->iconColor('primary')
                                 ->searchable()
-                                ->hidden()
-                                ->alignCenter(),
+                                ->hidden(),
                             TextColumn::make('institution_phone')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary')
-                                ->hidden()
-                                ->alignCenter(),
-                            Split::make([
-                                TextColumn::make('license_expiry_date')
-                                    ->label(__('License Expiry Date'))
-                                    ->date(format: 'M d, Y')
-                                    ->badge()
-                                    ->icon('heroicon-o-cake')
-                                    ->color('primary')
-                                    ->grow(true)
-                                    ->sortable(),
-                                TextColumn::make('status')
-                                    ->badge()
-                                    ->grow(false)
-                                    ->alignCenter(),
+                                ->label(__('Phone')),
 
-                            ])
-                                ->extraAttributes([
-                                    'class' => 'mt-2',
-                                ]),
-                            RatingColumn::make('rating')
-                                ->label(__('Rating'))
-                                ->state(function (Model $record): string {
-                                    return $record->rating;
-                                })
-                                ->color('warning')
-                                ->size('sm')
-                                ->alignCenter()
-                                ->allowZero(),
+                            TextColumn::make('status')
+                                ->badge(),
+
+                            //                            RatingColumn::make('rating')
+                            //                                ->label(__('Rating'))
+                            //                                ->state(function (Model $record): string {
+                            //                                    return $record->rating;
+                            //                                })
+                            //                                ->color('warning')
+                            //                                ->size('sm')
+                            //                                ->alignCenter()
+                            //                                ->allowZero()
+                            //                                ->extraAttributes([
+                            //                                    'class' => 'pt-4',
+                            //                                ]),
 
                         ]),
 
@@ -191,11 +150,8 @@ class ListTrainingProviders extends ListRecords
                         }),
 
                 ])
-                    ->button()
-                    ->label(__('Actions'))
-                    ->size(ActionSize::Small)
                     ->extraAttributes([
-                        'class' => 'ml-16 my-1',
+                        'class' => 'ml-16',
                     ]),
 
             ]);
