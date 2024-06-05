@@ -9,11 +9,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Colors\Color;
-use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
-use Filament\Support\Enums\FontWeight;
-use Filament\Support\Enums\IconPosition;
-use Filament\Support\Enums\IconSize;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -25,7 +21,6 @@ use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -50,53 +45,26 @@ class ListStudents extends ListRecords
             ->columns([
 
                 Stack::make([
-                    View::make('entities.table.profile')
+                    View::make('entities.table.student')
 
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Name'))
-                                ->alignCenter()
+                                ->searchable(),
+                            TextColumn::make('school_name')
+                                ->label(__('School Name'))
+                                ->searchable(),
+                            TextColumn::make('current_grade')
+                                ->label(__('Grade'))
                                 ->searchable()
-                                ->size(TextColumnSize::Medium)
-                                ->weight(FontWeight::SemiBold),
-                            //                            TextColumn::make('school_name')
-                            //                                ->label(__('School Name'))
-                            //                                ->icon('heroicon-o-building-office-2')
-                            //                                ->iconColor('primary')
-                            //                                ->searchable()
-                            //                                ->alignCenter()
-                            //                                ->color('gray')
-                            //                                ->weight(FontWeight::SemiBold),
-                            //                            TextColumn::make('current_grade')
-                            //                                ->label(__('Grade'))
-                            //                                ->icon('heroicon-o-academic-cap')
-                            //                                ->iconColor('primary')
-                            //                                ->searchable()
-                            //                                ->sortable()
-                            //                                ->color('gray')
-                            //                                ->weight(FontWeight::Medium)
-                            //                                ->alignCenter(),
-
+                                ->sortable(),
                             TextColumn::make('user.email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary')
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->label(__('Email')),
                             TextColumn::make('country')
                                 ->label(__('Country'))
-                                ->icon('heroicon-o-flag')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->hidden()
-                                ->alignCenter(),
+                                ->searchable(),
                             TextColumn::make('phone')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary')
-                                ->hidden()
-                                ->alignCenter(),
+                                ->label(__('Phone')),
 
                             //                                TextColumn::make('date_of_birth')
                             //                                    ->label(__('Date of Birth'))
@@ -114,15 +82,15 @@ class ListStudents extends ListRecords
                                     'class' => 'my-2',
                                 ]),
 
-                            RatingColumn::make('student.rating')
-                                ->label(__('Rating'))
-                                ->state(function (Model $record): string {
-                                    return $record->rating;
-                                })
-                                ->color('warning')
-                                ->size('sm')
-                                ->alignCenter()
-                                ->allowZero(),
+                            //                            RatingColumn::make('student.rating')
+                            //                                ->label(__('Rating'))
+                            //                                ->state(function (Model $record): string {
+                            //                                    return $record->rating;
+                            //                                })
+                            //                                ->color('warning')
+                            //                                ->size('sm')
+                            //                                ->alignCenter()
+                            //                                ->allowZero(),
 
                         ]),
 
@@ -141,73 +109,59 @@ class ListStudents extends ListRecords
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
-                    Action::make('rate')
-                        ->visible(fn (Model $record) => $record->user_id !== auth()->id())
-                        ->icon('heroicon-o-star')
-                        ->fillForm(fn (Model $record): array => [
-                            $user = auth()->user(),
-                            'rating' => $record->reviews()->where('user_id', $user->id)->first()?->rating ?? 0,
-                            'comment' => $record->reviews()->where('user_id', $user->id)->first()?->comment ?? '',
-                        ])
-                        ->form([
-                            Rating::make('rating')
-                                ->stars(5)
-                                ->allowZero(true),
-                            Textarea::make('comment')
-                                ->label(__('Comment'))
-                                ->placeholder('Enter your comment here'),
-                        ])
-                        ->action(function (array $data, Model $record): void {
-                            //entities should not be able to rate themselves
-                            //                            dd($record->user_id, auth()->id());
-                            if ($record->user_id === auth()->id()) {
-                                Notification::make('Rating Error')
-                                    ->title('Rating Error')
-                                    ->danger()
-                                    ->body('You cannot rate yourself')
-                                    ->send();
+                    //                    Action::make('rate')
+                    //                        ->visible(fn (Model $record) => $record->user_id !== auth()->id())
+                    //                        ->icon('heroicon-o-star')
+                    //                        ->fillForm(fn (Model $record): array => [
+                    //                            $user = auth()->user(),
+                    //                            'rating' => $record->reviews()->where('user_id', $user->id)->first()?->rating ?? 0,
+                    //                            'comment' => $record->reviews()->where('user_id', $user->id)->first()?->comment ?? '',
+                    //                        ])
+                    //                        ->form([
+                    //                            Rating::make('rating')
+                    //                                ->stars(5)
+                    //                                ->allowZero(true),
+                    //                            Textarea::make('comment')
+                    //                                ->label(__('Comment'))
+                    //                                ->placeholder('Enter your comment here'),
+                    //                        ])
+                    //                        ->action(function (array $data, Model $record): void {
+                    //                            //entities should not be able to rate themselves
+                    //                            //                            dd($record->user_id, auth()->id());
+                    //                            if ($record->user_id === auth()->id()) {
+                    //                                Notification::make('Rating Error')
+                    //                                    ->title('Rating Error')
+                    //                                    ->danger()
+                    //                                    ->body('You cannot rate yourself')
+                    //                                    ->send();
+                    //
+                    //                                return;
+                    //                            }
+                    //                            //                            dd($data);
+                    //                            if ($record->reviews()->where('user_id', auth()->id())->exists()) {
+                    //                                $record->reviews()->where('user_id', auth()->id())->update([
+                    //                                    'rating' => $data['rating'],
+                    //                                    'comment' => $data['comment'],
+                    //                                ]);
+                    //                            } else {
+                    //                                $review = new Review([
+                    //                                    'rating' => $data['rating'],
+                    //                                    'comment' => $data['comment'],
+                    //                                    'reviewable_id' => $record->id,
+                    //                                    'reviewable_type' => get_class($record),
+                    //                                    'user_id' => auth()->id(),
+                    //                                ]);
+                    //                                $record->reviews()->save($review);
+                    //                            }
+                    //
+                    //                            Notification::make('Rating Updated')
+                    //                                ->title('Rating Updated')
+                    //                                ->success()
+                    //                                ->body('Rating has been updated successfully')
+                    //                                ->send();
+                    //                        }),
 
-                                return;
-                            }
-                            //                            dd($data);
-                            if ($record->reviews()->where('user_id', auth()->id())->exists()) {
-                                $record->reviews()->where('user_id', auth()->id())->update([
-                                    'rating' => $data['rating'],
-                                    'comment' => $data['comment'],
-                                ]);
-                            } else {
-                                $review = new Review([
-                                    'rating' => $data['rating'],
-                                    'comment' => $data['comment'],
-                                    'reviewable_id' => $record->id,
-                                    'reviewable_type' => get_class($record),
-                                    'user_id' => auth()->id(),
-                                ]);
-                                $record->reviews()->save($review);
-                            }
-
-                            Notification::make('Rating Updated')
-                                ->title('Rating Updated')
-                                ->success()
-                                ->body('Rating has been updated successfully')
-                                ->send();
-                        }),
-
-                ])
-//                    ->link()
-                    ->icon('heroicon-m-ellipsis-horizontal')
-//                    ->iconButton()
-                    ->iconSize(IconSize::Medium)
-                    ->color(Color::Amber)
-                    ->label(__('Actions'))
-                    ->hiddenLabel(false)
-                    ->size(ActionSize::Large)
-                    ->iconPosition(IconPosition::Before)
-                    ->tooltip(__('Click to view available actions'))
-                    ->extraAttributes([
-                        'class' => 'mx-16',
-                        //                        ml-16 my-1
-                    ]),
+                ]),
 
             ]);
         //            ->bulkActions([

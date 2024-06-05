@@ -22,6 +22,12 @@
         color: white !important;
         background: #033731;
     }
+
+    body[dir="rtl"] .form-check .form-check-input{
+        float: right;
+        margin-left: 0.5rem;
+
+    }
 </style>
 <div class="container mt-1">
     @if(session('error'))
@@ -55,7 +61,7 @@
                 <div class="card-body">
                     <form id="voteForm">
                         @csrf
-                        <div class="mb-3 form-check">
+                        <div class="mb-3 form-check ">
                             <input type="radio" id="option1" name="option" value="1" class="form-check-input">
                             <label class="form-check-label" for="option1">{{__('frontend.votes.option1')}}</label>
                         </div>

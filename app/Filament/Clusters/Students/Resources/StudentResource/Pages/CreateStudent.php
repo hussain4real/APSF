@@ -7,7 +7,10 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class CreateStudent extends CreateRecord
 {
@@ -16,8 +19,42 @@ class CreateStudent extends CreateRecord
     public static function getUserFormField(): Select
     {
         return Select::make('user_id')
-            ->relationship('user', 'id')
-            ->required();
+            ->relationship('user', 'name')
+            ->required()
+            ->searchable()
+            ->preload()
+            ->createOptionForm([
+                TextInput::make('first_name')
+                    ->required(),
+                TextInput::make('last_name')
+                    ->required(),
+                TextInput::make('email')
+                    ->required()
+                    ->email(),
+                TextInput::make('password')
+                    ->label(__('filament-panels::pages/auth/register.form.password.label'))
+                    ->password()
+                    ->revealable(filament()->arePasswordsRevealable())
+                    ->required()
+                    ->rule(Password::default())
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->same('passwordConfirmation'),
+                TextInput::make('passwordConfirmation')
+                    ->label(__('filament-panels::pages/auth/register.form.password_confirmation.label'))
+                    ->password()
+                    ->revealable(filament()->arePasswordsRevealable())
+                    ->required()
+                    ->dehydrated(false),
+            ]);
+    }
+
+    public static function getSchoolNameSelectFormField(): Select
+    {
+        return Select::make('school_id')
+            ->relationship('school', 'school_name')
+            ->label(__('School Name'))
+            ->searchable()
+            ->preload();
     }
 
     public static function getSchoolNameFormField(): TextInput
@@ -75,7 +112,14 @@ class CreateStudent extends CreateRecord
     {
         return $form
             ->schema([
-                static::getSchoolNameFormField(),
+                static::getUserFormField(),
+                static::getSchoolNameSelectFormField()
+                    ->live(onBlur: true),
+                static::getSchoolNameFormField()
+                    ->hidden(function (Get $get) {
+                        return $get('school_id') !== null;
+
+                    }),
                 static::getCurrentGradeFormField(),
                 static::getAddressFormField(),
                 static::getDateOfBirthFormField(),

@@ -10,7 +10,6 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
-use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\BulkActionGroup;
@@ -19,11 +18,9 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ForceDeleteBulkAction;
 use Filament\Tables\Actions\RestoreBulkAction;
 use Filament\Tables\Actions\ViewAction;
-use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Columns\Layout\View;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TextColumn\TextColumnSize;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
@@ -47,78 +44,39 @@ class ListEducationalConsultants extends ListRecords
             ->columns([
 
                 Stack::make([
-                    View::make('entities.table.profile')
+                    View::make('entities.table.educational_consultant')
                         ->components([
                             TextColumn::make('user.name')
                                 ->label(__('Name'))
-                                ->alignCenter()
-                                ->searchable()
-                                ->size(TextColumnSize::Medium)
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('specialization')
                                 ->label(__('Specialization'))
-                                ->icon('heroicon-o-light-bulb')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->alignCenter()
-                                ->color('gray')
-                                ->weight(FontWeight::SemiBold),
+                                ->searchable(),
                             TextColumn::make('qualification')
                                 ->label(__('Qualification'))
-                                ->icon('heroicon-o-academic-cap')
-                                ->iconColor('primary')
                                 ->searchable()
-                                ->sortable()
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->sortable(),
 
                             TextColumn::make('user.email')
-                                ->label(__('Email'))
-                                ->icon('heroicon-o-envelope')
-                                ->iconColor('primary')
-                                ->color('gray')
-                                ->weight(FontWeight::Medium)
-                                ->alignCenter(),
+                                ->label(__('Email')),
                             TextColumn::make('country')
                                 ->label(__('Country'))
-                                ->icon('heroicon-o-flag')
-                                ->iconColor('primary')
-                                ->searchable()
-                                ->hidden()
-                                ->alignCenter(),
+                                ->searchable(),
                             TextColumn::make('phone_number')
-                                ->label(__('Phone'))
-                                ->icon('heroicon-o-phone')
-                                ->iconColor('primary')
-                                ->hidden()
-                                ->alignCenter(),
-                            Split::make([
-                                TextColumn::make('years_of_experience')
-                                    ->label(__('Experience'))
-                                    ->numeric()
-                                    ->badge()
-                                    ->icon('heroicon-o-clock')
-                                    ->color('primary')
-                                    ->grow(true)
-                                    ->sortable(),
-                                TextColumn::make('status')
-                                    ->badge()
-                                    ->grow(false)
-                                    ->alignCenter(),
+                                ->label(__('Phone')),
 
-                            ])
-                                ->extraAttributes([
-                                    'class' => 'mt-2',
-                                ]),
+                            TextColumn::make('years_of_experience')
+                                ->label(__('Experience'))
+                                ->sortable(),
+                            TextColumn::make('status')
+                                ->badge(),
+
                             RatingColumn::make('rating')
                                 ->label(__('Rating'))
                                 ->state(function (Model $record): string {
                                     return $record->rating;
                                 })
-                                ->color('warning')
-                                ->size('sm')
-                                ->alignCenter()
+
                                 ->allowZero(),
 
                         ]),

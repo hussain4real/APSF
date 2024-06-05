@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('school_id')->nullable()->constrained()->onDelete('set null');
+            $table->string('school_name')->nullable();
             $table->text('address')->nullable();
             $table->string('subject_taught')->nullable();
             $table->string('qualification')->nullable();
