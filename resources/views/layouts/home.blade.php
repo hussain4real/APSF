@@ -62,7 +62,7 @@
             color: teal;
         }
 
-        .social-icon i{
+        .social-icon i, svg{
             color: #033731;
         }
         .social-icon i:hover, svg:hover{
