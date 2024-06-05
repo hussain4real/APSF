@@ -84,7 +84,7 @@ class Student extends Model
      */
     public function getRatingAttribute(): float
     {
-        return $this->reviews->avg('rating');
+        return $this->reviews->avg('rating') ?? 0.0;
         //        if ($this->reviews->count() > 0) {
         //            return floatval(number_format($this->rating_sum / $this->reviews->count(), 2));
         //        }
