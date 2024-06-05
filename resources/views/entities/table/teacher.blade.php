@@ -14,7 +14,11 @@
             <img class="relative max-w-48 max-h-48 w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt="">
         </div>
         <div class="relative text-white px-2 pb-2 mt-6">
-            <span class="block opacity-75 mb-1">{{$getRecord()->school->school_name}}</span>
+            @if($getRecord()->school()->exists())
+                <span class="block opacity-75 mb-1">{{$getRecord()->school?->school_name}}</span>
+            @else
+                <span class="block opacity-75 mb-1">{{$getRecord()->school_name}}</span>
+            @endif
             <span class="block font-semibold text-xl text-wrap">{{$getRecord()->user->name}}</span>
             <div class="flex justify-between items-center mt-2">
                 <span class="block text-xs font-semibold">{{$getRecord()->subject_taught}}<span class="text-sm">, {{$getRecord()->country}}</span></span>
