@@ -90,6 +90,7 @@
         background: purple;
     }
 </style>
+@dd($trainingProgram);
 <div class="pricing-card">
     <div class="card-left">
         <h1>{{$trainingProgram->title}}</h1>

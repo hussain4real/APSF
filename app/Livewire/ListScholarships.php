@@ -80,7 +80,7 @@ class ListScholarships extends Component implements HasForms, HasTable
                         ->label(__('Program/Course'))
                         ->icon('heroicon-o-academic-cap'),
                 ]),
-            ], layout: FiltersLayout::AboveContent)
+            ], layout: FiltersLayout::AboveContentCollapsible)
             ->actions([
                 //                ViewAction::make(),
             ])

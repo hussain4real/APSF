@@ -86,7 +86,8 @@ class ListTrainingPrograms extends ListRecords
                 TrashedFilter::make(),
             ])
             ->actions([
-                //                ViewAction::make(),
+                ViewAction::make()
+                    ->hidden(false),
                 EditAction::make()
                     ->extraAttributes([
                         //                        'class' => 'mx-auto',
