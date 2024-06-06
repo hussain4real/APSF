@@ -243,7 +243,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
-                                    <a href="https://genexinstitute.com/" target="_blank">
+                                    <a href="https://kno-360.com/" target="_blank">
                                         <img src="{{asset('assets/imgs/apsf/partners/kno360.jpeg')}}" alt="Brand Logo" width="200" id="kno360">
                                     </a>
                                 </div>
