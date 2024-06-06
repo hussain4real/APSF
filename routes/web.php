@@ -114,4 +114,6 @@ Route::post('/vote', [PublicVoteController::class, 'store'])
 Route::get('/view-votes', [PublicVoteController::class, 'index'])
     ->name('view-votes');
 
+Route::get('scholarships', \App\Livewire\ListScholarships::class)
+    ->name('scholarships');
 require __DIR__.'/auth.php';

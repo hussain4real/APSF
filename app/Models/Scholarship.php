@@ -19,6 +19,8 @@ class Scholarship extends Model implements HasMedia
 
     protected $guarded = [];
 
+    protected $with = ['media'];
+
     protected function casts(): array
     {
         return [
