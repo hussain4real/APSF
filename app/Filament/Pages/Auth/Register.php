@@ -15,6 +15,7 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -26,6 +27,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 class Register extends BaseRegister
@@ -110,6 +112,20 @@ class Register extends BaseRegister
             ->placeholder(__('YYYY-MM-DD'))
             ->native(false)
             ->required();
+    }
+
+    public function getHasAgreedToTermsFormComponent(): Checkbox
+    {
+        return Checkbox::make('has_agreed_to_terms')
+//            ->label(__('I agree to the terms and conditions'))
+                //use html link for terms and conditions
+            ->label(function (): HtmlString {
+                return new HtmlString(__('I agree to the <a href=":terms" target="_blank" class="text-orange-500 hover:underline">terms and conditions</a> and <a href=":privacy" target="_blank" class="text-orange-500 hover:underline">Privacy policy</a>', [
+                    'terms' => route('terms-and-conditions'),
+                    'privacy' => route('privacy-policy'),
+                ]));
+            })
+            ->accepted();
     }
 
     public static function getEntityFormField(): Select
@@ -333,6 +349,7 @@ class Register extends BaseRegister
                     $this->getEmailFormComponent(),
                     $this->getPasswordFormComponent(),
                     $this->getPasswordConfirmationFormComponent(),
+                    $this->getHasAgreedToTermsFormComponent(),
 
                 ]),
 

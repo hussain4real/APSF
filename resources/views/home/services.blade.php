@@ -387,7 +387,7 @@
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
                         <div class="cta__content-4 ">
                             <p>{{__("frontend.scholarship.description")}} </p>
-                            <a class="btn-started" href="{{route('filament.admin.resources.resources.scholarships.index')}}">{{__("frontend.scholarship.action")}}<span><i
+                            <a class="btn-started" href="{{route('scholarships')}}">{{__("frontend.scholarship.action")}}<span><i
                                         class="fa-solid fa-arrow-right"></i></span></a>
                         </div>
                     </div>

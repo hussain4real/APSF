@@ -35,7 +35,7 @@
     <!-- Scripts -->
     @vite('resources/css/app.css')
     {{-- @vite('public/assets/css/master.css') --}}
-    @lemonJS
+
 </head>
 
 <body class="font-sans antialiased">
@@ -56,7 +56,6 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     @livewire('notifications')
     @filamentScripts
     @vite('resources/js/app.js')

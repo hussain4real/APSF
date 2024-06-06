@@ -6,6 +6,19 @@ use App\ScholarshipStatus;
     $closed = ScholarshipStatus::CLOSED;
     $suspended = ScholarshipStatus::SUSPENDED;
 @endphp
+<style>
+ .fi-ta-record {
+     /*display: none;*/
+     background-color: rgba(255, 165, 0, 0.75) !important;
+        transition: all 0.5s ease-in-out;
+ }
+ .fi-ta-record:hover{
+     /*add some animation and effect*/
+        background-color: rgba(3, 55, 49, 0.75) !important;
+        transition: all 0.5s ease-in-out;
+
+ }
+</style>
 <div class="max-w-full bg-white dark:bg-slate-700 text-gray-900 rounded-lg dark:text-gray-200 overflow-hidden">
 
     <!-- CARD 1 -->
@@ -13,22 +26,22 @@ use App\ScholarshipStatus;
         <div class="relative">
             <a href="{{$getRecord()->getUrl()}}" >
                 @if($getRecord()->media()->exists())
-{{--                    @dd($getRecord()->getFirstMediaUrl('scholarship_images'))--}}
+                    {{--                    @dd($getRecord()->getFirstMediaUrl('scholarship_images'))--}}
                     <img class="w-full max-h-full h-[15rem] object-cover object-center"
                          src="{{$getRecord()->getFirstMediaUrl('scholarship_images')}}"
                          alt="Sunset in the mountains">
                 @else
-                <img class="w-full max-h-full h-[15rem] object-cover object-center"
-                     src="https://images.pexels.com/photos/61180/pexels-photo-61180.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"
-                     alt="Sunset in the mountains">
+                    <img class="w-full max-h-full h-[15rem] object-cover object-center"
+                         src="https://images.pexels.com/photos/61180/pexels-photo-61180.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=1&amp;w=500"
+                         alt="Sunset in the mountains">
                 @endif
                 <div
                     class="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-gray-700 opacity-25">
                 </div>
             </a>
-            <a href="{{$getRecord()->getUrl()}}">
+            <a class="text-sm absolute -top-5 right-0 bg-indigo-600 px-4 py-2 rounded-b text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out" href="{{$getRecord()->getUrl()}}">
                 <div
-                    class="text-xs absolute -top-3 right-0 bg-indigo-600 px-4 py-2 rounded-b text-white mt-3 mr-3 hover:bg-white hover:text-indigo-600 transition duration-500 ease-in-out">
+                    class="">
                     {{$getRecord()->status}}
                 </div>
             </a>
@@ -36,9 +49,10 @@ use App\ScholarshipStatus;
         <div class="px-6 py-6 mb-auto">
             <a href="{{$getRecord()->getUrl()}}"
                class="font-medium text-lg hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">{{$getRecord()->name}}</a>
-            <p class="text-gray-500 text-sm line-clamp-3">
-                {{$getRecord()->description}}
-            </p>
+            <div class=" text-base font-bold py-2 leading-none flex items-center justify-between">
+                <span class="bg-white rounded-full text-teal-500">{{$getRecord()->country}}</span>
+                <span class="bg-teal-500 rounded text-orange-300 py-2 px-3">{{$getRecord()->program}}</span>
+            </div>
         </div>
         <div class="px-6 flex flex-row items-center justify-between ">
                 <span href="#" class="py-1 text-xs font-regular text-gray-900 mr-1 flex flex-row items-center">
