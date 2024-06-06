@@ -28,10 +28,11 @@ class CreateScholarship extends CreateRecord
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('institution')
-
+                    ->maxLength(255),
+                TextInput::make('program')
+                    ->label(__('Program/Course'))
                     ->maxLength(255),
                 TextInput::make('country')
-
                     ->maxLength(255),
                 DatePicker::make('start_date')
                     ->native(false)
@@ -58,8 +59,6 @@ class CreateScholarship extends CreateRecord
                 SpatieMediaLibraryFileUpload::make('attachment')
                     ->collection('scholarship_images')
                     ->hiddenLabel()
-                    ->responsiveImages()
-                    ->multiple()
                     ->maxFiles(1)
                     ->maxSize(1024 * 3)
                     ->hint(__('Maximum size: 3MB.'))
