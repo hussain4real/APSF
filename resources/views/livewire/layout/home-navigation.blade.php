@@ -138,7 +138,7 @@ new class extends Component
             </div>
         </div>
     </header>
-    @include('announcement.contest')
+    <!-- @include('announcement.contest') -->
 
     <!-- Offcanvas area start -->
     <livewire:layout.offcanvas-navigation />

@@ -9,14 +9,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
     <title>Modals · Bootstrap v5.3</title>
-    <!-- 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/modals/">
 
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet"> -->
 
     <style>
         .modal-sheet .modal-dialog {
@@ -78,7 +71,6 @@
     </div>
 
 
-    <!-- <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script> -->
 
 </body>
 <script>

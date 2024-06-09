@@ -42,7 +42,7 @@ enum EventType: string implements HasColor, HasDescription, HasIcon, HasLabel
         return match ($this) {
             self::CONFERENCE => 'heroicon-o-calendar',
             self::MEETING => 'heroicon-o-users',
-            self::SEMINAR => 'heroicon-o-clipboard-check',
+            self::SEMINAR => 'heroicon-o-clipboard-document-check',
             self::WORKSHOP => 'heroicon-o-cog',
             self::NEWS => 'heroicon-o-newspaper',
         };

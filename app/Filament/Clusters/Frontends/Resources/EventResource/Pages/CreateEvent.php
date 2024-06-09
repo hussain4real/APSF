@@ -67,6 +67,8 @@ class CreateEvent extends CreateRecord
                 DateTimePicker::make('event_start_date')
                     ->label(__('Event Date'))
                     ->native(false)
+                    ->seconds(false)
+                    ->timezone('Asia/Qatar')
                     ->format('Y-m-d H:i:s')
                     ->placeholder('Select a date and time')
                     ->date(true),
@@ -77,6 +79,7 @@ class CreateEvent extends CreateRecord
                     })
                     ->native(false)
                     ->seconds(false)
+                    ->timezone('Asia/Qatar')
                     ->format('Y-m-d H:i:s')
                     ->placeholder('Select a date and time')
                     ->time(true),
