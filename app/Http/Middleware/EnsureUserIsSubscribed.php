@@ -19,7 +19,8 @@ class EnsureUserIsSubscribed
         // $subscriptionType = $subscription?->type;
         if ($request->user() && ! $request->user()->subscribed()) {
             // This user is not a paying customer...
-            return redirect('subscribe')->with('notice', 'You must be a paying member to access the portal.');
+            return redirect('welcome');
+            // return redirect('subscribe')->with('notice', 'You must be a paying member to access the portal.');
         }
 
         return $next($request);
