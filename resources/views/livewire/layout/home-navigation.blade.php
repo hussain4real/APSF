@@ -3,7 +3,8 @@
 use App\Livewire\Actions\Logout;
 use Livewire\Volt\Component;
 
-new class extends Component {
+new class extends Component
+{
     /**
      * Log the current user out of the application.
      */
@@ -20,7 +21,7 @@ new class extends Component {
 
     <style>
         @media only screen and (min-width: 992px) and (max-width: 1500px) {
-            #main-menu-wrapper{
+            #main-menu-wrapper {
 
                 padding-right: 2rem;
                 overflow-wrap: normal;
@@ -28,32 +29,30 @@ new class extends Component {
         }
     </style>
     <header class="header__area-7">
-{{--        @include('partials/language_switcher')--}}
+        {{-- @include('partials/language_switcher')--}}
         <div class="header__inner-2">
             <div class="header__logo-2">
-                <a href="/" class="logo-dark" ><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69.webp')}}"
-                        alt="Site Logo"></a>
-                <a href="/" class="logo-light" ><img
-                        src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
+                <a href="/" class="logo-dark"><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69.webp')}}" alt="Site Logo"></a>
+                <a href="/" class="logo-light"><img src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
 
             </div>
 
             <div class="header__nav-2">
                 @include('partials/language_switcher')
-{{--                animation style class: menu-anim--}}
+                {{-- animation style class: menu-anim--}}
                 <ul class="main-menu-4 " id="main-menu-wrapper">
-                    <li><a href="{{ route('welcome') }}" >{{__('nav.Home')}}</a></li>
+                    <li><a href="{{ route('welcome') }}">{{__('nav.Home')}}</a></li>
 
-                    <li><a href="{{ route('about') }}" >{{__('nav.About Us')}}</a></li>
+                    <li><a href="{{ route('about') }}">{{__('nav.About Us')}}</a></li>
                     <li><a href="#">{{__('nav.Committee')}}</a>
                         <ul class="main-dropdown">
-                            <li><a href="{{ route('founders-committee') }}" >{{__('nav.Founders Committee')}}</a></li>
-                            <li><a href="{{ route('board-of-trustees.index') }}" >{{__('nav.Board of Trustees')}}</a></li>
-                            <li><a href="{{ route('general-secretariat') }}" >{{__('nav.General Secretariat')}}</a></li>
+                            <li><a href="{{ route('founders-committee') }}">{{__('nav.Founders Committee')}}</a></li>
+                            <li><a href="{{ route('board-of-trustees.index') }}">{{__('nav.Board of Trustees')}}</a></li>
+                            <li><a href="{{ route('general-secretariat') }}">{{__('nav.General Secretariat')}}</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('services') }}" >{{__('nav.Services')}}</a>
-                    <li><a href="{{ route('membership') }}" >{{__('nav.Membership')}}</a>
+                    <li><a href="{{ route('services') }}">{{__('nav.Services')}}</a>
+                    <li><a href="{{ route('membership') }}">{{__('nav.Membership')}}</a>
 
                         <!-- <ul class="main-dropdown">
               <li><a href="#">Academic Support</a></li>
@@ -64,75 +63,70 @@ new class extends Component {
               <li><a href="#">Membership</a></li>
             </ul> -->
                     </li>
-                    <li><a href="{{ route('events.index') }}" >{{__('nav.Events')}}</a></li>
-{{--                    <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>--}}
+                    <li><a href="{{ route('events.index') }}">{{__('nav.Events')}}</a></li>
+                    {{-- <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>--}}
                     <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
                     @guest
-                        <li>
+                    <li>
 
-                            <span class="header__nav-icon-6">
-                                <i class="fa-solid fa-user"></i>
-                                <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
-                            </span>
-                        </li>
+                        <span class="header__nav-icon-6">
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
+                        </span>
+                    </li>
 
                     @endguest
                     @auth
 
-                        <!-- Settings Dropdown -->
-                        <div class="main-menu-4 menu-anim">
+                    <!-- Settings Dropdown -->
+                    <div class="main-menu-4 menu-anim">
 
-                            <x-dropdown align="right" width="20">
-                                <x-slot name="trigger">
-                                    <button
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                                        <div x-data="{{ json_encode([
+                        <x-dropdown align="right" width="20">
+                            <x-slot name="trigger">
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                    <div x-data="{{ json_encode([
                                             'name' => auth()->user()->name,
-                                        ]) }}" x-text="name"
-                                            x-on:profile-updated.window="name = $event.detail.name">
+                                        ]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name">
 
-                                        </div>
+                                    </div>
 
-                                        <div class="ms-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </x-slot>
+                                    <div class="ms-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
 
-                                <x-slot name="content">
-                                    <span class="notification">
+                            <x-slot name="content">
+                                <span class="notification">
 
-                                        <a href="route('filament.admin.pages.dashboard')">
+                                    <a href="route('filament.admin.pages.dashboard')">
 
-                                            @livewire('database-notifications')
+                                        @livewire('database-notifications')
 
-                                        </a>
-                                    </span>
-                                    <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
-                                        {{ 'Dashboard' }}
+                                    </a>
+                                </span>
+                                <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
+                                    {{ 'Dashboard' }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+
+
+
+                                <!-- Authentication -->
+                                <button wire:click="logout" class="w-full text-start">
+                                    <x-dropdown-link>
+                                        {{ __('Log Out') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
-                                        {{ __('Profile') }}
-                                    </x-dropdown-link>
+                                </button>
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
 
-
-
-                                    <!-- Authentication -->
-                                    <button wire:click="logout" class="w-full text-start">
-                                        <x-dropdown-link>
-                                            {{ __('Log Out') }}
-                                        </x-dropdown-link>
-                                    </button>
-                                </x-slot>
-                            </x-dropdown>
-                        </div>
-
-                        <!-- Hamburger -->
+                    <!-- Hamburger -->
 
                     @endauth
                 </ul>
@@ -140,11 +134,12 @@ new class extends Component {
 
 
             <div class="header__nav-icon-7">
-                <button class="menu-icon-2" id="open_offcanvas"><img src="{{asset('assets/imgs/apsf/icon/menu-dark.png')}}"
-                        alt="Menubar Icon"></button>
+                <button class="menu-icon-2" id="open_offcanvas"><img src="{{asset('assets/imgs/apsf/icon/menu-dark.png')}}" alt="Menubar Icon"></button>
             </div>
         </div>
     </header>
+    @include('announcement.contest')
+
     <!-- Offcanvas area start -->
     <livewire:layout.offcanvas-navigation />
 
