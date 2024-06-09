@@ -9,20 +9,17 @@
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="APSF">
-    <meta name="twitter:description"
-          content="Arab Private Schools Federation">
+    <meta name="twitter:description" content="Arab Private Schools Federation">
     <meta name="twitter:image" content="{{ asset('assets/imgs/apsflogo_271x69.webp') }}">
     <meta property="og:title" content="APSF">
-    <meta property="og:description"
-          content="Arab Private Schools Federation">
-    <meta property="og:image" content="{{ asset('assets/imgs/apsflogo_271x69.webp') }}" og:image:width="1200"
-          og:image:height="630" og:type="website">
+    <meta property="og:description" content="Arab Private Schools Federation">
+    <meta property="og:image" content="{{ asset('assets/imgs/apsflogo_271x69.webp') }}" og:image:width="1200" og:image:height="630" og:type="website">
     <meta property="og:url" content="https://arab-psf.com">
 
     <link rel="shortcut icon" href="{{ asset('assets/imgs/logo/apsf_favicon.png') }}" type="image/png">
 
 
-{{--    <link rel="manifest" href="{{asset('assets/imgs/site.webmanifest')}}">--}}
+    {{-- <link rel="manifest" href="{{asset('assets/imgs/site.webmanifest')}}">--}}
     <title>{{ $title ?? 'Home - Arab Private Schools Federation'}}</title>
 
     <!-- Fav Icon -->
@@ -42,18 +39,19 @@
 
 
     @vite('public/assets/css/master.css')
-{{--    @vite('resources/css/app.css')--}}
+    {{-- @vite('resources/css/app.css')--}}
     <style type="text/css">
         @font-face {
             font-family: Bahij_TheSansArabic-Plain;
-            src: url('{{ asset('assets/fonts/Bahij_TheSansArabic-Plain.ttf') }}') format('truetype');
+            src: url('{{ asset(' assets/fonts/Bahij_TheSansArabic-Plain.ttf') }}') format('truetype');
             font-weight: normal;
         }
-        body{
+
+        body {
             font-family: 'Bahij_TheSansArabic-Plain', sans-serif;
         }
 
-        .social-icon{
+        .social-icon {
             padding: 1rem 0.5rem 0 0;
             display: flex;
             justify-content: start;
@@ -62,26 +60,34 @@
             color: teal;
         }
 
-        .social-icon i, svg{
+        .social-icon i,
+        svg {
             color: #033731;
         }
-        .social-icon i:hover, svg:hover{
+
+        .social-icon i:hover,
+        svg:hover {
             /* add fa-beat class */
             animation: fa-beat 1s infinite;
         }
 
-        #kno360{
-            padding-top:2rem;
-            padding-left:2rem;
-            padding-right: 2rem;
-            height: 5rem;
+        #kno360 {
+            padding-top: 2rem;
+            /* padding-left: 2rem;
+            padding-right: 2rem; */
+            /* height: 5rem; */
         }
+
+        /*modal section start*/
+
+
+        /*modal section end*/
     </style>
 </head>
 
 <body dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}">
-@php
-$homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24, function () {
+    @php
+    $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24, function () {
     return \App\Models\Homepage::get([
     'partners_title',
     'partners_description',
@@ -91,7 +97,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
     'newsletter_title',
     'newsletter_description',
     ])->first();
-});
+    });
 
 
 
@@ -103,107 +109,116 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
     $newsletterTitle = $homepageModel->newsletter_title ?? null;
     $newsletterDescription = $homepageModel->newsletter_description ?? null;
 
-@endphp
-{{--dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}"--}}
-<!-- Cursor Animation -->
-<div class="cursor1"></div>
-<div class="cursor2"></div>
-
-<!-- Team Cursor -->
-<div class="cursor" id="team_cursor">Drag</div>
-
-
-<!-- Preloader -->
-<div class="preloader">
-    <div class="loading">
-        <div class="bar bar1"></div>
-        <div class="bar bar2"></div>
-        <div class="bar bar3"></div>
-        <div class="bar bar4"></div>
-        <div class="bar bar5"></div>
-        <div class="bar bar6"></div>
-        <div class="bar bar7"></div>
-        <div class="bar bar8"></div>
-    </div>
-</div>
+    @endphp
+    {{--dir="{{(App::isLocale('ar') ? 'rtl' : 'ltr')}}"--}}
+    <!-- Cursor Animation -->
+    <div class="cursor1"></div>
+    <div class="cursor2"></div>
 
 
 
-<!-- Switcher Area Start -->
-<div class="switcher__area">
-    <div class="switcher__icon">
-        <button id="switcher_open"><i class="fa-solid fa-gear"></i></button>
-        <button id="switcher_close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
+    <!-- Team Cursor -->
+    <div class="cursor" id="team_cursor">Drag</div>
 
-    <div class="switcher__items">
-        <div class="switcher__item">
-            <div class="switch__title-wrap">
-                <h2 class="switcher__title">Cursor</h2>
-            </div>
-            <div class="switcher__btn">
-                <select name="cursor-style" id="cursor_style">
-                    <option value="1">default</option>
-                    <option selected value="2">animated</option>
-                </select>
-            </div>
-        </div>
 
-        <div class="switcher__item">
-            <div class="switch__title-wrap">
-                <h2 class="switcher__title">mode</h2>
-            </div>
-            <div class="switcher__btn mode-type wc-col-2">
-                <button class="active" data-mode="light">light</button>
-                <button data-mode="dark">dark</button>
-            </div>
-        </div>
-
-        <div class="switcher__item">
-            <div class="switch__title-wrap">
-                <h2 class="switcher__title">Direction</h2>
-            </div>
-            <div class="switcher__btn lang_dir wc-col-2">
-                <button class="active" data-mode="ltr">LTR</button>
-                <button data-mode="rtl">RTL</button>
-{{--                <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>--}}
-{{--                <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>--}}
-            </div>
-        </div>
-
-        <div class="switcher__item">
-            <div class="switch__title-wrap">
-                <h2 class="switcher__title">Language Support</h2>
-            </div>
-            <div class="switcher__btn lang_dir wc-col-2">
-                <button class="active" data-mode="ltr">LTR</button>
-                <button  data-mode="rtl">RTL</button>
-            </div>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loading">
+            <div class="bar bar1"></div>
+            <div class="bar bar2"></div>
+            <div class="bar bar3"></div>
+            <div class="bar bar4"></div>
+            <div class="bar bar5"></div>
+            <div class="bar bar6"></div>
+            <div class="bar bar7"></div>
+            <div class="bar bar8"></div>
         </div>
     </div>
-</div>
-<!-- Switcher Area End -->
 
 
 
-<!-- Scroll Smoother -->
-<div class="has-smooth" id="has_smooth"></div>
+    <!-- Switcher Area Start -->
+    <div class="switcher__area">
+        <div class="switcher__icon">
+            <button id="switcher_open"><i class="fa-solid fa-gear"></i></button>
+            <button id="switcher_close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="switcher__items">
+            <div class="switcher__item">
+                <div class="switch__title-wrap">
+                    <h2 class="switcher__title">Cursor</h2>
+                </div>
+                <div class="switcher__btn">
+                    <select name="cursor-style" id="cursor_style">
+                        <option value="1">default</option>
+                        <option selected value="2">animated</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="switcher__item">
+                <div class="switch__title-wrap">
+                    <h2 class="switcher__title">mode</h2>
+                </div>
+                <div class="switcher__btn mode-type wc-col-2">
+                    <button class="active" data-mode="light">light</button>
+                    <button data-mode="dark">dark</button>
+                </div>
+            </div>
+
+            <div class="switcher__item">
+                <div class="switch__title-wrap">
+                    <h2 class="switcher__title">Direction</h2>
+                </div>
+                <div class="switcher__btn lang_dir wc-col-2">
+                    <button class="active" data-mode="ltr">LTR</button>
+                    <button data-mode="rtl">RTL</button>
+                    {{-- <button class="{{App::isLocale('en') ? 'active' : ''}}" data-mode="{{ App::isLocale('en') ? 'ltr' : 'rtl' }}">LTR</button>--}}
+                    {{-- <button class="{{App::isLocale('ar') ? 'active' : ''}}" data-mode="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">RTL</button>--}}
+                </div>
+            </div>
+
+            <div class="switcher__item">
+                <div class="switch__title-wrap">
+                    <h2 class="switcher__title">Language Support</h2>
+                </div>
+                <div class="switcher__btn lang_dir wc-col-2">
+                    <button class="active" data-mode="ltr">LTR</button>
+                    <button data-mode="rtl">RTL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Switcher Area End -->
 
 
-<!-- Go Top Button -->
-<button id="scroll_top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
 
-<!-- Header area start -->
+    <!-- Scroll Smoother -->
+    <div class="has-smooth" id="has_smooth"></div>
+
+
+    <!-- Go Top Button -->
+    <button id="scroll_top" class="scroll-top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- Header area start -->
 
     <livewire:layout.home-navigation />
 
+    <!-- modal section start -->
+
+
+    <!-- modal section end -->
+
     <!-- Header area end -->
+
 
 
 
     <div id="smooth-wrapper">
         <div id="smooth-content">
             <main class="main-content">
+
 
                 {{ $slot }}
                 <!-- Brand area start -->
@@ -244,7 +259,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://kno-360.com/" target="_blank">
-                                        <img src="{{asset('assets/imgs/apsf/partners/kno360.jpeg')}}" alt="Brand Logo" width="200" id="kno360">
+                                        <img src="{{asset('assets/imgs/apsf/partners/KNO360.svg')}}" alt="Brand Logo" width="200" id="kno360">
                                     </a>
                                 </div>
                             </div>
@@ -253,6 +268,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                     </div>
                 </section>
                 <!-- Brand area end -->
+
 
                 <!-- Dashboard start -->
                 <section class="brand__area" style="background-color: #f8f1e6;">
@@ -298,8 +314,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                     <!-- <p class="cta__sub-title">Sign Up Now!</p> -->
                                     <h2 class="cta__title title-anim">{{__($memberDescription)}}</h2>
                                     <div class="btn_wrapper">
-                                        <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-primary btn-hover btn-item"><span></span>{{__($memberActionText)}}<i
-                                                class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="{{ route('filament.admin.auth.register') }}" class="wc-btn-primary btn-hover btn-item"><span></span>{{__($memberActionText)}}<i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -347,8 +362,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                 <div class="footer__subscribe-2">
                                     <form action="#">
                                         <input type="text" name="email" placeholder="{{__("frontend.input.email")}}">
-                                        <button type="submit" class="submit"><img src="{{asset('assets/imgs/apsf/icon/arrow-black.png')}}"
-                                                                                  alt="Arrow Icon"></button>
+                                        <button type="submit" class="submit"><img src="{{asset('assets/imgs/apsf/icon/arrow-black.png')}}" alt="Arrow Icon"></button>
                                     </form>
                                 </div>
                             </div>
@@ -368,9 +382,9 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                                                 <i class="fab fa-facebook-f fa-lg"></i>
                                             </a></li>
                                         <li><a href="https://x.com/Arab_PSF" target="_blank">
-{{--                                                <i class="fab fa-x fa-lg"></i>--}}
+                                                {{-- <i class="fab fa-x fa-lg"></i>--}}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#033731" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                                                 </svg>
                                             </a></li>
                                         <li><a href="https://www.instagram.com/arab_psf/" target="_blank">
@@ -384,7 +398,7 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
                             </div>
                             <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-7">
                                 <div class="footer__nav">
-{{--                                    animation style class: menu-anim--}}
+                                    {{-- animation style class: menu-anim--}}
                                     <ul class="footer-menu ">
                                         <li><a href="{{route('about')}}">{{__("nav.About Us")}}</a></li>
                                         <li><a href="{{route('contact')}}">{{__("nav.Contact")}}</a></li>
@@ -401,80 +415,83 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('layout', 60*60*24,
             <!-- Footer area end -->
 
 
+
         </div>
+
     </div>
 
 
 
 
-<script>
-    function animateValue(id, start, end, duration) {
-        let obj = document.getElementById(id);
-        let range = end - start;
-        let minTimer = 50;
-        let stepTime = Math.abs(Math.floor(duration / range));
-        stepTime = Math.max(stepTime, minTimer);
-        let startTime = new Date().getTime();
-        let endTime = startTime + duration;
-        let timer;
 
-        function run() {
-            let now = new Date().getTime();
-            let remaining = Math.max((endTime - now) / duration, 0);
-            let value = Math.round(end - (remaining * range));
-            obj.innerHTML = value;
-            if (value == end) {
-                clearInterval(timer);
+    <script>
+        function animateValue(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value;
+                if (value == end) {
+                    clearInterval(timer);
+                }
+            }
+
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        window.addEventListener('load', function() {
+            console.log('Hello world');
+            animateValue("studentCount", 0, 829, 2000);
+            animateValue("teacherCount", 0, 483, 2000);
+            animateValue("contractorCount", 0, 620, 2000);
+            animateValue("institutionCount", 0, 150, 2000);
+        });
+        // window.onload = function() {
+        //     console.log('Hello world');
+        //     animateValue("studentCount", 0, 829, 2000);
+        //     animateValue("teacherCount", 0, 483, 2000);
+        //     animateValue("contractorCount", 0, 620, 2000);
+        //     animateValue("institutionCount", 0, 150, 2000);
+        // };
+
+
+
+        function updateDirection() {
+            var ltrButton = document.querySelector('button[data-mode="ltr"]');
+            var rtlButton = document.querySelector('button[data-mode="rtl"]');
+
+            var mode = "{{App::getLocale()}}";
+
+
+            if (mode === 'ar') {
+                rtlButton.click();
+
+            } else {
+                ltrButton.click();
+
             }
         }
 
-        timer = setInterval(run, stepTime);
-        run();
-    }
-
-    window.addEventListener('load', function() {
-        console.log('Hello world');
-        animateValue("studentCount", 0, 829, 2000);
-        animateValue("teacherCount", 0, 483, 2000);
-        animateValue("contractorCount", 0, 620, 2000);
-        animateValue("institutionCount", 0, 150, 2000);
-    });
-    // window.onload = function() {
-    //     console.log('Hello world');
-    //     animateValue("studentCount", 0, 829, 2000);
-    //     animateValue("teacherCount", 0, 483, 2000);
-    //     animateValue("contractorCount", 0, 620, 2000);
-    //     animateValue("institutionCount", 0, 150, 2000);
-    // };
-
-
-
-    function updateDirection() {
-    var ltrButton = document.querySelector('button[data-mode="ltr"]');
-    var rtlButton = document.querySelector('button[data-mode="rtl"]');
-
-    var mode = "{{App::getLocale()}}";
-
-
-    if(mode === 'ar'){
-        rtlButton.click();
-
-    } else {
-        ltrButton.click();
-
-    }
-}
-
-window.onload = updateDirection;
-    // if (mode && ltrButton.getAttribute('data-mode') === 'ltr') {
-    //     ltrButton.click();
-    //     console.log('ltr');
-    // } else if (rtlButton && rtlButton.getAttribute('data-mode') === 'rtl') {
-    //     rtlButton.click();
-    //     console.log('rtl');
-    // }
-</script>
-<!-- All JS files -->
+        window.onload = updateDirection;
+        // if (mode && ltrButton.getAttribute('data-mode') === 'ltr') {
+        //     ltrButton.click();
+        //     console.log('ltr');
+        // } else if (rtlButton && rtlButton.getAttribute('data-mode') === 'rtl') {
+        //     rtlButton.click();
+        //     console.log('rtl');
+        // }
+    </script>
+    <!-- All JS files -->
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/js/swiper-bundle.min.js')}}"></script>
