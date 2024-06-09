@@ -100,9 +100,9 @@ class AdminPanelProvider extends PanelProvider
                     ->column('first_name'),
                 FilamentFullCalendarPlugin::make()
                     //                    ->schedulerLicenseKey(null)
-                    ->selectable(false)
-                    ->editable(false)
-                    ->timezone('AST')
+                    ->selectable(true)
+                    ->editable(true)
+                    ->timezone('GMT+3')
                     ->locale('en')
                     ->plugins(['dayGrid', 'timeGrid'], true)
                     ->config([]),
