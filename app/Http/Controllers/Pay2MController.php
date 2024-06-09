@@ -46,7 +46,7 @@ class Pay2MController extends Controller
 
     public function create()
     {
-        $userProfileType = Auth::user()->profile_type_for_membership;
+        $userProfileType = Auth::user()?->profile_type_for_membership ?? null;
 
         // Get all memberships
         $memberships = Membership::all();
@@ -127,7 +127,7 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
-        //        dd($request->all());
+            //    dd($request->all());
         //        $err_code = $request->err_code;
         //        $err_msg = $request->err_msg;
         //        $trans_id = $request->transaction_id;
@@ -145,7 +145,7 @@ class Pay2MController extends Controller
 
     public function processResponse($merchant_id, $original_basket_id, $txnamt, $response)
     {
-        //        dd($response);
+            //    dd($response);
         $trans_id = $response['transaction_id'];
         $err_code = $response['err_code'];
         $err_msg = $response['err_msg'];
@@ -220,5 +220,11 @@ class Pay2MController extends Controller
         Log::info('Received checkout data:', $data);
 
         dd($data);
+    }
+
+    public function failed(Request $request)
+    {
+        // dd($request->all());
+        return view('subscribe')->with('error', 'Transaction Failed');
     }
 }
