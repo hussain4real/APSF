@@ -1,10 +1,10 @@
 <x-home-layout>
-@php
-$homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*24, function () {
+    @php
+    $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*24, function () {
     return \App\Models\Homepage::first();
-});
+    });
 
-//dd($homepageModel);
+    //dd($homepageModel);
 
 
     $heroTitle = $homepageModel->hero_title ?? null;
@@ -34,16 +34,16 @@ $homepageModel = \Illuminate\Support\Facades\Cache::remember('homepage', 60*60*2
     $partnersTitle = $homepageModel->partners_title ?? null;
     $partnersDescription = $homepageModel->partners_description ?? null;
     $chairmanImage = $homepageModel->media->first()->getUrl() ?? null;
-//    dd($heroTitle);
-$video = $homepageModel->media->filter(function($media){
+    // dd($heroTitle);
+    $video = $homepageModel->media->filter(function($media){
     return $media->mime_type == 'video/mp4';
-})->first();
+    })->first();
 
-@endphp
+    @endphp
 
     <style>
-        #home-video{
-            display:flex;
+        #home-video {
+            display: flex;
             position: relative;
             max-width: 100%;
             max-height: 100%;
@@ -51,7 +51,8 @@ $video = $homepageModel->media->filter(function($media){
             align-items: center;
             /*margin-bottom: 2rem;*/
         }
-        #home-video video{
+
+        #home-video video {
             width: 100%;
             height: 94vh;
             object-fit: cover;
@@ -59,7 +60,8 @@ $video = $homepageModel->media->filter(function($media){
 
 
         }
-        #customControls{
+
+        #customControls {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -67,22 +69,26 @@ $video = $homepageModel->media->filter(function($media){
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(0, 0, 0, 0.1);
             padding: 1rem;
             z-index: 100;
         }
 
-        #muteButton{
+        #muteButton {
             background-color: #e56131;
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
-            opacity: 0; /* Hide the button initially */
-            transition: opacity 0.5s; /* Smooth transition */
+            opacity: 0;
+            /* Hide the button initially */
+            transition: opacity 0.5s;
+            /* Smooth transition */
         }
-        #home-video:hover #muteButton{
-            opacity: 1; /* Show the button on hover */
+
+        #home-video:hover #muteButton {
+            opacity: 1;
+            /* Show the button on hover */
         }
 
         .section-hero {
@@ -103,14 +109,26 @@ $video = $homepageModel->media->filter(function($media){
             align-items: center;
             gap: 0 9.6rem;
         }
+
+        #chairman-message {
+            max-height: 100%;
+            height: 50.5rem !important;
+        }
+
+        #chairman-image {
+            max-height: 100%;
+            height: 50.5rem !important;
+        }
+
         /*for mobile*/
         @media only screen and (max-width: 768px) {
-            #home-video video{
+            #home-video video {
                 /*object-fit: cover;*/
                 height: 30vh;
                 object-position: center;
                 padding-bottom: 0;
             }
+
             .hero {
                 max-width: max-content;
                 display: flex;
@@ -118,7 +136,8 @@ $video = $homepageModel->media->filter(function($media){
                 padding: 0 1rem;
                 overflow-wrap: break-word;
             }
-            #heading-primary{
+
+            #heading-primary {
                 /*text-align: left;*/
                 width: 20rem;
                 text-wrap: wrap;
@@ -126,30 +145,42 @@ $video = $homepageModel->media->filter(function($media){
                 font-size: 3.5rem;
 
             }
+
             #hero-description {
                 width: 20rem;
                 font-size: 1.5rem;
                 line-height: 1.5;
                 margin-bottom: 4.8rem;
             }
-            #primary-button{
+
+            #primary-button {
                 padding: 0.5rem 1rem;
             }
-            #secondary-button{
+
+            #secondary-button {
                 padding: 0.5rem 1rem;
             }
-            #chairman-message-wrapper{
 
+            #chairman-message-wrapper {
+                /* max-height: 100%;
+                height: 50.5rem !important; */
             }
 
-            #chairman-message{
+            /* #chairman-image>div>img {
+                display: none !important;
+            } */
+
+            #chairman-message {
+
                 padding: 0.5rem 1rem;
                 border-radius: 1rem;
             }
+
             .margin-right-btn {
                 margin-right: 0;
             }
         }
+
         .heading-primary {
             font-size: 5.2rem;
             color: #e56131;
@@ -248,7 +279,7 @@ $video = $homepageModel->media->filter(function($media){
         }
 
         @media only screen and (max-width: 768px) {
-            .objectives-inner{
+            .objectives-inner {
                 margin-top: 1rem;
                 padding-top: 1rem;
             }
@@ -260,32 +291,32 @@ $video = $homepageModel->media->filter(function($media){
     <!--demo video hero-->
     <div id="home-video">
         @if($video)
-            <video id="myVideo" autoplay loop muted>
-                <source src="{{$video->getUrl()}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div id="customControls">
-                <!-- audio icon -->
+        <video id="myVideo" autoplay loop muted>
+            <source src="{{$video->getUrl()}}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="customControls">
+            <!-- audio icon -->
 
-                <button id="muteButton">
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
-                            <path d="M3.293 3.707a1 1 0 0 1 0 1.414L1.414 7H4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1.414l1.879 1.879a1 1 0 1 1-1.414 1.414L0 13.414A1 1 0 0 1 0 12V4a1 1 0 0 1 1.293-.707l1 1zM6 4.5v7l5 3V1l-5 3z"/>
-                            <path d="M10.5 5.5a1 1 0 0 1 1.555.832l-.666 2.5a1 1 0 0 1-1.555.832l-.666-.5a1 1 0 0 1 0-1.664l.666-.5a1 1 0 0 1 0-1.664l-.666-.5a1 1 0 0 1-.889-.277z"/>
-                        </svg>
-                    </span>
-                    Mute
-                </button>
-            </div>
-{{--            <div id="customControls" >--}}
-{{--                    audio icon--}}
-{{--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">--}}
-{{--                        <path d="M3.293 3.707a1 1 0 0 1 0 1.414L1.414 7H4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1.414l1.879 1.879a1 1 0 1 1-1.414 1.414L0 13.414A1 1 0 0 1 0 12V4a1 1 0 0 1 1.293-.707l1 1zM6 4.5v7l5 3V1l-5 3z"/>--}}
-{{--                        <path d="M10.5 5.5a1 1 0 0 1 1.555.832l-.666 2.5a1 1 0 0 1-1.555.832l-.666-.5a1 1 0 0 1 0-1.664l.666-.5a1 1 0 0 1 0-1.664l-.666-.5a1 1 0 0 1-.889-.277z"/>--}}
-{{--                    </svg>--}}
+            <button id="muteButton">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+                        <path d="M3.293 3.707a1 1 0 0 1 0 1.414L1.414 7H4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1.414l1.879 1.879a1 1 0 1 1-1.414 1.414L0 13.414A1 1 0 0 1 0 12V4a1 1 0 0 1 1.293-.707l1 1zM6 4.5v7l5 3V1l-5 3z" />
+                        <path d="M10.5 5.5a1 1 0 0 1 1.555.832l-.666 2.5a1 1 0 0 1-1.555.832l-.666-.5a1 1 0 0 1 0-1.664l.666-.5a1 1 0 0 1 0-1.664l-.666-.5a1 1 0 0 1-.889-.277z" />
+                    </svg>
+                </span>
+                Mute
+            </button>
+        </div>
+        {{-- <div id="customControls" >--}}
+        {{-- audio icon--}}
+        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">--}}
+        {{-- <path d="M3.293 3.707a1 1 0 0 1 0 1.414L1.414 7H4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H1.414l1.879 1.879a1 1 0 1 1-1.414 1.414L0 13.414A1 1 0 0 1 0 12V4a1 1 0 0 1 1.293-.707l1 1zM6 4.5v7l5 3V1l-5 3z"/>--}}
+        {{-- <path d="M10.5 5.5a1 1 0 0 1 1.555.832l-.666 2.5a1 1 0 0 1-1.555.832l-.666-.5a1 1 0 0 1 0-1.664l.666-.5a1 1 0 0 1 0-1.664l-.666-.5a1 1 0 0 1-.889-.277z"/>--}}
+        {{-- </svg>--}}
 
-{{--                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">--}}
-{{--            </div>--}}
+        {{-- <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">--}}
+        {{-- </div>--}}
         @endif
     </div>
 
@@ -301,20 +332,13 @@ $video = $homepageModel->media->filter(function($media){
                 <p class="hero-description" id="hero-description">
                     {{__($heroDescriptionOne)}} <br><br>{{__($heroDescriptionTwo)}}
                 </p>
-                <a id="primary-button" href="{{ route('filament.admin.auth.register') }}" class="btn btn--fill margin-right-btn"
-                >{{__('frontend.hero.action')}}
+                <a id="primary-button" href="{{ route('filament.admin.auth.register') }}" class="btn btn--fill margin-right-btn">{{__('frontend.hero.action')}}
                 </a>
-                <a id="secondary-button" href="{{route('membership')}}" class="btn btn--outline margin-right-btn"
-                >{{__('frontend.hero.learn more')}}
+                <a id="secondary-button" href="{{route('membership')}}" class="btn btn--outline margin-right-btn">{{__('frontend.hero.learn more')}}
                 </a>
             </div>
             <div class="hero-img-box">
-                <img
-                    src="{{asset('assets/imgs/apsf/home_hero/home-435x472.webp')}}"
-{{--                    src="https://images.unsplash.com/photo-1604184221837-cd1c5fe094f0?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"--}}
-                    alt="Woman enjoying food, meals in storage container, and food bowls on a table"
-                    class="hero-img"
-                />
+                <img src="{{asset('assets/imgs/apsf/home_hero/home-435x472.webp')}}" {{--                    src="https://images.unsplash.com/photo-1604184221837-cd1c5fe094f0?q=80&w=2477&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"--}} alt="Woman enjoying food, meals in storage container, and food bowls on a table" class="hero-img" />
             </div>
             <div class="delivered-meals">
                 <div class="delivered-imgs">
@@ -334,7 +358,7 @@ $video = $homepageModel->media->filter(function($media){
 
 
     <!-- About area start -->
-    <section class="about__area-7" style="background-color: #f8f1e6;" >
+    <section class="about__area-7" style="background-color: #f8f1e6;">
         <div class="container pt-130 pb-110">
             <div class="row">
                 <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4">
@@ -401,11 +425,11 @@ $video = $homepageModel->media->filter(function($media){
                             <h3 class="service__title-7">{{__($valueTitleFive)}}</h3>
                             <p>{{__($valueDescriptionFive)}}</p>
                         </div>
-{{--                        <div class="service__item-7">--}}
-{{--                            <img src="assets/imgs/apsf/values-icons/communityengagement.webp" alt="">--}}
-{{--                            <h3 class="service__title-7">{{__($valueTitleSix)}}</h3>--}}
-{{--                            <p>{{__($valueDescriptionSix)}}</p>--}}
-{{--                        </div>--}}
+                        {{-- <div class="service__item-7">--}}
+                        {{-- <img src="assets/imgs/apsf/values-icons/communityengagement.webp" alt="">--}}
+                        {{-- <h3 class="service__title-7">{{__($valueTitleSix)}}</h3>--}}
+                        {{-- <p>{{__($valueDescriptionSix)}}</p>--}}
+                        {{-- </div>--}}
                     </div>
                 </div>
             </div>
@@ -433,7 +457,7 @@ $video = $homepageModel->media->filter(function($media){
             <span class="line-3"></span>
 
             <div class="row g-0 chairman-flex">
-                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
+                <div id="chairman-image" class="col-xxl-5 col-xl-5 col-lg-5 col-md-5">
                     <div class="testimonial__video">
                         <img src="{{$chairmanImage}}" alt="Brand Logo" class="chairman-image">
                     </div>
@@ -441,13 +465,14 @@ $video = $homepageModel->media->filter(function($media){
 
                 <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7">
                     <div id="chairman-message-wrapper" class="testimonial__slider-wrapper-2">
-                        <div class="swiper" >
-                            <div class="swiper-wrapper" >
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
 
                                 <div class="swiper-slide testimonial__slide">
                                     <div id="chairman-message" class="testimonial__inner-2" style="background-color: #f8f1e6;">
-                                        <p class="testimonial__text-2 to_justify" >{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
-                                            {{__($chairmanMessageThree)}} </p>
+                                        <p class="testimonial__text-2 to_justify">{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
+                                            {{__($chairmanMessageThree)}}
+                                        </p>
                                         <div class="chairman-name-title">
 
                                             <p class="chairman-name">{{__("frontend.chairman.name")}}</p>
@@ -476,8 +501,8 @@ $video = $homepageModel->media->filter(function($media){
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-      var video = document.getElementById("myVideo");
-      var muteButton = document.getElementById("muteButton");
+        var video = document.getElementById("myVideo");
+        var muteButton = document.getElementById("muteButton");
 
         // Hide the default controls
         video.controls = false;
@@ -573,27 +598,27 @@ $video = $homepageModel->media->filter(function($media){
         // });
 
         //
-    //     // check compatibility
-    // if (!("BarcodeDetector" in globalThis)) {
-    // console.log("Barcode Detector is not supported by this browser.");
-    // } else {
-    // console.log("Barcode Detector supported!");
-    //
-    // // create new detector
-    // const barcodeDetector = new BarcodeDetector({
-    // formats: ["code_39", "codabar", "ean_13"],
-    // });
-    //
-    // barcodeDetector
-    //     .detect(imageEl)
-    //     .then((barcodes) => {
-    //         barcodes.forEach((barcode) => console.log(barcode.rawValue));
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     });
-    //
-    // }
+        //     // check compatibility
+        // if (!("BarcodeDetector" in globalThis)) {
+        // console.log("Barcode Detector is not supported by this browser.");
+        // } else {
+        // console.log("Barcode Detector supported!");
+        //
+        // // create new detector
+        // const barcodeDetector = new BarcodeDetector({
+        // formats: ["code_39", "codabar", "ean_13"],
+        // });
+        //
+        // barcodeDetector
+        //     .detect(imageEl)
+        //     .then((barcodes) => {
+        //         barcodes.forEach((barcode) => console.log(barcode.rawValue));
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
+        //
+        // }
 
 
 
