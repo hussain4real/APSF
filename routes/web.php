@@ -107,8 +107,12 @@ Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
     ->name('payment.response');
 
 //route to handle checkout event coming from the payment gateway
-Route::post('/checkout', [Pay2MController::class, 'checkout'])
+Route::get('/checkout', [Pay2MController::class, 'checkout'])
     ->name('checkout');
+
+    //route to handle failed transaction
+    Route::get('/failed', [Pay2MController::class, 'failed'])
+    ->name('payment.failed');
 
 Route::get('/vote', [PublicVoteController::class, 'create'])
     ->name('vote.create');
