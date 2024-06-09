@@ -62,6 +62,9 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::view('contest', 'announcement.contest')
+    ->name('contest');
+
 // Route::get('livefeed', [LiveFeedController::class, 'index'])
 //     ->middleware(['auth'])
 //     ->name('livefeeds');

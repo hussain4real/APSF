@@ -99,7 +99,7 @@ class AdminPanelProvider extends PanelProvider
                     ])
                     ->column('first_name'),
                 FilamentFullCalendarPlugin::make()
-//                    ->schedulerLicenseKey(null)
+                    //                    ->schedulerLicenseKey(null)
                     ->selectable(false)
                     ->editable(false)
                     ->timezone('AST')
@@ -160,12 +160,18 @@ class AdminPanelProvider extends PanelProvider
                 url('/admin/chat'),
                 url('/admin/livefeed'),
             ])
+            ->globalSearchKeyBindings([
+                'command+k',
+                'ctrl+k',
+            ])
+            ->globalSearchDebounce('750ms')
             ->globalSearchFieldSuffix(fn (): ?string => match (Platform::detect()) {
-                Platform::Windows, Platform::Linux => 'CTRL+K',
-                Platform::Mac => '⌘K',
+                Platform::Windows => 'CTRL+K',
+                Platform::Linux => 'CTRL+K',
+                Platform::Mac => '⌘+K',
                 default => null,
-
-            });
+            })
+            ->unsavedChangesAlerts(true);
     }
 
     public function register(): void
