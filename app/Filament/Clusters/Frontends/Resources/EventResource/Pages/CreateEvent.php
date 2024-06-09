@@ -89,10 +89,10 @@ class CreateEvent extends CreateRecord
                     ->responsiveImages()
                     ->maxSize(1024 * 1000 * 2)
                     ->maxFiles(20)
-                    ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 2).' bytes.'))
+                    ->hint(__('Maximum size: ' . Number::fileSize(1024 * 1000 * 1000 * 2) . ' bytes.'))
                     ->hintIcon('heroicon-o-information-circle')
                     ->hintColor('warning')
-                    ->imagePreviewHeight('250')
+                    ->imagePreviewHeight('300')
                     ->openable()
                     ->getUploadedFileNameForStorageUsing(
                         fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
@@ -101,11 +101,15 @@ class CreateEvent extends CreateRecord
                     ->reorderable()
                     ->appendFiles()
                     ->moveFiles()
-                    ->preserveFilenames()
                     ->downloadable()
-                    ->imageEditor(2)
+                    ->imageEditor(3)
                     ->imageEditorEmptyFillColor('#dda581')
-                    ->uploadingMessage(__('uploading, please wait...')),
+                    ->imageResizeMode('cover')
+                    ->imageCropAspectRatio('4:3')
+                    ->imageResizeTargetWidth('380')
+                    ->imageResizeTargetHeight('350')
+                    ->uploadingMessage(__('uploading, please wait...'))
+                    ->columnSpanFull(),
 
             ]);
     }

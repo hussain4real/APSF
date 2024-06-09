@@ -52,7 +52,7 @@ class CreateHomepage extends CreateRecord
                                     ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 1).' bytes.'))
                                     ->hintIcon('heroicon-o-information-circle')
                                     ->hintColor('warning')
-                                    ->imagePreviewHeight('150')
+                                    ->imagePreviewHeight('250')
                                     ->openable()
                                     ->preserveFilenames()
                                     ->downloadable()
