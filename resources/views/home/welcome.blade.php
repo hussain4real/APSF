@@ -120,6 +120,16 @@
             height: 50.5rem !important;
         }
 
+        body[dir="rtl"] #chairman-imag>div>img {
+            max-height: 100%;
+            height: 50.5rem !important;
+        }
+
+        body[dir="rtl"] #chairman-message {
+            max-height: 100%;
+            height: 46rem !important;
+        }
+
         /*for mobile*/
         @media only screen and (max-width: 768px) {
             #home-video video {
