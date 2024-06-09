@@ -104,10 +104,10 @@ class CreateEvent extends CreateRecord
                     ->downloadable()
                     ->imageEditor(3)
                     ->imageEditorEmptyFillColor('#dda581')
-                    ->imageResizeMode('cover')
-                    ->imageCropAspectRatio('4:3')
-                    ->imageResizeTargetWidth('380')
-                    ->imageResizeTargetHeight('350')
+                    // ->imageResizeMode('cover')
+                    // ->imageCropAspectRatio('4:3')
+                    // ->imageResizeTargetWidth('380')
+                    // ->imageResizeTargetHeight('350')
                     ->uploadingMessage(__('uploading, please wait...'))
                     ->columnSpanFull(),
 
