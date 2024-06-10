@@ -65,13 +65,18 @@ class CustomPersonalInfo extends MyProfileComponent
 
             ])
             ->columns(2)
-            ->statePath('data');
+            ->statePath('data')
+            ->model($this->user);
     }
 
     public function submit(): void
     {
         $data = collect($this->form->getState())->only($this->only)->all();
-        $this->user->update($data);
+        
+        $record = $this->user->update($data);
+
+        $this->form->model($record)->saveRelationships();
+        // dd($record);
         Notification::make()
             ->success()
             ->title(__('Profile Updated Successfully'))
