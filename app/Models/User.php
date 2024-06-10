@@ -76,7 +76,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function getFilamentAvatarUrl(): ?string
     {
-        return $this->avatar_url;
+        return $this->profile_photo_url ? $this->profile_photo_url : null;
     }
 
     public function getFilamentName(): string
@@ -306,8 +306,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('profile_photo')
-            ->singleFile();
+        $this->addMediaCollection('profile_photo');
     }
 
     public function getProfilePhotoUrlAttribute()
@@ -320,7 +319,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         //            return $this->avatar;
         //        }
 
-        return 'https://ui-avatars.com/api/?name='.$this->name.'&color=#ff8503&background=ffd22b';
+        return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=#ff8503&background=ffd22b';
     }
 
     //    /**
@@ -385,7 +384,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
             }
 
             return 'Educational Staff';
-
         }
 
         if ($this->student) {
@@ -444,6 +442,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return 'User';
     }
 
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->hasRole('super_admin');
+    }
+
     //
     //    /**
     //     * get the user's country
@@ -499,7 +502,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
-
     }
 
     public function subscription(): HasOne
@@ -520,6 +522,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return $this->subscription()->exists();
     }
 
+    public function hasActiveSubscription(): bool
+    {
+        return $this->subscription?->ends_at?->isFuture() ?? false;
+    }
+
     public function subscriptionExpired(): bool
     {
         return $this->subscription->ends_at->isPast();
@@ -532,6 +539,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function trialEndsAt()
     {
-        return $this->subscription->trial_ends_at;
+        return $this->subscription->trial_ends_at ?? null;
     }
 }

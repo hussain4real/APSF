@@ -95,6 +95,12 @@
     "Institution Name": "  اسم المؤسسة ",
     "Activities": "الأنشطة",
     "Years of experience": " الخبرة سنوات ",
-    "Specialization": "التخصص"
+    "Specialization": "التخصص",
+    "You must be a paying member to access the portal.": "يجب أن تكون عضوًا مدفوعًا للوصول إلى البوابة.",
+    "You already have an active subscription.": "لديك بالفعل اشتراك نشط.",
+    "Transaction completed successfully.": "تمت عملية الدفع بنجاح.",
+    "Transaction Failed": "فشلت العملية",
+    "We could not process your transaction": "لم نتمكن من معالجة عمليتك",
+    "Notice": "إشعار"
 
 }

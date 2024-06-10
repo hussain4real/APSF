@@ -508,7 +508,7 @@
     <script src="{{asset('assets/js/main.js')}}"></script>
 
     @livewire('notifications')
-
+    <x-toaster-hub />
 </body>
 
 </html>
