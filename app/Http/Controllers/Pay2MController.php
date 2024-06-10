@@ -39,13 +39,21 @@ class Pay2MController extends Controller
         $this->merchant_id = config('services.pay2m.merchant_id');
         $this->secured_key = config('services.pay2m.secured_key');
         //        $this->num = 1;
-        $this->basket_id = 'Basket Item-1';
-        $this->trans_amount = 1;
+        // $this->basket_id = auth()->user()->id . '-' . time();
+        //basket id should be the combination of the user id profile type and the current time in human readable format
+        $this->basket_id = auth()->user()->id . '-' . auth()->user()->profile_type . '-' . now()->format('Y-m-d H:i:s');
+        $this->trans_amount = $this->trans_amount ?? 10;
+        // $this->trans_amount = 10;
         //
     }
 
     public function create()
     {
+
+        if (Auth::user()->hasActiveSubscription()) {
+            return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
+        }
+
         $userProfileType = Auth::user()?->profile_type_for_membership ?? null;
 
         // Get all memberships
@@ -72,13 +80,25 @@ class Pay2MController extends Controller
             }
         }
 
-        //        dd($membershipData);
+        //    dd($membershipData);
+        //convert the membershipData price  from USD to QAR  using the current exchange rate
+        if (empty($membershipData)) {
+            return redirect()->route('failed')->with('error', __('No membership found for your profile type'));
+        }
+        $membershipData[0]['price'] = $this->convertCurrency($membershipData[0]['price'], 'USD', 'QAR');
+        // dd($membershipData[0]['price']);
+        //convert to integer
+        $membershipData[0]['price'] = (int) $membershipData[0]['price'];
+
+        $this->trans_amount = $membershipData[0]['price'];
+
+        // dd($this->trans_amount);
         $pay2m = new Pay2mConnector();
         $tokenRequest = new GetAccessTokenRequest(
             $this->merchant_id,
             $this->secured_key,
-            1,
-            'Basket Item-1'
+            $this->trans_amount,
+            $this->basket_id
         );
         try {
             $response = $pay2m->send($tokenRequest);
@@ -101,33 +121,20 @@ class Pay2MController extends Controller
         }
     }
 
-    public function getAccessToken($merchant_id, $secured_key, $basket_id, $trans_amount)
+    public function convertCurrency($amount, $from, $to)
     {
-        $tokenApiUrl = 'https://payments.pay2m.com/Ecommerce/api/Transaction/GetAccessToken';
-        //        $tokenApiUrl = 'https://payments.pay2m.com:8443/api/token';
-        //use guzzle
-        $client = new \GuzzleHttp\Client(['verify' => false]);
-        $response = $client->request('POST', $tokenApiUrl, [
-            'form_params' => [
-                'MERCHANT_ID' => $merchant_id,
-                'SECURED_KEY' => $secured_key,
-                'TXNAMT' => $trans_amount,
-                'BASKET_ID' => $basket_id,
-            ],
-        ]);
-        //        dd($response->getBody());
-        $payload = json_decode($response->getBody());
-        //        dd($payload);
-        $token = isset($payload->ACCESS_TOKEN) ? $payload->ACCESS_TOKEN : '';
+        $url = 'https://api.exchangerate-api.com/v4/latest/' . $from;
+        $response = file_get_contents($url);
+        $result = json_decode($response, true);
+        $rate = $result['rates'][$to];
+        $convertedAmount = $amount * $rate;
 
-        //        dd($token);
-
-        return $token;
+        return $convertedAmount;
     }
 
     public function handleResponse(Request $request)
     {
-            //    dd($request->all());
+        //    dd($request->all());
         //        $err_code = $request->err_code;
         //        $err_msg = $request->err_msg;
         //        $trans_id = $request->transaction_id;
@@ -140,12 +147,11 @@ class Pay2MController extends Controller
         //        $response_string = sprintf('%s%s%s%s%s', $this->merchant_id, $this->basket_id, $secretword, $this
 
         $this->processResponse($this->merchant_id, $this->basket_id, $this->trans_amount, $request->all());
-
     }
 
     public function processResponse($merchant_id, $original_basket_id, $txnamt, $response)
     {
-            //    dd($response);
+        //    dd($response);
         $trans_id = $response['transaction_id'];
         $err_code = $response['err_code'];
         $err_msg = $response['err_msg'];
@@ -167,8 +173,8 @@ class Pay2MController extends Controller
         } else {
             //            dd('Transaction verified');
             if ($err_code == '000' || $err_code == '00') {
-                echo '<strong>Transaction Successfully Completed. Transaction ID: '.$trans_id.'</strong><br/>';
-                echo '<br/>Date: '.$order_date;
+                // echo '<strong>Transaction Successfully Completed. Transaction ID: ' . $trans_id . '</strong><br/>';
+                // echo '<br/>Date: ' . $order_date;
                 //TODO: save transaction to database
 
                 $transaction = new Transaction([
@@ -199,16 +205,56 @@ class Pay2MController extends Controller
                 Notification::send($user, new SubscriptionStarted($subscription));
 
                 //return to profile route with success message
-                return redirect()->route('filament.admin.auth.profile')->with('success', 'Transaction completed successfully');
+                return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
             } else {
-                Log::info('Transaction Failed. Message: '.$err_msg);
+                Log::info('Transaction Failed. Message: ' . $err_msg);
 
-                return redirect()->route('subscribe')->with('error', 'Transaction Failed. Message: '.$err_msg);
+                return redirect()->route('failed')->with('error', 'Transaction Failed. Message: ' . $err_msg);
                 //                echo '<br/>Transaction Failed. Message: '.$err_msg;
             }
-
         }
+    }
 
+    public function getAccessTokenForRecurringTransaction($merchant_id, $secured_key)
+    {
+        $tokenApiUrl = 'https://merchant.pay2m.com:8443/api/token';
+        //        $tokenApiUrl = 'https://payments.pay2m.com:8443/api/token';
+        //use guzzle
+        $client = new \GuzzleHttp\Client(['verify' => false]);
+        $response = $client->request('POST', $tokenApiUrl, [
+            'form_params' => [
+                'MERCHANT_ID' => $merchant_id,
+                'SECURED_KEY' => $secured_key,
+
+            ],
+        ]);
+        //        dd($response->getBody());
+        $payload = json_decode($response->getBody());
+        //        dd($payload);
+        $token = isset($payload->ACCESS_TOKEN) ? $payload->ACCESS_TOKEN : '';
+
+        //        dd($token);
+
+        return $token;
+    }
+
+    public function getInstrumentToken($token, $trans_id)
+    {
+        $client = new \GuzzleHttp\Client();
+        $tokenApiUrl = 'https://merchant.pay2m.com:8443/api/user/instruments';
+
+        // Append the transaction_id as a query parameter
+        $response = $client->request('GET', $tokenApiUrl, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $token,
+            ],
+            'query' => [
+                'transaction_id' => $trans_id,
+            ]
+        ]);
+
+        // Assuming you want to return the response body
+        return $response->getBody()->getContents();
     }
 
     public function checkout(Request $request)
@@ -225,6 +271,7 @@ class Pay2MController extends Controller
     public function failed(Request $request)
     {
         // dd($request->all());
-        return view('subscribe')->with('error', 'Transaction Failed');
+        //put error message in session
+        return redirect()->route('failed')->with('error', __('Transaction Failed'));
     }
 }

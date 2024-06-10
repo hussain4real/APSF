@@ -99,7 +99,8 @@ Route::view('/appsQARpay2m', 'appsQARpay2m')
     ->name('appsQARpay2m');
 //payment routes
 Route::get('/subscribe', [Pay2MController::class, 'create'])
-    ->name('subscribe');
+    ->name('subscribe')
+    ->middleware(['auth']);
 
 //Route::post('/process', [Pay2MController::class, 'store'])
 //    ->name('subscribe.store');
@@ -111,9 +112,11 @@ Route::get('/checkout', [Pay2MController::class, 'checkout'])
     ->name('checkout');
 
     //route to handle failed transaction
-    Route::get('/failed', [Pay2MController::class, 'failed'])
+    Route::get('/payment-failed', [Pay2MController::class, 'failed'])
     ->name('payment.failed');
 
+    Route::view('/failed', 'failed_transaction')
+    ->name('failed');
 Route::get('/vote', [PublicVoteController::class, 'create'])
     ->name('vote.create');
 Route::post('/vote', [PublicVoteController::class, 'store'])
