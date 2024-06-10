@@ -6,6 +6,7 @@ use App\Filament\Clusters\Users\Resources\UserResource;
 use Filament\Actions;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
+use STS\FilamentImpersonate\Pages\Actions\Impersonate;
 
 class EditUser extends EditRecord
 {
@@ -18,6 +19,13 @@ class EditUser extends EditRecord
             Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
+        ];
+    }
+
+    protected function getActions(): array
+    {
+        return [
+            Impersonate::make()->record($this->getRecord()) 
         ];
     }
 
