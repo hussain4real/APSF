@@ -539,6 +539,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function trialEndsAt()
     {
-        return $this->subscription->trial_ends_at ?? null;
+        return $this->subscription?->trial_ends_at ?? null;
     }
 }

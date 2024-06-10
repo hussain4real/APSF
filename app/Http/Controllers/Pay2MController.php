@@ -42,7 +42,7 @@ class Pay2MController extends Controller
         // $this->basket_id = auth()->user()->id . '-' . time();
         //basket id should be the combination of the user id profile type and the current time in human readable format
         $this->basket_id = auth()->user()->id . '-' . auth()->user()->profile_type . '-' . now()->format('Y-m-d H:i:s');
-        $this->trans_amount = $this->trans_amount ?? 10;
+        $this->trans_amount = $this->trans_amount ?? 1;
         // $this->trans_amount = 10;
         //
     }
@@ -98,7 +98,9 @@ class Pay2MController extends Controller
             $this->merchant_id,
             $this->secured_key,
             $this->trans_amount,
+
             $this->basket_id
+            // 'Basket Item-1'
         );
         try {
             $response = $pay2m->send($tokenRequest);
@@ -134,17 +136,6 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
-        //    dd($request->all());
-        //        $err_code = $request->err_code;
-        //        $err_msg = $request->err_msg;
-        //        $trans_id = $request->transaction_id;
-        //        $basket_id = $request->basket_id;
-        //        $order_date = $request->order_date;
-        //        $rdv_message_key = $request->Rdv_Message_Key;
-        //        $response_key = $request->Response_Key;
-        //        $payment_name = $request->PaymentName;
-        //        $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
-        //        $response_string = sprintf('%s%s%s%s%s', $this->merchant_id, $this->basket_id, $secretword, $this
 
         $this->processResponse($this->merchant_id, $this->basket_id, $this->trans_amount, $request->all());
     }
@@ -162,57 +153,38 @@ class Pay2MController extends Controller
         $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
-        //        dd([
-        //            'response Key' => $response_key,
-        //            'generated Hash' => $generated_hash,
-        //        ]);
-        if (strtolower($generated_hash) !== strtolower($response_key)) {
-            echo '<br/>Transaction could not be verified<br/>';
+    
 
-            return;
-        } else {
-            //            dd('Transaction verified');
-            if ($err_code == '000' || $err_code == '00') {
-                // echo '<strong>Transaction Successfully Completed. Transaction ID: ' . $trans_id . '</strong><br/>';
-                // echo '<br/>Date: ' . $order_date;
-                //TODO: save transaction to database
+            $transaction = new Transaction([
+                'transaction_id' => $trans_id,
+                'err_code' => $err_code,
+                'err_msg' => $err_msg,
+                'basket_id' => $basket_id,
+                'order_date' => $order_date,
+                'response_key' => $response_key,
+                'amount' => $txnamt,
+                'status' => 'success',
+            ]);
+            $user = Auth::user();
+            $user->transactions()->save($transaction);
+            //send email notification
+            Notification::send($user, new InvoicePaid($transaction));
+            //TODO: creates a new subscription for the user
+            $subscription = new Subscription([
+                'user_id' => $user->id,
+                'transaction_id' => $transaction->id,
+                'status' => 'active',
+                'type' => 'yearly',
+                'trial_ends_at' => now()->addDays(7),
+                'ends_at' => now()->addYear(),
+            ]);
+            $user->subscription()->save($subscription);
+            //send email notification
+            Notification::send($user, new SubscriptionStarted($subscription));
 
-                $transaction = new Transaction([
-                    'transaction_id' => $trans_id,
-                    'err_code' => $err_code,
-                    'err_msg' => $err_msg,
-                    'basket_id' => $basket_id,
-                    'order_date' => $order_date,
-                    'response_key' => $response_key,
-                    'amount' => $txnamt,
-                    'status' => 'success',
-                ]);
-                $user = Auth::user();
-                $user->transactions()->save($transaction);
-                //send email notification
-                Notification::send($user, new InvoicePaid($transaction));
-                //TODO: creates a new subscription for the user
-                $subscription = new Subscription([
-                    'user_id' => $user->id,
-                    'transaction_id' => $transaction->id,
-                    'status' => 'active',
-                    'type' => 'yearly',
-                    'trial_ends_at' => now()->addDays(7),
-                    'ends_at' => now()->addYear(),
-                ]);
-                $user->subscription()->save($subscription);
-                //send email notification
-                Notification::send($user, new SubscriptionStarted($subscription));
-
-                //return to profile route with success message
-                return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
-            } else {
-                Log::info('Transaction Failed. Message: ' . $err_msg);
-
-                return redirect()->route('failed')->with('error', 'Transaction Failed. Message: ' . $err_msg);
-                //                echo '<br/>Transaction Failed. Message: '.$err_msg;
-            }
-        }
+            //return to profile route with success message
+            return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
+       
     }
 
     public function getAccessTokenForRecurringTransaction($merchant_id, $secured_key)
