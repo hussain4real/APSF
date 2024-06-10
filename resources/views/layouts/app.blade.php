@@ -60,6 +60,7 @@
     @livewire('notifications')
     @filamentScripts
     @vite('resources/js/app.js')
+    <x-impersonate::banner />
 
     <!-- All JS files -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
