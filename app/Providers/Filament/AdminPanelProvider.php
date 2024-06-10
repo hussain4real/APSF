@@ -9,6 +9,7 @@ use App\Http\Middleware\EnsureUserIsSubscribed;
 use App\Models\ChMessage;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -33,8 +34,10 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Number;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Rupadana\FilamentAnnounce\FilamentAnnouncePlugin;
 use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
@@ -78,7 +81,7 @@ class AdminPanelProvider extends PanelProvider
                 BreezyCore::make()
                     ->myProfile(
                         shouldRegisterUserMenu: true,
-                        shouldRegisterNavigation: true,
+                        shouldRegisterNavigation: false,
                         hasAvatars: true,
                         slug: 'my-profile',
                         navigationGroup: 'Settings',
@@ -86,8 +89,28 @@ class AdminPanelProvider extends PanelProvider
                     )
 
                     ->myProfileComponents([
+                        'personal_info' => \App\Livewire\CustomPersonalInfo::class,
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
+                // ->avatarUploadComponent(
+                //     fn () => SpatieMediaLibraryFileUpload::make('profile_photo')
+                //         ->label(__('Profile Photo'))
+                //         ->collection('profile_photo')
+                //         ->image()
+                //         ->avatar()
+                //         ->imageEditor()
+                //         ->circleCropper()
+                //         ->moveFiles()
+                //         ->uploadingMessage('Uploading avatar...')
+                //         ->maxSize(5024)
+                //         ->getUploadedFileNameForStorageUsing(
+                //             fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                //                 ->prepend(auth()->user()->name . '/profile_photo/'),
+                //         )
+                //         ->hint(__('Maximum size: ' . Number::fileSize(1024 * 1000 * 5) . ' bytes.'))
+                //         ->hintIcon('heroicon-o-information-circle')
+                //         ->hintColor('warning')
+                // ),
                 FilamentAnnouncePlugin::make()
                     ->defaultColor('info')
                     ->usingResource(AnnouncementResource::class),
@@ -144,7 +167,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
 
-                               EnsureUserIsSubscribed::class,
+                EnsureUserIsSubscribed::class,
 
             ])
             ->authMiddleware([

@@ -52,12 +52,7 @@
             @endif
         </div>
         <div>
-            @if ($trial)
-            <p class="text-yellow-400 my-2 ">Your trial ends at:
-                <span class="text-red-400">{{ $user->trialEndsAt()->diffForHumans() }}</span>
-            </p>
-
-            @endif
+            
         </div>
 
     </x-filament::card>

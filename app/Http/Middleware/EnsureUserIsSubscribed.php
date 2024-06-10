@@ -17,10 +17,10 @@ class EnsureUserIsSubscribed
     {
         // $subscription = $request?->user()?->subscriptions?->first();
         // $subscriptionType = $subscription?->type;
-        if ($request->user() && ! $request->user()->subscribed()) {
+        if ($request->user() && ! $request->user()->subscribed() && ! $request->user()->is_admin) {
             // This user is not a paying customer...
-            return redirect('/');
-            // return redirect('subscribe')->with('notice', 'You must be a paying member to access the portal.');
+            // return redirect('/');
+            return redirect('subscribe')->with('notice', __('You must be a paying member to access the portal.'));
         }
 
         return $next($request);
