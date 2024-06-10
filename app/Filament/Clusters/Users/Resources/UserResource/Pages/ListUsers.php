@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
 use Mokhosh\FilamentRating\Columns\RatingColumn;
 use Mokhosh\FilamentRating\Components\Rating;
+use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class ListUsers extends ListRecords
 {
@@ -123,6 +124,7 @@ class ListUsers extends ListRecords
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
+                    Impersonate::make()
                     //                    Action::make('rate')
                     //                        ->visible(function (Model $record) {
                     //                            $user = auth()->user();

@@ -19,8 +19,7 @@ Thank you for your subscription. We are thrilled to have you on board and hope y
 
 **Contact Information:**
 - **Email:** info@arab-psf.com
-- **Phone:** [Support Phone Number]
-- **Support Hours:** [Support Hours]
+- **Phone:** +968 99871199
 <x-mail::button url="{{$url}}">
 Visit Your Profile
 </x-mail::button>
