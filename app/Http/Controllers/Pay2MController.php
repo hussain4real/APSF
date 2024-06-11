@@ -54,6 +54,10 @@ class Pay2MController extends Controller
             return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
         }
 
+        if(auth()->user()->trainingProvider || auth()->user()->educationalConsultant || auth()->user()->contractor){
+            return redirect()->route('failed')->with('info', __('Please contact sales for your subscription'));
+        }
+
         $userProfileType = Auth::user()?->profile_type_for_membership ?? null;
 
         // Get all memberships
@@ -244,6 +248,6 @@ class Pay2MController extends Controller
     {
         // dd($request->all());
         //put error message in session
-        return redirect()->route('failed')->with('error', __('Transaction Failed'));
+        return redirect()->route('failed')->with('error', __('Transaction Failed, please try again'));
     }
 }
