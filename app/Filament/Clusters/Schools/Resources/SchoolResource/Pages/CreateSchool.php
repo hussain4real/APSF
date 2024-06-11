@@ -61,7 +61,6 @@ class CreateSchool extends CreateRecord
     {
         return TextInput::make('state')
             ->label(__('State'))
-            ->required()
             ->maxLength(255);
     }
 
@@ -72,12 +71,36 @@ class CreateSchool extends CreateRecord
             ->maxLength(255);
     }
 
-    public static function getCountryFormField(): TextInput
+    public static function getCountryFormField(): Select
     {
-        return TextInput::make('country')
+        return Select::make('country')
             ->label(__('Country'))
+            ->options([
+                //the 20 arab countries
+                'Algeria' => __('Algeria'),
+                'Bahrain' => __('Bahrain'),
+                'Comoros' => __('Comoros'),
+                'Djibouti' => __('Djibouti'),
+                'Egypt' => __('Egypt'),
+                'Iraq' => __('Iraq'),
+                'Jordan' => __('Jordan'),
+                'Kuwait' => __('Kuwait'),
+                'Lebanon' => __('Lebanon'),
+                'Libya' => __('Libya'),
+                'Mauritania' => __('Mauritania'),
+                'Morocco' => __('Morocco'),
+                'Oman' => __('Oman'),
+                'Saudi Arabia' => __('Saudi Arabia'),
+                'Somalia' => __('Somalia'),
+                'Sudan' => __('Sudan'),
+                'Syria' => __('Syria'),
+                'Tunisia' => __('Tunisia'),
+                'United Arab Emirates' => __('United Arab Emirates'),
+                'Yemen' => __('Yemen'),
+                'Qatar' => __('Qatar'),
+            ])
             ->required()
-            ->maxLength(255);
+            ;
     }
 
     public static function getPhoneFormField(): TextInput

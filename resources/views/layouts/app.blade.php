@@ -56,7 +56,7 @@
             {{ $slot }}
         </main>
     </div>
-    <x-toaster-hub />
+
     @livewire('notifications')
     @filamentScripts
     @vite('resources/js/app.js')
