@@ -10,6 +10,6 @@ export default {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
         './vendor/bezhansalleh/filament-language-switch/resources/views/language-switch.blade.php',
-        './vendor/masmerise/livewire-toaster/resources/views/*.blade.php',
+        
     ],
 }

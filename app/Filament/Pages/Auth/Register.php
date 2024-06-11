@@ -26,6 +26,7 @@ use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
@@ -222,6 +223,7 @@ class Register extends BaseRegister
                     CreateSchool::getAddressFormField(),
                     CreateSchool::getCityFormField(),
                     CreateSchool::getStateFormField(),
+                    CreateSchool::getCountryFormField(),
                 ]),
             Step::make('Teacher Profile')
                 ->translateLabel()
@@ -400,7 +402,7 @@ class Register extends BaseRegister
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'has_agreed_to_terms' => $data['has_agreed_to_terms'],
-                
+
             ]);
             //            dd($data);
 
@@ -415,6 +417,7 @@ class Register extends BaseRegister
                     'address' => $data['address'],
                     'city' => $data['city'],
                     'state' => $data['state'],
+                    'country' => $data['country'],
                 ]),
                 'teacher' => $user->teacher()->create([
                     'address' => $data['address'],
