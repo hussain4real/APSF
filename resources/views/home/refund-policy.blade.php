@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-xxl-12">
                     <div class="sec-title-wrapper">
-                        <h2 class="sec-title-2 animation__char_come orange_color">{{__('frontend.refund_policy')}}</h2>
-                        <h4 class="orange_color">{{__('frontend.introduction_refund.title')}}</h4>
+                        <h2 class="sec-title-2  orange_color">{{__('frontend.refund_policy')}}</h2>
+                        <h4 class="orange_color my-4">{{__('frontend.introduction_refund.title')}}</h4>
                         <p class="">
                             {{__('frontend.introduction_refund.text')}}
                         </p>
