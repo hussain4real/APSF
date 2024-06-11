@@ -8,7 +8,10 @@ use App\Filament\Clusters\Finance\Resources\PaymentPlanResource\RelationManagers
 use App\Models\PaymentPlan;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -30,14 +33,50 @@ class PaymentPlanResource extends Resource
         return $form
             ->schema([
                 Select::make('user_id')
-                ->relationship(
-                    name: 'user',
-                    titleAttribute: 'name',
-                    modifyQueryUsing: fn (Builder $query)=> $query->whereHas('trainingProvider')
-                    ->orWhereHas('educationalConsultant')
-                    ->orWhereHas('contractor')
+                    ->relationship(
+                        name: 'user',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn (Builder $query) => $query->whereHas('trainingProvider')
+                            ->orWhereHas('educationalConsultant')
+                            ->orWhereHas('contractor')
                     )
-            ]);
+                    ->columnSpanFull(),
+                ToggleButtons::make('first_currency')
+                    ->label(__('First Currency'))
+                    ->options([
+                        'USD' => 'USD',
+                        'QAR' => 'QAR',
+                    ])
+                    ->default('USD')
+                    ->disabled()
+                    ->dehydrated()
+                    ->inline(),
+                TextInput::make('first_currency_amount')
+                    ->prefixIcon('heroicon-o-currency-dollar')
+                    ->prefixIconColor('primary')
+                    ->columnSpan(2)
+                    ->afterStateUpdated(function (Set $set, $state) {
+                    //    $amount= $this->convertCurrency($state->first_currency_amount, 'USD', 'QAR');
+                    //    dd($amount);
+                    })
+                    ->live(onBlur:true),
+                ToggleButtons::make('second_currency')
+                    ->label(__('Second Currency'))
+                    ->options([
+                        'USD' => 'USD',
+                        'QAR' => 'QAR',
+                    ])
+                    ->default('QAR')
+                    ->disabled()
+                    ->dehydrated()
+                    ->inline(),
+
+                TextInput::make('second_currency_amount')
+                    ->prefix('QAR')
+                    ->prefixIconColor('primary')
+                    ->columnSpan(2),
+            ])
+            ->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -60,6 +99,13 @@ class PaymentPlanResource extends Resource
             ]);
     }
 
+    public function convertCurrency($amount, $from, $to)
+    {
+        $url = "https://api.exchangerate-api.com/v4/latest/$from";
+        $response = json_decode(file_get_contents($url));
+        $rate = $response->rates->$to;
+        return $amount * $rate;
+    }
     public static function getPages(): array
     {
         return [
