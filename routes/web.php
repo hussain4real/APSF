@@ -100,7 +100,7 @@ Route::view('/appsQARpay2m', 'appsQARpay2m')
 //payment routes
 Route::get('/subscribe', [Pay2MController::class, 'create'])
     ->name('subscribe')
-    ->middleware(['auth']);
+    ->middleware(['auth','verified']);
 
 //Route::post('/process', [Pay2MController::class, 'store'])
 //    ->name('subscribe.store');

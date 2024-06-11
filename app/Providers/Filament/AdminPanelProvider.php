@@ -92,25 +92,7 @@ class AdminPanelProvider extends PanelProvider
                         'personal_info' => \App\Livewire\CustomPersonalInfo::class,
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
-                // ->avatarUploadComponent(
-                //     fn () => SpatieMediaLibraryFileUpload::make('profile_photo')
-                //         ->label(__('Profile Photo'))
-                //         ->collection('profile_photo')
-                //         ->image()
-                //         ->avatar()
-                //         ->imageEditor()
-                //         ->circleCropper()
-                //         ->moveFiles()
-                //         ->uploadingMessage('Uploading avatar...')
-                //         ->maxSize(5024)
-                //         ->getUploadedFileNameForStorageUsing(
-                //             fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
-                //                 ->prepend(auth()->user()->name . '/profile_photo/'),
-                //         )
-                //         ->hint(__('Maximum size: ' . Number::fileSize(1024 * 1000 * 5) . ' bytes.'))
-                //         ->hintIcon('heroicon-o-information-circle')
-                //         ->hintColor('warning')
-                // ),
+                
                 FilamentAnnouncePlugin::make()
                     ->defaultColor('info')
                     ->usingResource(AnnouncementResource::class),

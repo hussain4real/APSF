@@ -19,7 +19,7 @@ class Event extends Model implements HasMedia
 
     protected $guarded = [];
 
-    public function casts()
+    public function casts(): array
     {
         return [
             'event_start_date' => 'datetime',
