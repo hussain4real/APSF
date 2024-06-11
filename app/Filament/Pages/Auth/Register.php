@@ -394,7 +394,14 @@ class Register extends BaseRegister
         $user = DB::transaction(function () {
             $data = $this->form->getState();
 
-            $user = $this->getUserModel()::create($data);
+            $user = $this->getUserModel()::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'has_agreed_to_terms' => $data['has_agreed_to_terms'],
+                
+            ]);
             //            dd($data);
 
             //            dd($user);
