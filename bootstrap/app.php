@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'payments.pay2m.com/*',
         ]);
         $middleware->redirectGuestsTo('/admin/login');
+        //for unverified users
+        
         $middleware->appendToGroup('web', \App\Http\Middleware\Localization::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
