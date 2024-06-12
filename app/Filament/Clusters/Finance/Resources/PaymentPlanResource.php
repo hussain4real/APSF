@@ -18,6 +18,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\Period;
 
 class PaymentPlanResource extends Resource
 {
@@ -56,8 +58,11 @@ class PaymentPlanResource extends Resource
                     ->prefixIconColor('primary')
                     ->columnSpan(2)
                     ->afterStateUpdated(function (Set $set, $state) {
-                       $amount= static::convertCurrency($state->first_currency_amount, 'USD', 'QAR');
-                       dd($amount);
+                    //    $amount= static::convertCurrency($state->first_currency_amount, 'USD', 'QAR');
+                    //    dd($amount);
+                    $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+                    dd($analyticsData);
+
                     })
                     ->live(onBlur:true),
                 ToggleButtons::make('second_currency')
