@@ -40,7 +40,7 @@
                         @endif
                     </div>
                 @endforelse
-                <p class="description-text">{{$event->event_description}}</p>
+                <p class="description-text">{!! $event->event_description !!}</p>
 
                 <!-- Image Carousel -->
                 <div class="slider">
@@ -174,9 +174,9 @@
 
     .empty-image-container img{
         width: 100%;
-        height: 35rem;
-        object-fit: cover;
-        object-position: center center;
+        height: 36rem;
+        object-fit: scale-down;
+        /*object-position: center center;*/
         border-radius: 1rem;
 
     }
@@ -239,10 +239,13 @@
 
     .description-text {
         margin-top: 2rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         font-size: 1.125rem;
-        line-height: 1.75rem;
+        line-height: 2rem;
         color: #1a202c;
+        /*fix paragraph spacing */
+        text-align: justify;
+        text-justify: inter-word;
     }
 
     @media (min-width: 1024px) {
