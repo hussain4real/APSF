@@ -72,11 +72,17 @@ class EventController extends Controller
             return $media->mime_type !== 'video/mp4';
         })->first();
 
+        //get image at random
+        $randomImage = $event->media->filter(function ($media) {
+            return $media->mime_type !== 'video/mp4';
+        })->random();
+
         return view('home.events.show', [
             'event' => $event,
             'videos' => $videos,
             'images' => $images,
             'firstImage' => $firstImage,
+            'randomImage' => $randomImage,
         ]);
 
     }
