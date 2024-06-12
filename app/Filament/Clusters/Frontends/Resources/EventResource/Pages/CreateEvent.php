@@ -6,9 +6,9 @@ use App\EventType;
 use App\Filament\Clusters\Frontends\Resources\EventResource;
 use Filament\Actions\LocaleSwitcher;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -48,8 +48,11 @@ class CreateEvent extends CreateRecord
                 TextInput::make('event_slug')
                     ->label(__('Event Slug'))
                     ->required(),
-                Textarea::make('event_description')
+                RichEditor::make('event_description')
                     ->label(__('Event Description'))
+                    ->disableToolbarButtons([
+                        'attachFiles',
+                    ])
                     ->live(onBlur: true)
                     ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
                         //                        if (($get('event_excerpt') ?? '') !== Str::limit($old, 100)) {
@@ -92,7 +95,7 @@ class CreateEvent extends CreateRecord
                     ->responsiveImages()
                     ->maxSize(1024 * 1000 * 2)
                     ->maxFiles(20)
-                    ->hint(__('Maximum size: ' . Number::fileSize(1024 * 1000 * 1000 * 2) . ' bytes.'))
+                    ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 1000 * 2).' bytes.'))
                     ->hintIcon('heroicon-o-information-circle')
                     ->hintColor('warning')
                     ->imagePreviewHeight('300')
