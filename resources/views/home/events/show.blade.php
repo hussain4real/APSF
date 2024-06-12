@@ -255,7 +255,7 @@
         width: 100%;
         height: auto;
         position: relative;
-        margin-bottom: 4rem;
+        margin:4rem 0;
         overflow: hidden;
     }
 
