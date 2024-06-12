@@ -1,13 +1,10 @@
-
 <x-home-layout>
 
     <main class="main-container">
         <!--add a back button or arrow-->
         <a href="{{ route('events.index') }}" class="back-button">
             <svg xmlns="http://www.w3.org/2000/svg" class="back-button-icon" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd"
-                      d="M10.707 4.293a1 1 0 0 1 1.414 1.414L8.414 10l3.707 3.707a1 1 0 1 1-1.414 1.414l-4-4a1 1 0 0 1 0-1.414l4-4z"
-                      clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M10.707 4.293a1 1 0 0 1 1.414 1.414L8.414 10l3.707 3.707a1 1 0 1 1-1.414 1.414l-4-4a1 1 0 0 1 0-1.414l4-4z" clip-rule="evenodd" />
             </svg>
             <span class="back-button-text">{{__('nav.back')}}</span>
         </a>
@@ -25,20 +22,20 @@
                 </header>
                 <p class="lead-text">{{$event->event_excerpt}}</p>
                 @forelse($videos as $video)
-                    <div class="video-container">
-                        <video class="video-element" controls autoplay muted loop>
-                            <source src="{{ $video->getUrl() }}" type="{{ $video->mime_type }}">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                <div class="video-container">
+                    <video class="video-element" controls autoplay muted loop>
+                        <source src="{{ $video->getUrl() }}" type="{{ $video->mime_type }}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
                 @empty
-                    <div class="empty-image-container">
-                        @if($randomImage)
-                            <img src="{{$randomImage->getUrl()}}" alt="">
-                        @else
-                            <img src="{{asset('assets/imgs/apsf/news-updates/news-1.webp')}}" alt="">
-                        @endif
-                    </div>
+                <div class="empty-image-container">
+                    @if($randomImage)
+                    <img src="{{$randomImage->getUrl()}}" alt="">
+                    @else
+                    <img src="{{asset('assets/imgs/apsf/news-updates/news-1.webp')}}" alt="">
+                    @endif
+                </div>
                 @endforelse
                 <p class="description-text">{!! $event->event_description !!}</p>
 
@@ -46,47 +43,41 @@
                 <div class="slider">
                     @if($images)
                     @foreach($images as $index => $image)
-                        <img
-                            id="img-{{ $index + 1 }}"
-                            src="{{ $image->getUrl() }}"
-                            alt="Image {{ $index + 1 }}"
-                            class=""
-{{--                            style="{{ $index == 0 ? 'opacity: 1;' : 'opacity: 0;' }}"--}}
-                        />
+                    <img id="img-{{ $index + 1 }}" src="{{ $image->getUrl() }}" alt="Image {{ $index + 1 }}" class="" {{--                            style="{{ $index == 0 ? 'opacity: 1;' : 'opacity: 0;' }}"--}} />
                     @endforeach
                     @endif
                 </div>
                 <div class="navigation-button">
                     @foreach($images as $index => $image)
-                        <span class="dot {{ $index == 0 ? 'active' : '' }}" onclick="changeSlide({{ $index }})"></span>
+                    <span class="dot {{ $index == 0 ? 'active' : '' }}" onclick="changeSlide({{ $index }})"></span>
                     @endforeach
                 </div>
 
-{{--                <section class="discussion-section">--}}
-{{--                    <div class="discussion-header">--}}
-{{--                        <h2 class="discussion-title">Discussion (20)</h2>--}}
-{{--                    </div>--}}
-{{--                    <form class="comment-form">--}}
-{{--                        <div class="comment-input-container">--}}
-{{--                            <label for="comment" class="sr-only">Your comment</label>--}}
-{{--                            <textarea id="comment" rows="6" class="comment-textarea" placeholder="Write a comment..." required></textarea>--}}
-{{--                        </div>--}}
-{{--                        <button type="submit" class="comment-button">Post comment</button>--}}
-{{--                    </form>--}}
-{{--                </section>--}}
+                {{-- <section class="discussion-section">--}}
+                {{-- <div class="discussion-header">--}}
+                {{-- <h2 class="discussion-title">Discussion (20)</h2>--}}
+                {{-- </div>--}}
+                {{-- <form class="comment-form">--}}
+                {{-- <div class="comment-input-container">--}}
+                {{-- <label for="comment" class="sr-only">Your comment</label>--}}
+                {{-- <textarea id="comment" rows="6" class="comment-textarea" placeholder="Write a comment..." required></textarea>--}}
+                {{-- </div>--}}
+                {{-- <button type="submit" class="comment-button">Post comment</button>--}}
+                {{-- </form>--}}
+                {{-- </section>--}}
             </article>
         </div>
     </main>
 
 </x-home-layout>
 <style>
-
     .main-container {
         margin-top: 3.5rem;
         padding-top: 2rem;
         padding-bottom: 4rem;
         background-color: #ffffff;
     }
+
     .back-button {
         display: inline-flex;
         align-items: center;
@@ -99,11 +90,13 @@
         background-color: rgba(3, 55, 51, 0.8);
         transition: all 0.3s ease;
     }
+
     .back-button-icon {
         width: 1.5rem;
         height: 1.5rem;
         fill: #d22912;
     }
+
     .back-button-text {
         font-size: 1.2rem;
         font-weight: 700;
@@ -167,15 +160,16 @@
         height: 4rem;
         border-radius: 9999px;
     }
-    .empty-image-container{
+
+    .empty-image-container {
         width: 100%;
 
     }
 
-    .empty-image-container img{
+    .empty-image-container img {
         width: 100%;
         height: 36rem;
-        object-fit: scale-down;
+        object-fit: cover;
         /*object-position: center center;*/
         border-radius: 1rem;
 
@@ -187,7 +181,8 @@
         color: #1a202c;
     }
 
-    .author-title, .author-date {
+    .author-title,
+    .author-date {
         font-size: 1rem;
         color: #6b7280;
     }
@@ -254,7 +249,8 @@
             line-height: 1.75rem;
         }
     }
-/*carousel image*/
+
+    /*carousel image*/
     .slider {
         width: 100%;
         height: auto;
@@ -266,7 +262,8 @@
     .slider::before {
         content: "";
         display: block;
-        padding-top: 56.25%; /* 16:9 Aspect Ratio (e.g., 9 / 16 = 0.5625 or 56.25%) */
+        padding-top: 56.25%;
+        /* 16:9 Aspect Ratio (e.g., 9 / 16 = 0.5625 or 56.25%) */
     }
 
     .slider img {
@@ -378,7 +375,7 @@
     }
 
     @media only screen and (max-width: 768px) {
-        .video-container video{
+        .video-container video {
             height: 50vh;
         }
     }
@@ -386,8 +383,6 @@
 
 
 <script>
-
-
     // $(document).ready(function() {
     //     console.log('dom ready for implementation');
     //     $('.carousel').carousel('cycle');
@@ -404,6 +399,7 @@
 
 
         var timer = setInterval(changeSlide, interval);
+
         function changeSlide(n) {
             for (var i = 0; i < imgs.length; i++) { // reset
                 imgs[i].style.opacity = 0;
