@@ -58,12 +58,15 @@
 <style>
     .another-grid{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+        /*grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));*/
+        /*maximum of 3 cards per row*/
+        grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+        gap: 4rem;
     }
     .blog-grid{
 
         /*width: 30rem; !*added by Aminu*!*/
-        margin: 0 2rem;
+        /*margin: 0 2rem;*/
     }
 
     .image-box img{
