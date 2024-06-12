@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Integrations\PaymentGateway\Pay2mConnector;
 use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
 use App\Models\Membership;
+use App\Models\PaymentPlan;
 use App\Models\Subscription;
 use App\Models\Transaction;
 use App\Notifications\InvoicePaid;
@@ -54,7 +55,64 @@ class Pay2MController extends Controller
             return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
         }
 
-        if(auth()->user()->trainingProvider || auth()->user()->educationalConsultant || auth()->user()->contractor){
+
+        if (auth()->user()->trainingProvider || auth()->user()->educationalConsultant || auth()->user()->contractor) {
+
+            if (auth()->user()->paymentPlans()->where('status', 'pending')->exists()) {
+                $userProfileType = Auth::user()->profile_type_for_membership ?? null;
+
+                // Get all memberships
+                $memberships = Membership::get(['name', 'benefits']);
+                // dd($memberships);
+                $membershipData = [];
+                foreach ($memberships as $membership) {
+                    // Check if the membership name matches the user's profile type
+                    if ($membership->name === $userProfileType) {
+                        $membershipData[] = [
+                            'name' => $membership->name,
+                            'benefits' => $membership->benefits,
+                        ];
+                    }
+                }
+                // dd($membershipData);
+                $paymentPlan = PaymentPlan::where('user_id', auth()->user()->id)->where('status', 'pending')->first();
+                // dd($paymentPlan);
+                $paymentPrice = $paymentPlan->second_currency_amount;
+                // dd($paymentPrice);
+
+                $pay2m = new Pay2mConnector();
+                $tokenRequest = new GetAccessTokenRequest(
+                    $this->merchant_id,
+                    $this->secured_key,
+                    $paymentPrice,
+                    $this->basket_id
+                );
+
+                // dd($tokenRequest);
+
+                try {
+                    $response = $pay2m->send($tokenRequest);
+                    $status = $response->status();
+                    $body = $response->object();
+                    //            dd($body);
+                    $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
+
+                    return view('service_provider.subscribe', [
+                        'userProfileType' => $userProfileType,
+                        'membershipData' => $membershipData,
+                        'token' => $token,
+                        'merchant_id' => $this->merchant_id,
+                        'basket_id' => $this->basket_id,
+                        'trans_amount' => $paymentPrice,
+                    ]);
+                } catch (RequestException $exception) {
+                    // Handle the exception
+                    dd($exception->getMessage());
+                }
+            }elseif (auth()->user()->paymentPlans()->where('status', 'paid')->exists()) {
+                return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
+            }
+
             return redirect()->route('failed')->with('info', __('Please contact sales for your subscription'));
         }
 
@@ -157,38 +215,44 @@ class Pay2MController extends Controller
         $secretword = ''; // No secret code defined for merchant id 102, secret code can be entered in merchant portal.
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
-    
 
-            $transaction = new Transaction([
-                'transaction_id' => $trans_id,
-                'err_code' => $err_code,
-                'err_msg' => $err_msg,
-                'basket_id' => $basket_id,
-                'order_date' => $order_date,
-                'response_key' => $response_key,
-                'amount' => $txnamt,
-                'status' => 'success',
-            ]);
-            $user = Auth::user();
-            $user->transactions()->save($transaction);
-            //send email notification
-            Notification::send($user, new InvoicePaid($transaction));
-            //TODO: creates a new subscription for the user
-            $subscription = new Subscription([
-                'user_id' => $user->id,
-                'transaction_id' => $transaction->id,
-                'status' => 'active',
-                'type' => 'yearly',
-                'trial_ends_at' => now()->addDays(7),
-                'ends_at' => now()->addYear(),
-            ]);
-            $user->subscription()->save($subscription);
-            //send email notification
-            Notification::send($user, new SubscriptionStarted($subscription));
 
-            //return to profile route with success message
-            return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
-       
+        $transaction = new Transaction([
+            'transaction_id' => $trans_id,
+            'err_code' => $err_code,
+            'err_msg' => $err_msg,
+            'basket_id' => $basket_id,
+            'order_date' => $order_date,
+            'response_key' => $response_key,
+            'amount' => $txnamt,
+            'status' => 'success',
+        ]);
+        $user = Auth::user();
+        $user->transactions()->save($transaction);
+        //send email notification
+        Notification::send($user, new InvoicePaid($transaction));
+        //TODO: creates a new subscription for the user
+        $subscription = new Subscription([
+            'user_id' => $user->id,
+            'transaction_id' => $transaction->id,
+            'status' => 'active',
+            'type' => 'yearly',
+            'trial_ends_at' => now()->addDays(7),
+            'ends_at' => now()->addYear(),
+        ]);
+        $user->subscription()->save($subscription);
+        //send email notification
+        Notification::send($user, new SubscriptionStarted($subscription));
+        
+        //if user has a pending payment plan, update the status to paid
+        if ($user->paymentPlans()->where('status', 'pending')->exists()) {
+            $paymentPlan = $user->paymentPlans()->where('status', 'pending')->first();
+            $paymentPlan->status = 'paid';
+            $paymentPlan->save();
+        }
+
+        //return to profile route with success message
+        return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
     }
 
     public function getAccessTokenForRecurringTransaction($merchant_id, $secured_key)
@@ -262,8 +326,9 @@ class Pay2MController extends Controller
         return redirect()->route('failed')->with('error', $errorMessage);
     }
 
-    function getErrorMessage($errorCode) {
-        return match($errorCode) {
+    function getErrorMessage($errorCode)
+    {
+        return match ($errorCode) {
             '002' => 'Time Out',
             '97' => 'Dear Customer, You have an Insufficient Balance to proceed',
             '106' => 'Dear Customer, Your transaction Limit has been exceeded please contact your bank',
@@ -280,8 +345,8 @@ class Pay2MController extends Controller
             '41' => 'Dear Customer, entered details are Mismatched',
             '801' => '{0} is your Pay2m OTP (One Time Password). Please do not share with anyone.',
             '802' => 'OTP could not be sent. Please try again later.',
-            '901'=>'We noticed that you cancelled the transaction. Please try again',
-            // Add other codes as needed
+            '901' => 'We noticed that you cancelled the transaction. Please try again',
+                // Add other codes as needed
             default => 'Unable to process your request at the moment. Please try again later',
         };
     }

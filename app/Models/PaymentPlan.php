@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\PaymentPlanStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,7 @@ class PaymentPlan extends Model
             'second_currency' => 'string',
             'first_currency_amount' => 'string',
             'second_currency_amount' => 'string',
+            'status' => PaymentPlanStatus::class,
         ];
     }
 
