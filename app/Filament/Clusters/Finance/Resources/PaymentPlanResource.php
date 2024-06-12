@@ -6,11 +6,13 @@ use App\Filament\Clusters\Finance;
 use App\Filament\Clusters\Finance\Resources\PaymentPlanResource\Pages;
 use App\Filament\Clusters\Finance\Resources\PaymentPlanResource\RelationManagers;
 use App\Models\PaymentPlan;
+use App\PaymentPlanStatus;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
@@ -41,8 +43,14 @@ class PaymentPlanResource extends Resource
                         modifyQueryUsing: fn (Builder $query) => $query->whereHas('trainingProvider')
                             ->orWhereHas('educationalConsultant')
                             ->orWhereHas('contractor')
-                    )
-                    ->columnSpanFull(),
+                    ),
+
+                    ToggleButtons::make('status')
+                    ->label(__('Status'))
+                    ->options(PaymentPlanStatus::class)
+                    ->inline()
+                    ->default(PaymentPlanStatus::PENDING),
+
                 ToggleButtons::make('first_currency')
                     ->label(__('First Currency'))
                     ->options([
@@ -53,18 +61,24 @@ class PaymentPlanResource extends Resource
                     ->disabled()
                     ->dehydrated()
                     ->inline(),
+
                 TextInput::make('first_currency_amount')
                     ->prefixIcon('heroicon-o-currency-dollar')
                     ->prefixIconColor('primary')
-                    ->columnSpan(2)
-                    ->afterStateUpdated(function (Set $set, $state) {
-                    //    $amount= static::convertCurrency($state->first_currency_amount, 'USD', 'QAR');
-                    //    dd($amount);
-                    $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
-                    dd($analyticsData);
+                    ->afterStateUpdated(function (Set $set, Get $get, $state) {
+                     $firstCurrencyAmount = $get('first_currency_amount');   
+                    
+                        // dd($firstCurrencyAmount);
+                       $amount= static::convertCurrency($firstCurrencyAmount, 'USD', 'QAR');
+                       //convert amount to int
+                       $amount = (int)$amount;
+                       $set('second_currency_amount', $amount);
+                    // $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+                    // dd($analyticsData);
 
                     })
                     ->live(onBlur:true),
+
                 ToggleButtons::make('second_currency')
                     ->label(__('Second Currency'))
                     ->options([
@@ -78,10 +92,11 @@ class PaymentPlanResource extends Resource
 
                 TextInput::make('second_currency_amount')
                     ->prefix('QAR')
-                    ->prefixIconColor('primary')
-                    ->columnSpan(2),
+                    ->prefixIconColor('primary'),
+
+                   
             ])
-            ->columns(3);
+            ->columns(2);
     }
 
     public static function table(Table $table): Table

@@ -92,7 +92,7 @@ class AdminPanelProvider extends PanelProvider
                         'personal_info' => \App\Livewire\CustomPersonalInfo::class,
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
                     ]),
-                
+
                 FilamentAnnouncePlugin::make()
                     ->defaultColor('info')
                     ->usingResource(AnnouncementResource::class),
@@ -176,7 +176,7 @@ class AdminPanelProvider extends PanelProvider
                 Platform::Mac => '⌘+K',
                 default => null,
             })
-            ->unsavedChangesAlerts(true);
+            ->unsavedChangesAlerts(false);
     }
 
     public function register(): void
