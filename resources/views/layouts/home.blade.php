@@ -2,6 +2,18 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3850F0QGW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-E3850F0QGW');
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -508,7 +520,7 @@
     <script src="{{asset('assets/js/main.js')}}"></script>
 
     @livewire('notifications')
-   
+
 </body>
 
 </html>
