@@ -169,7 +169,7 @@
     .empty-image-container img {
         width: 100%;
         height: 36rem;
-        object-fit: scale-down;
+        object-fit: cover;
         /*object-position: center center;*/
         border-radius: 1rem;
 
