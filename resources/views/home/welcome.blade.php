@@ -4,7 +4,7 @@
     return \App\Models\Homepage::first();
     });
 
-    //dd($homepageModel);
+
 
 
     $heroTitle = $homepageModel->hero_title ?? null;
@@ -296,7 +296,7 @@
         }
     </style>
     <x-slot:title>
-        {{$homepageModel->seo_title ?? 'Home'}}
+        {{$homepageModel->seo_title ?? 'Arab Private Schools Federation'}}
     </x-slot:title>
     <!--demo video hero-->
     <div id="home-video">
