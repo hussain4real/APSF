@@ -97,15 +97,15 @@
                             {{-- @dd($membershipData) --}}
                             @foreach($membershipData as $membership)
                             <h1 class="display-5 fw-bold mb-4">{{$membership['name']}}</h1>
-                            @if ($membership['price'])
-                            <h4 class="fs-5 text-muted">QAR {{$membership['price'] }}</h4>
+                            @if ($trans_amount)
+                            <h4 class="fs-5 text-muted">QAR {{$trans_amount }}</h4>
                             @endif
 
                             <ul class="mt-4 mb-4 features breadcrumb">
                                 @foreach($membership['benefits'] as $benefit)
                                 <li>
                                     <span>
-                                    
+
                                         &#8226;
 
                                     </span>

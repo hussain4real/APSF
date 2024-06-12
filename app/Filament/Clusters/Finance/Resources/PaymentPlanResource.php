@@ -17,6 +17,7 @@ use Filament\Forms\Set;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -103,7 +104,17 @@ class PaymentPlanResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('user.name')
+                    ->label(__('User')),
+                TextColumn::make('status')
+                    ->label(__('Status'))
+                    ->badge(),
+                TextColumn::make('first_currency_amount')
+                    ->label(__('First Currency Amount'))
+                    ->prefix('USD '),
+                TextColumn::make('second_currency_amount')
+                    ->label(__('Second Currency Amount'))
+                    ->prefix('QAR '),
             ])
             ->filters([
                 //
