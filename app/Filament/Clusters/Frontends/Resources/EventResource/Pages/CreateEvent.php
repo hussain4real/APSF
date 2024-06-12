@@ -2,6 +2,7 @@
 
 namespace App\Filament\Clusters\Frontends\Resources\EventResource\Pages;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\EventType;
 use App\Filament\Clusters\Frontends\Resources\EventResource;
 use Filament\Actions\LocaleSwitcher;
@@ -48,18 +49,18 @@ class CreateEvent extends CreateRecord
                 TextInput::make('event_slug')
                     ->label(__('Event Slug'))
                     ->required(),
-                RichEditor::make('event_description')
+                TinyEditor::make('event_description')
                     ->label(__('Event Description'))
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                    ])
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                        //                        if (($get('event_excerpt') ?? '') !== Str::limit($old, 100)) {
-                        //                            return;
-                        //                        }
-                        $set('event_excerpt', Str::limit($state, 100));
-                    }),
+                    ->profile('full')
+                    ->direction('auto')
+                    ->columnSpanFull(),
+                    // ->live(onBlur: true)
+                    // ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
+                    //     //                        if (($get('event_excerpt') ?? '') !== Str::limit($old, 100)) {
+                    //     //                            return;
+                    //     //                        }
+                    //     $set('event_excerpt', Str::limit($state, 100));
+                    // }),
                 TextInput::make('event_excerpt')
                     ->label(__('Event Excerpt')),
                 Select::make('type')
