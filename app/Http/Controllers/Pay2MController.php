@@ -42,11 +42,15 @@ class Pay2MController extends Controller
         //        $this->num = 1;
         // $this->basket_id = auth()->user()->id . '-' . time();
         //basket id should be the combination of the user id profile type and the current time in human readable format
-        $this->basket_id = auth()->user()->id . '-' . auth()->user()->profile_type . '-' . now()->format('Y-m-d H:i:s');
+        $this->basket_id = auth()->user()->id.'-'.auth()->user()->profile_type.'-'.now()->format('Y-m-d H:i:s');
         $this->trans_amount = $this->trans_amount ?? 1;
         // $this->trans_amount = 10;
         //
     }
+
+    //refactored create method start
+
+    //refactored create method end
 
     public function create()
     {
@@ -54,7 +58,6 @@ class Pay2MController extends Controller
         if (Auth::user()->hasActiveSubscription()) {
             return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
         }
-
 
         if (auth()->user()->trainingProvider || auth()->user()->educationalConsultant || auth()->user()->contractor) {
 
@@ -109,7 +112,7 @@ class Pay2MController extends Controller
                     // Handle the exception
                     dd($exception->getMessage());
                 }
-            }elseif (auth()->user()->paymentPlans()->where('status', 'paid')->exists()) {
+            } elseif (auth()->user()->paymentPlans()->where('status', 'paid')->exists()) {
                 return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
             }
 
@@ -187,7 +190,7 @@ class Pay2MController extends Controller
 
     public function convertCurrency($amount, $from, $to)
     {
-        $url = 'https://api.exchangerate-api.com/v4/latest/' . $from;
+        $url = 'https://api.exchangerate-api.com/v4/latest/'.$from;
         $response = file_get_contents($url);
         $result = json_decode($response, true);
         $rate = $result['rates'][$to];
@@ -216,7 +219,6 @@ class Pay2MController extends Controller
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
 
-
         $transaction = new Transaction([
             'transaction_id' => $trans_id,
             'err_code' => $err_code,
@@ -243,7 +245,7 @@ class Pay2MController extends Controller
         $user->subscription()->save($subscription);
         //send email notification
         Notification::send($user, new SubscriptionStarted($subscription));
-        
+
         //if user has a pending payment plan, update the status to paid
         if ($user->paymentPlans()->where('status', 'pending')->exists()) {
             $paymentPlan = $user->paymentPlans()->where('status', 'pending')->first();
@@ -286,11 +288,11 @@ class Pay2MController extends Controller
         // Append the transaction_id as a query parameter
         $response = $client->request('GET', $tokenApiUrl, [
             'headers' => [
-                'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer '.$token,
             ],
             'query' => [
                 'transaction_id' => $trans_id,
-            ]
+            ],
         ]);
 
         // Assuming you want to return the response body
@@ -326,7 +328,7 @@ class Pay2MController extends Controller
         return redirect()->route('failed')->with('error', $errorMessage);
     }
 
-    function getErrorMessage($errorCode)
+    public function getErrorMessage($errorCode)
     {
         return match ($errorCode) {
             '002' => 'Time Out',
@@ -346,7 +348,7 @@ class Pay2MController extends Controller
             '801' => '{0} is your Pay2m OTP (One Time Password). Please do not share with anyone.',
             '802' => 'OTP could not be sent. Please try again later.',
             '901' => 'We noticed that you cancelled the transaction. Please try again',
-                // Add other codes as needed
+            // Add other codes as needed
             default => 'Unable to process your request at the moment. Please try again later',
         };
     }
