@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/imgs/logo/apsf_favicon.png') }}" type="image/png">
 
 
-    
+
     <title>{{ $title ?? 'Home - Arab Private Schools Federation'}}</title>
 
     <!-- Fav Icon -->
@@ -83,11 +83,17 @@
             animation: fa-beat 1s infinite;
         }
 
-        #kno360 {
+        .partner_logos {
             padding-top: 2rem;
             /* padding-left: 2rem;
             padding-right: 2rem; */
-            /* height: 5rem; */
+            max-width: 100%;
+            max-height: 100%;
+            height: 11rem;
+        }
+
+        #kno360 {
+            margin: 0 1.5rem;
         }
 
         /*modal section start*/
@@ -248,30 +254,30 @@
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://tamkeen-edu.com/en/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/t.webp')}}" alt="Brand Logo" width="200">
+                                        <img src="{{asset('assets/imgs/apsf/partners/logotamkeen.webp')}}" alt="Brand Logo" class="partner_logos">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://www.amief.org/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/aief.webp')}}" alt="Brand Logo" width="200">
+                                        <img src="{{asset('assets/imgs/apsf/partners/amief.png')}}" alt="Brand Logo" class="partner_logos">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://uovl.uk/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/uv.webp')}}" alt="Brand Logo" width="200">
+                                        <img src="{{asset('assets/imgs/apsf/partners/university_of_victoria.webp')}}" alt="Brand Logo" class="partner_logos">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://genexinstitute.com/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/ge.webp')}}" alt="Brand Logo" width="200">
+                                        <img src="{{asset('assets/imgs/apsf/partners/genex.png')}}" alt="Brand Logo" class="partner_logos">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://kno-360.com/" target="_blank">
-                                        <img src="{{asset('assets/imgs/apsf/partners/KNO360.svg')}}" alt="Brand Logo" width="200" id="kno360">
+                                        <img src="{{asset('assets/imgs/apsf/partners/KNO360.svg')}}" alt="Brand Logo" class="partner_logos" id="kno360">
                                     </a>
                                 </div>
                             </div>
