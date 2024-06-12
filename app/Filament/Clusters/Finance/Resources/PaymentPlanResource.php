@@ -56,8 +56,8 @@ class PaymentPlanResource extends Resource
                     ->prefixIconColor('primary')
                     ->columnSpan(2)
                     ->afterStateUpdated(function (Set $set, $state) {
-                    //    $amount= $this->convertCurrency($state->first_currency_amount, 'USD', 'QAR');
-                    //    dd($amount);
+                       $amount= static::convertCurrency($state->first_currency_amount, 'USD', 'QAR');
+                       dd($amount);
                     })
                     ->live(onBlur:true),
                 ToggleButtons::make('second_currency')
@@ -99,7 +99,7 @@ class PaymentPlanResource extends Resource
             ]);
     }
 
-    public function convertCurrency($amount, $from, $to)
+    public static function convertCurrency($amount, $from, $to)
     {
         $url = "https://api.exchangerate-api.com/v4/latest/$from";
         $response = json_decode(file_get_contents($url));
