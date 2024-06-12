@@ -16,12 +16,87 @@ new class extends Component
     }
 }; ?>
 
+<style>
+    .relative {
+        position: relative;
+    }
+
+    .ml-3 {
+        margin-left: 0.75rem;
+    }
+
+    .profile-button {
+        display: flex;
+        text-sm: small;
+        border-width: 2px;
+        border-color: transparent;
+        border-radius: 9999px;
+        transition: border-color 150ms ease-in-out;
+    }
+
+    .profile-button:focus {
+        outline: none;
+        border-color: #D1D5DB;
+        /* gray-300 */
+    }
+
+    .profile-image {
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+    }
+
+    .menu-container {
+        position: absolute;
+        right: 0;
+        margin-top: 0.5rem;
+        width: 12rem;
+        border-radius: 0.375rem;
+        /* rounded-md */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        /* shadow-lg */
+        display: none;
+        /* initially hidden */
+    }
+
+    .menu-container[x-show="open"] {
+        display: block;
+        /* show when 'open' is true */
+    }
+
+    .menu {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        border-radius: 0.375rem;
+        /* rounded-md */
+        background-color: #FFFFFF;
+        /* white */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+        /* shadow-xs */
+    }
+
+    .menu-item {
+        display: block;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-size: 0.875rem;
+        /* text-sm */
+        color: #4A5568;
+        /* text-gray-700 */
+    }
+
+    .menu-item:hover {
+        background-color: #F7FAFC;
+        /* bg-gray-100 */
+    }
+</style>
 <div class="offcanvas__area">
     <div class="offcanvas__body">
         <div class="offcanvas__left">
             <div class="offcanvas__logo">
-                <a href="/" wire:navigate><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp')}}"
-                        alt="Offcanvas Logo"></a>
+                <a href="/" wire:navigate><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp')}}" alt="Offcanvas Logo"></a>
             </div>
             <div class="offcanvas__social">
                 <h3 class="social-title">Follow Us</h3>
@@ -36,8 +111,8 @@ new class extends Component
                 <ul>
                     <li><a href="{{route('about')}}" wire:navigate>About APSF</a></li>
                     <li><a href="{{route('contact')}}" wire:navigate>{{__('nav.Contact Us')}}</a></li>
-{{--                    <li><a href="career.html" wire:navigate>Career</a></li>--}}
-{{--                    <li><a href="faq.html" wire:navigate>FAQs</a></li>--}}
+                    {{-- <li><a href="career.html" wire:navigate>Career</a></li>--}}
+                    {{-- <li><a href="faq.html" wire:navigate>FAQs</a></li>--}}
                 </ul>
             </div>
         </div>
@@ -60,25 +135,26 @@ new class extends Component
                         <li><a href="{{route('events.index')}}" wire:navigate>{{__('nav.Events')}}</a></li>
                         <li><a href="{{route('contact')}}">{{__('nav.Contact Us')}}</a></li>
                         @guest
-                            <li><a href="{{route('filament.admin.auth.login')}}" wire:navigate>{{__('nav.Login')}}</a></li>
-                            <li><a href="{{route('filament.admin.auth.register')}}" wire:navigate>{{__('nav.Register')}}</a></li>
+                        <li><a href="{{route('filament.admin.auth.login')}}" wire:navigate>{{__('nav.Login')}}</a></li>
+                        <li><a href="{{route('filament.admin.auth.register')}}" wire:navigate>{{__('nav.Register')}}</a></li>
                         @endguest
                         @auth
-                           <!-- Settings Dropdown -->
-                            <div class="ml-3 relative" x-data="{ open: false }">
-                                <div>
-                                    <button @click="open = !open" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                        <img class="h-8 w-8 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}" />
-                                    </button>
-                                </div>
-                                <div x-show="open" @click="open = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
-                                    <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                                        <a href="{{route('filament.admin.pages.dashboard')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">{{ __('Dashboard') }}</a>
-                                        <a href="{{ route('filament.admin.pages.my-profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">{{ __('Profile') }}</a>
-                                        <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" wire:click="logout">Log out</a>
-                                    </div>
+                        <!-- Settings Dropdown -->
+                        <div class="ml-3 relative" x-data="{ open: false }">
+                            <div>
+                                <button @click="open = !open" class="profile-button">
+                                    <img class="profile-image" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}" />
+                                </button>
+                            </div>
+                            <div x-show="open" @click="open = false" class="menu-container">
+                                <div class="menu" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                                    <a href="{{route('filament.admin.pages.dashboard')}}" class="menu-item" role="menuitem">{{ __('Dashboard') }}</a>
+                                    <a href="{{ route('filament.admin.pages.my-profile') }}" class="menu-item" role="menuitem">{{ __('Profile') }}</a>
+                                    <a href="" class="menu-item" role="menuitem" wire:click="logout">Log out</a>
                                 </div>
                             </div>
+                        </div>
+
 
                         @endauth
                     </ul>
