@@ -33,8 +33,8 @@
                     </div>
                 @empty
                     <div class="empty-image-container">
-                        @if($firstImage)
-                            <img src="{{$firstImage->getUrl()}}" alt="">
+                        @if($randomImage)
+                            <img src="{{$randomImage->getUrl()}}" alt="">
                         @else
                             <img src="{{asset('assets/imgs/apsf/news-updates/news-1.webp')}}" alt="">
                         @endif
@@ -176,6 +176,7 @@
         width: 100%;
         height: 35rem;
         object-fit: cover;
+        object-position: center center;
         border-radius: 1rem;
 
     }
