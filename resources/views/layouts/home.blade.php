@@ -31,7 +31,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/imgs/logo/apsf_favicon.png') }}" type="image/png">
 
 
-    {{-- <link rel="manifest" href="{{asset('assets/imgs/site.webmanifest')}}">--}}
+    
     <title>{{ $title ?? 'Home - Arab Private Schools Federation'}}</title>
 
     <!-- Fav Icon -->
