@@ -570,7 +570,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         }
 
         if ($this->founder) {
-            return 'Founder';
+            return 'FR';
         }
 
         if ($this->trainingProvider) {
@@ -586,7 +586,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         }
 
         if ($this->member) {
-            return 'Member';
+            return 'MB';
         }
 
         return 'UR';
@@ -603,26 +603,12 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
     public function getUserCountry()
     {
-        // $ip = request()->ip();
-        // $client = new Client();
-
-        // try {
-        //     $response = $client->request('GET', "http://ipinfo.io/{$ip}/json");
-        //     $details = json_decode($response->getBody()->getContents());
-
-        //     dd($details);
-        //     return $details->country ?? 'Unknown';
-        // } catch (\Exception $e) {
-        //     Log::error("Failed to fetch country for IP {$ip}: " . $e->getMessage());
-        //     return 'Unknown'; /?key={$apiKey}
-        // }
 
         $ip = request()->ip();
         $client = new Client();
 
         try {
             $apiKey = 'env("IPAPI_KEY")';
-            // $response = $client->request('GET', "https://ipapi.co/{$ip}/json");
             $response = $client->request('GET', "https://ipapi.co/8.8.8.8/json");
             $details = json_decode($response->getBody()->getContents());
 

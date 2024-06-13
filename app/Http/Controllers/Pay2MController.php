@@ -246,12 +246,15 @@ class Pay2MController extends Controller
         //send email notification
         Notification::send($user, new SubscriptionStarted($subscription));
 
+        $uniqueMembershipId = $user->generateUniqueMembershipId();
+        $user->membership_id = $uniqueMembershipId;
+        $user->save();
         //if user has a pending payment plan, update the status to paid
-        if ($user->paymentPlans()->where('status', 'pending')->exists()) {
-            $paymentPlan = $user->paymentPlans()->where('status', 'pending')->first();
-            $paymentPlan->status = 'paid';
-            $paymentPlan->save();
-        }
+        // if ($user->paymentPlans()->where('status', 'pending')->exists()) {
+        //     $paymentPlan = $user->paymentPlans()->where('status', 'pending')->first();
+        //     $paymentPlan->status = 'paid';
+        //     $paymentPlan->save();
+        // }
 
         //return to profile route with success message
         return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
