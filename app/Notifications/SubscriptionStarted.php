@@ -7,6 +7,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\View;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Spatie\Browsershot\Browsershot;
+
+
 
 class SubscriptionStarted extends Notification implements ShouldQueue
 {
@@ -36,13 +43,40 @@ class SubscriptionStarted extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $subscription = $this->subscription;
+
+        $expiryDate = Carbon::parse($subscription->ends_at)->format('m/y');
         $url = route('filament.admin.auth.profile');
+        $user = $subscription->user;
+
+
+        $imagePath = 'card.png';
+        Browsershot::html(View::make('usercard', [
+            'user' => $user,
+            'expiryDate' => $expiryDate,
+        ])->render())
+            ->hideBackground()
+            ->save($imagePath);
+
+        // Save the screenshot to Laravel's storage
+        Storage::put('public/usercard/' . $user->id . '_card.png', file_get_contents($imagePath));
+
+        // Get the URL of the saved image
+        $imageUrl = Storage::url('public/usercard/' . $user->id . '_card.png');
+        // $downloadurl = Storage::download($imageUrl);
+
+      
 
         return (new MailMessage)
             ->subject('Subscription Confirmation - Arab Private Schools Federation')
+            ->attach($imageUrl, [
+                'as' => 'usercard.png',
+                'mime' => 'image/png',
+            ])
             ->markdown('mail.subscription.started', [
                 'subscription' => $subscription,
                 'url' => $url,
+                'imageUrl' => $imageUrl,
+                // 'downloadurl' => $downloadurl,
             ]);
     }
 

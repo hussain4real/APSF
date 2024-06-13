@@ -96,6 +96,11 @@
             margin: 0 1.5rem;
         }
 
+        #genex {
+            height: 8rem;
+            margin-top: 1rem;
+        }
+
         /*modal section start*/
 
 
@@ -272,12 +277,17 @@
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://genexinstitute.com/" target="_blank">
 
-                                        <img src="{{asset('assets/imgs/apsf/partners/genex.png')}}" alt="Brand Logo" class="partner_logos">
+                                        <img src="{{asset('assets/imgs/apsf/partners/genex.png')}}" alt="Brand Logo" class="partner_logos" id="genex">
                                     </a>
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://kno-360.com/" target="_blank">
                                         <img src="{{asset('assets/imgs/apsf/partners/KNO360.svg')}}" alt="Brand Logo" class="partner_logos" id="kno360">
+                                    </a>
+                                </div>
+                                <div class="brand__item-2 fade_bottom">
+                                    <a href="https://kno-360.com/" target="_blank">
+                                        <img src="{{asset('assets/imgs/apsf/partners/UNESCO-Logo.png')}}" alt="Brand Logo" class="partner_logos" id="unesco">
                                     </a>
                                 </div>
                             </div>
