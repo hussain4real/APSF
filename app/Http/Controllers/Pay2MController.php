@@ -226,7 +226,7 @@ class Pay2MController extends Controller
         // Check if transaction already exists
         if (Transaction::where('transaction_id', $transactionId)->exists()) {
             // Handle duplicate transaction (e.g., show a message or redirect)
-            return redirect()->route('filament.admin.pages.my-profile');
+            return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
         }
         $transaction = new Transaction([
             'transaction_id' => $trans_id,
