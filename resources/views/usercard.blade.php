@@ -31,8 +31,8 @@ $expiryDate = Carbon::parse($user->subscription->ends_at)->format('m/y');
     .credit-card {
         /* width: 460px;
         height: 260px; */
-        width: 30rem;
-        height: 16rem;
+        width: 33rem;
+        height: 18rem;
         overflow: hidden;
         position: relative;
         background: url("{{asset('assets/imgs/apsf/user_profile_card/apsf_user_card.webp')}}");
@@ -286,7 +286,7 @@ $expiryDate = Carbon::parse($user->subscription->ends_at)->format('m/y');
 
     */
 </style>
-<!-- <div class="wrapper"> -->
+<div class="wrapper">
     <div class="credit-card">
         <div class="help-msg">
             <p>info@arab-psf.com</p>
@@ -333,7 +333,7 @@ $expiryDate = Carbon::parse($user->subscription->ends_at)->format('m/y');
             </p>
         </div> -->
     </div>
-<!-- </div> -->
+</div>
 <!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const card = document.querySelector(".credit-card");
