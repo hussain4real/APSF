@@ -35,8 +35,54 @@
 <style>
     .card {
         margin-top: 10rem;
-        /* Added */
         float: none;
-        /* Added */
+        /* Ensure the card is centered */
+        width: 90%;
+        /* Default to a percentage-based width for better responsiveness */
+        max-width: 30rem;
+        /* Maximum width to maintain layout integrity on larger screens */
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            margin-top: 5rem;
+            /* Adjust top margin on smaller screens */
+            width: 85%;
+            /* You can adjust this percentage based on your design needs */
+        }
+
+        .card-body .btn,
+        .card-body .alert,
+        address {
+            font-size: 0.9rem;
+            /* Adjust font size for smaller screens */
+        }
+
+        address .p-2 {
+            padding: 0.5rem;
+            /* Adjust padding for smaller screens */
+        }
+    }
+
+    .card-title {
+        word-wrap: break-word;
+        /* Break long words to prevent overflow */
+        overflow-wrap: break-word;
+        /* Ensure overflow text is handled properly */
+        overflow: hidden;
+        /* Hide overflow */
+        text-overflow: ellipsis;
+        /* Add ellipsis to text that overflows the container */
+        white-space: nowrap;
+        /* Prevent text from wrapping to a new line */
+    }
+
+    @media (max-width: 768px) {
+        .card-title {
+            font-size: 1rem;
+            /* Adjust font size for smaller screens */
+            white-space: normal;
+            /* Allow text to wrap on smaller screens */
+        }
     }
 </style>
