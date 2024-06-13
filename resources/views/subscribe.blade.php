@@ -1,36 +1,62 @@
 <x-home-layout>
 
     <style>
-        /*.features{*/
-        /*    max-width: 20rem;*/
-        /*    text-align: left;*/
-        /*    padding-left: 1rem;*/
-        /*    padding-right: 1rem;*/
-        /*    margin: 0 auto;*/
-        /*    overflow: clip;*/
-        /*    !*list-style: decimal outside ;*!*/
-        /*    color: #0c5460;*/
-        /*    font-weight: bold;*/
-        /*    font-size: 1.1rem;*/
-        /*    text-wrap: wrap;*/
-        /*    display: -webkit-box;*/
-        /*    -webkit-box-orient: vertical*/
-
-        /*}*/
-        /*.features li{*/
-        /*    !*wrap text after 3 words*!*/
-        /*    overflow: hidden;*/
-        /*    text-align: left;*/
-        /*    text-overflow: ellipsis;*/
-        /*    text-wrap: wrap;*/
-        /*    display: -webkit-box;*/
-        /*    -webkit-line-clamp: 3;*/
-        /*    -webkit-box-orient: vertical;*/
-
-        /*}*/
-
         body[dir="rtl"] .features li {
             text-align: right;
+        }
+
+        /* Add this CSS to your stylesheet or within a <style> tag in your HTML */
+
+        /* Ensure SVGs scale properly */
+        .svg-icon {
+            width: 1em;
+            /* Adjust based on your design */
+            height: auto;
+        }
+
+        /* Adjust font size and layout for smaller screens */
+        @media (max-width: 768px) {
+            .alert .fs-4 {
+                font-size: 1rem;
+                /* Adjust the font size for smaller screens */
+            }
+
+            .d-flex {
+                flex-direction: column;
+                /* Stack elements vertically on small screens */
+                align-items: center;
+                /* Center-align items for a better mobile experience */
+            }
+
+            /* Optionally, adjust padding and margins for smaller screens */
+            .pb-3.mb-4.border-bottom {
+                padding-bottom: 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        #pay2m_payment_form {
+            display: none;
+        }
+
+        main {
+            margin-top: 2rem;
+        }
+
+        #form-submit {
+            background: #e56131;
+            border-color: #e56131;
+            margin-top: 4rem;
+        }
+
+        .img-fluid {
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            height: 100%;
+        }
+
+        .fa-bullhorn {
+            font-size: 2rem;
         }
     </style>
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">--}}
@@ -65,9 +91,9 @@
         <main>
             <div class="container pt-5 mt-5">
                 @if(session('notice'))
-                <header class="pb-3 mb-4 border-bottom ">
+                <header class="pb-3 mb-4 border-bottom">
                     <a href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-                        {{-- speaker anouncement svg--}}
+                        {{-- speaker announcement svg--}}
                         <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
                             <symbol id="check-circle-fill" viewBox="0 0 16 16">
                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
@@ -83,7 +109,7 @@
                             <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Warning:">
                                 <use xlink:href="#exclamation-triangle-fill" />
                             </svg>
-                            <div class="fs-4 ">{{session('notice')}}</div>
+                            <div class="fs-4">{{session('notice')}}</div>
                         </div>
                     </a>
                 </header>
@@ -91,70 +117,40 @@
 
                 <div class="mb-4 bg-body-tertiary rounded-3">
                     <div class="row">
-                        <div class="py-4 px-5 col">
+                        <div class="py-4 px-5 col-12 col-md-6">
 
                             {{-- @dd($userProfileType) --}}
                             {{-- @dd($membershipData) --}}
                             @foreach($membershipData as $membership)
                             <h1 class="display-5 fw-bold mb-4">{{$membership['name']}}</h1>
                             @if ($membership['price'])
-                            <h4 class="fs-5 text-muted">QAR {{$membership['price'] }}</h4>
+                            <h4 class="fs-5 text-muted">QAR {{$membership['price']}}</h4>
                             @endif
 
                             <ul class="mt-4 mb-4 features breadcrumb">
                                 @foreach($membership['benefits'] as $benefit)
                                 <li>
                                     <span>
-                                    
                                         &#8226;
-
                                     </span>
                                     {{$benefit['benefit']}}
                                 </li>
-
                                 @endforeach
                             </ul>
                             @endforeach
 
-                            <button class="btn btn-primary btn-lg" id="form-submit" type="submit" value="submit">Pay
-                            </button>
+                            <button class="btn btn-primary btn-lg" id="form-submit" type="submit" value="submit">Pay</button>
                         </div>
-                        <div class="col">
+                        <div class="col-12 col-md-6">
                             <img src="https://images.unsplash.com/photo-1505455184862-554165e5f6ba?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flowbite" class="img-fluid" />
                         </div>
                     </div>
                 </div>
-
             </div>
         </main>
     </div>
 
 
-    <style>
-        #pay2m_payment_form {
-            display: none;
-        }
-
-        main {
-            margin-top: 2rem;
-        }
-
-        #form-submit {
-            background: #e56131;
-            border-color: #e56131;
-            margin-top: 4rem;
-        }
-
-        .img-fluid {
-            border-top-right-radius: 2rem;
-            border-bottom-right-radius: 2rem;
-            height: 100%;
-        }
-
-        .fa-bullhorn {
-            font-size: 2rem;
-        }
-    </style>
 </x-home-layout>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
