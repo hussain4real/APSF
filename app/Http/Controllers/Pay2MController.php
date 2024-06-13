@@ -59,65 +59,65 @@ class Pay2MController extends Controller
             return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
         }
 
-        if (auth()->user()->trainingProvider || auth()->user()->educationalConsultant || auth()->user()->contractor) {
+        // if (auth()->user()->trainingProvider || auth()->user()->educationalConsultant || auth()->user()->contractor) {
 
-            if (auth()->user()->paymentPlans()->where('status', 'pending')->exists()) {
-                $userProfileType = Auth::user()->profile_type_for_membership ?? null;
+        //     if (auth()->user()->paymentPlans()->where('status', 'pending')->exists()) {
+        //         $userProfileType = Auth::user()->profile_type_for_membership ?? null;
 
-                // Get all memberships
-                $memberships = Membership::get(['name', 'benefits']);
-                // dd($memberships);
-                $membershipData = [];
-                foreach ($memberships as $membership) {
-                    // Check if the membership name matches the user's profile type
-                    if ($membership->name === $userProfileType) {
-                        $membershipData[] = [
-                            'name' => $membership->name,
-                            'benefits' => $membership->benefits,
-                        ];
-                    }
-                }
-                // dd($membershipData);
-                $paymentPlan = PaymentPlan::where('user_id', auth()->user()->id)->where('status', 'pending')->first();
-                // dd($paymentPlan);
-                $paymentPrice = $paymentPlan->second_currency_amount;
-                // dd($paymentPrice);
+        //         // Get all memberships
+        //         $memberships = Membership::get(['name', 'benefits']);
+        //         // dd($memberships);
+        //         $membershipData = [];
+        //         foreach ($memberships as $membership) {
+        //             // Check if the membership name matches the user's profile type
+        //             if ($membership->name === $userProfileType) {
+        //                 $membershipData[] = [
+        //                     'name' => $membership->name,
+        //                     'benefits' => $membership->benefits,
+        //                 ];
+        //             }
+        //         }
+        //         // dd($membershipData);
+        //         $paymentPlan = PaymentPlan::where('user_id', auth()->user()->id)->where('status', 'pending')->first();
+        //         // dd($paymentPlan);
+        //         $paymentPrice = $paymentPlan->second_currency_amount;
+        //         // dd($paymentPrice);
 
-                $pay2m = new Pay2mConnector();
-                $tokenRequest = new GetAccessTokenRequest(
-                    $this->merchant_id,
-                    $this->secured_key,
-                    $paymentPrice,
-                    $this->basket_id
-                );
+        //         $pay2m = new Pay2mConnector();
+        //         $tokenRequest = new GetAccessTokenRequest(
+        //             $this->merchant_id,
+        //             $this->secured_key,
+        //             $paymentPrice,
+        //             $this->basket_id
+        //         );
 
-                // dd($tokenRequest);
+        //         // dd($tokenRequest);
 
-                try {
-                    $response = $pay2m->send($tokenRequest);
-                    $status = $response->status();
-                    $body = $response->object();
-                    //            dd($body);
-                    $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
+        //         try {
+        //             $response = $pay2m->send($tokenRequest);
+        //             $status = $response->status();
+        //             $body = $response->object();
+        //             //            dd($body);
+        //             $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
 
-                    return view('service_provider.subscribe', [
-                        'userProfileType' => $userProfileType,
-                        'membershipData' => $membershipData,
-                        'token' => $token,
-                        'merchant_id' => $this->merchant_id,
-                        'basket_id' => $this->basket_id,
-                        'trans_amount' => $paymentPrice,
-                    ]);
-                } catch (RequestException $exception) {
-                    // Handle the exception
-                    dd($exception->getMessage());
-                }
-            } elseif (auth()->user()->paymentPlans()->where('status', 'paid')->exists()) {
-                return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
-            }
+        //             return view('service_provider.subscribe', [
+        //                 'userProfileType' => $userProfileType,
+        //                 'membershipData' => $membershipData,
+        //                 'token' => $token,
+        //                 'merchant_id' => $this->merchant_id,
+        //                 'basket_id' => $this->basket_id,
+        //                 'trans_amount' => $paymentPrice,
+        //             ]);
+        //         } catch (RequestException $exception) {
+        //             // Handle the exception
+        //             dd($exception->getMessage());
+        //         }
+        //     } elseif (auth()->user()->paymentPlans()->where('status', 'paid')->exists()) {
+        //         return redirect()->route('filament.admin.pages.my-profile')->with('error', __('You already have an active subscription'));
+        //     }
 
-            return redirect()->route('failed')->with('info', __('Please contact sales for your subscription'));
-        }
+        //     return redirect()->route('failed')->with('info', __('Please contact sales for your subscription'));
+        // }
 
         $userProfileType = Auth::user()?->profile_type_for_membership ?? null;
 
@@ -150,10 +150,10 @@ class Pay2MController extends Controller
         if (empty($membershipData)) {
             return redirect()->route('failed')->with('error', __('No membership found for your profile type'));
         }
-        $membershipData[0]['price'] = $this->convertCurrency($membershipData[0]['price'], 'USD', 'QAR');
-        // dd($membershipData[0]['price']);
-        //convert to integer
-        $membershipData[0]['price'] = (int) $membershipData[0]['price'];
+        // $membershipData[0]['price'] = $this->convertCurrency($membershipData[0]['price'], 'USD', 'QAR');
+        // // dd($membershipData[0]['price']);
+        // //convert to integer
+        // $membershipData[0]['price'] = (int) $membershipData[0]['price'];
 
         $this->trans_amount = $membershipData[0]['price'];
 
