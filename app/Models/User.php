@@ -419,10 +419,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
         if ($this->contractor) {
             if (app()->getLocale() === 'ar') {
-                return 'الموردون';
+                return 'مقدم خدمة';
             }
 
-            return 'Contractors';
+            return 'Service Provider';
         }
 
         if ($this->educationalConsultant) {
