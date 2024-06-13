@@ -609,7 +609,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
 
         try {
             $apiKey = 'env("IPAPI_KEY")';
-            $response = $client->request('GET', "https://ipapi.co/8.8.8.8/json");
+            $response = $client->request('GET', "https://ipapi.co/{$ip}/json");
             $details = json_decode($response->getBody()->getContents());
 
             // dd($details->country_code);
