@@ -19,10 +19,6 @@ Thank you once again for subscribing. We look forward to your active participati
 View Profile
 </x-mail::button>
 
-<x-mail::button url="{{$imageUrl}}">
-    download
-</x-mail::button>
-
 Best regards,<br>
 
 Dr. Khamis Al Ajmi<br>
