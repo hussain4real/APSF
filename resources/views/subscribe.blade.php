@@ -98,7 +98,7 @@
                             @foreach($membershipData as $membership)
                             <h1 class="display-5 fw-bold mb-4">{{$membership['name']}}</h1>
                             @if ($membership['price'])
-                            <h4 class="fs-5 text-muted">USD {{$membership['price'] }}</h4>
+                            <h4 class="fs-5 text-muted">QAR {{$membership['price'] }}</h4>
                             @endif
 
                             <ul class="mt-4 mb-4 features breadcrumb">
