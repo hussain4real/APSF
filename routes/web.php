@@ -9,6 +9,11 @@ use App\Livewire\Subscribe;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
+// https://www.gurpreetsaluja.com/wp-content/uploads/2020/09/KOTAK-BANK-removebg-preview-300x129.png
+
+
+Route::view('/card','usercard')
+    ->name('card');
 Route::view('/coming-soon', 'coming_soon')
     ->name('coming-soon');
 Route::view('/terms-and-conditions', 'home.terms-of-service')
@@ -88,6 +93,14 @@ Route::get('/testwelcomeemail', function () {
     $user = \App\Models\User::first();
 
     return (new \App\Notifications\MemberWelcome())
+        ->toMail($user);
+
+});
+
+Route::get('/testnewmemberemail', function () {
+    $user = \App\Models\User::first();
+
+    return (new \App\Notifications\NewMemberRegistration($user))
         ->toMail($user);
 
 });

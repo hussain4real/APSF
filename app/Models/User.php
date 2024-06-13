@@ -10,6 +10,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
+use GuzzleHttp\Client;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -300,7 +302,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('preview')
-            ->fit(Fit::Contain, 300,300)
+            ->fit(Fit::Contain, 300, 300)
             ->nonQueued();
     }
 
@@ -545,5 +547,84 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function trialEndsAt()
     {
         return $this->subscription?->trial_ends_at ?? null;
+    }
+
+    private function profile_short_code(): ?string
+    {
+        if ($this->teacher) {
+            return 'ES';
+        }
+
+        if ($this->student) {
+            return 'ST';
+        }
+
+        //schools is hasMany relationship
+        if ($this->schools()->count() > 0) {
+            return 'SC';
+        }
+
+        if ($this->founder) {
+            return 'Founder';
+        }
+
+        if ($this->trainingProvider) {
+            return 'TP';
+        }
+
+        if ($this->contractor) {
+            return 'CO';
+        }
+
+        if ($this->educationalConsultant) {
+            return 'EC';
+        }
+
+        if ($this->member) {
+            return 'Member';
+        }
+
+        return 'UR';
+    }
+
+    public function generateUniqueMembershipId()
+    {
+        do {
+            $membershipId = 'APSF' . now()->format('YmdHis') . $this->profile_short_code() . strtoupper(substr($this->getUserCountry(), 0, 2));
+        } while (User::where('membership_id', $membershipId)->exists());
+
+        return $membershipId;
+    }
+
+    public function getUserCountry()
+    {
+        // $ip = request()->ip();
+        // $client = new Client();
+
+        // try {
+        //     $response = $client->request('GET', "http://ipinfo.io/{$ip}/json");
+        //     $details = json_decode($response->getBody()->getContents());
+
+        //     dd($details);
+        //     return $details->country ?? 'Unknown';
+        // } catch (\Exception $e) {
+        //     Log::error("Failed to fetch country for IP {$ip}: " . $e->getMessage());
+        //     return 'Unknown'; /?key={$apiKey}
+        // }
+
+        $ip = request()->ip();
+        $client = new Client();
+
+        try {
+            $apiKey = 'env("IPAPI_KEY")';
+            // $response = $client->request('GET', "https://ipapi.co/{$ip}/json");
+            $response = $client->request('GET', "https://ipapi.co/8.8.8.8/json");
+            $details = json_decode($response->getBody()->getContents());
+
+            // dd($details->country_code);
+            return $details->country_code ?? 'Unknown';
+        } catch (\Exception $e) {
+            Log::error("Failed to fetch country for IP {$ip}: " . $e->getMessage());
+        }
     }
 }

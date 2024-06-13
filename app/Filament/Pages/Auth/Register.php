@@ -27,6 +27,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
 use GuzzleHttp\Promise\Create;
+use Illuminate\Notifications\Notification as NotificationsNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
@@ -512,6 +513,8 @@ class Register extends BaseRegister
         //        events(new Registered($user));
         //
         $this->sendEmailVerificationNotification($user);
+        Notification::route('mail','info@arab-psf.com')
+            ->notify(new \App\Notifications\NewMemberRegistration($user));
 
         Filament::auth()->login($user);
 
@@ -520,6 +523,7 @@ class Register extends BaseRegister
         return app(RegistrationResponse::class);
     }
 
+    //APSF+year+month+day+time
     //    protected function mutateFormDataBeforeRegister(array $data): array
     //    {
     //
