@@ -11,6 +11,7 @@ use App\Filament\Clusters\Students\Resources\StudentResource\Pages\CreateStudent
 use App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages\CreateTeacher;
 use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource\Pages\CreateTrainingProvider;
 use App\Models\Contractor;
+use Barryvdh\Debugbar\Facade;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Events\Auth\Registered;
@@ -27,8 +28,8 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
 use GuzzleHttp\Promise\Create;
-use Illuminate\Notifications\Notification as NotificationsNotification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification as FacadesNotification;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
@@ -477,11 +478,15 @@ class Register extends BaseRegister
             };
             //if user is a student or teacher create subscription with 1 year
             if ($user->student || $user->teacher) {
-                $user->subscription()->create([
+               $subscription = $user->subscription()->create([
                     'type' => 'yearly',
                     'status' => 'active',
                     'ends_at' => now()->addYear(),
                 ]);
+                $uniqueMembershipId = $user->generateUniqueMembershipId();
+                $user->update(['membership_id' => $uniqueMembershipId]);
+
+                FacadesNotification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
             }
 
             //assign role to user based on profile
@@ -513,7 +518,7 @@ class Register extends BaseRegister
         //        events(new Registered($user));
         //
         $this->sendEmailVerificationNotification($user);
-        Notification::route('mail','info@arab-psf.com')
+        FacadesNotification::route('mail','info@arab-psf.com')
             ->notify(new \App\Notifications\NewMemberRegistration($user));
 
         Filament::auth()->login($user);

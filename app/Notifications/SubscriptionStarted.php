@@ -54,7 +54,13 @@ class SubscriptionStarted extends Notification implements ShouldQueue
             'user' => $user,
             'expiryDate' => $expiryDate,
         ])->render())
+            ->select('div')
             ->hideBackground()
+            ->deviceScaleFactor(2)
+            ->windowSize(600, 260)
+            ->userAgent('My Mobile Browser 1.0')
+            ->mobile()
+            ->touch()
             ->save($imagePath);
 
         // Save the screenshot to Laravel's storage
@@ -64,7 +70,7 @@ class SubscriptionStarted extends Notification implements ShouldQueue
         $imageUrl = Storage::url('public/usercard/' . $user->id . '_card.png');
         // $downloadurl = Storage::download($imageUrl);
 
-      
+
 
         return (new MailMessage)
             ->subject('Subscription Confirmation - Arab Private Schools Federation')
