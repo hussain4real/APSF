@@ -163,6 +163,7 @@ class Pay2MController extends Controller
             $this->merchant_id,
             $this->secured_key,
             $this->trans_amount,
+            // $this->trans_amount=1,
 
             $this->basket_id
             // 'Basket Item-1'
@@ -219,6 +220,14 @@ class Pay2MController extends Controller
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
 
+
+        $transactionId = $response['transaction_id'];
+
+        // Check if transaction already exists
+        if (Transaction::where('transaction_id', $transactionId)->exists()) {
+            // Handle duplicate transaction (e.g., show a message or redirect)
+            return redirect()->route('filament.admin.pages.my-profile');
+        }
         $transaction = new Transaction([
             'transaction_id' => $trans_id,
             'err_code' => $err_code,
@@ -249,12 +258,6 @@ class Pay2MController extends Controller
         $uniqueMembershipId = $user->generateUniqueMembershipId();
         $user->membership_id = $uniqueMembershipId;
         $user->save();
-        //if user has a pending payment plan, update the status to paid
-        // if ($user->paymentPlans()->where('status', 'pending')->exists()) {
-        //     $paymentPlan = $user->paymentPlans()->where('status', 'pending')->first();
-        //     $paymentPlan->status = 'paid';
-        //     $paymentPlan->save();
-        // }
 
         //return to profile route with success message
         return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
