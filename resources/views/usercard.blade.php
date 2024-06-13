@@ -1,9 +1,12 @@
+{{--
 @php
 use App\Models\User;
-$user = User::find(1);
-$subscriptionExpiry = $user->subscription_expires_at;
+use Carbon\Carbon;
+$user = User::find(8);
+$expiryDate = Carbon::parse($user->subscription->ends_at)->format('m/y');
 
 @endphp
+--}}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +25,7 @@ $subscriptionExpiry = $user->subscription_expires_at;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: green;
+        background: transparent;
     }
 
     .credit-card {
@@ -283,23 +286,23 @@ $subscriptionExpiry = $user->subscription_expires_at;
 
     */
 </style>
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
     <div class="credit-card">
         <div class="help-msg">
             <p>info@arab-psf.com</p>
         </div>
-        <img src="https://png.pngtree.com/png-vector/20231223/ourmid/pngtree-credit-card-chip-shopping-png-image_11198229.png" alt="Chip" class="chip">
+        <img src="{{asset('assets/imgs/apsf/user_profile_card/pngtree-credit-card-chip-shopping-png-image_11198229.png')}}" alt="Chip" class="chip">
         <img src="https://www.freeiconspng.com/thumbs/wireless-icon-png/wireless-icon-png-2.png" alt="" class="signal-icon">
         <img src="{{$user->profile_photo_url}}" alt="" class="card-type">
         <div class="card-name">
             <h3>{{$user->name}}</h3>
         </div>
         <div class="card-number">
-            <h3>XXXXXXXXXXXX0123</h3>
+            <h3>{{$user->membership_id}}</h3>
         </div>
         <div class="exp-date">
             <p>Valid Till</p>
-            <p>05/30</p>
+            <p>{{$expiryDate}}</p>
         </div>
         <!-- <div class="card-front">
             <div class="help-msg">
@@ -330,8 +333,8 @@ $subscriptionExpiry = $user->subscription_expires_at;
             </p>
         </div> -->
     </div>
-</div>
-<script>
+<!-- </div> -->
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const card = document.querySelector(".credit-card");
         const card_back = document.querySelector(".card-back");
@@ -346,4 +349,4 @@ $subscriptionExpiry = $user->subscription_expires_at;
         };
 
     });
-</script>
+</script> -->

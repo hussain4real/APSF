@@ -27,7 +27,7 @@ class AddMembershipIDToUser extends Command
     public function handle()
     {
         // Assuming you have a user's ID or another way to retrieve the user instance
-        $userId = 1; // Example user ID
+        $userId = 8; // Example user ID
         $user = User::find($userId);
 
         if ($user) {

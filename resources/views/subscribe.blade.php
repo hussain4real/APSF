@@ -40,7 +40,7 @@
             {{-- @csrf--}}
             <!-- ... -->
             {{-- {{route('payment.response')}}--}}
-            <input type="TEXT" name="CURRENCY_CODE" value="QAR" hidden="true" readonly /><br />
+            <input type="TEXT" name="CURRENCY_CODE" value="USD" hidden="true" readonly /><br />
             <input type="TEXT" name="MERCHANT_ID" value="{{$merchant_id}}" hidden="true" readonly /><br />
             <input type="TEXT" name="MERCHANT_NAME" value="UAT Demo Merchant " hidden="true" readonly /><br />
             <input type="TEXT" name="TOKEN" value="{{ $token }}" hidden="true" readonly /><br />
@@ -98,7 +98,7 @@
                             @foreach($membershipData as $membership)
                             <h1 class="display-5 fw-bold mb-4">{{$membership['name']}}</h1>
                             @if ($membership['price'])
-                            <h4 class="fs-5 text-muted">QAR {{$membership['price'] }}</h4>
+                            <h4 class="fs-5 text-muted">USD {{$membership['price'] }}</h4>
                             @endif
 
                             <ul class="mt-4 mb-4 features breadcrumb">
