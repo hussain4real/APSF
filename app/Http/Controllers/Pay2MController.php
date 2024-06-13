@@ -150,10 +150,10 @@ class Pay2MController extends Controller
         if (empty($membershipData)) {
             return redirect()->route('failed')->with('error', __('No membership found for your profile type'));
         }
-        // $membershipData[0]['price'] = $this->convertCurrency($membershipData[0]['price'], 'USD', 'QAR');
-        // // dd($membershipData[0]['price']);
-        // //convert to integer
-        // $membershipData[0]['price'] = (int) $membershipData[0]['price'];
+        $membershipData[0]['price'] = $this->convertCurrency($membershipData[0]['price'], 'USD', 'QAR');
+        // dd($membershipData[0]['price']);
+        //convert to integer
+        $membershipData[0]['price'] = (int) $membershipData[0]['price'];
 
         $this->trans_amount = $membershipData[0]['price'];
 
