@@ -54,12 +54,15 @@ class SubscriptionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                ->label(__('Member Name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('user.profile_type')
                 ->label(__('Profile Type')),
                 Tables\Columns\TextColumn::make('transaction.id')
+                ->label(__('Transaction ID'))
                     ->numeric(),
                     Tables\Columns\TextColumn::make('transaction.amount')
+                    ->label(__('Amount'))
                     ->money('QAR',0,'en-QA')
                     ->icon('heroicon-o-banknotes')
                 ->iconPosition(IconPosition::After)

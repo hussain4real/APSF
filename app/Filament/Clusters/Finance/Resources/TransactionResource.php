@@ -65,6 +65,7 @@ class TransactionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
+                ->label(__('Member Name'))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('transaction_id')
                     ->searchable(),
