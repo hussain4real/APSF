@@ -42,7 +42,6 @@ class CreateContractor extends CreateRecord
         return TextInput::make('business_phone')
             ->label(__('Phone'))
             ->required()
-            ->tel()
             ->prefixIcon('heroicon-o-phone')
             ->prefixIconColor('primary')
             ->placeholder('+123-4566-7890');
