@@ -41,8 +41,6 @@ class CreateEducationalConsultant extends CreateRecord
         return TextInput::make('phone_number')
             ->label(__('Phone Number'))
             ->placeholder('+123-4566-7890')
-            ->tel()
-            ->telRegex('/^\+\d{1,3}-\d{3}-\d{4}$/')
             ->prefixIcon('heroicon-o-phone')
             ->prefixIconColor('primary')
             ->required();

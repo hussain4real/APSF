@@ -16,7 +16,6 @@ class CreateMember extends CreateRecord
         return TextInput::make('phone_number')
             ->label(__('Phone Number'))
             ->required()
-            ->tel()
             ->prefixIcon('heroicon-o-phone')
             ->prefixIconColor('primary')
             ->placeholder('+123-4566-7890');

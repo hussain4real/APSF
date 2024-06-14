@@ -113,8 +113,6 @@ class CreateTeacher extends CreateRecord
     {
         return TextInput::make('phone')
             ->label(__('Phone Number'))
-            ->tel()
-            ->telRegex('/^\+\d{10,14}$/')
             ->placeholder(__('+1234567890'))
             ->required();
     }
