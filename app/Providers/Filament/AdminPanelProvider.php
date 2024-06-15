@@ -16,6 +16,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Pages\Auth\EditProfile;
+use Filament\Pages\Auth\EmailVerification\EmailVerificationPrompt;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\SpatieLaravelTranslatablePlugin;
@@ -52,12 +53,12 @@ class AdminPanelProvider extends PanelProvider
             ->login(Login::class)
             ->registration(Register::class)
             ->profile(EditProfile::class)
-            ->emailVerification()
+            ->emailVerification(EmailVerificationPrompt::class)
             ->passwordReset()
             ->colors([
                 'primary' => Color::Orange,
             ])
-            ->databaseTransactions(true)
+            ->databaseTransactions(false)
             ->brandLogo(asset('assets/imgs/apsf/logo/apsflogo_271x69.webp'))
             ->brandLogoHeight('3rem')
             ->favicon(asset('assets/imgs/apsf/logo/apsf_favicon.png'))

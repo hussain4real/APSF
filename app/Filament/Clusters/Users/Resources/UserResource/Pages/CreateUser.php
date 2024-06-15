@@ -31,17 +31,7 @@ class CreateUser extends CreateRecord
                     ->email()
                     ->required()
                     ->maxLength(255),
-                TextInput::make('phone_number')
-                    ->tel()
-                    ->maxLength(255),
-                TextInput::make('address')
-                    ->maxLength(255),
-                TextInput::make('city')
-                    ->maxLength(255),
-                TextInput::make('state')
-                    ->maxLength(255),
-                TextInput::make('country')
-                    ->maxLength(255),
+               
                 TextInput::make('status')
                     ->maxLength(255)
                     ->default('active'),
@@ -53,9 +43,11 @@ class CreateUser extends CreateRecord
                     ->required(fn ($livewire) => ($livewire instanceof CreateRecord)),
                 Placeholder::make('profile')
                     ->content(fn ($record): string => $record->profile_type),
-                Select::make('role')
+                Select::make('roles')
                     ->relationship('roles', 'name')
-                    ->required(),
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
             ]);
     }
 }
