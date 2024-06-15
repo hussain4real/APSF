@@ -26,6 +26,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
+use Stevebauman\Location\Facades\Location;
 
 // #[ScopedBy([MemberScope::class])]
 class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia, HasName, MustVerifyEmail
@@ -604,16 +605,18 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function getUserCountry()
     {
 
-        $ip = request()->ip();
+        // $ip = request()->ip();
+        $ip = Location::get();
+        dd($ip);
         $client = new Client();
 
         try {
-            $apiKey = 'env("IPAPI_KEY")';
-            $response = $client->request('GET', "https://ipapi.co/{$ip}/json");
-            $details = json_decode($response->getBody()->getContents());
-
-            // dd($details->country_code);
-            return $details->country_code ?? 'Unknown';
+            // $response = $client->request('GET', "https://ipapi.co/{$ip}/json");
+            // $details = json_decode($response->getBody()->getContents());
+        
+            $countryCode =$ip->countryCode;
+            dd($countryCode);
+            return $countryCode ?? 'Unknown';
         } catch (\Exception $e) {
             Log::error("Failed to fetch country for IP {$ip}: " . $e->getMessage());
         }
