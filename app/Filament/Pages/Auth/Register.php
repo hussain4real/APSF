@@ -71,7 +71,6 @@ class Register extends BaseRegister
             ->prefixIcon('heroicon-o-phone')
             ->prefixIconColor('primary')
             ->required();
-
     }
 
     public function getAddressFormComponent(): TextInput
@@ -120,8 +119,8 @@ class Register extends BaseRegister
     public function getHasAgreedToTermsFormComponent(): Checkbox
     {
         return Checkbox::make('has_agreed_to_terms')
-//            ->label(__('I agree to the terms and conditions'))
-                //use html link for terms and conditions
+            //            ->label(__('I agree to the terms and conditions'))
+            //use html link for terms and conditions
             ->label(function (): HtmlString {
                 return new HtmlString(__('I agree to the <a href=":terms" target="_blank" class="text-orange-500 hover:underline">terms and conditions</a> and <a href=":privacy" target="_blank" class="text-orange-500 hover:underline">Privacy policy</a>', [
                     'terms' => route('terms-and-conditions'),
@@ -468,9 +467,9 @@ class Register extends BaseRegister
                         'state' => $data['state'],
                         'country' => $data['country'],
                     ]),
-                    //                    'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
-                    //                    'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
-                    //                    'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
+                        //                    'contractor' => $this->getContractorModel()::create(array_merge($data, ['user_id' => $user->id])),
+                        //                    'training_provider' => $this->getTrainingProviderModel()::create(array_merge($data, ['user_id' => $user->id])),
+                        //                    'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
                     default => null,
                 },
                 'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
@@ -478,7 +477,7 @@ class Register extends BaseRegister
             };
             //if user is a student or teacher create subscription with 1 year
             if ($user->student || $user->teacher) {
-               $subscription = $user->subscription()->create([
+                $subscription = $user->subscription()->create([
                     'type' => 'yearly',
                     'status' => 'active',
                     'ends_at' => now()->addYear(),
@@ -509,16 +508,15 @@ class Register extends BaseRegister
                 $user->assignRole('service_provider');
             } else {
                 $user->assignRole('member');
-
             }
 
             return $user;
         });
 
-        //        events(new Registered($user));
+        event(new Registered($user));
         //
         $this->sendEmailVerificationNotification($user);
-        FacadesNotification::route('mail','info@arab-psf.com')
+        FacadesNotification::route('mail', 'info@arab-psf.com')
             ->notify(new \App\Notifications\NewMemberRegistration($user));
 
         Filament::auth()->login($user);

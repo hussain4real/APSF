@@ -3,7 +3,7 @@
 
 We have a new member who has joined the Arab Private Schools Federation. Please find the details below:
 
-**Name:** {{$user->name}}<br>
+**Name:** {{$user->first_name}} {{$user->last_name}}<br>
 **Email:** {{$user->email}}<br>
 **Phone:** {{$user->phone}}<br>
 **Role:** {{$user->profile_type}}<br>
