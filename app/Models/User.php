@@ -609,11 +609,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         // dd($ipAddress);
         $ip = Location::get($ipAddress);
         // dd($ip);
-        $client = new Client();
 
         try {
-            // $response = $client->request('GET', "https://ipapi.co/{$ip}/json");
-            // $details = json_decode($response->getBody()->getContents());
         
             $countryCode =$ip->countryCode;
             // dd($countryCode);
