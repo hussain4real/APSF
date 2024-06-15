@@ -235,6 +235,12 @@ class Register extends BaseRegister
                 })
                 ->description(__('Please provide more details to complete your profile as a teacher'))
                 ->schema([
+                    CreateTeacher::getSchoolNameSelectFormField()
+                        ->live(onBlur: true),
+                    CreateTeacher::getSchoolNameFormField()
+                        ->hidden(function (Get $get) {
+                            return $get('school_id') !== null;
+                        }),
                     CreateTeacher::getAddressFormField(),
                     CreateTeacher::getSubjectTaughtFormField(),
                     CreateTeacher::getQualificationFormField(),
@@ -242,7 +248,8 @@ class Register extends BaseRegister
                     CreateTeacher::getPreviousExperienceFormField(),
                     CreateTeacher::getCountryFormField(),
                     CreateTeacher::getPhoneFormField(),
-                ]),
+                ])
+                ->model($this->getTeacherModel()),
             Step::make('Student Profile')
                 ->translateLabel()
                 ->icon('heroicon-o-academic-cap')
@@ -252,13 +259,19 @@ class Register extends BaseRegister
                 })
                 ->description(__('Please provide more details to complete your profile as a student'))
                 ->schema([
-                    CreateStudent::getSchoolNameFormField(),
+                    CreateStudent::getSchoolNameSelectFormField()
+                        ->live(onBlur: true),
+                    CreateStudent::getSchoolNameFormField()
+                        ->hidden(function (Get $get) {
+                            return $get('school_id') !== null;
+                        }),
                     CreateStudent::getCurrentGradeFormField(),
                     CreateStudent::getAddressFormField(),
                     CreateStudent::getDateOfBirthFormField(),
                     CreateStudent::getCountryFormField(),
                     CreateStudent::getPhoneFormField(),
-                ]),
+                ])
+                ->model($this->getStudentModel()),
             Step::make('Contractor Profile')
                 ->translateLabel()
                 ->icon('heroicon-o-clipboard-document')
@@ -421,6 +434,8 @@ class Register extends BaseRegister
                     'country' => $data['country'],
                 ]),
                 'teacher' => $user->teacher()->create([
+                    'school_id' => $data['school_id'] ?? null,
+                    'school_name' => $data['school_name'] ?? null,
                     'address' => $data['address'],
                     'subject_taught' => $data['subject_taught'],
                     'qualification' => $data['qualification'],
@@ -431,8 +446,9 @@ class Register extends BaseRegister
 
                 ]),
                 'student' => $user->student()->create([
+                    'school_id' => $data['school_id'] ?? null,
                     'address' => $data['address'],
-                    'school_name' => $data['school_name'],
+                    'school_name' => $data['school_name'] ?? null,
                     'current_grade' => $data['current_grade'],
                     'date_of_birth' => $data['date_of_birth'],
                     'country' => $data['country'],
@@ -517,6 +533,8 @@ class Register extends BaseRegister
         //
         $this->sendEmailVerificationNotification($user);
         FacadesNotification::route('mail', 'info@arab-psf.com')
+            ->notify(new \App\Notifications\NewMemberRegistration($user));
+        FacadesNotification::route('mail', 'aminuhussain22@gmail.com')
             ->notify(new \App\Notifications\NewMemberRegistration($user));
 
         Filament::auth()->login($user);
