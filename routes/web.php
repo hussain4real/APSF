@@ -6,11 +6,20 @@ use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
 use App\Http\Controllers\PublicVoteController;
 use App\Livewire\Subscribe;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Stevebauman\Location\Facades\Location;
 
 // https://www.gurpreetsaluja.com/wp-content/uploads/2020/09/KOTAK-BANK-removebg-preview-300x129.png
 
+
+Route::get('/country', function(Request $request){
+    $ipAddress = $request->ip();
+
+    $location = Location::get($ipAddress);
+    return $location;
+});
 
 Route::view('/card','usercard')
     ->name('card');
