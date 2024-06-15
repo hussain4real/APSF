@@ -595,7 +595,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function generateUniqueMembershipId()
     {
         do {
-            $membershipId = 'APSF' . now()->format('YmdHis') . $this->profile_short_code() . strtoupper(substr($this->getUserCountry(), 0, 2));
+            $membershipId = 'APSF' . now()->format('YmdHis') . $this->profile_short_code() . $this->getUserCountry();
         } while (User::where('membership_id', $membershipId)->exists());
 
         return $membershipId;
