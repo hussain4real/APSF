@@ -62,7 +62,9 @@ class CreateStudent extends CreateRecord
         return TextInput::make('school_name')
             ->label(__('School Name'))
             ->placeholder(__('ABC School'))
-            ->required()
+            ->required(function (Get $get) {
+                return $get('school_id') === null;
+            })
             ->maxLength(255);
     }
 
