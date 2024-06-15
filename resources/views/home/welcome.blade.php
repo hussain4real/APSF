@@ -113,6 +113,7 @@
         #chairman-message {
             max-height: 100%;
             height: 50.5rem !important;
+
         }
 
         #chairman-image {
@@ -171,19 +172,28 @@
                 padding: 0.5rem 1rem;
             }
 
-            #chairman-message-wrapper {
-                /* max-height: 100%;
-                height: 50.5rem !important; */
-            }
+            /* #chairman-message-wrapper {
+                max-height: 100%;
+                height: 50.5rem !important;
+            } */
 
             /* #chairman-image>div>img {
                 display: none !important;
             } */
+            #chairman-image {
+                /* display: none !important; */
+                max-height: 100%;
+                height: 30.5rem !important;
+                padding: 0;
+            }
 
             #chairman-message {
-
-                padding: 0.5rem 1rem;
+                /* display: none; */
+                max-height: 100%;
+                height: 100%;
+                padding: 1rem 1rem;
                 border-radius: 1rem;
+                margin: 1rem 0rem;
             }
 
             .margin-right-btn {
@@ -480,6 +490,7 @@
 
                                 <div class="swiper-slide testimonial__slide">
                                     <div id="chairman-message" class="testimonial__inner-2" style="background-color: #f8f1e6;">
+
                                         <p class="testimonial__text-2 to_justify">{{__($chairmanMessageOne)}} <br><br>{{__($chairmanMessageTwo)}}<br><br>
                                             {{__($chairmanMessageThree)}}
                                         </p>
