@@ -605,9 +605,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     public function getUserCountry()
     {
 
-        // $ip = request()->ip();
-        $ip = Location::get();
-        dd($ip);
+        $ipAddress = request()->ip();
+        // dd($ipAddress);
+        $ip = Location::get($ipAddress);
+        // dd($ip);
         $client = new Client();
 
         try {
@@ -615,7 +616,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
             // $details = json_decode($response->getBody()->getContents());
         
             $countryCode =$ip->countryCode;
-            dd($countryCode);
+            // dd($countryCode);
             return $countryCode ?? 'Unknown';
         } catch (\Exception $e) {
             Log::error("Failed to fetch country for IP {$ip}: " . $e->getMessage());
