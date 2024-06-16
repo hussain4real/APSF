@@ -3,7 +3,9 @@
 namespace App\Filament\Clusters\Students\Resources\StudentResource\Pages;
 
 use App\Filament\Clusters\Students\Resources\StudentResource;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -52,7 +54,22 @@ class CreateStudent extends CreateRecord
     {
         return Select::make('school_id')
             ->relationship('school', 'school_name')
-            ->label(__('School Name'))
+            ->label(__('School '))
+            // ->hint(__('Select the school you are currently attending. If your school is not listed, please enter the name of your school in the field below.'))
+            ->hintColor('warning')
+            ->hintIcon('heroicon-o-information-circle')
+            ->hintAction(
+                Action
+                    ::make('more-info')
+                    ->label(__('More Info'))
+                    ->form([
+                        Placeholder::make('hint')
+                        ->label(__('Hint'))
+                            ->content(__('Select the school you are currently attending. If your school is not listed, please enter the name of your school in the field below.')),
+                    ])
+                    ->modalSubmitAction(false)
+            )
+            ->hintIconTooltip(__('Select the school you are currently attending. If your school is not listed, please enter the name of your school in the field below.'))
             ->searchable()
             ->preload();
     }
@@ -119,7 +136,6 @@ class CreateStudent extends CreateRecord
                 static::getSchoolNameFormField()
                     ->hidden(function (Get $get) {
                         return $get('school_id') !== null;
-
                     }),
                 static::getCurrentGradeFormField(),
                 static::getAddressFormField(),

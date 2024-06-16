@@ -39,6 +39,7 @@
     return $media->mime_type == 'video/mp4';
     })->first();
 
+
     @endphp
 
     <style>
