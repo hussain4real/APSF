@@ -3,7 +3,9 @@
 namespace App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages;
 
 use App\Filament\Clusters\Teachers\Resources\TeacherResource;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -52,7 +54,22 @@ class CreateTeacher extends CreateRecord
     {
         return Select::make('school_id')
             ->relationship('school', 'school_name')
-            ->label(__('School Name'))
+            ->label(__('School'))
+            ->hintColor('warning')
+            ->hintIcon('heroicon-o-information-circle')
+            ->hintIconTooltip(__('Select the school you are currently working. If your school is not listed, please enter the name of your school in the field below.'))
+            ->hintAction(
+                Action::make('more-info')
+                ->label(__('More Info'))
+                ->form([
+                    Placeholder::make('hint')
+                        ->label(__('Hint'))
+                        ->content(
+                            __('Select the school you are currently working. If your school is not listed, please enter the name of your school in the field below.')
+                        )
+                ])
+                ->modalSubmitAction(false)
+            )
             ->searchable()
             ->preload();
     }
