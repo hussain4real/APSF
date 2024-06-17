@@ -63,7 +63,7 @@ class SubscriptionResource extends Resource
                     ->numeric(),
                     Tables\Columns\TextColumn::make('transaction.amount')
                     ->label(__('Amount'))
-                    ->money('QAR',0,'en-QA')
+                    ->money('USD',0,'en-US')
                     ->icon('heroicon-o-banknotes')
                 ->iconPosition(IconPosition::After)
                 ->iconColor(Color::Blue),

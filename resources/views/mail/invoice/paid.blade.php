@@ -5,8 +5,8 @@ We are pleased to inform you that your payment for invoice *{{$transaction->tran
 
 **Payment Details:**
 - **Invoice Number:** `{{$transaction->transaction_id}}`
-- **Amount Paid:** USD{{$transaction->amount}}
-{{--- **Payment Method:** [Credit Card/PayPal/Other]--}}
+- **Amount Paid:** USD {{$transaction->amount}}
+
 - **Date of Payment:** {{$transaction->orderDate()}}
 
 **Subscription Details:**
@@ -21,7 +21,7 @@ Thank you for your subscription. We are thrilled to have you on board and hope y
 - **Email:** info@arab-psf.com
 - **Phone:** +968 99871199
 <x-mail::button url="{{$url}}">
-Visit Your Profile
+    Visit Your Profile
 </x-mail::button>
 
 Thanks,<br>
