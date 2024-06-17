@@ -57,9 +57,10 @@ class SubscriptionStarted extends Notification implements ShouldQueue
         ])->render())
             ->setNodeBinary('/usr/bin/node')
             ->setNpmBinary('/usr/bin/npm')
-            ->setChromePath('/usr/bin/chromium-browser')
+            ->setChromePath('/usr/bin/google-chrome')
             ->select('div')
             ->hideBackground()
+            ->timeout(30000)
             ->save($imagePath);
 
         // Save the screenshot to Laravel's storage
