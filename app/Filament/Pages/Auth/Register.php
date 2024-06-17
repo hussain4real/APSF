@@ -500,9 +500,9 @@ class Register extends BaseRegister
                 ]);
                 $uniqueMembershipId = $user->generateUniqueMembershipId();
                 $user->update(['membership_id' => $uniqueMembershipId]);
-
-                FacadesNotification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
             }
+
+            FacadesNotification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
 
             //assign role to user based on profile
             if ($user->student) {
