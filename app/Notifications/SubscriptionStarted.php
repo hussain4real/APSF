@@ -56,11 +56,6 @@ class SubscriptionStarted extends Notification implements ShouldQueue
         ])->render())
             ->select('div')
             ->hideBackground()
-            ->deviceScaleFactor(2)
-            ->windowSize(600, 260)
-            ->userAgent('My Mobile Browser 1.0')
-            ->mobile()
-            ->touch()
             ->save($imagePath);
 
         // Save the screenshot to Laravel's storage
