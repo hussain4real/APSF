@@ -50,7 +50,9 @@ class SubscriptionStarted extends Notification implements ShouldQueue
 
 
         putenv('DEBUG=puppeteer:*');
-        $imagePath = 'card.png';
+        // $imagePath = 'card.png ';
+       //set the imagepath to my digital ocean space
+        $imagePath = '/var/www/html/storage/app/public/usercard/' . $user->id . '_card.png';
         Browsershot::html(View::make('usercard', [
             'user' => $user,
             'expiryDate' => $expiryDate,
