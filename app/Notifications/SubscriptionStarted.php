@@ -54,8 +54,8 @@ class SubscriptionStarted extends Notification implements ShouldQueue
             'user' => $user,
             'expiryDate' => $expiryDate,
         ])->render())
-            ->setNodeBinary('/usr/local/bin/node')
-            ->setNpmBinary('/usr/local/bin/npm')
+            ->setNodeBinary('/usr/bin/node')
+            ->setNpmBinary('/usr/bin/npm')
             ->select('div')
             ->hideBackground()
             ->save($imagePath);
