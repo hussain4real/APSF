@@ -84,7 +84,7 @@ class TransactionResource extends Resource
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('amount')
-                ->money('QAR',0,'en-QA')
+                ->money('USD',0,'en-US')
                 ->icon('heroicon-o-banknotes')
                 ->iconPosition(IconPosition::After)
                 ->iconColor(Color::Green)
