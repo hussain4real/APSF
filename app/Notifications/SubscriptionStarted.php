@@ -55,9 +55,9 @@ class SubscriptionStarted extends Notification implements ShouldQueue
             'user' => $user,
             'expiryDate' => $expiryDate,
         ])->render())
-            ->setNodeBinary('/usr/bin/node')
-            ->setNpmBinary('/usr/bin/npm')
-            ->setChromePath('/usr/bin/google-chrome')
+            // ->setNodeBinary('/usr/bin/node')
+            // ->setNpmBinary('/usr/bin/npm')
+            // ->setChromePath('/usr/bin/google-chrome')
             ->select('div')
             ->hideBackground()
             ->timeout(30000)
