@@ -56,7 +56,6 @@ class SubscriptionStarted extends Notification implements ShouldQueue
             'user' => $user,
             'expiryDate' => $expiryDate,
         ])->render())
-        ->setRemoteInstance('https://chrome.browserless.io')
             // ->setNodeBinary('/usr/bin/node')
             // ->setNpmBinary('/usr/bin/npm')
             // ->setChromePath('/usr/bin/google-chrome')

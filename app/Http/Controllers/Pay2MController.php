@@ -43,7 +43,7 @@ class Pay2MController extends Controller
         // $this->basket_id = auth()->user()->id . '-' . time();
         //basket id should be the combination of the user id profile type and the current time in human readable format
         $this->basket_id = auth()->user()->id.'-'.auth()->user()->profile_type.'-'.now()->format('Y-m-d H:i:s');
-        $this->trans_amount = $this->trans_amount ?? 1;
+        $this->trans_amount = $this->trans_amount;
         // $this->trans_amount = 10;
         //
     }
@@ -220,6 +220,8 @@ class Pay2MController extends Controller
         $response_string = sprintf('%s%s%s%s%s', $merchant_id, $original_basket_id, $secretword, $txnamt, $err_code);
         $generated_hash = hash('sha256', $response_string);
 
+        //convert the amount to USD
+        $txnamt = $this->convertCurrency($txnamt, 'QAR', 'USD');
 
         $transactionId = $response['transaction_id'];
 
