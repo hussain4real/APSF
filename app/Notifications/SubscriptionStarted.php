@@ -49,6 +49,7 @@ class SubscriptionStarted extends Notification implements ShouldQueue
         $user = $subscription->user;
 
 
+        putenv('DEBUG=puppeteer:*');
         $imagePath = 'card.png';
         Browsershot::html(View::make('usercard', [
             'user' => $user,
@@ -56,6 +57,7 @@ class SubscriptionStarted extends Notification implements ShouldQueue
         ])->render())
             ->setNodeBinary('/usr/bin/node')
             ->setNpmBinary('/usr/bin/npm')
+            ->setChromePath('/usr/bin/chromium-browser')
             ->select('div')
             ->hideBackground()
             ->save($imagePath);
