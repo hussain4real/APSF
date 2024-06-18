@@ -11,3 +11,5 @@ Artisan::command('inspire', function () {
 //only run in production
 
 Schedule::command('sitemap:generate')->daily()->at('00:00')->environments('production');
+
+Schedule::command('queue:work --stop-when-empty')->everyMinute()->environments('production');
