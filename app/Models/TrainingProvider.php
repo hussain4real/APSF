@@ -56,10 +56,7 @@ class TrainingProvider extends Model
         return $this->morphMany(Review::class, 'reviewable');
     }
 
-    public function trainingPrograms(): HasMany
-    {
-        return $this->hasMany(TrainingProgram::class);
-    }
+   
 
     /**
      * Get the sum of all the training provider's ratings.

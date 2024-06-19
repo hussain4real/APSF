@@ -5,6 +5,7 @@ namespace App\Filament\Clusters\Resources\Resources\TrainingProgramResource\Page
 use App\Filament\Clusters\Resources\Resources\TrainingProgramResource;
 use App\Models\TrainingProgram;
 use Filament\Actions;
+use Filament\Actions\LocaleSwitcher;
 use Filament\Infolists\Components\Actions\Action;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
@@ -14,6 +15,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
+use Filament\Resources\Pages\ViewRecord\Concerns\Translatable;
 use Filament\Support\Enums\ActionSize;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontWeight;
@@ -23,11 +25,14 @@ use Illuminate\Contracts\View\View;
 
 class ViewTrainingProgram extends ViewRecord
 {
+    use Translatable;
+
     protected static string $resource = TrainingProgramResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
+            LocaleSwitcher::make(),
             Actions\EditAction::make(),
         ];
     }

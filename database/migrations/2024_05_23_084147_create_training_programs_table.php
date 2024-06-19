@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('training_programs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('training_provider_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->nullOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('duration')->nullable();
-            $table->float('cost')->nullable();
+            $table->float('regular_price')->nullable();
+            $table->float('member_price')->nullable();
             $table->string('instructor_name')->nullable();
             $table->string('mode_of_delivery')->default(\App\TraininingMode::ONLINE);
             $table->string('type')->default(\App\TrainingType::COURSE);

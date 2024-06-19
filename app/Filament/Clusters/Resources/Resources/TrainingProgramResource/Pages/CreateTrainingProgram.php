@@ -5,6 +5,8 @@ namespace App\Filament\Clusters\Resources\Resources\TrainingProgramResource\Page
 use App\Filament\Clusters\Resources\Resources\TrainingProgramResource;
 use App\TrainingType;
 use App\TraininingMode;
+use Filament\Actions\Action as ActionsAction;
+use Filament\Actions\LocaleSwitcher;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Hidden;
@@ -17,14 +19,24 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
+use Filament\Pages\Page;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Resources\Pages\CreateRecord\Concerns\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Number;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CreateTrainingProgram extends CreateRecord
 {
+    use Translatable;
     protected static string $resource = TrainingProgramResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            LocaleSwitcher::make(),
+        ];
+    }
 
     public function form(Form $form): Form
     {
@@ -52,12 +64,48 @@ class CreateTrainingProgram extends CreateRecord
                                 ->requiresConfirmation()
                                 ->icon('heroicon-o-arrow-path')
                                 ->color('secondary'),
+                            Action::make('fillform')
+                                ->icon('heroicon-o-sparkles')
+                                ->color('success')
+                                ->outlined()
+                                ->action(function (Set $set, Page $livewire) {
+                                    //first check the language
+                                    if (app()->getLocale() == 'en') {
+                                        $set('title', 'Learn the art of Giving');
+                                        $set('instructor_name', auth()->user()->name);
+                                        $set('description', 'This is a training program that teaches you how to give and receive.');
+                                        $set('duration', '40 minutes/day, ');
+                                        $set('regular_price', '1000.00');
+                                        $set('member_price', '600.00');
+                                        $set('mode_of_delivery', TraininingMode::ONLINE);
+                                        $set('type', TrainingType::COURSE);
+                                        $set('start_date', now()->format('Y-m-d H:i'));
+                                        $set('end_date', now()->addDays(7)->format('Y-m-d H:i'));
+                                        $livewire->form->getState();
+                                    }
+
+                                    if (app()->getLocale() == 'ar'){
+                                        $set('title', 'تعلم فن العطاء');
+                                        $set('instructor_name', auth()->user()->name);
+                                        $set('description', 'هذا برنامج تدريبي يعلمك كيف تعطي وتستقبل.');
+                                        $set('duration', '40 دقيقة / يوم');
+                                        $set('regular_price', '1000.00');
+                                        $set('member_price', '600.00');
+                                        $set('mode_of_delivery', TraininingMode::ONLINE);
+                                        $set('type', TrainingType::COURSE);
+                                        $set('start_date', now()->format('Y-m-d H:i'));
+                                        $set('end_date', now()->addDays(7)->format('Y-m-d H:i'));
+                                        $livewire->form->getState();
+            
+                                    }
+                                    // $livewire->emit('notify', 'Form filled with default values.');
+                                })
                         ])
                         ->schema([
-                            Hidden::make('training_provider_id')
+                            Hidden::make('user_id')
                                 ->disabled()
                                 ->dehydrated()
-                                ->default(auth()?->user()?->trainingProvider->id ?? null),
+                                ->default(auth()?->user()?->id ?? null),
                             ToggleButtons::make('type')
                                 ->options(TrainingType::class)
                                 ->default('course')
@@ -89,31 +137,35 @@ class CreateTrainingProgram extends CreateRecord
                                 ->columnSpanFull(),
                             TextInput::make('duration')
                                 ->label(__('Duration'))
-                                ->suffix(__('daily'))
-                                ->placeholder(__('40 minutes, 1 hour, 2 days, etc.'))
+                                ->placeholder(__('40 minutes/day, 1 hour/week, 2 days, etc.'))
                                 ->hintIcon('heroicon-o-information-circle')
                                 ->hintColor('secondary')
-                                ->hintIconTooltip(__('The duration of the program daily.'))
+                                ->hintIconTooltip(__('The duration of the program.'))
                                 ->maxLength(255),
-                            TextInput::make('cost')
-                                ->label(__('Cost'))
+                            TextInput::make('regular_price')
+                                ->label(__('Price'))
                                 ->placeholder(__('1000.00'))
                                 ->numeric()
                                 ->inputMode('decimal')
                                 ->prefix('$'),
 
+                            TextInput::make('member_price')
+                                ->label(__('Member Price'))
+                                ->placeholder(__('1000.00'))
+                                ->numeric()
+                                ->inputMode('decimal')
+                                ->prefix('$'),
                             ToggleButtons::make('mode_of_delivery')
                                 ->required()
                                 ->options(TraininingMode::class)
                                 ->default(TraininingMode::ONLINE)
-                                ->inline()
-                                ->columnSpanFull(),
+                                ->inline(),
                             SpatieMediaLibraryFileUpload::make('attachment')
                                 ->collection('banner')
                                 ->hiddenLabel()
                                 ->responsiveImages()
                                 ->maxSize(1024 * 10)
-                                ->hint(__('Maximum size: '.Number::fileSize(1024 * 1000 * 10).' bytes.'))
+                                ->hint(__('Maximum size: ' . Number::fileSize(1024 * 1000 * 10) . ' bytes.'))
                                 ->hintIcon('heroicon-o-information-circle')
                                 ->hintColor('warning')
                                 ->hintIconTooltip(__('Accepted file types: png, jpg, jpeg, gif, svg, webp.'))
@@ -124,14 +176,15 @@ class CreateTrainingProgram extends CreateRecord
                                     fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
                                         ->prepend('training_media/'),
                                 )
-//                                ->reorderable()
-//                                ->appendFiles()
+                                //                                ->reorderable()
+                                //                                ->appendFiles()
                                 ->moveFiles()
                                 ->preserveFilenames()
                                 ->downloadable()
                                 ->imageEditor(2)
                                 ->imageEditorEmptyFillColor('#dda581')
-                                ->uploadingMessage(__('uploading, please wait...')),
+                                ->uploadingMessage(__('uploading, please wait...'))
+                                ->columnSpanFull(),
                         ])
                         ->columns(2),
                     Section::make('Dates')
@@ -163,17 +216,27 @@ class CreateTrainingProgram extends CreateRecord
             ]);
     }
 
-    protected function handleRecordCreation(array $data): Model
+    // protected function handleRecordCreation(array $data): Model
+    // {
+    //     //        dd($data);
+
+    //     if (!$data['training_provider_id']) {
+    //         $data['training_provider_id'] = auth()->user()->id;
+    //     }
+
+    //     //        dd($data);
+
+    //     return static::getModel()::create($data);
+    // }
+
+    protected function getCreateFormAction(): ActionsAction
     {
-        //        dd($data);
-
-        if (! $data['training_provider_id']) {
-            $data['training_provider_id'] = auth()->user()->id;
-        }
-
-        //        dd($data);
-
-        return static::getModel()::create($data);
-
+        return parent::getCreateFormAction()
+            ->submit(null)
+            ->requiresConfirmation()
+            ->action(function () {
+                $this->closeActionModal();
+                $this->create();
+            });
     }
 }
