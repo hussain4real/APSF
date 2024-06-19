@@ -37,6 +37,18 @@ class SubscriptionStarted extends Notification
         return ['mail'];
     }
 
+
+    /**
+     * Determine the notification's delivery delay.
+     *
+     * @return array<string, \Illuminate\Support\Carbon>
+     */
+    public function withDelay(object $notifiable): array
+    {
+        return [
+            'mail' => now()->addMinutes(1),
+        ];
+    }
     /**
      * Get the mail representation of the notification.
      */
