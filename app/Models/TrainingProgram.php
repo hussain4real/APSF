@@ -14,10 +14,11 @@ use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 class TrainingProgram extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, SoftDeletes;
+    use HasFactory, InteractsWithMedia, SoftDeletes, HasTranslations;
 
     protected $guarded = [];
 
@@ -34,9 +35,15 @@ class TrainingProgram extends Model implements HasMedia
         ];
     }
 
+    public $translatable = [
+        'title',
+        'description',
+        'duration',
+    ];
+
     public function trainingProvider(): BelongsTo
     {
-        return $this->belongsTo(TrainingProvider::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function users(): BelongsToMany

@@ -9,6 +9,17 @@
         </div>
     </div>
     @endif
+
+    @if(session('success'))
+    <div id="card" class="card text-center border-success mx-auto" style="width: 30rem;">
+        <h5 class="card-header bg-success">Notice</h5>
+        <div class="card-body">
+            <h5 class="card-title alert alert-success">{{session('success')}}</h5>
+
+            <a href="{{route('filament.admin.pages.my-profile')}}" class="btn btn-primary">View Profile</a>
+        </div>
+    </div>
+    @endif
     @if (session()->has('info'))
     <div id="card" class="card text-center border-info mx-auto" style="width: 30rem;">
         <h5 class="card-header bg-info">Notice</h5>

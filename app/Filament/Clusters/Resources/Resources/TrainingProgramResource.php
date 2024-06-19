@@ -6,12 +6,14 @@ use App\Filament\Clusters\Resources;
 use App\Filament\Clusters\Resources\Resources\TrainingProgramResource\Pages;
 use App\Models\TrainingProgram;
 use Filament\Pages\SubNavigationPosition;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TrainingProgramResource extends Resource
 {
+    use Translatable;
     protected static ?string $model = TrainingProgram::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
