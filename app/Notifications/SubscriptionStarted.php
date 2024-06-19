@@ -15,9 +15,9 @@ use Spatie\Browsershot\Browsershot;
 
 
 
-class SubscriptionStarted extends Notification implements ShouldQueue
+class SubscriptionStarted extends Notification
 {
-    use Queueable;
+    // use Queueable;
 
     /**
      * Create a new notification instance.
@@ -51,7 +51,7 @@ class SubscriptionStarted extends Notification implements ShouldQueue
 
         putenv('DEBUG=puppeteer:*');
         $imagePath = 'card.png ';
-       //set the imagepath to my digital ocean space
+        //set the imagepath to my digital ocean space
         Browsershot::html(View::make('usercard', [
             'user' => $user,
             'expiryDate' => $expiryDate,

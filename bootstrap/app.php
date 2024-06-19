@@ -13,7 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->validateCsrfTokens(except: [
-            'payments.pay2m.com/*',
+            'pay.pay2m.com/*',
+            '/payment-response',
         ]);
         $middleware->redirectGuestsTo('/admin/login');
         //for unverified users
