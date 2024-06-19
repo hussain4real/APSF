@@ -24,7 +24,7 @@ class SubscriptionStarted extends Notification
      */
     public function __construct(public Subscription $subscription)
     {
-        $this->afterCommit();
+        //
     }
 
     /**
