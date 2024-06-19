@@ -62,7 +62,7 @@
     {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">--}}
     <div class="container mx-auto">
 
-        <form id='pay2m_payment_form' name='pay2m-payment-form' method='post' action="https://pay.pay2m.com/Ecommerce/api/Transaction/PostTransaction" class="hidden">
+        <form id='pay2m_payment_form' name='pay2m-payment-form' method='post' action="https://pay.pay2m.com/Ecommerce/api/Transaction/PostTransaction" hidden="true">
             {{-- @csrf--}}
             <!-- ... -->
             {{-- {{route('payment.response')}}--}}
@@ -70,7 +70,7 @@
             <input type="TEXT" name="MERCHANT_ID" value="{{$merchant_id}}" hidden="true" readonly /><br />
             <input type="TEXT" name="MERCHANT_NAME" value="UAT Demo Merchant " hidden="true" readonly /><br />
             <input type="TEXT" name="TOKEN" value="{{ $token }}" hidden="true" readonly /><br />
-            <input type="TEXT" name="SUCCESS_URL" value="{{route('payment.response')}}" hidden="true" readonly /><br />
+            <input type="TEXT" name="SUCCESS_URL" value="{{route('payment.success')}}" hidden="true" readonly /><br />
             <input type="TEXT" name="FAILURE_URL" value="{{route('payment.failed')}}" hidden="true" readonly /><br />
             <input type="TEXT" name="CHECKOUT_URL" value="{{route('payment.response')}}" hidden="true" readonly /><br />
             <input type="TEXT" name="CUSTOMER_EMAIL_ADDRESS" value="some-email@example.com" hidden="true" readonly /><br />

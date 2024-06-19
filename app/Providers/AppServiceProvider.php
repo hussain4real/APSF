@@ -10,6 +10,7 @@ use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentColor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::unguard();
+        // Event::listen('*', function ($event, array $data) {
+        //     // Log the event class
+        //     error_log($event);
+        //     // Log the event data delegated to listener parameters
+        //     error_log(json_encode($data, JSON_PRETTY_PRINT));
+        // });
 
         view()->composer('partials.language_switcher', function ($view) {
             $view->with('current_locale', app()->getLocale());
@@ -38,10 +45,10 @@ class AppServiceProvider extends ServiceProvider
             $switch
                 ->locales(['ar', 'en'])
                 ->visible(outsidePanels: true)
-//             ->outsidePanelRoutes([
-//                 'welcome',
-//                 'about'
-//             ])
+                //             ->outsidePanelRoutes([
+                //                 'welcome',
+                //                 'about'
+                //             ])
                 ->outsidePanelPlacement(Placement::TopLeft);
         });
         // FilamentAsset::register([

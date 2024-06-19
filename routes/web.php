@@ -126,12 +126,14 @@ Route::get('/subscribe', [Pay2MController::class, 'create'])
 
 //Route::post('/process', [Pay2MController::class, 'store'])
 //    ->name('subscribe.store');
-Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
+
+//route to handle checkout event coming from the payment gateway
+Route::post('/payment-response', [Pay2MController::class, 'handleResponse'])
     ->name('payment.response');
 
 //route to handle checkout event coming from the payment gateway
-Route::get('/checkout', [Pay2MController::class, 'checkout'])
-    ->name('checkout');
+Route::get('/success', [Pay2MController::class, 'success'])
+    ->name('payment.success');
 
     //route to handle failed transaction
     Route::get('/payment-failed', [Pay2MController::class, 'failed'])
