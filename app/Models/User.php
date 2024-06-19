@@ -517,6 +517,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return $this->hasMany(PaymentPlan::class);
     }
 
+    // public function trainingPrograms(): HasMany
+    // {
+    //     return $this->hasMany(TrainingProgram::class);
+    // }
+
     public function trainingPrograms(): BelongsToMany
     {
         return $this->belongsToMany(TrainingProgram::class, 'training_program_users')

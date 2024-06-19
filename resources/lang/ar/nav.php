@@ -11,6 +11,7 @@ return [
     'Membership' => 'العضوية',
     'Events' => 'الفعاليّات',
     'Contact Us' => 'تواصل معنا',
+    'Training Programs' => 'برامج التدريب',
     'Login' => 'تسجيلُ الدّخول',
     'Register' => 'التّسجيل',
     'Contact' => 'اتصال',

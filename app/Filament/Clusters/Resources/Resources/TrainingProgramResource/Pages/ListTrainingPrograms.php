@@ -4,7 +4,9 @@ namespace App\Filament\Clusters\Resources\Resources\TrainingProgramResource\Page
 
 use App\Filament\Clusters\Resources\Resources\TrainingProgramResource;
 use Filament\Actions;
+use Filament\Actions\LocaleSwitcher;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ListRecords\Concerns\Translatable;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
@@ -19,11 +21,14 @@ use Filament\Tables\Table;
 
 class ListTrainingPrograms extends ListRecords
 {
+
+    use Translatable;
     protected static string $resource = TrainingProgramResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
+            LocaleSwitcher::make(),
             Actions\CreateAction::make(),
         ];
     }
@@ -38,7 +43,7 @@ class ListTrainingPrograms extends ListRecords
                 Stack::make([
                     View::make('entities.table.training_programs')
                         ->components([
-                            TextColumn::make('trainingProvider.id')
+                            TextColumn::make('user.id')
                                 ->numeric()
                                 ->sortable(),
                             TextColumn::make('title')

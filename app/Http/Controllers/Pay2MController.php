@@ -289,7 +289,7 @@ class Pay2MController extends Controller
     {
         PaymentProcessed::dispatch($request->all());
 
-        return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
+        return redirect()->route('failed')->with('success', __('Transaction completed successfully'));
     }
 
     public function failed(Request $request)
