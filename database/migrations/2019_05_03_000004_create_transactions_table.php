@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('transaction_id');
-            $table->string('err_code');
+            $table->string('transaction_id')->nullable();
+            $table->string('err_code')->nullable();
             $table->string('err_msg')->nullable();
             $table->string('basket_id');
-            $table->dateTime('order_date');
-            $table->string('response_key');
-            $table->string('amount');
+            $table->dateTime('order_date')->nullable();
+            $table->string('response_key')->nullable();
+            $table->string('amount')->nullable();
             $table->string('status')->default(\App\TransactionStatus::PENDING);
             $table->timestamps();
 

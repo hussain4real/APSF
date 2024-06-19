@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PaymentProcessed;
 use App\Http\Integrations\PaymentGateway\Pay2mConnector;
 use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
 use App\Models\Membership;
@@ -42,7 +43,7 @@ class Pay2MController extends Controller
         //        $this->num = 1;
         // $this->basket_id = auth()->user()->id . '-' . time();
         //basket id should be the combination of the user id profile type and the current time in human readable format
-        $this->basket_id = auth()->user()->id.'-'.auth()->user()->profile_type.'-'.now()->format('Y-m-d H:i:s');
+        $this->basket_id = auth()->user()->id . '-' . auth()->user()->profile_type;
         $this->trans_amount = $this->trans_amount;
         // $this->trans_amount = 10;
         //
@@ -168,12 +169,28 @@ class Pay2MController extends Controller
             $this->basket_id
             // 'Basket Item-1'
         );
+        // dd($tokenRequest);
         try {
             $response = $pay2m->send($tokenRequest);
             $status = $response->status();
             $body = $response->object();
             //            dd($body);
             $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
+
+            //if transaction exist with success status, redirect to profile page
+            // if (Transaction::where('basket_id', $this->basket_id)->where('status', 'success')->exists()) {
+            //     return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
+            // }
+            //create transaction with status of pending
+            if (Transaction::where('basket_id', $this->basket_id)->doesntExist()) {
+                $transaction = new Transaction([
+                    'basket_id' => $this->basket_id,
+                    'amount' => (int) $this->convertCurrency($this->trans_amount, 'QAR', 'USD'),
+                    'status' => 'pending',
+                ]);
+                Auth::user()->transactions()->save($transaction);
+            }
+
 
             return view('subscribe', [
                 'userProfileType' => $userProfileType,
@@ -191,7 +208,7 @@ class Pay2MController extends Controller
 
     public function convertCurrency($amount, $from, $to)
     {
-        $url = 'https://api.exchangerate-api.com/v4/latest/'.$from;
+        $url = 'https://api.exchangerate-api.com/v4/latest/' . $from;
         $response = file_get_contents($url);
         $result = json_decode($response, true);
         $rate = $result['rates'][$to];
@@ -202,6 +219,8 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
+        Log::info('Received payment response:', $request->all());
+
 
         $this->processResponse($this->merchant_id, $this->basket_id, $this->trans_amount, $request->all());
     }
@@ -262,75 +281,24 @@ class Pay2MController extends Controller
         $user->save();
 
         //return to profile route with success message
+        // return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
+    }
+
+
+    public function success(Request $request)
+    {
+        PaymentProcessed::dispatch($request->all());
+
         return redirect()->route('filament.admin.pages.my-profile')->with('success', __('Transaction completed successfully'));
     }
 
-    public function getAccessTokenForRecurringTransaction($merchant_id, $secured_key)
-    {
-        $tokenApiUrl = 'https://merchant.pay2m.com:8443/api/token';
-        //        $tokenApiUrl = 'https://payments.pay2m.com:8443/api/token';
-        //use guzzle
-        $client = new \GuzzleHttp\Client(['verify' => false]);
-        $response = $client->request('POST', $tokenApiUrl, [
-            'form_params' => [
-                'MERCHANT_ID' => $merchant_id,
-                'SECURED_KEY' => $secured_key,
-
-            ],
-        ]);
-        //        dd($response->getBody());
-        $payload = json_decode($response->getBody());
-        //        dd($payload);
-        $token = isset($payload->ACCESS_TOKEN) ? $payload->ACCESS_TOKEN : '';
-
-        //        dd($token);
-
-        return $token;
-    }
-
-    public function getInstrumentToken($token, $trans_id)
-    {
-        $client = new \GuzzleHttp\Client();
-        $tokenApiUrl = 'https://merchant.pay2m.com:8443/api/user/instruments';
-
-        // Append the transaction_id as a query parameter
-        $response = $client->request('GET', $tokenApiUrl, [
-            'headers' => [
-                'Authorization' => 'Bearer '.$token,
-            ],
-            'query' => [
-                'transaction_id' => $trans_id,
-            ],
-        ]);
-
-        // Assuming you want to return the response body
-        return $response->getBody()->getContents();
-    }
-
-    public function checkout(Request $request)
-    {
-        // Get the data sent by the payment gateway
-        $data = $request->all();
-
-        // Log the data for debugging purposes
-        Log::info('Received checkout data:', $data);
-
-        dd($data);
-    }
-
-    // public function failed(Request $request)
-    // {
-    //     dd($request->all());
-    //     //put error message in session
-    //     return redirect()->route('failed')->with('error', __('Transaction Failed, please try again'));
-    // }
-
     public function failed(Request $request)
     {
+        PaymentProcessed::dispatch($request->all());
         $errorCode = $request->input('err_code');
         $errorMessage = $this->getErrorMessage($errorCode);
         // Log the error message
-        Log::error($errorMessage);
+        // Log::error($errorMessage);
 
         //put error message in session
         return redirect()->route('failed')->with('error', $errorMessage);
@@ -356,7 +324,7 @@ class Pay2MController extends Controller
             '801' => '{0} is your Pay2m OTP (One Time Password). Please do not share with anyone.',
             '802' => 'OTP could not be sent. Please try again later.',
             '901' => 'We noticed that you cancelled the transaction. Please try again',
-            // Add other codes as needed
+                // Add other codes as needed
             default => 'Unable to process your request at the moment. Please try again later',
         };
     }
