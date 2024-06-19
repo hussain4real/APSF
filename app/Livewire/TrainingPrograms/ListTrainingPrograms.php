@@ -90,11 +90,11 @@ class ListTrainingPrograms extends Component implements HasForms, HasTable
 //                        Action::make('make_payment')
                     ->button()
                     ->size(ActionSize::Medium)
-                    ->color('primary')
-                    ->requiresConfirmation()
-                    ->url(function (Model $record) {
-                        return route('enrolment.pay', ['trainingProgram' => $record]);
-                    }),
+                    ->color('primary'),
+                    // ->requiresConfirmation()
+                    // ->url(function (Model $record) {
+                    //     return route('enrolment.pay', ['trainingProgram' => $record]);
+                    // }),
                 //                            ->action(function ($record) {
                 //                                //attach the auth user to the training program and set enrolled_at
                 //                                $record->users()->attach(auth()->user()->id, ['enrolled_at' => now()]);
