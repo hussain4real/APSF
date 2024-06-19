@@ -480,11 +480,18 @@ class Register extends BaseRegister
                         //                    'educational_consultant' => $this->getEducationalConsultantModel()::create(array_merge($data, ['user_id' => $user->id])),
                     default => null,
                 },
-                'member' => $this->getMemberModel()::create(array_merge($data, ['user_id' => $user->id])),
+                'member' => $user->member()->create([
+                    'phone_number' => $data['phone_number'],
+                    'address' => $data['address'] ?? null,
+                    'city' => $data['city'] ?? null,
+                    'state' => $data['state'] ?? null,
+                    'country' => $data['country'] ?? null,
+                    'date_of_birth' => $data['date_of_birth'],
+                ]),
                 default => null,
             };
             //if user is a student or teacher create subscription with 1 year
-            if ($user->student || $user->teacher) {
+            if ($user->student || $user->teacher || $user->member) {
                 $subscription = $user->subscription()->create([
                     'type' => 'yearly',
                     'status' => 'active',
@@ -493,6 +500,8 @@ class Register extends BaseRegister
                 $uniqueMembershipId = $user->generateUniqueMembershipId();
                 $user->update(['membership_id' => $uniqueMembershipId]);
 
+                //sleep for 30 seconds before sending subscription email
+                // sleep(30);
                 FacadesNotification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
             }
 
