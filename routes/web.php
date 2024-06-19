@@ -128,7 +128,7 @@ Route::get('/subscribe', [Pay2MController::class, 'create'])
 //    ->name('subscribe.store');
 
 //route to handle checkout event coming from the payment gateway
-Route::get('/payment-response', [Pay2MController::class, 'handleResponse'])
+Route::post('/payment-response', [Pay2MController::class, 'handleResponse'])
     ->name('payment.response');
 
 //route to handle checkout event coming from the payment gateway

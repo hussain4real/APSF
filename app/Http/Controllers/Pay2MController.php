@@ -219,7 +219,7 @@ class Pay2MController extends Controller
 
     public function handleResponse(Request $request)
     {
-        Log::info('Received payment response:', $request->all());
+        Log::info('Received payment response from checkout:', $request->all());
 
 
         $this->processResponse($this->merchant_id, $this->basket_id, $this->trans_amount, $request->all());
@@ -328,4 +328,6 @@ class Pay2MController extends Controller
             default => 'Unable to process your request at the moment. Please try again later',
         };
     }
+
+  
 }
