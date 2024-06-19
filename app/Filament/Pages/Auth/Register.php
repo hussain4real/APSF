@@ -235,12 +235,8 @@ class Register extends BaseRegister
                 })
                 ->description(__('Please provide more details to complete your profile as a teacher'))
                 ->schema([
-                    CreateTeacher::getSchoolNameSelectFormField()
-                        ->live(onBlur: true),
-                    CreateTeacher::getSchoolNameFormField()
-                        ->hidden(function (Get $get) {
-                            return $get('school_id') !== null;
-                        }),
+
+                    CreateTeacher::getSchoolNameFormField(),
                     CreateTeacher::getAddressFormField(),
                     CreateTeacher::getSubjectTaughtFormField(),
                     CreateTeacher::getQualificationFormField(),
@@ -259,12 +255,8 @@ class Register extends BaseRegister
                 })
                 ->description(__('Please provide more details to complete your profile as a student'))
                 ->schema([
-                    CreateStudent::getSchoolNameSelectFormField()
-                        ->live(onBlur: true),
-                    CreateStudent::getSchoolNameFormField()
-                        ->hidden(function (Get $get) {
-                            return $get('school_id') !== null;
-                        }),
+                   
+                    CreateStudent::getSchoolNameFormField(),
                     CreateStudent::getCurrentGradeFormField(),
                     CreateStudent::getAddressFormField(),
                     CreateStudent::getDateOfBirthFormField(),
