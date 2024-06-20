@@ -28,8 +28,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Volt::route('admin/email-verification/prompt', EmailVerificationPrompt::class)
-        ->name('verification.notice');
+    Route::get('admin/email-verification/prompt', EmailVerificationPrompt::class)
+        ->name('filament.admin.auth.email-verification.prompt');
 
     Route::get('admin/email-verification/verify/{id}/{hash}', EmailVerificationController::class)
     ->name('filament.admin.auth.email-verification.verify');

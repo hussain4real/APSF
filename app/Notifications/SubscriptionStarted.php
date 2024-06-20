@@ -15,16 +15,16 @@ use Spatie\Browsershot\Browsershot;
 
 
 
-class SubscriptionStarted extends Notification
+class SubscriptionStarted extends Notification implements ShouldQueue
 {
-    // use Queueable;
+    use Queueable;
 
     /**
      * Create a new notification instance.
      */
     public function __construct(public Subscription $subscription)
     {
-        //
+        $this->afterCommit();
     }
 
     /**
