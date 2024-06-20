@@ -39,6 +39,7 @@
         "spatie/laravel-analytics": "^5.3",
         "spatie/laravel-sitemap": "^7.2",
         "spatie/laravel-translation-loader": "^2.8",
+        "spatie/pdf-to-image": "^1.2",
         "srmklive/paypal": "^3.0",
         "stechstudio/filament-impersonate": "^3.9",
         "stevebauman/location": "^7.3",

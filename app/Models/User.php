@@ -326,14 +326,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=#ff8503&background=ffd22b';
     }
 
-    //    /**
-    //     * get the user's full name
-    //     */
-    //    public function lemonSqueezyName(): ?string
-    //    {
-    //        return $this->name;
-    //    }
-
     /**
      * get the user's profile type
      */
@@ -450,58 +442,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
     {
         return $this->hasRole('super_admin');
     }
-
-    //
-    //    /**
-    //     * get the user's country
-    //     */
-    //    public function lemonSqueezyCountry(): ?string
-    //    {
-    //        $arabCountries = [
-    //            'Algeria' => 'DZ',
-    //            'Bahrain' => 'BH',
-    //            'Comoros' => 'KM',
-    //            'Djibouti' => 'DJ',
-    //            'Egypt' => 'EG',
-    //            'Iraq' => 'IQ',
-    //            'Jordan' => 'JO',
-    //            'Kuwait' => 'KW',
-    //            'Lebanon' => 'LB',
-    //            'Libya' => 'LY',
-    //            'Mauritania' => 'MR',
-    //            'Morocco' => 'MA',
-    //            'Oman' => 'OM',
-    //            'Palestine' => 'PS',
-    //            'Qatar' => 'QA',
-    //            'Saudi Arabia' => 'SA',
-    //            'Somalia' => 'SO',
-    //            'Sudan' => 'SD',
-    //            'Syria' => 'SY',
-    //            'Tunisia' => 'TN',
-    //            'United Arab Emirates' => 'AE',
-    //            'Yemen' => 'YE',
-    //            // Add more countries as needed...
-    //        ];
-    //
-    //        //        dd($this->student);
-    //        $userCountry = match (true) {
-    //            $this->student !== null => $this->student->country,
-    //            $this->teacher !== null => $this->teacher->country,
-    //            $this->founder !== null => $this->founder->school_country,
-    //            $this->trainingProvider !== null => $this->trainingProvider->country,
-    //            $this->contractor !== null => $this->contractor->country,
-    //            $this->educationalConsultant !== null => $this->educationalConsultant->country,
-    //            $this->member !== null => $this->member->country,
-    //            $this->schools()->count() > 0 => $this->schools->first()->country,
-    //            default => 'Qatar',
-    //        };
-    //
-    //        if ($userCountry) {
-    //            return $arabCountries[$userCountry] ?? null;
-    //        }
-    //
-    //        return null;
-    //    }
 
     public function transactions(): HasMany
     {

@@ -22,9 +22,9 @@ class HandlePaymentResponse extends Controller
     {
         Log::info('Payment response from Pay2M: ' . json_encode($request->all()));
 
-        return response()->json([
-            'message' => 'Payment response received successfully',
-        ]);
+        //return the request data
+        return response()->json($request->all());
+
     }
 
     /**
