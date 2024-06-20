@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class ProcessPayment
 {
@@ -54,6 +55,7 @@ class ProcessPayment
             //log the transaction
             Log::info('Transaction updated', $transaction->toArray());
 
+            Notification::send($transaction->user, new \App\Notifications\InvoicePaid($transaction));
             //create new subscription
             $subscription = $transaction->subscription()->create([
                 'user_id' => $transaction->user_id,
@@ -61,6 +63,8 @@ class ProcessPayment
                 'status' => 'active',
                 'ends_at' => now()->addYear(),
             ]);
+
+            Notification::send($transaction->user, new \App\Notifications\SubscriptionStarted($subscription));
 
             //log the subscription
             Log::info('Subscription created', $subscription->toArray());
