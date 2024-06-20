@@ -64,7 +64,12 @@ class ProcessPayment
                 'ends_at' => now()->addYear(),
             ]);
 
-            Notification::send($transaction->user, new \App\Notifications\SubscriptionStarted($subscription));
+            //generate membershipID
+            $user = $transaction->user;
+            $uniqueMembershipId = $user->generateUniqueMembershipId();
+            $user->update(['membership_id' => $uniqueMembershipId]);
+
+            Notification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
 
             //log the subscription
             Log::info('Subscription created', $subscription->toArray());
