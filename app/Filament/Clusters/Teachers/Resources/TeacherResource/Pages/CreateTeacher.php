@@ -7,12 +7,15 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Number;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CreateTeacher extends CreateRecord
 {
@@ -47,7 +50,8 @@ class CreateTeacher extends CreateRecord
                     ->revealable(filament()->arePasswordsRevealable())
                     ->required()
                     ->dehydrated(false),
-            ]);
+            ])
+            ->disabled(fn():bool => auth()->user()->cannot('create', 'App\Models\User'));
     }
 
     public static function getSchoolNameSelectFormField(): Select
@@ -136,6 +140,30 @@ class CreateTeacher extends CreateRecord
             ->required();
     }
 
+    public static function getUploadCVFormField(): SpatieMediaLibraryFileUpload
+    {
+        return SpatieMediaLibraryFileUpload::make('cv')
+            ->label(__('Upload CV'))
+            ->collection('cv')
+            ->maxSize(5024)
+            ->getUploadedFileNameForStorageUsing(
+                fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    ->prepend(auth()->user()->name . '/cv/')
+            )
+            ->hint(__('Maximum size: ' . Number::fileSize(1024 * 1000 * 5) . ' bytes.'))
+            ->hintIcon('heroicon-o-information-circle')
+            ->hintColor('warning')
+            ->hintIconTooltip(__('Upload your CV in PDF format.'))
+            ->previewable()
+            ->openable()
+            // ->downloadable()
+            ->moveFiles()
+            ->conversion('thumb')
+            ->acceptedFileTypes(['application/pdf'])
+            ->uploadingMessage(__('uploading, please wait...'))
+            ->columnSpanFull();
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -155,6 +183,7 @@ class CreateTeacher extends CreateRecord
                 static::getPreviousExperienceFormField(),
                 static::getCountryFormField(),
                 static::getPhoneFormField(),
+                static::getUploadCVFormField(),
             ]);
     }
 }
