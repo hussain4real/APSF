@@ -98,9 +98,10 @@ class Teacher extends Model implements HasMedia
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            // ->fit(Fit::Contain, 300, 300)
-            ->width(300)
-            ->height(300)
+            ->fit(Fit::Contain, 300, 300)
+            ->performOnCollections('cv')
+            // ->width(300)
+            // ->height(300)
             ->pdfPageNumber(1)
             ->nonQueued();
     }
