@@ -4,6 +4,7 @@ namespace App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderReso
 
 use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource;
 use Filament\Actions;
+use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
 
 class EditTrainingProvider extends EditRecord
@@ -18,5 +19,11 @@ class EditTrainingProvider extends EditRecord
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
         ];
+    }
+
+    public function form(Form $form): Form
+    {
+        $createForm = new CreateTrainingProvider();
+        return $createForm->form($form);
     }
 }

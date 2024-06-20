@@ -2,6 +2,9 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Clusters\Students\Resources\StudentResource;
+use App\Filament\Clusters\Teachers\Resources\TeacherResource;
+use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource;
 use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Auth\Register;
 use App\Filament\Resources\AnnouncementResource;
@@ -13,6 +16,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages;
 use Filament\Pages\Auth\EditProfile;
@@ -53,6 +57,49 @@ class AdminPanelProvider extends PanelProvider
             ->login(Login::class)
             ->registration(Register::class)
             ->profile(EditProfile::class)
+            ->userMenuItems([
+                'view' => MenuItem::make()
+                    ->label('Edit Bio')
+                    ->url(function (): string {
+                        //user HasOne teacher
+                        if (auth()->user()->teacher) {
+                            return TeacherResource::getUrl('view', ['record' => auth()->user()->teacher->id]);
+                        }
+
+                        //user HasOne student
+                        if (auth()->user()->student) {
+                            return StudentResource::getUrl('view', ['record' => auth()->user()->student->id]);
+                        }
+
+                        //user HasOne trainingProvider
+                        if (auth()->user()->trainingProvider) {
+                            return TrainingProviderResource::getUrl('view', ['record' => auth()->user()->trainingProvider->id]);
+                        }
+
+                        //user HasOne contractor
+                        if (auth()->user()->contractor) {
+                            return \App\Filament\Clusters\Contractors\Resources\ContractorResource::getUrl('view', ['record' => auth()->user()->contractor->id]);
+                        }
+
+                        //user HasOne educationalConsultant
+                        if (auth()->user()->educationalConsultant) {
+                            return \App\Filament\Clusters\EducationalConsultants\Resources\EducationalConsultantResource::getUrl('view', ['record' => auth()->user()->educationalConsultant->id]);
+                        }
+                        //user HasOne member
+                        if (auth()->user()->member) {
+                            return \App\Filament\Clusters\Members\Resources\MemberResource::getUrl('view', ['record' => auth()->user()->member->id]);
+                        }
+
+                        //user HasMany schools, lets use  count
+                        if (auth()->user()->schools->count() > 1) {
+                            return \App\Filament\Clusters\Schools\Resources\SchoolResource::getUrl('view', ['record' => auth()->user()->schools->first()->id]);
+                        }
+
+
+                        return EditProfile::getUrl();
+                    })
+                    ->icon('heroicon-o-user-circle'),
+            ])
             ->emailVerification(EmailVerificationPrompt::class)
             ->passwordReset()
             ->colors([
@@ -92,6 +139,7 @@ class AdminPanelProvider extends PanelProvider
                     ->myProfileComponents([
                         'personal_info' => \App\Livewire\CustomPersonalInfo::class,
                         'subscription' => \App\Livewire\SubscriptionDetails::class,
+                        // 'professional_info' => \App\Livewire\ProfessionalInfo::class,
                     ]),
 
                 FilamentAnnouncePlugin::make()
