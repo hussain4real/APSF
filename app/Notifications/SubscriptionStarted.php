@@ -72,6 +72,7 @@ class SubscriptionStarted extends Notification implements ShouldQueue
             // ->setNpmBinary('/usr/bin/npm')
             // ->setChromePath('/usr/bin/google-chrome')
             ->select('div')
+            ->noSandbox()
             ->hideBackground()
             ->timeout(30000)
             ->save($imagePath);
