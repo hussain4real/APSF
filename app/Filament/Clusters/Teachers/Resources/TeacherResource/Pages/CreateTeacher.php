@@ -21,7 +21,7 @@ class CreateTeacher extends CreateRecord
 {
     protected static string $resource = TeacherResource::class;
 
-    public function getUserSelectFormField(): Select
+    public static function getUserSelectFormField(): Select
     {
         return Select::make('user_id')
             ->relationship('user', 'name')
