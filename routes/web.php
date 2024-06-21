@@ -14,14 +14,14 @@ use Stevebauman\Location\Facades\Location;
 // https://www.gurpreetsaluja.com/wp-content/uploads/2020/09/KOTAK-BANK-removebg-preview-300x129.png
 
 
-Route::get('/country', function(Request $request){
+Route::get('/country', function (Request $request) {
     $ipAddress = $request->ip();
 
     $location = Location::get($ipAddress);
     return $location;
 });
 
-Route::view('/card','usercard')
+Route::view('/card', 'usercard')
     ->name('card');
 Route::view('/coming-soon', 'coming_soon')
     ->name('coming-soon');
@@ -87,7 +87,6 @@ Route::get('/testtransactionemail', function () {
 
     return (new \App\Notifications\InvoicePaid($transaction))
         ->toMail($transaction->user);
-
 });
 
 Route::get('/testsubscriptionemail', function () {
@@ -95,7 +94,6 @@ Route::get('/testsubscriptionemail', function () {
 
     return (new \App\Notifications\SubscriptionStarted($subscription))
         ->toMail($subscription->user);
-
 });
 
 Route::get('/testwelcomeemail', function () {
@@ -103,7 +101,6 @@ Route::get('/testwelcomeemail', function () {
 
     return (new \App\Notifications\MemberWelcome())
         ->toMail($user);
-
 });
 
 Route::get('/testnewmemberemail', function () {
@@ -111,7 +108,6 @@ Route::get('/testnewmemberemail', function () {
 
     return (new \App\Notifications\NewMemberRegistration($user))
         ->toMail($user);
-
 });
 Route::view('profile', 'profile')
     ->middleware(['auth'])
@@ -122,7 +118,7 @@ Route::view('/appsQARpay2m', 'appsQARpay2m')
 //payment routes
 Route::get('/subscribe', [Pay2MController::class, 'create'])
     ->name('subscribe')
-    ->middleware(['auth','verified']);
+    ->middleware(['auth', 'verified']);
 
 //Route::post('/process', [Pay2MController::class, 'store'])
 //    ->name('subscribe.store');
@@ -135,11 +131,11 @@ Route::post('/payment-response', [Pay2MController::class, 'handleResponse'])
 Route::get('/success', [Pay2MController::class, 'success'])
     ->name('payment.success');
 
-    //route to handle failed transaction
-    Route::get('/payment-failed', [Pay2MController::class, 'failed'])
+//route to handle failed transaction
+Route::get('/payment-failed', [Pay2MController::class, 'failed'])
     ->name('payment.failed');
 
-    Route::view('/failed', 'failed_transaction')
+Route::view('/failed', 'failed_transaction')
     ->name('failed');
 Route::get('/vote', [PublicVoteController::class, 'create'])
     ->name('vote.create');
@@ -152,4 +148,9 @@ Route::get('scholarships', \App\Livewire\ListScholarships::class)
     ->name('scholarships');
 Route::get('training-programs', \App\Livewire\TrainingPrograms\ListTrainingPrograms::class)
     ->name('training-programs');
-require __DIR__.'/auth.php';
+
+Route::view('create-invoice', 'invoices.create_invoice')
+    ->name('create-invoice')
+    ->middleware(['auth', 'verified'])
+    ->can('create', \App\Models\Invoice::class);
+require __DIR__ . '/auth.php';
