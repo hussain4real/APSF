@@ -284,17 +284,17 @@
                     <p class="conditions">
                     <div data-editable="true">
                         In your kind settlement and with our thanks. <br>
-                        Payment terms: payment upon receipt of invoice, within 15 days. <br>
-                        No discount given for early payment. <br>
+                        Payment terms: payment upon receipt of invoice. <br>
                         Payment by bank transfer. <br>
-                        In case of late payment, <br> fixed indemnity for collection costs: 40 euros (art. L.4413 and L.4416s commercial code).
+                        Please indicate the invoice number on your payment. <br>
                     </div>
                     </p>
                     <p class="bottom-page text-right">
                     <div data-editable="true">
-                        90TECH SAS - SIRET No. 80897753200015 RCS METZ <br>
-                        6B, Rue aux Saussaies des Dames - 57950 MONTIGNY-LES-METZ 03 55 80 42 62 - www.90tech.fr <br>
-                        APE Code 6201Z - VAT No. FR 77 808977532 <br>
+                        ARAB PRIVATE SCHOOLS FEDERATION - CR No. 1538734 <br>
+                        P O Box 755, Al Rumais, Barka - 328, SULTANATE OF OMAN <br>
+                        Bldg. No. 164, Zone 26 C-ring Road, Doha, Qatar - Tel.
+                         +974 554 81589 - https://arab-psf.com <br>
                         IBAN FR76 1470 7034 0031 4211 7882 825 - SWIFT CCBPFRPPMTZ <br>
                     </div>
                     <!-- signature with image upload -->
