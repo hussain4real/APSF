@@ -29,10 +29,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('admin/email-verification/prompt', EmailVerificationPrompt::class)
-        ->name('verification.notice');
+    ->name('filament.admin.auth.email-verification.prompt');
 
     Route::get('admin/email-verification/verify/{id}/{hash}', EmailVerificationController::class)
-    ->name('filament.admin.auth.email-verification.verify');
+        ->name('filament.admin.auth.email-verification.verify');
     //     ->middleware(['signed', 'throttle:6,1'])
     //     ->name('verification.verify');
     // Volt::route('verify-email', 'pages.auth.verify-email')
