@@ -140,7 +140,7 @@ class Register extends BaseRegister
                 'teacher' => __('educational staff'),
                 'student' => __('student'),
                 'service provider' => __('service provider'),
-                'member' => __('others'),
+                'member' => __('member'),
             ])
             ->prefixIcon('heroicon-o-user');
         //        return ToggleButtons::make('entity')
@@ -537,8 +537,8 @@ class Register extends BaseRegister
         $this->sendEmailVerificationNotification($user);
         FacadesNotification::route('mail', 'info@arab-psf.com')
             ->notify(new \App\Notifications\NewMemberRegistration($user));
-        FacadesNotification::route('mail', 'aminuhussain22@gmail.com')
-            ->notify(new \App\Notifications\NewMemberRegistration($user));
+        // FacadesNotification::route('mail', 'aminuhussain22@gmail.com')
+        //     ->notify(new \App\Notifications\NewMemberRegistration($user));
 
         Filament::auth()->login($user);
 

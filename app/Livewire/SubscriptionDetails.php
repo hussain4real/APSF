@@ -83,8 +83,13 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                 \Filament\Tables\Actions\Action::make('view')
                     ->label('View Transaction')
                     ->icon('heroicon-o-eye')
-                    ->url(fn (Order $order) => $order->receipt_url)
-                    ->openUrlInNewTab(),
+                    ->modalContent(function (Transaction $transaction): View {
+                        return view('invoices.view', ['transaction' => $transaction]);
+                    })
+                    ->modalSubmitAction(false)
+                    ->modalCancelAction(false),
+                // ->url(fn (Transaction $order) => $order->receipt_url)
+                // ->openUrlInNewTab(),
             ])
             ->bulkActions([])
             ->emptyStateHeading(__('No Transaction yet'))
@@ -132,7 +137,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     \Filament\Infolists\Components\Actions\Action::make('manage')
                         ->icon('heroicon-o-cog')
                         ->button()
-                        ->disabled(fn () => ! auth()->user()->subscribed())
+                        ->disabled(fn () => !auth()->user()->subscribed())
                         ->tooltip('Manage your payment details Subscription'),
                     //                        ->url(function () {
                     //
@@ -179,7 +184,6 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
 
                 ])
                 ->send();
-
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Notification::make('subscription-paused')
@@ -209,7 +213,6 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                 ->title('Subscription Resumed')
                 ->body('Your subscription has been resumed. You will be billed on the next billing cycle.')
                 ->send();
-
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Notification::make('subscription-resumed')

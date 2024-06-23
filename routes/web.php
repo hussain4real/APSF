@@ -5,7 +5,10 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\LivefeedController;
 use App\Http\Controllers\Pay2MController;
 use App\Http\Controllers\PublicVoteController;
+use App\Http\Controllers\TrainingProgramController;
 use App\Livewire\Subscribe;
+use App\Livewire\TrainingPrograms\Pay;
+use App\Livewire\TrainingPrograms\ViewTrainingProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -38,8 +41,16 @@ Route::get('/membership', [\App\Http\Controllers\MembershipController::class, 'i
     ->name('membership');
 
 //course enrollment
-Route::view('/enroll-payment', 'enrolment.pay')
+Route::view('/enroll-payment/{record}', 'enrolment.pay')
     ->name('enrolment.pay');
+Route::get(
+    'transaction-failed',
+    [TrainingProgramController::class, 'failed']
+)->name('course.failed');
+Route::get('course/{record}', ViewTrainingProgram::class)
+    ->name('course.view');
+Route::view('/failed-transaction', 'livewire.training-programs.failed')
+    ->name('failed-transaction');
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
@@ -147,7 +158,7 @@ Route::get('/view-votes', [PublicVoteController::class, 'index'])
 Route::get('scholarships', \App\Livewire\ListScholarships::class)
     ->name('scholarships');
 Route::get('training-programs', \App\Livewire\TrainingPrograms\ListTrainingPrograms::class)
-    ->name('training-programs');
+    ->name('training-programs.list');
 
 Route::view('create-invoice', 'invoices.create_invoice')
     ->name('create-invoice')

@@ -85,4 +85,42 @@ class TrainingProgramController extends Controller
     {
         //
     }
+
+    public function failed(Request $request)
+    {
+        // PaymentProcessed::dispatch($request->all());
+        $errorCode = $request->input('err_code');
+        $errorMessage = $this->getErrorMessage($errorCode);
+        // Log the error message
+        // Log::error($errorMessage);
+
+        //put error message in session
+        return redirect()->route('failed-transaction')->with('error', $errorMessage);
+    }
+
+    public function getErrorMessage($errorCode)
+    {
+        return match ($errorCode) {
+            '002' => 'Time Out',
+            '97' => 'Dear Customer, You have an Insufficient Balance to proceed',
+            '106' => 'Dear Customer, Your transaction Limit has been exceeded please contact your bank',
+            '03' => 'You have entered an Inactive Account',
+            '104' => 'Entered details are Incorrect',
+            '55' => 'You have entered an Invalid OTP/PIN',
+            '54' => 'Card Expired',
+            '13' => 'You have entered an Invalid Amount',
+            '126', '308', '853' => 'Dear Customer your provided Account details are Invalid',
+            '75' => 'Maximum PIN Retries has been Exceeded',
+            '14', '15' => 'Dear Customer, You have entered an In-Active Card number',
+            '42' => 'Dear Customer, You have entered an Invalid CNIC',
+            '423' => 'Dear Customer, We are unable to process your request at the moment please try again later',
+            '41' => 'Dear Customer, entered details are Mismatched',
+            '801' => '{0} is your Pay2m OTP (One Time Password). Please do not share with anyone.',
+            '802' => 'OTP could not be sent. Please try again later.',
+            '901' => 'We noticed that you cancelled the transaction. Please try again',
+                // Add other codes as needed
+            default => 'Unable to process your request at the moment. Please try again later',
+        };
+    }
+
 }
