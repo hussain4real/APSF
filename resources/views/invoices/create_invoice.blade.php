@@ -20,7 +20,8 @@
         .invoice {
             background: transparent;
             width: 100%;
-            padding: 50px;
+            padding: 10rem 3.2rem;
+
         }
 
         .logo {
