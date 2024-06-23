@@ -14,11 +14,11 @@
         .container {
             min-height: 29.7cm;
             margin: auto;
-            background: ;
+            background: url('assets/imgs/apsf/seals/apsf_letterhead.png') center/cover no-repeat;
         }
 
         .invoice {
-            background: #fff;
+            background: transparent;
             width: 100%;
             padding: 50px;
         }
@@ -295,13 +295,13 @@
                         ARAB PRIVATE SCHOOLS FEDERATION - CR No. 1538734 <br>
                         P O Box 755, Al Rumais, Barka - 328, SULTANATE OF OMAN <br>
                         Bldg. No. 164, Zone 26 C-ring Road, Doha, Qatar - Tel.
-                         +974 554 81589 - https://arab-psf.com <br>
+                        +974 554 81589 - https://arab-psf.com <br>
                         IBAN FR76 1470 7034 0031 4211 7882 825 - SWIFT CCBPFRPPMTZ <br>
                     </div>
                     <!-- signature with image upload -->
                     <div class="row">
                         <div class="col-12 col text-right">
-                            <img alt="Signature" src="https://fakeimg.pl/600x400?text=Signature" class="signature" id="uploadedSignature">
+                            <img alt="Signature" src="{{asset('assets/imgs/apsf/seals/apsf_seal.png')}}" class="signature" id="uploadedSignature">
                             <form id="signatureForm">
                                 <input type="file" accept="image/*" id="signatureInput" onchange="handleSignatureChange()">
                             </form>
