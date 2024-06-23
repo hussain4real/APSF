@@ -14,6 +14,7 @@
         .container {
             min-height: 29.7cm;
             margin: auto;
+            background: ;
         }
 
         .invoice {

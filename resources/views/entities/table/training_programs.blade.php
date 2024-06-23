@@ -49,5 +49,9 @@
             @endif
             <p class="text-gray-600 dark:text-gray-400">{{$getRecord()->start_date->diffForHumans()}}</p>
         </div>
+        <div>
+            <p class="text-slate-500 font-semibold">${{ $getRecord()->member_price }}</p>
+            <p class="line-through">${{ $getRecord()->regular_price }}</p>
+        </div>
     </div>
 </div>
