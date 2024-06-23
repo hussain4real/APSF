@@ -225,7 +225,7 @@ class AdminPanelProvider extends PanelProvider
                 Platform::Mac => '⌘+K',
                 default => null,
             })
-            ->unsavedChangesAlerts(false);
+            ->unsavedChangesAlerts(true);
     }
 
     public function register(): void
