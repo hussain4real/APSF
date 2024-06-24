@@ -11,9 +11,9 @@
     <div class="px-2 py-4 text-center">
         <div class="font-bold text-xl mb-2">{{$getRecord()->title}}</div>
         <div class="flex items-center justify-around gap-1 text-gray-600 dark:text-gray-400 mb-1">
-            <small class="text-gray-500 dark:text-gray-300">
+            <p class="font-semibold text-gray-500 dark:text-gray-300">
                 {{$getRecord()->instructor_name}}
-            </small>
+            </p>
             <small class="flex justify-center items-center gap-1">
                 <span style="width: 14px;">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +34,7 @@
         <span class="bg-{{ $getRecord()->status->getColor() }}-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">
             {{$getRecord()->status}}
         </span>
-        <span class="bg-{{ $getRecord()->type->getColor() }}-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">{{$getRecord()->type}}</span>
+        <span class="bg-teal-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">{{$getRecord()->type}}</span>
         <span class="bg-{{ $getRecord()->mode_of_delivery->getColor() }}-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">{{$getRecord()->mode_of_delivery}}</span>
     </div>
     <div class="flex items-center justify-center my-2 gap-4">

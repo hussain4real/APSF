@@ -20,7 +20,7 @@ enum TrainingType: string implements HasColor, HasDescription, HasIcon, HasLabel
         return match ($this) {
             self::COURSE => 'primary',
             self::CERTIFICATION => 'success',
-            self::WORKSHOP => 'info',
+            self::WORKSHOP => 'secondary',
             self::SEMINAR => 'secondary',
             self::CONFERENCE => 'warning',
         };
@@ -34,7 +34,6 @@ enum TrainingType: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::WORKSHOP => 'Workshop Program',
             self::SEMINAR => 'Seminar Program',
             self::CONFERENCE => 'Conference Program',
-
         };
     }
 
