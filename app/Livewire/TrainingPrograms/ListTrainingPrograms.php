@@ -90,101 +90,28 @@ class ListTrainingPrograms extends Component implements HasForms, HasTable
                     ->options(TraininingMode::class),
             ], layout: Tables\Enums\FiltersLayout::AboveContentCollapsible)
             ->actions([
-              ViewAction::make(),
-                    
+                ViewAction::make(),
+
                 Tables\Actions\Action::make('enroll')
                     ->button()
-                    
-                    // ->modalContent(function (TrainingProgram $record): View {
+                    ->action(function ($record) {
+                        //attach the auth user to the training program
+                        if (auth()->user()) {
+                            $record->users()->attach(auth()->user()->id);
+                            Notification::make('enrolled')
+                                ->info()
+                                ->body(__('You have successfully enrolled in the training program. Pending Payment'))
+                                ->send();
+                            return redirect()->route('enrolment.pay', ['record' => $record]);
+                        } else {
+                            return redirect()->route('login');
+                        }
+                    }),
+                    // ->url(fn (TrainingProgram $record): string => route('enrolment.pay', [
+                    //     'record' => $record,
+                    // ])),
 
-                    //     Notification::make('enrolled')
-                    //         ->info()
-                    //         ->body(__('You have successfully enrolled in the training program. Pending Payment'))
-                    //         ->send();
-                    //     $merchantId = config('services.pay2m.merchant_id');
-                    //     $securedKey = config('services.pay2m.secured_key');
-                    //     $initialprice = auth()->user() ? $record->member_price : $record->regular_price;
-
-                    //     $price = $this->convertCurrency($initialprice, 'USD', 'QAR');
-                    //     $basketID = auth()->user() ? auth()->user()->id . '-' . $record->id . '-' . $record->title : $record->id . '-guest' . '-' . $record->title;
-                    //     // dd($basketID);
-                    //     // dd($price);
-                    //     $pay2m = new Pay2mConnector();
-                    //     $tokenRequest = new GetAccessTokenRequest(
-                    //         $merchantId,
-                    //         $securedKey,
-                    //         $price,
-                    //         $basketID
-                    //     );
-                    //     try {
-                    //         $response = $pay2m->send($tokenRequest);
-                    //         $status = $response->status();
-                    //         $body = $response->object();
-                    //         // dd($status, $body);
-                    //         $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
-                    //         // dd($token);
-
-                    //         return view('enrolment.pay', [
-                    //             'trainingProgram' => $record,
-                    //             'token' => $token,
-                    //             'merchant_id' => $merchantId,
-                    //             'basket_id' => $basketID,
-                    //             'trans_amount' => $price,
-                    //         ]);
-                    //     } catch (\Exception $e) {
-                    //         return redirect()->back()->with('error', $e->getMessage());
-                    //     }
-                    // })
-                    
-                // ->modalAlignment(Alignment::End)
-                // ->modalSubmitAction(false)
-                // ->modalCancelAction(false),
-                ->url(fn (TrainingProgram $record): string => route('enrolment.pay',[
-                    'record'=> $record,
-                    ])),
-                // ->registerModalActions([
-                //     Action::make('make_payment')
-                // ->button()
-                // ->size(ActionSize::Medium)
-                // ->color('primary')
-                // ->requiresConfirmation()
-                // ->url(function (TrainingProgram $trainingProgram) {
-                //     return route('enrolment.pay', ['trainingProgram' => $trainingProgram]);
-                // })
-                // ->openUrlInNewTab(),
-                // ->action(function (TrainingProgram $record) {
-                //attach the auth user to the training program and set enrolled_at
-                // $record->users()->attach(auth()->user()->id, ['enrolled_at' => now()]);
-                // Notification::make('enrolled')
-                //     ->info()
-                //     ->body(__('You have successfully enrolled in the training program. Pending Payment'))
-                //     ->send();
-
-                //     return redirect()->route('enrolment.pay', ['record' => $record]);
-                // }),
             ])
-            //                    ->action(function ($record) {
-            //                        //attach the auth user to the training program
-            //                        //                                    $record->users()->attach(auth()->user()->id);
-            //                        //                                    Notification::make('enrolled')
-            //                        //                                        ->info()
-            //                        //                                        ->body(__('You have successfully enrolled in the training program. Pending Payment'))
-            //                        //                                        ->send();
-            //                        //
-            //                        //                                    return redirect()->route('enrolment.pay', ['trainingProgram' => $record]);
-            //                    })
-            //                    ->modalContent(fn (TrainingProgram $record, Action $action): View => view(
-            //                        'enrolment.pay',
-            //                        [
-            //                            'trainingProgram' => $record,
-            //                            'action' => $action,
-            //                        ]
-            //                    ))
-            //                    ->modalWidth(MaxWidth::MinContent)
-            //                    ->modalSubmitAction(false)
-            //                    ->icon('heroicon-o-pencil-square'),
-            // ])
-            // ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     //
