@@ -43,6 +43,9 @@ Route::get('/membership', [\App\Http\Controllers\MembershipController::class, 'i
 //course enrollment
 Route::view('/enroll-payment/{record}', 'enrolment.pay')
     ->name('enrolment.pay');
+
+Route::get('/course/success', [TrainingProgramController::class, 'store'])
+    ->name('course.success');
 Route::get(
     'transaction-failed',
     [TrainingProgramController::class, 'failed']

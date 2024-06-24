@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('status')->default(\App\TrainingStatus::UPCOMING);
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
-
+            $table->text('link')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
