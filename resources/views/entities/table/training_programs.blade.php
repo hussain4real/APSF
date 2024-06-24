@@ -14,7 +14,7 @@
             <p class="font-semibold text-gray-500 dark:text-gray-300">
                 {{$getRecord()->instructor_name}}
             </p>
-            <small class="flex justify-center items-center gap-1">
+            <small class="flex justify-center items-center gap-1 max-w-sm text-wrap">
                 <span style="width: 14px;">
                     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="50" cy="50" r="50" fill="#9ca1a8" />
@@ -26,6 +26,9 @@
             </small>
         </div>
 
+
+    </div>
+    <div class="mb-2">
         <p class="text-justify px-2 leading-tight tracking-tight text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
             {{$getRecord()->description}}
         </p>
