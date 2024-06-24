@@ -372,7 +372,7 @@ $failed = $transaction->status == TransactionStatus::FAILED;
                     <!-- signature with image upload -->
                     <div class="row">
                         <div class="col-12 col text-right">
-                            <img alt="Signature" src="https://fakeimg.pl/600x400?text=Signature" class="signature" id="uploadedSignature">
+                            <img alt="Signature" src="{{asset('assets/imgs/apsf/seals/apsf_seal.png')}}" class="signature" id="uploadedSignature">
 
                         </div>
                     </div>

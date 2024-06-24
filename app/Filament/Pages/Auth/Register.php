@@ -16,6 +16,7 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -24,6 +25,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Get;
 use Filament\Http\Responses\Auth\Contracts\RegistrationResponse;
+use Filament\Notifications\Actions\Action as ActionsAction;
 use Filament\Notifications\Notification;
 use Filament\Pages\Auth\Register as BaseRegister;
 use Filament\Support\Enums\MaxWidth;
@@ -255,7 +257,7 @@ class Register extends BaseRegister
                 })
                 ->description(__('Please provide more details to complete your profile as a student'))
                 ->schema([
-                   
+
                     CreateStudent::getSchoolNameFormField(),
                     CreateStudent::getCurrentGradeFormField(),
                     CreateStudent::getAddressFormField(),
@@ -502,10 +504,10 @@ class Register extends BaseRegister
 
                 //sleep for 30 seconds before sending subscription email
                 // sleep(30);
-                FacadesNotification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
+                // FacadesNotification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
             }
 
-           
+
 
             //assign role to user based on profile
             if ($user->student) {
@@ -539,6 +541,27 @@ class Register extends BaseRegister
             ->notify(new \App\Notifications\NewMemberRegistration($user));
         // FacadesNotification::route('mail', 'aminuhussain22@gmail.com')
         //     ->notify(new \App\Notifications\NewMemberRegistration($user));
+     
+        //get user with role of super_admin and admin
+        $users = \App\Models\User::role(['super_admin', 'admin'])->get();
+        Notification::make()
+            ->title('New Member Registration')
+            ->body('A new member has registered on the platform with email: <strong>' . $user->email . '</strong> and name: <strong>' . $user->first_name . ' ' . $user->last_name . '</strong>. Profile type of: <strong>' . $user->profile_type . '</strong>')
+            ->success()
+            ->actions([
+                ActionsAction::make('mark-as-read')
+                    ->label('Mark as Read')
+                    ->icon('heroicon-o-check-circle')
+                    ->markAsRead()
+                    ->button(),
+                    ActionsAction::make('mark-as-unread')
+                    ->label('Mark as Unread')
+                    ->icon('heroicon-o-arrow-uturn-up')
+                    ->markAsUnread()
+
+
+            ])
+            ->sendToDatabase($users);
 
         Filament::auth()->login($user);
 
