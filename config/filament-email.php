@@ -34,6 +34,7 @@ return [
     'can_access' => [
         'role' => [
             'super_admin',
+            'admin',
         ],
     ],
 

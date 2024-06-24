@@ -398,50 +398,10 @@
                         </div>
                     </div>
 
-                    <div class="footer__btm-2">
-                        <div class="row">
-                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-5">
-                                <div class="footer__copyright-2">
-                                    <p>{{__("frontend.copyright")}}</p>
-                                </div>
-                                <div class="social-media">
-                                    <ul class="social-icon">
-                                        <li><a href="https://www.facebook.com/ArabPSF" target="_blank">
-                                                <i class="fab fa-facebook-f fa-lg"></i>
-                                            </a></li>
-                                        <li><a href="https://x.com/Arab_PSF" target="_blank">
-                                                {{-- <i class="fab fa-x fa-lg"></i>--}}
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#033731" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-                                                </svg>
-                                            </a></li>
-                                        <li><a href="https://www.instagram.com/arab_psf/" target="_blank">
-                                                <i class="fab fa-instagram fa-lg"></i>
-                                            </a></li>
-                                        <li><a href="https://www.linkedin.com/company/102934601/admin/feed/posts/" target="_blank">
-                                                <i class="fab fa-linkedin-in fa-lg"></i>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-7">
-                                <div class="footer__nav">
-                                    {{-- animation style class: menu-anim--}}
-                                    <ul class="footer-menu ">
-                                        <li><a href="{{route('about')}}">{{__("nav.About Us")}}</a></li>
-                                        <li><a href="{{route('contact')}}">{{__("nav.Contact")}}</a></li>
-                                        <li><a href="{{route('terms-and-conditions')}}">{{__("nav.terms_and_conditions")}}</a></li>
-                                        <li><a href="{{route('privacy-policy')}}">{{__("nav.privacy_policy")}}</a></li>
-                                        <li><a href="{{route('refund-policy')}}">{{__("nav.refund_policy")}}</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- new footer start -->
                     <div class="container">
-                        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+                        <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 ">
                             <div class="col mb-3">
                                 <div class="footer__copyright-2">
                                     <p>{{__("frontend.copyright")}}</p>
@@ -473,35 +433,38 @@
                             </div>
 
                             <div class="col mb-3">
-                                <h5>Section</h5>
+                                <h5>Quick Links</h5>
+                                <br>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+                                    <li class="nav-item mb-2"><a href="{{ route('welcome') }}" class="nav-link p-0 text-body-secondary">{{__('nav.Home')}}</a></li>
+                                    <li class="nav-item mb-2"><a href="{{ route('events.index') }}" class="nav-link p-0 text-body-secondary">{{__('nav.Events')}}</a></li>
+                                    <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
                                     <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li> -->
                                 </ul>
                             </div>
 
                             <div class="col mb-3">
-                                <h5>Section</h5>
+                                <h5>Resources</h5>
+                                <br>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                                    <li class="nav-item mb-2"><a href="{{route('scholarships')}}" class="nav-link p-0 text-body-secondary">{{__('nav.Scholarships')}}</a></li>
+                                    <li class="nav-item mb-2"><a href="{{ route('training-programs.list') }}" class="nav-link p-0 text-body-secondary">{{__('nav.Training Programs')}}</a></li>
+                                    <li class="nav-item mb-2"><a href="{{ route('services') }}" class="nav-link p-0 text-body-secondary">{{__('nav.Services')}}</a></li>
+                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">{{__('nav.Faqs')}}</a></li>
+                                    <li class="nav-item mb-2"><a href="{{ route('about') }}" class="nav-link p-0 text-body-secondary">{{__('nav.About Us')}}</a></li>
                                 </ul>
                             </div>
 
                             <div class="col mb-3">
-                                <h5>Section</h5>
+                                <h5>Policies</h5>
+                                <br>
                                 <ul class="nav flex-column">
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                                    <li class="nav-item mb-2"><a href="{{route('terms-and-conditions')}}" class="nav-link p-0 text-body-secondary">{{__("nav.terms_and_conditions")}}</a></li>
+                                    <li class="nav-item mb-2"><a href="{{route('privacy-policy')}}" class="nav-link p-0 text-body-secondary">{{__("nav.privacy_policy")}}</a></li>
+                                    <li class="nav-item mb-2"><a href="{{route('refund-policy')}}" class="nav-link p-0 text-body-secondary">{{__("nav.refund_policy")}}</a></li>
+                                    <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li> -->
                                 </ul>
                             </div>
                         </footer>

@@ -42,4 +42,12 @@ class AnnouncementResource extends Resource
             'edit' => Pages\EditAnnouncement::route('/{record}/edit'),
         ];
     }
+
+    public static function canAccess(): bool
+    {
+        if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('super_admin')){
+            return true;
+        }
+        return false;
+    }
 }
