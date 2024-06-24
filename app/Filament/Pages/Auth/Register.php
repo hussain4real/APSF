@@ -16,6 +16,7 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
 use Filament\Events\Auth\Registered;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -545,7 +546,7 @@ class Register extends BaseRegister
         $users = \App\Models\User::role(['super_admin', 'admin'])->get();
         Notification::make()
             ->title('New Member Registration')
-            ->body('A new member has registered on the platform with email ' . $user->email . ' and name ' . $user->first_name . ' ' . $user->last_name . '. profile type of :' . $user->profile_type)
+            ->body('A new member has registered on the platform with email: <strong>' . $user->email . '</strong> and name: <strong>' . $user->first_name . ' ' . $user->last_name . '</strong>. Profile type of: <strong>' . $user->profile_type . '</strong>')
             ->success()
             ->actions([
                 ActionsAction::make('mark-as-read')
@@ -553,6 +554,11 @@ class Register extends BaseRegister
                     ->icon('heroicon-o-check-circle')
                     ->markAsRead()
                     ->button(),
+                    ActionsAction::make('mark-as-unread')
+                    ->label('Mark as Unread')
+                    ->icon('heroicon-o-arrow-uturn-up')
+                    ->markAsUnread()
+
 
             ])
             ->sendToDatabase($users);

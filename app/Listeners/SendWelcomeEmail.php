@@ -40,6 +40,10 @@ class SendWelcomeEmail
                         ->icon('heroicon-o-check-circle')
                         ->markAsRead()
                         ->button(),
+                        Action::make('mark-as-unread')
+                        ->label('Mark as Unread')
+                        ->icon('heroicon-o-arrow-uturn-up')
+                        ->markAsUnread()
                         
                 ])
                 ->sendToDatabase($users);
@@ -55,6 +59,10 @@ class SendWelcomeEmail
                     ->icon('heroicon-o-check-circle')
                     ->markAsRead()
                     ->button(),
+                    Action::make('mark-as-unread')
+                    ->label('Mark as Unread')
+                    ->icon('heroicon-o-arrow-uturn-up')
+                    ->markAsUnread()
                     
             ])
             ->sendToDatabase($users);
