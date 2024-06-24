@@ -73,7 +73,7 @@ class SubscriptionDetails extends MyProfileComponent implements HasActions, HasF
                     ->color('info')
                     ->badge(),
                 TextColumn::make('amount')
-                    ->money('OMR'),
+                    ->money('USD'),
                 TextColumn::make('status')
                     ->badge(),
 
