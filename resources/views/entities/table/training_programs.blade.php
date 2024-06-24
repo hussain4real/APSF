@@ -43,7 +43,7 @@
             @if($getRecord()->trainingProvider->trainingProvider)
             <p class="text-gray-900 dark:text-gray-200 leading-none">{{$getRecord()->trainingProvider->trainingProvider->institution_name ?? null}}</p>
             @elseif ($getRecord()->trainingProvider->user)
-            <p class="text-gray-900 dark:text-gray-200 leading-none">{{$getRecord()->trainingProvider->user->name ?? null}}</p>
+            <p class="text-gray-900 dark:text-gray-200 leading-none">{{$getRecord()->trainingProvider->instructor_name ?? null}}</p>
             @else
             <p class="text-gray-900 dark:text-gray-200 leading-none">{{$getRecord()->trainingProvider->name ?? null}}</p>
             @endif

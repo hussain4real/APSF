@@ -11,12 +11,14 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -102,8 +104,9 @@ class CreateTrainingProgram extends CreateRecord
                                 })
                         ])
                         ->schema([
-                            Hidden::make('user_id')
-                                ->disabled()
+                            Select::make('user_id')
+                            ->relationship('trainingProvider', 'name')
+                                ->disabled(fn ():bool => !auth()->user()->can('create', 'create_training::program' ))
                                 ->dehydrated()
                                 ->default(auth()?->user()?->id ?? null),
                             ToggleButtons::make('type')
@@ -186,6 +189,16 @@ class CreateTrainingProgram extends CreateRecord
                                 ->columnSpanFull(),
                                 TextInput::make('link')
                                 ->label(__('Links'))
+                                ->url()
+                                ->live(onBlur:true)
+                                ->suffixIcon('heroicon-m-globe-alt')
+                                ->suffixIconColor(function(Get $get){
+                                    if($get('link')){
+                                        return 'info';
+                                    }
+                                    return 'warning';
+                                })
+
                         ])
                         ->columns(2),
                     Section::make('Dates')
