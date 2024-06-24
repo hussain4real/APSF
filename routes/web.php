@@ -163,6 +163,8 @@ Route::get('scholarships', \App\Livewire\ListScholarships::class)
 Route::get('training-programs', \App\Livewire\TrainingPrograms\ListTrainingPrograms::class)
     ->name('training-programs.list');
 
+Route::get('training-programs/{record}', ViewTrainingProgram::class)
+    ->name('training-programs.show');
 Route::view('create-invoice', 'invoices.create_invoice')
     ->name('create-invoice')
     ->middleware(['auth', 'verified'])

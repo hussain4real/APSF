@@ -1,4 +1,13 @@
 <x-home-layout>
+    <style>
+        .card-title {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            overflow: visible !important;
+            text-overflow: clip !important;
+            white-space: normal !important;
+        }
+    </style>
     @if(session('error'))
     <div id="card" class="card text-center border-danger mx-auto" style="width: 30rem;">
         <h5 class="card-header bg-danger">Notice</h5>
@@ -11,12 +20,11 @@
     @endif
 
     @if(session('success'))
-    <div id="card" class="card text-center border-success mx-auto" style="width: 30rem;">
+    <div id="card" class="card text-center border-success mx-auto">
         <h5 class="card-header bg-success">Notice</h5>
         <div class="card-body">
-            <h5 class="card-title alert alert-success">{{session('success')}}</h5>
-
-            <a href="{{route('filament.admin.pages.my-profile')}}" class="btn btn-primary">View Profile</a>
+            <div class="card-title alert alert-success text-break text-wrap">{{ session('success') }}</div>
+            <a href="{{ route('filament.admin.pages.my-profile') }}" class="btn btn-primary">View Profile</a>
         </div>
     </div>
     @endif
