@@ -67,6 +67,7 @@
 
             .invoice {
                 display: block;
+                background: transparent;
             }
 
             .hide-elements {
@@ -128,6 +129,8 @@
             .signature {
                 width: 2.5cm !important;
             }
+
+        
         }
 
         .editable {
