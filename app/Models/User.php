@@ -326,6 +326,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar, HasMedia,
         return 'https://ui-avatars.com/api/?name=' . $this->name . '&color=#ff8503&background=ffd22b';
     }
 
+
     /**
      * get the user's profile type
      */
