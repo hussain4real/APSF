@@ -287,7 +287,7 @@
                                 </div>
                                 <div class="brand__item-2 fade_bottom">
                                     <a href="https://kno-360.com/" target="_blank">
-                                        <img src="{{asset('assets/imgs/apsf/partners/UNESCO-Logo.png')}}" alt="Brand Logo" class="partner_logos" id="unesco">
+                                        <img src="{{asset('assets/imgs/apsf/partners/UNESCO-Logo_1.png')}}" alt="Brand Logo" class="partner_logos" id="unesco">
                                     </a>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TrainingProgramPurchaseProcessed;
 use App\Models\TrainingProgram;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,10 @@ class TrainingProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        TrainingProgramPurchaseProcessed::dispatch($request->all());
+
+        return redirect()->route('failed-transaction')
+        ->with('success', 'Your payment was successful. You will receive an email with the details of your purchase.');
     }
 
     /**
@@ -88,6 +92,7 @@ class TrainingProgramController extends Controller
 
     public function failed(Request $request)
     {
+        TrainingProgramPurchaseProcessed::dispatch($request->all());
         // PaymentProcessed::dispatch($request->all());
         $errorCode = $request->input('err_code');
         $errorMessage = $this->getErrorMessage($errorCode);

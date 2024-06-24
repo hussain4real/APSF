@@ -138,7 +138,7 @@ return redirect()->back()->with('error', $e->getMessage());
     <input type="TEXT" name="MERCHANT_ID" value="{{$merchant_id}}" hidden="true" readonly /><br />
     <input type="TEXT" name="MERCHANT_NAME" value="UAT Demo Merchant " hidden="true" readonly /><br />
     <input type="TEXT" name="TOKEN" value="{{ $token }}" hidden="true" readonly /><br />
-    <input type="TEXT" name="SUCCESS_URL" value="{{route('payment.success')}}" hidden="true" readonly /><br />
+    <input type="TEXT" name="SUCCESS_URL" value="{{route('course.success')}}" hidden="true" readonly /><br />
     <input type="TEXT" name="FAILURE_URL" value="{{route('course.failed')}}" hidden="true" readonly /><br />
     <input type="TEXT" name="CHECKOUT_URL" value="{{route('api.payment.response')}}" hidden="true" readonly /><br />
     <input type="TEXT" name="CUSTOMER_EMAIL_ADDRESS" value="some-email@example.com" hidden="true" readonly /><br />
