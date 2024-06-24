@@ -184,6 +184,8 @@ class CreateTrainingProgram extends CreateRecord
                                 ->imageEditorEmptyFillColor('#dda581')
                                 ->uploadingMessage(__('uploading, please wait...'))
                                 ->columnSpanFull(),
+                                TextInput::make('link')
+                                ->label(__('Links'))
                         ])
                         ->columns(2),
                     Section::make('Dates')
