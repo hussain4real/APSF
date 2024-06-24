@@ -13,6 +13,7 @@ enum TrainingEnrollmentStatus: string implements HasColor, HasDescription, HasIc
     case PAID = 'paid';
     case APPROVED = 'approved';
     case REJECTED = 'rejected';
+    case ENROLLED = 'enrolled';
 
     public function getColor(): string|array|null
     {
@@ -21,6 +22,7 @@ enum TrainingEnrollmentStatus: string implements HasColor, HasDescription, HasIc
             self::PAID => 'primary',
             self::APPROVED => 'success',
             self::REJECTED => 'danger',
+            self::ENROLLED => 'success',
         };
     }
 
@@ -31,6 +33,7 @@ enum TrainingEnrollmentStatus: string implements HasColor, HasDescription, HasIc
             self::PAID => 'Paid Enrollment',
             self::APPROVED => 'Approved Enrollment',
             self::REJECTED => 'Rejected Enrollment',
+            self::ENROLLED => 'Enrolled',
         };
     }
 
@@ -41,6 +44,7 @@ enum TrainingEnrollmentStatus: string implements HasColor, HasDescription, HasIc
             self::PAID => 'heroicon-o-banknotes',
             self::APPROVED => 'heroicon-o-check-circle',
             self::REJECTED => 'heroicon-o-x-circle',
+            self::ENROLLED => 'heroicon-o-check-circle',
         };
     }
 
