@@ -12,6 +12,7 @@ return [
     'Events' => 'الفعاليّات',
     'Contact Us' => 'تواصل معنا',
     'Training Programs' => 'برامج التدريب',
+    'Scholarships' => 'المنح الدراسيّة',
     'Login' => 'تسجيلُ الدّخول',
     'Register' => 'التّسجيل',
     'Contact' => 'اتصال',

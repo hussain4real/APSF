@@ -15,6 +15,7 @@ return [
     'Register' => 'Register',
     'Contact' => 'Contact',
     'Training Programs' => 'Training Programs',
+    'Scholarships' => 'Scholarships',
     'Faqs' => 'FAQS',
     //    'Homepage' => 'Homepage',
     'dashboard' => 'Dashboard',
