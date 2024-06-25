@@ -3,9 +3,25 @@
 
 <style>
     .fi-ta-record {
-        /*display: none;*/
+        /* display: none; */
         background-color: rgba(3, 55, 49, 0.8) !important;
         transition: all 0.5s ease-in-out;
+    }
+    .justify-start{
+        justify-content: center !important;
+    }
+
+    .ps-4, .pe-4, .py-4, .p-y-3{
+        /* display: none; */
+        padding-top: 0 !important;
+        padding-bottom: 0.5rem !important;
+        padding-inline-start: 0 !important;
+        padding-inline-end: 0 !important;
+        
+    }
+
+    .gap-y-3{
+        row-gap: 0 !important;
     }
 
     .fi-ta-record:hover {
@@ -28,7 +44,7 @@
     <a href="{{route('training-programs.show', $getRecord()->id)}}">
 
         @if($getRecord()->media->count() > 0)
-        <img class="w-full max-h-full h-[13rem]" src="{{$getRecord()->media[0]->getUrl()}}" alt="Sunset in the mountains">
+        <img class="w-full max-h-full h-[15rem]" src="{{$getRecord()->media[0]->getUrl()}}" alt="Sunset in the mountains">
         @else
         <img class="w-full max-h-full h-[13rem]" src="https://images.unsplash.com/photo-1505455184862-554165e5f6ba?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sunset in the mountains">
         @endif
