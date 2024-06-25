@@ -122,7 +122,7 @@ new
                         <div class="flex flex-wrap gap-y-3 gap-x-2 mt-4">
                             @foreach ($livefeed->media as $media)
                                 @if($media->mime_type === 'video/mp4')
-                                <video controls class="w-full h-[20rem] object-cover rounded-lg shadow-sm" autoplay muted>
+                                <video controls class="w-full h-[18rem] lg:h-[25rem] object-cover rounded-lg shadow-sm" autoplay muted>
                                     <source src="{{ $media->getUrl() }}" type="{{ $media->mime_type }}">
                                     Your browser does not support the video tag.
                                 </video>
