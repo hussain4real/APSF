@@ -133,16 +133,16 @@ class CreateTrainingProgram extends CreateRecord
                                 ->hintIconTooltip(__('If you are not the instructor, please enter the name of the instructor.'))
                                 ->maxLength(255)
                                 ->required(),
-                            // TinyEditor::make('description')
-                            //     ->label(__('Description'))
-                            //     ->profile('full')
-                            //     ->direction('auto')
-                            //     ->columnSpanFull(),
-                            Textarea::make('description')
+                            TinyEditor::make('description')
                                 ->label(__('Description'))
-
-                                ->placeholder(__('Training Program Description'))
+                                ->profile('full')
+                                ->direction('auto')
                                 ->columnSpanFull(),
+                            // Textarea::make('description')
+                            //     ->label(__('Description'))
+
+                            //     ->placeholder(__('Training Program Description'))
+                            //     ->columnSpanFull(),
                             TextInput::make('duration')
                                 ->label(__('Duration'))
                                 ->placeholder(__('40 minutes/day, 1 hour/week, 2 days, etc.'))
