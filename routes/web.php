@@ -54,12 +54,20 @@ Route::get('course/{record}', ViewTrainingProgram::class)
     ->name('course.view');
 Route::view('/failed-transaction', 'livewire.training-programs.failed')
     ->name('failed-transaction');
-Route::get('language/{locale}', function ($locale) {
+// Route::get('language/{locale}', function ($locale) {
+//     app()->setLocale($locale);
+//     session()->put('locale', $locale);
+
+//     return redirect()->back();
+// });
+
+Route::get('language/{locale}', function ($locale, Request $request) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
 
-    return redirect()->back();
-});
+    $returnUrl = $request->query('return', '/');
+    return redirect(urldecode($returnUrl));
+})->name('language.switch');
 
 Route::resource('board-of-trustees', BoardOfTrusteeController::class)
     ->only(['index', 'show'])
