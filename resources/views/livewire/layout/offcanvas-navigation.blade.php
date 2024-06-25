@@ -134,6 +134,7 @@ new class extends Component
                         <li><a href="{{route('membership')}}" wire:navigate>{{__('nav.Membership')}}</a></li>
                         <li><a href="{{route('events.index')}}" wire:navigate>{{__('nav.Events')}}</a></li>
                         <li><a href="{{route('contact')}}">{{__('nav.Contact Us')}}</a></li>
+                        <li><a href="{{route('training-programs.list')}}" wire:navigate>{{__('nav.Training Programs')}}</a></li>
                         @guest
                         <li><a href="{{route('filament.admin.auth.login')}}" wire:navigate>{{__('nav.Login')}}</a></li>
                         <li><a href="{{route('filament.admin.auth.register')}}" wire:navigate>{{__('nav.Register')}}</a></li>
