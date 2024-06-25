@@ -115,14 +115,15 @@ class ViewTrainingProgram extends Component implements HasInfolists, HasForms
                                 ->badge(),
                             TextEntry::make('start_date')
                                 ->label(__('Start Date'))
-                                // ->date(format: 'M d, Y')
-                                ->since()
+                                ->date(format: 'M d, Y')
+                                // ->since()
                                 ->color(Color::Sky)
                                 ->icon('heroicon-o-calendar')
                                 ->iconColor('primary'),
                             TextEntry::make('end_date')
                                 ->label(__('End Date'))
-                                ->since()
+                                ->date(format: 'M d, Y')
+                                // ->since()
                                 ->color(Color::Sky)
                                 ->icon('heroicon-o-calendar')
                                 ->iconColor('primary'),

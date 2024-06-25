@@ -2,6 +2,7 @@
 
 namespace App\Filament\Clusters\Resources\Resources\TrainingProgramResource\Pages;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Clusters\Resources\Resources\TrainingProgramResource;
 use App\TrainingType;
 use App\TraininingMode;
@@ -86,7 +87,7 @@ class CreateTrainingProgram extends CreateRecord
                                         $livewire->form->getState();
                                     }
 
-                                    if (app()->getLocale() == 'ar'){
+                                    if (app()->getLocale() == 'ar') {
                                         $set('title', 'تعلم فن العطاء');
                                         $set('instructor_name', auth()->user()->name);
                                         $set('description', 'هذا برنامج تدريبي يعلمك كيف تعطي وتستقبل.');
@@ -98,15 +99,14 @@ class CreateTrainingProgram extends CreateRecord
                                         $set('start_date', now()->format('Y-m-d H:i'));
                                         $set('end_date', now()->addDays(7)->format('Y-m-d H:i'));
                                         $livewire->form->getState();
-            
                                     }
                                     // $livewire->emit('notify', 'Form filled with default values.');
                                 })
                         ])
                         ->schema([
                             Select::make('user_id')
-                            ->relationship('trainingProvider', 'name')
-                                ->disabled(fn ():bool => !auth()->user()->can('create', 'create_training::program' ))
+                                ->relationship('trainingProvider', 'name')
+                                ->disabled(fn (): bool => !auth()->user()->can('create', 'create_training::program'))
                                 ->dehydrated()
                                 ->default(auth()?->user()?->id ?? null),
                             ToggleButtons::make('type')
@@ -133,6 +133,11 @@ class CreateTrainingProgram extends CreateRecord
                                 ->hintIconTooltip(__('If you are not the instructor, please enter the name of the instructor.'))
                                 ->maxLength(255)
                                 ->required(),
+                            // TinyEditor::make('description')
+                            //     ->label(__('Description'))
+                            //     ->profile('full')
+                            //     ->direction('auto')
+                            //     ->columnSpanFull(),
                             Textarea::make('description')
                                 ->label(__('Description'))
 
@@ -187,13 +192,13 @@ class CreateTrainingProgram extends CreateRecord
                                 ->imageEditorEmptyFillColor('#dda581')
                                 ->uploadingMessage(__('uploading, please wait...'))
                                 ->columnSpanFull(),
-                                TextInput::make('link')
+                            TextInput::make('link')
                                 ->label(__('Links'))
                                 ->url()
-                                ->live(onBlur:true)
+                                ->live(onBlur: true)
                                 ->suffixIcon('heroicon-m-globe-alt')
-                                ->suffixIconColor(function(Get $get){
-                                    if($get('link')){
+                                ->suffixIconColor(function (Get $get) {
+                                    if ($get('link')) {
                                         return 'info';
                                     }
                                     return 'warning';
