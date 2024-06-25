@@ -4,13 +4,13 @@
 <style>
     .fi-ta-record {
         /*display: none;*/
-        background-color: rgba(255, 165, 0, 0.75) !important;
+        background-color: rgba(3, 55, 49, 0.8) !important;
         transition: all 0.5s ease-in-out;
     }
 
     .fi-ta-record:hover {
         /*add some animation and effect*/
-        background-color: rgba(3, 55, 49, 0.75) !important;
+        background-color: rgba(228, 97, 46, 0.8) !important;
         transition: all 0.5s ease-in-out;
 
     }

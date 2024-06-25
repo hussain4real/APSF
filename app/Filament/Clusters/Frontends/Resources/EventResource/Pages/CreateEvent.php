@@ -7,7 +7,6 @@ use App\EventType;
 use App\Filament\Clusters\Frontends\Resources\EventResource;
 use Filament\Actions\LocaleSwitcher;
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
