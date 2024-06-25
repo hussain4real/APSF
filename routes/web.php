@@ -36,7 +36,10 @@ Route::view('/privacy-policy', 'home.privacy-policy')
     ->name('privacy-policy');
 Route::view('/refund-policy', 'home.refund-policy')
     ->name('refund-policy');
-//Volt::route('/livefeeds', 'livefeeds.list');
+// Volt::route('/livefeeds', 'livefeeds.list')
+// ->name('livefeeds');
+Route::view('/livefeeds', 'livewire.livefeeds.front')
+    ->name('livefeeds');
 Route::get('/membership', [\App\Http\Controllers\MembershipController::class, 'index'])
     ->name('membership');
 

@@ -92,11 +92,11 @@ new class extends Component implements HasForms {
                     ->responsiveImages()
                     ->multiple()
                     ->maxFiles(4)
-                    ->maxSize(1024 * 3)
-                    ->hint(__('Maximum size: 3MB.'))
+                    ->maxSize(1024 * 10)
+                    ->hint(__('Maximum size: 10MB.'))
                     ->hintIcon('heroicon-o-information-circle')
                     ->hintColor('warning')
-                    ->hintIconTooltip(__('Supported formats: png, jpg, jpeg, gif, svg, pdf'))
+                    ->hintIconTooltip(__('Supported formats: png, jpg, jpeg, gif, svg, mp4'))
                     ->reorderable()
                     ->appendFiles()
                     ->panelLayout('grid')
@@ -138,9 +138,7 @@ new class extends Component implements HasForms {
 
 <div class="mt-24">
     <form wire:submit="store">
-        {{-- <textarea wire:model="message" placeholder="{{ __('What\'s on your mind?') }}"
-            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea> --}}
-        {{-- <x-forms.filepond wire:model="image" allowImagePreview imagePreviewMaxHeight="200" /> --}}
+       
         {{ $this->form }}
 
         <x-input-error :messages="$errors->get('message')" class="mt-2"/>

@@ -17,6 +17,7 @@ return [
     'Training Programs' => 'Training Programs',
     'Scholarships' => 'Scholarships',
     'Faqs' => 'FAQS',
+    'Livefeeds' => 'Livefeeds',
     //    'Homepage' => 'Homepage',
     'dashboard' => 'Dashboard',
     'profile' => 'Profile',
