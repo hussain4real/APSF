@@ -192,7 +192,7 @@ class ListTrainingPrograms extends Component implements HasForms, HasTable
             ->contentGrid([
                 'md' => 2,
                 'xl' => 3,
-                '2xl' => 4,
+                '4xl' => 4,
             ])
             ->filters([
                 SelectFilter::make('status')
@@ -256,7 +256,8 @@ class ListTrainingPrograms extends Component implements HasForms, HasTable
                                 ->send();
                             return redirect()->route(' filament.admin.auth.login');
                         }
-                    }),
+                    })
+                    ,
 
             ])
             ->bulkActions([

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('training_programs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->nullOnDelete();
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('duration')->nullable();
             $table->float('regular_price')->nullable();
