@@ -119,7 +119,7 @@ new class extends Component
         <div class="offcanvas__mid">
             <div class="offcanvas__menu-wrapper">
                 <nav class="offcanvas__menu">
-                    <ul class="menu-anim">
+                    <ul class="">
                         @include('partials/language_switcher')
                         <li><a href="{{route('welcome')}}" wire:navigate>{{__('nav.Home')}}</a></li>
                         <li><a href="{{route('about')}}" wire:navigate>{{__('nav.About Us')}}</a></li>

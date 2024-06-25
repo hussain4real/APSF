@@ -117,7 +117,6 @@ class CreateTrainingProgram extends CreateRecord
                             TextInput::make('title')
                                 ->label(__('Title'))
                                 ->placeholder(__('Training Program Title'))
-                                ->required()
                                 ->maxLength(255),
                             //                                ->afterStateUpdated(function (Set $set) {
                             //                                    $set('instructor_name', auth()->user()->name);
