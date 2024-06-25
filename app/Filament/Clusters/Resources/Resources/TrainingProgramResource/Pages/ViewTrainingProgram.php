@@ -22,6 +22,7 @@ use Filament\Support\Enums\FontWeight;
 use Filament\Support\Enums\IconPosition;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\HtmlString;
 
 class ViewTrainingProgram extends ViewRecord
 {
@@ -92,9 +93,9 @@ class ViewTrainingProgram extends ViewRecord
                                 ->collection('banner')
                                 ->disk('digitalocean')
                                 ->visibility('public')
-//                                ->defaultImageUrl(function ($record) {
-//                                    return $record->user->profile_photo_url;
-//                                })
+                                //                                ->defaultImageUrl(function ($record) {
+                                //                                    return $record->user->profile_photo_url;
+                                //                                })
                                 ->height(320)
                                 ->width(function () {
                                     //make the width responsive
@@ -138,26 +139,44 @@ class ViewTrainingProgram extends ViewRecord
                                 ->size(TextEntry\TextEntrySize::Medium),
                             TextEntry::make('description')
                                 ->label(__('Description'))
+                                // ->html()
+                                // ->formatStateUsing(fn(string $state):HtmlString => new HtmlString($state))
+                                ->markdown()
+                                // ->color('info')
                                 ->size(TextEntry\TextEntrySize::Medium)
-                                ->columnSpanFull(),
+                                ->columnSpanFull()
+                                ->extraAttributes([
+                                    'class' => 'prose prose-lg',
+                                ]),
                             TextEntry::make('duration')
                                 ->label(__('Duration'))
                                 ->icon('heroicon-o-clock')
                                 ->iconColor('primary')
                                 ->suffix(__(' /daily'))
                                 ->size(TextEntry\TextEntrySize::Medium),
-                            TextEntry::make('cost')
-                                ->label(__('Cost'))
+                            TextEntry::make('member_price')
+                                ->label(__('Price'))
                                 ->icon('heroicon-o-banknotes')
                                 ->iconColor('primary')
                                 ->money()
-//                                ->suffix(' USD')
+                                //                                ->suffix(' USD')
                                 ->size(TextEntry\TextEntrySize::Medium),
                             TextEntry::make('instructor_name')
                                 ->label(__('Instructor Name'))
                                 ->icon('heroicon-o-user')
                                 ->iconColor('primary')
                                 ->size(TextEntry\TextEntrySize::Medium),
+                            TextEntry::make('link')
+                                ->url(fn ($record) => $record->link)
+                                ->label(__('Link'))
+                                ->icon('heroicon-o-link')
+                                ->iconColor('primary')
+                                ->openUrlInNewTab()
+
+                        ])
+                        ->columns(2),
+                    Section::make()
+                        ->schema([
                             TextEntry::make('type')
                                 ->label(__('Type'))
                                 ->badge()
@@ -166,10 +185,6 @@ class ViewTrainingProgram extends ViewRecord
                                 ->label(__('Mode of Delivery'))
                                 ->badge()
                                 ->size(TextEntry\TextEntrySize::Medium),
-                        ])
-                        ->columns(2),
-                    Section::make()
-                        ->schema([
                             TextEntry::make('status')
                                 ->label(__('Status'))
                                 ->badge()

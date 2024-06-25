@@ -15,6 +15,7 @@ use Filament\Infolists\Contracts\HasInfolists;
 use Filament\Infolists\Infolist;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Alignment;
+use Illuminate\Support\HtmlString;
 use Livewire\Component;
 
 class ViewTrainingProgram extends Component implements HasInfolists, HasForms
@@ -38,7 +39,7 @@ class ViewTrainingProgram extends Component implements HasInfolists, HasForms
         // dd($recordId);
         //get the record from session
         // $record = session()->get('record');
-        
+
         $trainingProgram = TrainingProgram::find($recordId) ?? TrainingProgram::first();
         // $trainingProgram = TrainingProgram::find($this->record) ?? TrainingProgram::first();
         $this->trainingProgram = $trainingProgram;
@@ -57,11 +58,12 @@ class ViewTrainingProgram extends Component implements HasInfolists, HasForms
                                 ->collection('banner')
                                 ->defaultImageUrl('https://images.unsplash.com/photo-1505455184862-554165e5f6ba?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
                                 // ->defaultImageUrl(fn ($record) => $record->profile_photo_url)
-                                ->height(400)
-                                ->width(600)
+                                // ->height(500)
+                                // ->width(500)
+                                ->size(500)
                                 ->alignment(Alignment::Center)
                                 ->extraImgAttributes([
-                                    'class' => 'rounded-lg shadow-md object-cover object-center',
+                                    'class' => 'rounded-lg shadow-md object-cover object-center hover:shadow-xl transition duration-300 ease-in-out',
                                     'alt' => 'Profile Photo',
                                     'loading' => 'lazy',
                                 ])
@@ -88,6 +90,12 @@ class ViewTrainingProgram extends Component implements HasInfolists, HasForms
                                     ->label(__('Member Price'))
                                     ->icon('heroicon-o-currency-dollar')
                                     ->iconColor('primary'),
+                                TextEntry::make('link')
+                                    ->url(fn ($record) => $record->link)
+                                    ->label(__('Link'))
+                                    ->icon('heroicon-o-link')
+                                    ->iconColor('primary')
+                                    ->openUrlInNewTab()
                             ]),
                         ])
                             ->columns(3),
@@ -96,6 +104,12 @@ class ViewTrainingProgram extends Component implements HasInfolists, HasForms
 
                             TextEntry::make('description')
                                 ->label(__('Description'))
+                                // ->html()
+                                // ->formatStateUsing(fn(string $state):HtmlString => new HtmlString($state))
+                                ->markdown()
+                                ->extraAttributes([
+                                    'class' => 'prose prose-lg',
+                                ])
                                 ->columnSpanFull()
                                 ->iconColor('primary'),
 

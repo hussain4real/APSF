@@ -18,6 +18,11 @@
     .fi-modal-window {
         margin-top: 5rem;
     }
+
+    .fi-in-entry-wrp-label .text-sm {
+        font-size: 1.2rem !important;
+
+    }
 </style>
 <div class="max-w-full bg-white dark:bg-slate-700 rounded-lg text-gray-900 dark:text-gray-200 overflow-hidden ">
     <a href="{{route('training-programs.show', $getRecord()->id)}}">
