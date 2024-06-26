@@ -12,7 +12,7 @@
             @unless($getRecord()->user->media && $getRecord()->user->media->count() > 0)
             <img class="relative max-w-48 max-h-48 w-40" src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png" alt="">
             @else
-            <img class="relative max-w-48 max-h-48 w-40" src="{{$getRecord()->user()->profile_photo_url}}" alt="">
+            <img class="relative max-w-48 max-h-48 w-40" src="{{$getRecord()->user->profile_photo_url}}" alt="">
             @endunless
         </div>
         <div class="relative text-white px-2 pb-2 mt-6">
