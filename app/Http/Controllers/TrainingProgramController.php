@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\TrainingProgramPurchaseProcessed;
+use App\Http\Integrations\PaymentGateway\Pay2mConnector;
+use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
 use App\Models\TrainingProgram;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TrainingProgramController extends Controller
@@ -27,9 +30,8 @@ class TrainingProgramController extends Controller
         //        $this->num = 1;
         // $this->basket_id = auth()->user()->id . '-' . time();
         //basket id should be the combination of the user id profile type and the current time in human readable format
-        $this->basket_id = auth()->user()->id . '-' . auth()->user()->profile_type;
+        $this->basket_id = $this->basket_id;
         $this->trans_amount = $this->trans_amount;
-        
     }
     /**
      * Display a listing of the resource.
@@ -42,9 +44,56 @@ class TrainingProgramController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, TrainingProgram $record)
     {
-        //
+        $guestRecord = $request->query();
+        //get the email array from the request query
+        $guestEmails = $guestRecord['email'] ?? [];
+        // dd($guestEmails);
+        //extract the email from the array
+        $guestEmail = $guestEmails['email'] ?? '';
+        // dd($guestEmail);
+        $initialPrice = auth()->user() ? $record->member_price : $record->regular_price;
+        //convert price to QAR
+        $covertedPrice = $this->convertCurrency($initialPrice, 'USD', 'QAR');
+        $this->trans_amount = $covertedPrice;
+        $this->basket_id = auth()->user() ? auth()->user()->id . '-' . $record->id . '-' . $record->title : $record->id . '-guest' . '-' . $record->title . '-' . '(' .$guestEmail . ')';
+        $pay2m = new Pay2mConnector();
+        $tokenRequest = new GetAccessTokenRequest(
+            $this->merchant_id,
+            $this->secured_key,
+            $this->trans_amount,
+            $this->basket_id
+        );
+
+        try {
+            $response = $pay2m->send($tokenRequest);
+            $status = $response->status();
+            $body = $response->object();
+            // dd($status, $body);
+            $token = isset($body->ACCESS_TOKEN) ? $body->ACCESS_TOKEN : '';
+            // dd($token);
+
+            //create transaction with status pending
+            if (Transaction::where('basket_id', $this->basket_id)->doesntExist()) {
+                $transaction = new Transaction([
+                    'basket_id' => $this->basket_id,
+                    'amount'=> (int) $this->convertCurrency($this->trans_amount, 'QAR', 'USD'),
+                    'status' => 'pending',
+                ]);
+                auth()->user()? auth()->user()->transactions()->save($transaction) : $transaction->save();
+            }
+            return view('enrolment.pay', [
+                'token' => $token,
+                'merchant_id' => $this->merchant_id,
+                'basket_id' => $this->basket_id,
+                'trans_amount'=> $this->trans_amount,
+                'record' => $record,
+                'guest_email' => $guestEmail,
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->route('failed-transaction')->with('error', $e->getMessage());
+        }
     }
 
     /**
@@ -55,7 +104,7 @@ class TrainingProgramController extends Controller
         TrainingProgramPurchaseProcessed::dispatch($request->all());
 
         return redirect()->route('failed-transaction')
-        ->with('success', 'Your payment was successful. You will receive an email with the details of your purchase.');
+            ->with('success', 'Your payment was successful. You will receive an email with the details of your purchase.');
     }
 
     /**
@@ -128,4 +177,13 @@ class TrainingProgramController extends Controller
         };
     }
 
+    public function convertCurrency($amount, $from, $to)
+    {
+        $url = "https://api.exchangerate-api.com/v4/latest/$from";
+        $response = file_get_contents($url);
+        $result = json_decode($response, true);
+        $rate = $result['rates'][$to];
+        $converted_amount = $amount * $rate;
+        return $converted_amount;
+    }
 }

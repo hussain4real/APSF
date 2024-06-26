@@ -44,6 +44,8 @@ Route::get('/membership', [\App\Http\Controllers\MembershipController::class, 'i
     ->name('membership');
 
 //course enrollment
+Route::get('/enroll/{record}', [TrainingProgramController::class, 'create'])
+    ->name('enrolment.create');
 Route::view('/enroll-payment/{record}', 'enrolment.pay')
     ->name('enrolment.pay');
 
