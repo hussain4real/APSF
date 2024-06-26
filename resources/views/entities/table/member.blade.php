@@ -19,7 +19,7 @@
             <span class="block opacity-90 mb-1">verified:
                 <span class="text-teal-900 opacity-100 font-bold">
                     {{-- {{$getRecord()->user->email_verified_at ? 'Yes' : 'No'}}--}}
-                    {{$getRecord()->user->email_verified_at->diffForHumans()}}
+                    {{$getRecord()->user?->email_verified_at?->diffForHumans() ?? 'Not Verified'}}
                 </span>
             </span> <!-- change later -->
             <span class="block font-semibold text-xl text-wrap">{{$getRecord()->user->name}}</span>
