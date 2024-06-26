@@ -7,20 +7,24 @@
         background-color: rgba(3, 55, 49, 0.8) !important;
         transition: all 0.5s ease-in-out;
     }
-    .justify-start{
+
+    .justify-start {
         justify-content: center !important;
     }
 
-    .ps-4, .pe-4, .py-4, .p-y-3{
+    .ps-4,
+    .pe-4,
+    .py-4,
+    .p-y-3 {
         /* display: none; */
         padding-top: 0 !important;
         padding-bottom: 0.5rem !important;
         padding-inline-start: 0 !important;
         padding-inline-end: 0 !important;
-        
+
     }
 
-    .gap-y-3{
+    .gap-y-3 {
         row-gap: 0 !important;
     }
 
@@ -31,8 +35,14 @@
 
     }
 
-    .fi-modal-window {
-        margin-top: 5rem;
+    /* .fi-modal-window {
+        margin-top: rem;
+    } */
+    /* from medium screen up  */
+    @media (min-width: 768px) {
+        .fi-modal-window {
+            margin-top: 40rem !important;
+        }
     }
 
     .fi-in-entry-wrp-label .text-sm {

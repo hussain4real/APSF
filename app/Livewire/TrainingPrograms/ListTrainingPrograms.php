@@ -221,43 +221,68 @@ class ListTrainingPrograms extends Component implements HasForms, HasTable
 
                 Tables\Actions\Action::make('enroll')
                     ->button()
-                    ->action(function ($record) {
-                        //attach the auth user to the training program
-                        if (auth()->user()) {
-                            //if the user is already enrolled in the training program return with a message
-                            if ($record->users()->where('user_id', auth()->user()->id)->exists()) {
+                    ->form([
+                        TextInput::make('email')
+                            ->label(__('Email'))
+                            ->email()
+                            ->placeholder(__('Email Address')),
+                    ])
+                    ->modalAlignment(Alignment::End)
+                    ->modalHeading(__("Please provide your email for enrollemnt notification and payment confirmation."))
+                    ->modalDescription(__("We promise not to spam you. and your email will not be saved in our database."))
+                    ->modalHidden(fn():bool => auth()->check())
+                    ->action(function ($data, $record) {
+                        // dd($data, $record);
+                        $user = auth()->user();
+
+                        if (!$user) {
+                           
+                           
+
+                            return redirect()->route('enrolment.create',[
+                                'record' => $record,
+                                'email' => $data
+                            ]);
+                        }
+
+                        $existingPivot = $record->users()->where('user_id', $user->id)->first();
+
+                        if ($existingPivot) {
+                            $status = $existingPivot->pivot->status->value;
+
+                            if ($status == 'enrolled') {
                                 Notification::make('enrolled')
                                     ->info()
                                     ->body(__('You are already enrolled in the training program.'))
-                                    ->sendToDatabase(auth()->user());
+                                    ->sendToDatabase($user);
                                 return redirect()->back();
-                            }
-                            $record->users()->attach(auth()->user()->id);
-                            if ($record->regular_price > 0) {
-                                $record->users()->updateExistingPivot(auth()->user()->id, ['status' => 'pending']);
-                                Notification::make('enrolled')
+                            } elseif ($status == 'pending') {
+                                Notification::make('pending')
                                     ->info()
-                                    ->body(__('You have successfully enrolled in the training program. Pending Payment'))
-                                    ->sendToDatabase(auth()->user());
-                                return redirect()->route('enrolment.pay', ['record' => $record]);
-                            } else {
-                                $record->users()->updateExistingPivot(auth()->user()->id, ['status' => 'enrolled']);
-                                Notification::make('enrolled')
-                                    ->info()
-                                    ->body(__('You have successfully enrolled in the training program.'))
-                                    ->sendToDatabase(auth()->user());
-                                return redirect()->route('failed')
-                                    ->with('success', 'You have successfully enrolled in the training program.');
+                                    ->body(__('Your enrollment is pending.'))
+                                    ->sendToDatabase($user);
+                                return redirect()->route('enrolment.create', ['record' => $record]);
                             }
                         } else {
-                            Notification::make('enrolled')
-                                ->info()
-                                ->body(__('You need to login to enroll in the training program.'))
-                                ->send();
-                            return redirect()->route(' filament.admin.auth.login');
+                            $record->users()->attach($user->id);
                         }
-                    })
-                    ,
+
+                        $newStatus = $record->regular_price > 0 ? 'pending' : 'enrolled';
+
+                        $record->users()->updateExistingPivot($user->id, ['status' => $newStatus]);
+
+                        Notification::make('enrolled')
+                            ->info()
+                            ->body($newStatus == 'pending'
+                                ? __('You have successfully enrolled in the training program. Pending Payment')
+                                : __('You have successfully enrolled in the training program.'))
+                            ->sendToDatabase($user);
+
+                        return $newStatus == 'pending'
+                            ? redirect()->route('enrolment.create', ['record' => $record])
+                            : redirect()->route('failed')->with('success', 'You have successfully enrolled in the training program.');
+                    }),
+
 
             ])
             ->bulkActions([
