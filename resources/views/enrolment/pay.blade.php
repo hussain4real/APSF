@@ -1,4 +1,4 @@
-@php
+{{--@php
 use App\Models\TrainingProgram;
 use App\Http\Integrations\PaymentGateway\Pay2mConnector;
 use App\Http\Integrations\PaymentGateway\Requests\GetAccessTokenRequest;
@@ -34,7 +34,7 @@ return redirect()->back()->with('error', $e->getMessage());
 }
 
 
-@endphp
+@endphp --}}
 <style>
     h1 {
         margin: 0;
@@ -141,7 +141,7 @@ return redirect()->back()->with('error', $e->getMessage());
     <input type="TEXT" name="SUCCESS_URL" value="{{route('course.success')}}" hidden="true" readonly /><br />
     <input type="TEXT" name="FAILURE_URL" value="{{route('course.failed')}}" hidden="true" readonly /><br />
     <input type="TEXT" name="CHECKOUT_URL" value="{{route('api.payment.response')}}" hidden="true" readonly /><br />
-    <input type="TEXT" name="CUSTOMER_EMAIL_ADDRESS" value="some-email@example.com" hidden="true" readonly /><br />
+    <input type="TEXT" name="CUSTOMER_EMAIL_ADDRESS" value="{{$guest_email}}" hidden="true" readonly /><br />
     <input type="TEXT" name="CUSTOMER_MOBILE_NO" value="+974-34312767" hidden="true" readonly /><br />
     <input type="TEXT" name="TXNAMT" value="{{$trans_amount}}" hidden="true" readonly /><br />
 
@@ -157,20 +157,20 @@ return redirect()->back()->with('error', $e->getMessage());
 {{-- @dd($trainingProgram); --}}
 <div class="pricing-card">
     <div class="card-left">
-        <h1>{{$trainingProgram->title}}</h1>
+        <h1>{{$record->title}}</h1>
         <p>
             <span class="dollar">QAR</span>
             {{$trans_amount}}
         </p>
-        <h4>{{$trainingProgram->instructor_name}}</h4>
+        <h4>{{$record->instructor_name}}</h4>
     </div>
     <div class="card-right">
-        <h1>{{$trainingProgram->instructor}}</h1>
+        <h1>{{$record->instructor}}</h1>
         <ul>
-            <li>&mdash; {{$trainingProgram->duration}}</li>
-            <li>&mdash; {{$trainingProgram->mode_of_delivery}}</li>
-            <li>&mdash; {{$trainingProgram->type}}</li>
-            <li>&mdash; {{$trainingProgram->start_date->diffForHumans()}}</li>
+            <li>&mdash; {{$record->duration}}</li>
+            <li>&mdash; {{$record->mode_of_delivery}}</li>
+            <li>&mdash; {{$record->type}}</li>
+            <li>&mdash; {{$record->start_date->diffForHumans()}}</li>
         </ul>
         <button id="form-submit" type="submit" value="submit" class="button">Pay</button>
         {{-- <div>

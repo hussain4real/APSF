@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('pay2m_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('err_code')->nullable();
             $table->string('err_msg')->nullable();
-            $table->string('basket_id');
+            $table->string('basket_id')->nullable();
             $table->dateTime('order_date')->nullable();
             $table->string('response_key')->nullable();
             $table->string('amount')->nullable();
-            $table->string('status')->default(\App\TransactionStatus::PENDING);
+            $table->string('status')->default('pending');
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('pay2m_transactions');
     }
 };

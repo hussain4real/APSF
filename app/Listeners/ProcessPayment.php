@@ -25,7 +25,12 @@ class ProcessPayment
     public function handle(PaymentProcessed $event): void
     {
         //log the event
-        Log::info('Payment Processed', $event->payload);
+        Log::build([
+            'driver' => 'single',
+            'path' => storage_path('logs/subscription_payment/transaction_processed.log'),
+
+        ])->info('Payment Processed', $event->payload);
+       
         //content of the log file:
         //  [2024-06-19 08:14:42] local.INFO: Payment Processed {"err_code":"901","err_msg":"Customer cancel transaction","transaction_id":null,"basket_id":"35-School-2024-06-19 08:14:24","order_date":"2024-06-19 08:14:26","Rdv_Message_Key":null,"Response_Key":"92e5dbaba3e00a27f3604611e732561a6c364a805dedfeace3b149e87368d25f"} 
 
@@ -36,8 +41,11 @@ class ProcessPayment
 
         //if the transaction is not found, log the error
         if (!$transaction) {
-            Log::error('Transaction not found', $event->payload);
-            return;
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/subscription_payment/not_found.log'),
+
+            ])->error('Transaction not found', $event->payload);
         }
 
         //update the transaction with the payload data
@@ -53,7 +61,11 @@ class ProcessPayment
             ]);
 
             //log the transaction
-            Log::info('Transaction updated', $transaction->toArray());
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/subscription_payment/transaction_successful.log'),
+
+            ])->info('Transaction updated', $transaction->toArray());
 
             Notification::send($transaction->user, new \App\Notifications\InvoicePaid($transaction));
             //create new subscription
@@ -72,7 +84,11 @@ class ProcessPayment
             Notification::send($user, new \App\Notifications\SubscriptionStarted($subscription));
 
             //log the subscription
-            Log::info('Subscription created', $subscription->toArray());
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/subscription_payment/subscription_successful.log'),
+
+            ])->info('Subscription created', $subscription->toArray());
         } else {
             $transaction->update([
                 'transaction_id' => $event->payload['transaction_id'],
@@ -84,7 +100,11 @@ class ProcessPayment
             ]);
 
             //log the transaction
-            Log::info('Transaction updated', $transaction->toArray());
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/subscription_payment/transaction_failed.log'),
+
+            ])->info('Transaction updated', $transaction->toArray());
 
         
         }
