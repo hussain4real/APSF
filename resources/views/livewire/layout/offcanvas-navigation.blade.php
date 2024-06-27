@@ -98,6 +98,7 @@ new class extends Component
             <div class="offcanvas__logo">
                 <a href="/" wire:navigate><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69_white.webp')}}" alt="Offcanvas Logo"></a>
             </div>
+          
             <div class="offcanvas__social">
                 <h3 class="social-title">Follow Us</h3>
                 <ul>

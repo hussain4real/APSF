@@ -86,7 +86,7 @@ new class extends Component
             border-bottom-right-radius: 0;
             border-top-left-radius: 0.5rem;
             border-bottom-left-radius: 0.5rem;
-            text-align: end;
+            text-align: start;
             transform: translateX(-100%);
             animation: my-animation-rtl 15s linear infinite;
         }
@@ -102,6 +102,91 @@ new class extends Component
                 transform: translateX(100%);
             }
         }
+
+        /*tablet screen downward */
+        #scroll-container-mobile {
+            display: none;
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .header__logo-2 {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+            }
+
+            #scroll-container-mobile {
+                display: flex;
+                max-width: 50rem;
+                width: 50rem;
+                max-height: 100%;
+                border-radius: 0.5rem;
+                overflow: hidden;
+
+
+            }
+
+            .ticker-mobile {
+                font-size: 1rem;
+                padding: 0.5rem 0.2rem;
+                width: min-content;
+                text-align: center;
+                background-color: rgb(2 55 49 / 1);
+                color: #e56131;
+
+                text-align: start;
+            }
+
+            #scroll-text-mobile {
+                font-size: 1rem;
+                padding: 0.5rem 0.5rem;
+                max-width: 100%;
+                width: max-content;
+                background-color: #e56131;
+                color: white;
+                border-top-right-radius: 0.5rem;
+                border-bottom-right-radius: 0.5rem;
+                /* animation properties */
+                transform: translateX(100%);
+                animation: my-animation 15s linear infinite;
+                /* text-wrap: stable; */
+                /* color: teal; */
+            }
+
+            @keyframes my-animation {
+                from {
+                    transform: translateX(100%);
+                }
+
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+
+            body[dir="rtl"] #scroll-text-mobile {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+                text-align: start;
+                transform: translateX(-100%);
+                animation: my-animation-rtl 15s linear infinite;
+            }
+
+            body[dir="rtl"] #scroll-container-mobile {}
+
+            @keyframes my-animation-rtl {
+                from {
+                    transform: translateX(-100%);
+                }
+
+                to {
+                    transform: translateX(100%);
+                }
+            }
+        }
+
 
         .main-menu-4.menu-anim {
             position: relative;
@@ -210,12 +295,19 @@ new class extends Component
         }
     </style>
     <header class="header__area-7">
-
+        <div id="scroll-container-mobile">
+            <h4 class="ticker-mobile">{{__('frontend.announcement.heading')}} </h4>
+            <div id="scroll-text-mobile">{{__('frontend.announcement.description')}}
+                <div>
+                </div>
+            </div>
+        </div>
         {{-- @include('partials/language_switcher')--}}
         <div class="header__inner-2">
             <div class="header__logo-2">
                 <a href="/" class="logo-dark"><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69.webp')}}" alt="Site Logo"></a>
                 <a href="/" class="logo-light"><img src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
+
 
             </div>
 
@@ -224,7 +316,8 @@ new class extends Component
 
                     <div id="scroll-container">
                         <h4 class="ticker">{{__('frontend.announcement.heading')}} </h4>
-                        <div id="scroll-text">{{__('frontend.announcement.description')}}<div>
+                        <div id="scroll-text">{{__('frontend.announcement.description')}}
+                            <div>
                             </div>
                         </div>
                     </div>
