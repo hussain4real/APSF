@@ -238,10 +238,30 @@
 
 
 
+    <!-- <div class="container mx-5">
+        <div class="ticker">
+            <div class="title">
+                <h5>Notice!</h5>
+            </div>
+            <div class="news">
+                <marquee class="news-content">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+
+
+
+                </marquee>
+            </div>
+        </div>
+    </div> -->
     <div id="smooth-wrapper">
+
         <div id="smooth-content">
             <main class="main-content">
-
 
                 {{ $slot }}
                 <!-- Brand area start -->

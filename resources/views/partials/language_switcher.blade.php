@@ -7,7 +7,7 @@
     <span>{{ $locale_name }}</span>
     </a> --}}
 
-    <a class="ml-1 underline ml-2 mr-2 p-2" href="{{ route('language.switch', ['locale' => $available_locale, 'return' => urlencode(url()->current())]) }}">
+    <a class=" underline ml-2 mr-2 p-2" href="{{ route('language.switch', ['locale' => $available_locale, 'return' => urlencode(url()->current())]) }}">
         <span>{{ $locale_name }}</span>
     </a>
     @endif
