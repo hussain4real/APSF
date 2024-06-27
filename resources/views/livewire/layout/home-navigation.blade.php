@@ -19,6 +19,7 @@ new class extends Component
 
 <nav>
 
+
     <style>
         @media only screen and (min-width: 992px) and (max-width: 1500px) {
             #main-menu-wrapper {
@@ -27,125 +28,81 @@ new class extends Component
                 overflow-wrap: normal;
             }
         }
-    </style>
-    <header class="header__area-7">
-        {{-- @include('partials/language_switcher')--}}
-        <div class="header__inner-2">
-            <div class="header__logo-2">
-                <a href="/" class="logo-dark"><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69.webp')}}" alt="Site Logo"></a>
-                <a href="/" class="logo-light"><img src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
 
-            </div>
+        .flex-wrapper-for-translation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 2rem;
+        }
 
-            <div class="header__nav-2">
-                @include('partials/language_switcher')
-                {{-- animation style class: menu-anim--}}
-                <ul class="main-menu-4 " id="main-menu-wrapper">
-                    <li><a href="{{ route('welcome') }}">{{__('nav.Home')}}</a></li>
+        #scroll-container {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+        }
 
-                    <li><a href="{{ route('about') }}">{{__('nav.About Us')}}</a></li>
-                    <li><a href="#">{{__('nav.Committee')}}</a>
-                        <ul class="main-dropdown">
-                            <li><a href="{{ route('founders-committee') }}">{{__('nav.Founders Committee')}}</a></li>
-                            <li><a href="{{ route('board-of-trustees.index') }}">{{__('nav.Board of Trustees')}}</a></li>
-                            <li><a href="{{ route('general-secretariat') }}">{{__('nav.General Secretariat')}}</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{ route('services') }}">{{__('nav.Services')}}</a>
-                    <li><a href="{{ route('membership') }}">{{__('nav.Membership')}}</a>
+        .ticker {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0.5rem;
+            background-color: rgb(2 55 49 / 1);
+            color: #e56131;
+            width: max-content;
+            text-align: start;
+        }
 
-                        <!-- <ul class="main-dropdown">
-              <li><a href="#">Academic Support</a></li>
-              <li><a href="#">Professional Development</a></li>
-              <li><a href="#">Student Support</a></li>
-              <li><a href="#">Advocacy & Representation</a></li>
-              <li><a href="#">Programs & Initiatives</a></li>
-              <li><a href="#">Membership</a></li>
-            </ul> -->
-                    </li>
-                    <li><a href="{{ route('events.index') }}">{{__('nav.Events')}}</a></li>
-                    {{-- <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>--}}
-                    <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
-                    <li><a href="{{ route('training-programs.list') }}">{{__('nav.Training Programs')}}</a></li>
-                    @guest
-                    <li>
+        .language-switcher {
+            width: 20rem;
+        }
 
-                        <span class="header__nav-icon-6">
-                            <i class="fa-solid fa-user"></i>
-                            <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
-                        </span>
-                    </li>
+        #scroll-text {
+            width: max-content;
+            background-color: #e56131;
+            color: white;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+            /* animation properties */
+            transform: translateX(100%);
+            animation: my-animation 15s linear infinite;
+        }
 
-                    @endguest
-                    @auth
+        @keyframes my-animation {
+            from {
+                transform: translateX(100%);
+            }
 
-                    <!-- Settings Dropdown -->
-                    <div class="main-menu-4 menu-anim">
+            to {
+                transform: translateX(-100%);
+            }
+        }
 
-                        <x-dropdown align="right" width="20">
-                            <x-slot name="trigger">
-                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                                    <div x-data="{{ json_encode([
-                                            'name' => auth()->user()->name,
-                                        ]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name">
+        body[dir="rtl"] #scroll-text {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            text-align: end;
+            transform: translateX(-100%);
+            animation: my-animation-rtl 15s linear infinite;
+        }
 
-                                    </div>
+        body[dir="rtl"] #scroll-container {}
 
-                                    <div class="ms-1">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </button>
-                            </x-slot>
+        @keyframes my-animation-rtl {
+            from {
+                transform: translateX(-100%);
+            }
 
-                            <x-slot name="content">
-                                <span class="notification">
+            to {
+                transform: translateX(100%);
+            }
+        }
 
-                                    <a href="route('filament.admin.pages.dashboard')">
-
-                                        @livewire('database-notifications')
-
-                                    </a>
-                                </span>
-                                <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
-                                    {{ 'Dashboard' }}
-                                </x-dropdown-link>
-                                <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
-
-
-
-                                <!-- Authentication -->
-                                <button wire:click="logout" class="w-full text-start">
-                                    <x-dropdown-link>
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </button>
-                            </x-slot>
-                        </x-dropdown>
-                    </div>
-
-                    <!-- Hamburger -->
-
-                    @endauth
-                </ul>
-            </div>
-
-
-            <div class="header__nav-icon-7">
-                <button class="menu-icon-2" id="open_offcanvas"><img src="{{asset('assets/imgs/apsf/icon/menu-dark.png')}}" alt="Menubar Icon"></button>
-            </div>
-        </div>
-    </header>
-    <!-- @include('announcement.contest') -->
-
-    <!-- Offcanvas area start -->
-    <livewire:layout.offcanvas-navigation />
-
-    <!-- Offcanvas area end -->
-    <style>
         .main-menu-4.menu-anim {
             position: relative;
             display: inline-block;
@@ -252,4 +209,141 @@ new class extends Component
             stroke-width: 2;
         }
     </style>
+    <header class="header__area-7">
+
+        {{-- @include('partials/language_switcher')--}}
+        <div class="header__inner-2">
+            <div class="header__logo-2">
+                <a href="/" class="logo-dark"><img src="{{asset('assets/imgs/apsf/logo/apsflogo_271x69.webp')}}" alt="Site Logo"></a>
+                <a href="/" class="logo-light"><img src="{{ asset('assets/imgs/apsf/logo/apsflogo_white.png') }}" alt="Site Logo"></a>
+
+            </div>
+
+            <div class="header__nav-2">
+                <div class="flex-wrapper-for-translation">
+
+                    <div id="scroll-container">
+                        <h4 class="ticker">{{__('frontend.announcement.heading')}} </h4>
+                        <div id="scroll-text">{{__('frontend.announcement.description')}}<div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="language-switcher">
+
+                        @include('partials/language_switcher')
+                    </div>
+                </div>
+                {{-- animation style class: menu-anim--}}
+                <ul class="main-menu-4 " id="main-menu-wrapper">
+
+                    <li><a href="{{ route('welcome') }}">{{__('nav.Home')}}</a></li>
+
+                    <li><a href="{{ route('about') }}">{{__('nav.About Us')}}</a></li>
+                    <li><a href="#">{{__('nav.Committee')}}</a>
+                        <ul class="main-dropdown">
+                            <li><a href="{{ route('founders-committee') }}">{{__('nav.Founders Committee')}}</a></li>
+                            <li><a href="{{ route('board-of-trustees.index') }}">{{__('nav.Board of Trustees')}}</a></li>
+                            <li><a href="{{ route('general-secretariat') }}">{{__('nav.General Secretariat')}}</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ route('services') }}">{{__('nav.Services')}}</a>
+                    <li><a href="{{ route('membership') }}">{{__('nav.Membership')}}</a>
+
+                        <!-- <ul class="main-dropdown">
+              <li><a href="#">Academic Support</a></li>
+              <li><a href="#">Professional Development</a></li>
+              <li><a href="#">Student Support</a></li>
+              <li><a href="#">Advocacy & Representation</a></li>
+              <li><a href="#">Programs & Initiatives</a></li>
+              <li><a href="#">Membership</a></li>
+            </ul> -->
+                    </li>
+                    <li><a href="{{ route('events.index') }}">{{__('nav.Events')}}</a></li>
+                    {{-- <li><a href="{{ route('pricing') }}" >{{__('Pricing')}}</a></li>--}}
+                    <li><a href="{{ route('contact') }}">{{__('nav.Contact Us')}}</a></li>
+                    <li><a href="{{ route('training-programs.list') }}">{{__('nav.Training Programs')}}</a></li>
+                    @guest
+                    <li>
+
+                        <span class="header__nav-icon-6">
+                            <i class="fa-solid fa-user"></i>
+                            <a href="{{ route('filament.admin.auth.login') }}">{{__('nav.Login')}}</a>
+                        </span>
+                    </li>
+                    </li>
+                </ul>
+
+                @endguest
+                @auth
+
+                <!-- Settings Dropdown -->
+                <div class="main-menu-4 menu-anim">
+
+                    <x-dropdown align="right" width="20">
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div x-data="{{ json_encode([
+                                            'name' => auth()->user()->name,
+                                        ]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name">
+
+                                </div>
+
+                                <div class="ms-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <span class="notification">
+
+                                <a href="route('filament.admin.pages.dashboard')">
+
+                                    @livewire('database-notifications')
+
+                                </a>
+                            </span>
+                            <x-dropdown-link :href="route('filament.admin.pages.dashboard')">
+                                {{ 'Dashboard' }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('filament.admin.pages.my-profile')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+
+
+
+                            <!-- Authentication -->
+                            <button wire:click="logout" class="w-full text-start">
+                                <x-dropdown-link>
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </button>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
+
+                <!-- Hamburger -->
+
+                @endauth
+                </ul>
+            </div>
+
+
+
+            <div class="header__nav-icon-7">
+                <button class="menu-icon-2" id="open_offcanvas"><img src="{{asset('assets/imgs/apsf/icon/menu-dark.png')}}" alt="Menubar Icon"></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- @include('announcement.contest') -->
+
+    <!-- Offcanvas area start -->
+    <livewire:layout.offcanvas-navigation />
+
+    <!-- Offcanvas area end -->
 </nav>

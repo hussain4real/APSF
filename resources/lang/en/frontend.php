@@ -334,4 +334,10 @@ return [
     ],
     'acknowledgment_refund' => 'By using the Portal and purchasing services, you acknowledge that you have read, understood, and agree to this Refund Policy.',
 
+    'announcement'=>[
+        'heading'=>'Annoucement',
+        'description'=>'For advertising products and services, please contact us at info@arab-psf.com',
+        'action'=>'Read More',
+    ],
+
 ];
