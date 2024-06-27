@@ -99,155 +99,155 @@ class ViewUser extends ViewRecord
                     ]),
                     Group::make([
                         Section::make([
-                            ViewEntry::make('rating')
-                                ->view('infolists.components.rating-review')
-                                ->label(__('Rating'))
-                                ->registerActions([
-                                    Action::make('rate')
-                                        ->icon('heroicon-o-arrows-up-down')
-                                        ->hiddenLabel()
-                                        ->color(Color::Yellow)
-                                        ->link()
-                                        ->visible(function (Model $record) {
-                                            $user = auth()->user();
-                                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
-                                            $record->load($roles);
-                                            foreach ($roles as $role) {
-                                                if ($record->$role?->user_id === $user->id) {
-                                                    return false;
+                            // ViewEntry::make('rating')
+                            //     ->view('infolists.components.rating-review')
+                            //     ->label(__('Rating'))
+                            //     ->registerActions([
+                            //         Action::make('rate')
+                            //             ->icon('heroicon-o-arrows-up-down')
+                            //             ->hiddenLabel()
+                            //             ->color(Color::Yellow)
+                            //             ->link()
+                            //             ->visible(function (Model $record) {
+                            //                 $user = auth()->user();
+                            //                 $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                            //                 $record->load($roles);
+                            //                 foreach ($roles as $role) {
+                            //                     if ($record->$role?->user_id === $user->id) {
+                            //                         return false;
 
-                                                }
+                            //                     }
 
-                                                return true;
-                                            }
-                                        })
-                                        ->tooltip(__('Rate this student'))
-                                        ->fillForm(function (Model $record): array {
-                                            $user = auth()->user();
-                                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
-                                            $record->load($roles);
+                            //                     return true;
+                            //                 }
+                            //             })
+                            //             ->tooltip(__('Rate this student'))
+                            //             ->fillForm(function (Model $record): array {
+                            //                 $user = auth()->user();
+                            //                 $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                            //                 $record->load($roles);
 
-                                            $rating = 0;
-                                            $comment = '';
+                            //                 $rating = 0;
+                            //                 $comment = '';
 
-                                            foreach ($roles as $role) {
-                                                if ($record->$role) {
-                                                    if ($role === 'schools') {
-                                                        foreach ($record->$role as $school) {
-                                                            $review = $school->reviews()->where('user_id', $user->id)->first();
-                                                            if ($review) {
-                                                                $rating = $review->rating;
-                                                                $comment = $review->comment;
-                                                                break;
-                                                            }
-                                                        }
-                                                    } else {
-                                                        $review = $record->$role->reviews()->where('user_id', $user->id)->first();
-                                                        if ($review) {
-                                                            $rating = $review->rating;
-                                                            $comment = $review->comment;
-                                                        }
-                                                    }
-                                                }
-                                            }
+                            //                 foreach ($roles as $role) {
+                            //                     if ($record->$role) {
+                            //                         if ($role === 'schools') {
+                            //                             foreach ($record->$role as $school) {
+                            //                                 $review = $school->reviews()->where('user_id', $user->id)->first();
+                            //                                 if ($review) {
+                            //                                     $rating = $review->rating;
+                            //                                     $comment = $review->comment;
+                            //                                     break;
+                            //                                 }
+                            //                             }
+                            //                         } else {
+                            //                             $review = $record->$role->reviews()->where('user_id', $user->id)->first();
+                            //                             if ($review) {
+                            //                                 $rating = $review->rating;
+                            //                                 $comment = $review->comment;
+                            //                             }
+                            //                         }
+                            //                     }
+                            //                 }
 
-                                            return [
-                                                'rating' => $rating,
-                                                'comment' => $comment,
-                                            ];
-                                        })
-                                        ->form([
-                                            Rating::make('rating')
-                                                ->stars(5)
-                                                ->allowZero(true)
-                                                ->color('warning'),
-                                            Textarea::make('comment')
-                                                ->label(__('Comment'))
-                                                ->placeholder('Enter your comment here'),
-                                        ])
-                                        ->action(function (array $data, Model $record): void {
-                                            $user = auth()->user();
-                                            $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
-                                            $record->load($roles);
+                            //                 return [
+                            //                     'rating' => $rating,
+                            //                     'comment' => $comment,
+                            //                 ];
+                            //             })
+                            //             ->form([
+                            //                 Rating::make('rating')
+                            //                     ->stars(5)
+                            //                     ->allowZero(true)
+                            //                     ->color('warning'),
+                            //                 Textarea::make('comment')
+                            //                     ->label(__('Comment'))
+                            //                     ->placeholder('Enter your comment here'),
+                            //             ])
+                            //             ->action(function (array $data, Model $record): void {
+                            //                 $user = auth()->user();
+                            //                 $roles = ['student', 'teacher', 'schools', 'contractor', 'educationalConsultant', 'founder', 'member', 'trainingProvider'];
+                            //                 $record->load($roles);
 
-                                            //                            Log::info('Rate action called', [$record, $user, $data]);
-                                            foreach ($roles as $role) {
-                                                if ($record->$role) {
-                                                    if ($role === 'schools') {
-                                                        foreach ($record->$role as $school) {
-                                                            $this->handleRatingAndComment($school, $user, $data);
-                                                        }
-                                                    } else {
-                                                        $this->handleRatingAndComment($record->$role, $user, $data);
-                                                    }
-                                                }
-                                            }
-                                            //                            // Handle rating and commenting for normal users
-                                            //                            if (! $record->student && ! $record->teacher && ! $record->schools && ! $record->contractor && ! $record->educationalConsultant && ! $record->founder && ! $record->member && ! $record->trainingProvider) {
-                                            //                                $this->handleRatingAndComment($record, $user, $data);
-                                            //                            }
-                                        }),
-                                    Action::make('view_reviews')
-                                        ->hiddenLabel()
-                                        ->tooltip(__('View reviews'))
-                                        ->icon('heroicon-o-eye')
-                                        ->link()
-                                        ->infolist(function (Infolist $infolist): Infolist {
-                                            return $infolist
-                                                ->record($this->record)
-                                                ->schema([
-                                                    Section::make([
-                                                        RepeatableEntry::make('reviews')
-                                                            ->state(function ($record) {
-                                                                return $record->reviews;
-                                                            })
-                                                            ->label(__('Reviews'))
-                                                            ->grid([
-                                                                'sm' => 2,
-                                                                'lg' => 3,
-                                                            ])
-                                                            ->columnSpanFull()
-                                                            ->schema([
-                                                                TextEntry::make('rating')
-                                                                    ->label(__('Rating'))
-                                                                    ->badge()
-                                                                    ->color(function ($record) {
-                                                                        $rating = floor($record->rating);
-                                                                        switch ($rating) {
-                                                                            case 1:
-                                                                                return Color::Red;
-                                                                            case 2:
-                                                                                return Color::Orange;
-                                                                            case 3:
-                                                                                return Color::Yellow;
-                                                                            case 4:
-                                                                            case 5:
-                                                                                return Color::Green;
-                                                                            default:
-                                                                                return Color::Gray;
-                                                                        }
-                                                                    }),
-                                                                TextEntry::make('comment')
-                                                                    ->label(__('Review')),
-                                                                TextEntry::make('user.name')
-                                                                    ->label(__('Reviewer')),
-                                                            ]),
-                                                    ])
-                                                        ->description(__('Reviews for this student'))
-                                                        ->icon('heroicon-o-star')
-                                                        ->iconColor('info')
-                                                        ->collapsible(),
-                                                ]);
-                                        })
-                                        ->modalSubmitAction(false)
-                                        ->modalCancelActionLabel(__('Close')),
-                                ]),
-                            RatingEntry::make('rating')
-                                ->label(__('Rating'))
-                                ->state(function ($record) {
-                                    return $record->rating;
-                                })
-                                ->color('warning'),
+                            //                 //                            Log::info('Rate action called', [$record, $user, $data]);
+                            //                 foreach ($roles as $role) {
+                            //                     if ($record->$role) {
+                            //                         if ($role === 'schools') {
+                            //                             foreach ($record->$role as $school) {
+                            //                                 $this->handleRatingAndComment($school, $user, $data);
+                            //                             }
+                            //                         } else {
+                            //                             $this->handleRatingAndComment($record->$role, $user, $data);
+                            //                         }
+                            //                     }
+                            //                 }
+                            //                 //                            // Handle rating and commenting for normal users
+                            //                 //                            if (! $record->student && ! $record->teacher && ! $record->schools && ! $record->contractor && ! $record->educationalConsultant && ! $record->founder && ! $record->member && ! $record->trainingProvider) {
+                            //                 //                                $this->handleRatingAndComment($record, $user, $data);
+                            //                 //                            }
+                            //             }),
+                            //         Action::make('view_reviews')
+                            //             ->hiddenLabel()
+                            //             ->tooltip(__('View reviews'))
+                            //             ->icon('heroicon-o-eye')
+                            //             ->link()
+                            //             ->infolist(function (Infolist $infolist): Infolist {
+                            //                 return $infolist
+                            //                     ->record($this->record)
+                            //                     ->schema([
+                            //                         Section::make([
+                            //                             RepeatableEntry::make('reviews')
+                            //                                 ->state(function ($record) {
+                            //                                     return $record->reviews;
+                            //                                 })
+                            //                                 ->label(__('Reviews'))
+                            //                                 ->grid([
+                            //                                     'sm' => 2,
+                            //                                     'lg' => 3,
+                            //                                 ])
+                            //                                 ->columnSpanFull()
+                            //                                 ->schema([
+                            //                                     TextEntry::make('rating')
+                            //                                         ->label(__('Rating'))
+                            //                                         ->badge()
+                            //                                         ->color(function ($record) {
+                            //                                             $rating = floor($record->rating);
+                            //                                             switch ($rating) {
+                            //                                                 case 1:
+                            //                                                     return Color::Red;
+                            //                                                 case 2:
+                            //                                                     return Color::Orange;
+                            //                                                 case 3:
+                            //                                                     return Color::Yellow;
+                            //                                                 case 4:
+                            //                                                 case 5:
+                            //                                                     return Color::Green;
+                            //                                                 default:
+                            //                                                     return Color::Gray;
+                            //                                             }
+                            //                                         }),
+                            //                                     TextEntry::make('comment')
+                            //                                         ->label(__('Review')),
+                            //                                     TextEntry::make('user.name')
+                            //                                         ->label(__('Reviewer')),
+                            //                                 ]),
+                            //                         ])
+                            //                             ->description(__('Reviews for this student'))
+                            //                             ->icon('heroicon-o-star')
+                            //                             ->iconColor('info')
+                            //                             ->collapsible(),
+                            //                     ]);
+                            //             })
+                            //             ->modalSubmitAction(false)
+                            //             ->modalCancelActionLabel(__('Close')),
+                            //     ]),
+                            // RatingEntry::make('rating')
+                                // ->label(__('Rating'))
+                                // ->state(function ($record) {
+                                //     return $record->rating;
+                                // })
+                                // ->color('warning'),
                             TextEntry::make('status')
                                 ->label(__('Status'))
                                 ->badge(),
