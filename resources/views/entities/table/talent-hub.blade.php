@@ -56,14 +56,14 @@
             <img src="{{$getRecord()->user->profile_photo_url}}" alt="tailwind logo" class="rounded-xl" />
         </div>
         <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
-            <div class="flex justify-between item-center">
+            <div class="flex justify-between item-center flex-wrap gap-2">
                 <div class="flex">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M3 4a1 1 0 011-1h10a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 0v10h8V4H5zm0 12h8v2H5v-2z" />
                     </svg>
 
 
-                    <p class="text-teal-800 bg-teal-200 rounded px-1 font-medium ">{{$getRecord()->subject_taught}}</p>
+                    <p class="text-teal-800 bg-teal-200 rounded px-2 py-1 font-medium line-clamp-1">{{$getRecord()->subject_taught}}</p>
                 </div>
                 <div class="flex items-center">
                     <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
@@ -93,7 +93,7 @@
                         <path d="M10 2L2 6l8 4 8-4-8-4zM2 8l8 4 8-4v6a2 2 0 01-1 1.73l-7 4-7-4A2 2 0 012 14V8z" />
                     </svg>
 
-                    <div class="bg-orange-200 px-1 py-1 rounded-full text-xs font-medium text-orange-800 hidden md:block">
+                    <div class="bg-orange-200 px-2 py-1 rounded-lg text-xs font-medium text-orange-800 hidden md:block line-clamp-1">
                         {{$getRecord()->qualification}}
                     </div>
                 </div>
