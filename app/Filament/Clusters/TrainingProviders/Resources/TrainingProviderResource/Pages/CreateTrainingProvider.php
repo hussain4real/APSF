@@ -3,10 +3,13 @@
 namespace App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource\Pages;
 
 use App\Filament\Clusters\TrainingProviders\Resources\TrainingProviderResource;
+use App\Status;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class CreateTrainingProvider extends CreateRecord
 {
@@ -96,10 +99,21 @@ class CreateTrainingProvider extends CreateRecord
             ->placeholder('YYYY-MM-DD');
     }
 
+    public static function getStatusFormField(): Select
+    {
+        return Select::make('status')
+            ->options([
+                Status::class
+            ])
+            ->default(Status::PENDING)
+            ->visibleOn(EditTrainingProvider::class);
+    }
+
     public function form(Form $form): Form
     {
         return $form
             ->schema([
+                static::getStatusFormField(),
                 static::getInstitutionNameFormField(),
                 static::getInstitutionTypeFormField(),
                 static::getInstitutionAddressFormField(),
