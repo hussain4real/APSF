@@ -8,6 +8,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -164,6 +165,13 @@ class CreateTeacher extends CreateRecord
             ->columnSpanFull();
     }
 
+    public static function getBioFormField(): Textarea
+    {
+        return Textarea::make('bio')
+            ->label(__('Bio'))
+            ->maxLength(455);
+    }
+
     public function form(Form $form): Form
     {
         return $form
@@ -183,6 +191,7 @@ class CreateTeacher extends CreateRecord
                 static::getPreviousExperienceFormField(),
                 static::getCountryFormField(),
                 static::getPhoneFormField(),
+                static::getBioFormField(),
                 static::getUploadCVFormField(),
             ]);
     }
