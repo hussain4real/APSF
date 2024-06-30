@@ -48,7 +48,7 @@
     }
 </style>
 
-<div class="flex flex-col justify-center mt-2">
+<div class="flex flex-col justify-center mt-2 min-h-[22rem]">
     <div class="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-2 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
         <div class="w-full md:w-1/3 bg-white grid place-items-center">
             <!-- <img src="https://images.unsplash.com/photo-1508528075895-be7a6cabd37a?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1vdW50YWluJTIwd2F0ZXJmYWxsfGVufDB8fDB8fHww" alt="tailwind logo" class="rounded-xl" /> -->
@@ -93,9 +93,9 @@
                         <path d="M10 2L2 6l8 4 8-4-8-4zM2 8l8 4 8-4v6a2 2 0 01-1 1.73l-7 4-7-4A2 2 0 012 14V8z" />
                     </svg>
 
-                    <div class="bg-orange-200 px-2 py-1 rounded-lg text-xs font-medium text-orange-800 hidden md:block line-clamp-1">
+                    <p class="bg-orange-200 px-2 py-1 rounded-lg text-xs font-medium text-orange-800 line-clamp-1">
                         {{$getRecord()->qualification}}
-                    </div>
+                    </p>
                 </div>
             </div>
             <h3 class="font-semibold text-gray-800 md:text-3xl text-xl">{{$getRecord()->user->name}}</h3>
