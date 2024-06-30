@@ -18,7 +18,7 @@ class Livefeed extends Model implements HasMedia
     protected $guarded = [];
 
     protected $dispatchesEvents = [
-        'created' => LivefeedCreated::class,
+        // 'created' => LivefeedCreated::class,
     ];
 
     public function user(): BelongsTo

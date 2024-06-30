@@ -28,9 +28,9 @@ class SendSubscriptionMail extends Command
     public function handle()
     {
         //get all users with suscription
-        // $users = User::query()->whereHas('subscription')->get();
+        $users = User::query()->whereHas('subscription')->get();
         //grab user with id 29
-        $users = User::query()->where('id', 29)->get();
+        // $users = User::query()->where('id', 29)->get();
         // dd($user);
     
 
