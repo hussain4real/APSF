@@ -129,14 +129,15 @@
                     'bg-gray-200 text-gray-800' => $getRecord()->availability == 'unavailable',
                     'bg-orange-200 text-orange-800' => $getRecord()->availability == 'other',
                     ])>
-                    {{$getRecord()->availability}}
+                    {{__($getRecord()->availability)}}
                 </span>
-                <span @class([ 'font-normal text-base mx-4 rounded px-1 py-1' , 'text-green-800 bg-green-200'=> $getRecord()->status == 'active',
+                <span @class([ 'font-semibold text-base mx-4 rounded px-1 py-1' , 'text-green-800 bg-green-200'=> $getRecord()->status == 'active',
                     'text-gray-800 bg-gray-200' => $getRecord()->status == 'inactive',
                     'text-yellow-800 bg-yellow-200' => $getRecord()->status == 'pending',
                     'text-red-800 bg-red-200' => $getRecord()->status == 'suspended',
+                    'text-blue-800 bg-blue-200' => $getRecord()->status == 'verified',
                     ])>
-                    {{$getRecord()->status}}
+                    {{__($getRecord()->status)}}
                 </span>
             </p>
         </div>

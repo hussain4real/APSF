@@ -13,6 +13,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
     case INACTIVE = 'inactive';
     case PENDING = 'pending';
     case SUSPENDED = 'suspended';
+    case  VERIFIED = 'verified';
 
     //
 
@@ -23,6 +24,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::INACTIVE => 'gray',
             self::PENDING => 'warning',
             self::SUSPENDED => 'danger',
+            self::VERIFIED => 'success',
         };
     }
 
@@ -33,6 +35,7 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::INACTIVE => 'Inactive',
             self::PENDING => 'Pending',
             self::SUSPENDED => 'Suspended',
+            self::VERIFIED => 'Verified',
         };
     }
 
@@ -43,11 +46,12 @@ enum Status: string implements HasColor, HasDescription, HasIcon, HasLabel
             self::INACTIVE => 'heroicon-o-signal-slash',
             self::PENDING => 'heroicon-o-clock',
             self::SUSPENDED => 'heroicon-o-x-mark',
+            self::VERIFIED => 'heroicon-o-check-circle',
         };
     }
 
     public function getLabel(): ?string
     {
-        return $this->value;
+        return __($this->value);
     }
 }

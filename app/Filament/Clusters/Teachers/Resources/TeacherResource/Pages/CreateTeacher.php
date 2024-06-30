@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Teachers\Resources\TeacherResource\Pages;
 
 use App\Filament\Clusters\Teachers\Resources\TeacherResource;
+use App\Status;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
@@ -172,10 +173,19 @@ class CreateTeacher extends CreateRecord
             ->maxLength(455);
     }
 
+    public static function getStatusFormField(): Select
+    {
+        return Select::make('status')
+            ->options(Status::class)
+            ->default(Status::PENDING)
+            ->visibleOn(EditTeacher::class);
+    }
+
     public function form(Form $form): Form
     {
         return $form
             ->schema([
+                static::getStatusFormField(),
                 static::getUserSelectFormField(),
                 static::getSchoolNameSelectFormField()
                     ->live(onBlur: true),

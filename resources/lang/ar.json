@@ -31,37 +31,29 @@
     "contractor": "مزود",
     "what's on your mind, :first_name?": "ماذا يدور في ذهنك، :first_name؟",
     "Entity": "الكيان",
-    "Please select your profile":" الرجاء اختر ملفك",
+    "Please select your profile": " الرجاء اختر ملفك",
     "Cancel": "إلغاء",
     "Member Profile": " ملف العضو ",
-    "Please provide more details to complete your profile as a member":
-   " الرجاء تقديم المزيد من التفاصيل لاستكمال ملف العضوية",
+    "Please provide more details to complete your profile as a member": " الرجاء تقديم المزيد من التفاصيل لاستكمال ملف العضوية",
     "School Profile": "   ملف المدرسة ",
-    "Please provide your school details":
-    "الرجاء تقديم تفاصيل مدرستك",
-    "Teacher Profile":   "ملف المعلم" ,
-    "Please provide more details to complete your profile as a teacher":
-    "الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية المعلم",
+    "Please provide your school details": "الرجاء تقديم تفاصيل مدرستك",
+    "Teacher Profile": "ملف المعلم",
+    "Please provide more details to complete your profile as a teacher": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية المعلم",
 
     "Student Profile": "  ملف الطالب",
-    "Please provide more details to complete your profile as a student":
-   " الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية الطالب",
+    "Please provide more details to complete your profile as a student": " الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية الطالب",
 
     "Contractor Profile": "مزود ملف",
-    "Please provide more details to complete your profile as a contractor":
-    "الرجاء تقديم المزيد من التفاصيل لاستكمال ملف عضوية المزود",
+    "Please provide more details to complete your profile as a contractor": "الرجاء تقديم المزيد من التفاصيل لاستكمال ملف عضوية المزود",
 
     "Training Provider Profile": "ملف مزود خدمة تدريبية",
-    "Please provide more details to complete your profile as a training provider":
-  "  الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية مزود خدمة تدريبية",
+    "Please provide more details to complete your profile as a training provider": "  الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية مزود خدمة تدريبية",
 
     "Educational Consultant Profile": "ملف مستشار تربوي",
-    "Please provide more details to complete your profile as an educational consultant":
-"    الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية ملف مستشار تربوي",
+    "Please provide more details to complete your profile as an educational consultant": "    الرجاء تقديم المزيد من التفاصيل لاستكمال ملف  عضوية ملف مستشار تربوي",
 
     "Authentication credentials": "بيانات  اعتماد",
-    "Please provide your authentication credentials":
-   " يرجى تقديم بيانات الاعتماد  الخاصة بك",
+    "Please provide your authentication credentials": " يرجى تقديم بيانات الاعتماد  الخاصة بك",
 
     "service provider": " مقدم خدمة",
     "others": "آخر",
@@ -84,8 +76,7 @@
     "Last Name": "اسم العائلة",
     "Phone Number": "  رقم الهاتف",
     "Date of Birth": " تاريخ الميلاد",
-    "Subject Taught":
-   " المادة التي يتم تدريسها",
+    "Subject Taught": " المادة التي يتم تدريسها",
 
     "Qualification": "المؤهل",
     "Previous Experience": " الخبرة السابقة",
@@ -101,6 +92,6 @@
     "Transaction completed successfully.": "تمت عملية الدفع بنجاح.",
     "Transaction Failed": "فشلت العملية",
     "We could not process your transaction": "لم نتمكن من معالجة عمليتك",
-    "Notice": "إشعار"
-
+    "Notice": "إشعار",
+    "pending": "قيد الانتظار"
 }
