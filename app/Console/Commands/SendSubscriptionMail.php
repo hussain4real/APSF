@@ -30,14 +30,14 @@ class SendSubscriptionMail extends Command
         //get all users with suscription
         // $users = User::query()->whereHas('subscription')->get();
         //grab user with id 29
-        $user = User::query()->where('id', 29)->get();
-        //send SubscriptionStarted email to the user
-        $user->notify(new SubscriptionStarted($user->subscription));
+        $users = User::query()->where('id', 29)->get();
+        // dd($user);
+    
 
         //send SubscriptionStarted email to all users
-        // foreach ($users as $user) {
-        //     $suscription = $user->subscription;
-        //     $user->notify(new SubscriptionStarted($suscription));
-        // }
+        foreach ($users as $user) {
+            $suscription = $user->subscription;
+            $user->notify(new SubscriptionStarted($suscription));
+        }
     }
 }
