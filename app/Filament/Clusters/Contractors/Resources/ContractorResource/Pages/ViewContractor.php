@@ -85,7 +85,7 @@ class ViewContractor extends ViewRecord
                                 ->iconColor('primary'),
                             TextEntry::make('business_website')
                                 ->label(__('Website'))
-                                ->icon('heroicon-o-globe')
+                                ->icon('heroicon-o-globe-alt')
                                 ->iconColor('primary'),
                             TextEntry::make('business_description')
                                 ->label(__('Description'))
