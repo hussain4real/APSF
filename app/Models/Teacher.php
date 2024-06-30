@@ -37,7 +37,7 @@ class Teacher extends Model implements HasMedia
     {
         return [
             'date_of_birth' => 'date',
-            'status' => Status::class,
+            // 'status' => Status::class,
         ];
     }
 
