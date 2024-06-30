@@ -3,6 +3,7 @@
 namespace App\Filament\Clusters\Contractors\Resources\ContractorResource\Pages;
 
 use App\Filament\Clusters\Contractors\Resources\ContractorResource;
+use App\Status;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -128,11 +129,21 @@ class CreateContractor extends CreateRecord
             ->native(false)
             ->placeholder('MM/DD/YYYY');
     }
+    public static function getStatusFormField(): Select
+    {
+        return Select::make('status')
+            ->options([
+                Status::class
+            ])
+            ->default(Status::PENDING)
+            ->visibleOn(EditContractor::class);
+    }
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
+                static::getStatusFormField(),
                 static::getUserSelectFormField(),
                 static::getBusinessNameFormField(),
                 static::getBusinessTypeFormField(),
