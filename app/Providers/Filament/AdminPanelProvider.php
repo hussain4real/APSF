@@ -209,7 +209,7 @@ class AdminPanelProvider extends PanelProvider
                 // Js::make('code', 'public/js/chatify/code.js'),
             ])
             ->sidebarCollapsibleOnDesktop(true)
-            ->spa()
+            ->spa(true)
             ->spaUrlExceptions(fn (): array => [
                 url('/admin/chat'),
                 url('/admin/livefeed'),

@@ -5,7 +5,9 @@
     });
 
 
-
+    $totalNumberOfUsers = Cache::remember('users.count', 60*60, function () {
+    return \App\Models\User::count();
+    });
 
     $heroTitle = $homepageModel->hero_title ?? null;
     $heroDescriptionOne = $homepageModel->hero_description_one ?? null;
@@ -371,7 +373,7 @@
                     <img src="https://ui-avatars.com/api/?name=Aminu+Hussain" alt="Customer photo" />
                 </div>
                 <p class="delivered-text">
-                    <span>25+ </span>{{__('frontend.hero.stats')}}
+                    <span>{{$totalNumberOfUsers}}+ </span>{{__('frontend.hero.stats')}}
                 </p>
             </div>
         </div>

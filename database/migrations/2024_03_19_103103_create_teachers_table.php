@@ -19,11 +19,13 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('subject_taught')->nullable();
             $table->string('qualification')->nullable();
+            $table->text('bio')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('previous_experience')->nullable();
             $table->string('country')->nullable();
             $table->string('phone')->nullable();
-            $table->string('status')->default(\App\Status::PENDING->value)->nullable();
+            $table->string('status')->default(\App\Status::PENDING)->nullable();
+            $table->string('availability')->default(\App\TeacherAvailability::UNAVAILABLE);
 
             $table->softDeletes();
             $table->timestamps();
