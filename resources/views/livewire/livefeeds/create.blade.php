@@ -8,8 +8,12 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Forms\Components\FileUpload;
 use App\Models\Livefeed;
+use App\Models\User;
+use Filament\Notifications\Actions\Action;
+use Filament\Notifications\Notification;
 
-new class extends Component implements HasForms {
+new class extends Component implements HasForms
+{
     use InteractsWithForms;
 
     // #[\Livewire\Attributes\Validate('string|max:255')]
@@ -31,23 +35,22 @@ new class extends Component implements HasForms {
                     ->dehydrated()
                     ->default(auth()?->user()?->id ?? null),
                 Filament\Forms\Components\Textarea::make('message')
-                    ->placeholder(function(){
+                    ->placeholder(function () {
                         $user = auth()->user();
                         return __('What\'s on your mind, :first_name?', ['first_name' => $user->first_name]);
                     })
                     ->lazy()
                     ->rows(10)
                     ->extraAttributes([
-                       'class'=>'livefeed'
+                        'class' => 'livefeed'
                     ])
-//                ->autosize()
+                    //                ->autosize()
                     ->autofocus()
                     ->maxLength(length: 500)
                     ->hiddenLabel()
-                ->live(debounce: 500)
-                ,
+                    ->live(debounce: 500),
                 \Filament\Forms\Components\Placeholder::make('character_count')
-                    ->content(function (Get $get){
+                    ->content(function (Get $get) {
                         $message = $get('message');
                         $count = strlen($message);
                         $remaining = 500 - $count;
@@ -58,34 +61,33 @@ new class extends Component implements HasForms {
 
                                 <div class="text-right text-xs">
                                     <span class="text-xs font-semibold inline-block text-primary-600" id="character-count">
-                                        '.$count.'/500
+                                        ' . $count . '/500
                                     </span>
                                 </div>
                             </div>
                             <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-gray-200">
-                                <div style="width:'.($count/500)*100 .'%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-warning-600"></div>
+                                <div style="width:' . ($count / 500) * 100 . '%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-warning-600"></div>
                             </div>
                         </div>
 
                         ');
-
                     })
-//                    ->content(function (Get $get){
-//                        $message = $get('message');
-//                        $count = strlen($message);
-//                        $remaining = 500 - $count;
-//                        return "Characters remaining: $remaining";
-//                    })
-//                    ->extraAttributes(function(Get $get){
-//                        $message = $get('message');
-//                        $count = strlen($message);
-//                        $remaining = 500 - $count;
-//                        return [
-//                            'class' =>  $remaining < 10 ? 'text-red-500 character-count' : 'text-gray-500 character-count',
-//
-//                        ];
-//                    })
-                ->hiddenLabel(),
+                    //                    ->content(function (Get $get){
+                    //                        $message = $get('message');
+                    //                        $count = strlen($message);
+                    //                        $remaining = 500 - $count;
+                    //                        return "Characters remaining: $remaining";
+                    //                    })
+                    //                    ->extraAttributes(function(Get $get){
+                    //                        $message = $get('message');
+                    //                        $count = strlen($message);
+                    //                        $remaining = 500 - $count;
+                    //                        return [
+                    //                            'class' =>  $remaining < 10 ? 'text-red-500 character-count' : 'text-gray-500 character-count',
+                    //
+                    //                        ];
+                    //                    })
+                    ->hiddenLabel(),
                 Filament\Forms\Components\SpatieMediaLibraryFileUpload::make('attachment')
                     ->collection('livefeed_images')
                     ->hiddenLabel()
@@ -124,69 +126,89 @@ new class extends Component implements HasForms {
 
             $this->form->fill();
 
-            $this->dispatch('livefeed-created');
+            $ownerOfLivefeed = $record->user;
+            // $this->dispatch('livefeed-created');
 
+            $admins = User::role(['super_admin', 'admin'])->get();
             \Filament\Notifications\Notification::make('Livefeed created successfully!')
                 ->success()
                 ->title('Success')
                 ->body('The livefeed has been posted successfully.')
                 ->send();
+            Notification::make('new live feed posted')
+                ->info()
+                ->title('New Live Feed')
+                ->body('A new live feed has been posted by ' . $ownerOfLivefeed->name . '. ')
+                ->actions([
+                    Action::make('View Livefeed')
+                        ->url(route('filament.admin.pages.livefeed'))
+                        ->color('primary')
+                        ->button(),
+                    Action::make('mark-as-read')
+                        ->label('Mark as Read')
+                        ->icon('heroicon-o-check-circle')
+                        ->markAsRead(),
+                    Action::make('mark-as-unread')
+                        ->label('Mark as Unread')
+                        ->icon('heroicon-o-arrow-uturn-up')
+                        ->markAsUnread(),
+                ])
+                ->sendToDatabase($admins);
         }
-
     }
 }; ?>
 
 <div class="mt-24">
     <form wire:submit="store">
-       
+
         {{ $this->form }}
 
-        <x-input-error :messages="$errors->get('message')" class="mt-2"/>
+        <x-input-error :messages="$errors->get('message')" class="mt-2" />
         <x-primary-button class="mt-4 bg-primary-700 hover:bg-primary-500">{{ __('Post') }}</x-primary-button>
     </form>
-    <livewire:livefeeds.list/>
+    <livewire:livefeeds.list />
 
 </div>
 {{--<script>--}}
-{{--    document.addEventListener('DOMContentLoaded', function () {--}}
-{{--    let textarea = document.querySelector('.livefeed');--}}
-{{--    let characterCount = document.getElementById('character-count');--}}
-{{--    let progressBar = document.querySelector('#progress-bar .shadow-none');--}}
+{{-- document.addEventListener('DOMContentLoaded', function () {--}}
+{{-- let textarea = document.querySelector('.livefeed');--}}
+{{-- let characterCount = document.getElementById('character-count');--}}
+{{-- let progressBar = document.querySelector('#progress-bar .shadow-none');--}}
 
-{{--    if (!textarea) {--}}
-{{--        console.error("Textarea element with class 'livefeed' not found.");--}}
-{{--        return;--}}
-{{--    }--}}
+{{-- if (!textarea) {--}}
+{{-- console.error("Textarea element with class 'livefeed' not found.");--}}
+{{-- return;--}}
+{{-- }--}}
 
-{{--    textarea.addEventListener('input', function () {--}}
-{{--        let message = textarea.value;--}}
-{{--        if (typeof message !== 'string') {--}}
-{{--            message = '';--}}
-{{--            console.error('message is not a string:', message);--}}
-{{--        }--}}
+{{-- textarea.addEventListener('input', function () {--}}
+{{-- let message = textarea.value;--}}
+{{-- if (typeof message !== 'string') {--}}
+{{-- message = '';--}}
+{{-- console.error('message is not a string:', message);--}}
+{{-- }--}}
 
-{{--        let count = message.length;--}}
-{{--        let remaining = 500 - count;--}}
+{{-- let count = message.length;--}}
+{{-- let remaining = 500 - count;--}}
 
-{{--        characterCount.textContent = count + '/500';--}}
-{{--        progressBar.style.width = (count / 500) * 100 + '%';--}}
+{{-- characterCount.textContent = count + '/500';--}}
+{{-- progressBar.style.width = (count / 500) * 100 + '%';--}}
 
-{{--        if (remaining < 20) {--}}
-{{--            if (!progressBar.classList.contains('bg-red-500')) {--}}
-{{--                progressBar.classList.remove('bg-warning-600', 'bg-blue-600');--}}
-{{--                progressBar.classList.add('bg-red-500');--}}
-{{--            }--}}
-{{--        } else if (remaining < 50) {--}}
-{{--            if (!progressBar.classList.contains('bg-warning-600')) {--}}
-{{--                progressBar.classList.remove('bg-red-500', 'bg-blue-600');--}}
-{{--                progressBar.classList.add('bg-warning-600');--}}
-{{--            }--}}
-{{--        } else {--}}
-{{--            if (!progressBar.classList.contains('bg-blue-600')) {--}}
-{{--                progressBar.classList.remove('bg-red-500', 'bg-warning-600');--}}
-{{--                progressBar.classList.add('bg-blue-600');--}}
-{{--            }--}}
-{{--        }--}}
-{{--    });--}}
+{{-- if (remaining < 20) {--}}
+{{-- if (!progressBar.classList.contains('bg-red-500')) {--}}
+{{-- progressBar.classList.remove('bg-warning-600', 'bg-blue-600');--}}
+{{-- progressBar.classList.add('bg-red-500');--}}
+{{-- }--}}
+{{-- } else if (remaining < 50) {--}}
+{{-- if (!progressBar.classList.contains('bg-warning-600')) {--}}
+{{-- progressBar.classList.remove('bg-red-500', 'bg-blue-600');--}}
+{{-- progressBar.classList.add('bg-warning-600');--}}
+{{-- }--}}
+{{-- } else {--}}
+{{-- if (!progressBar.classList.contains('bg-blue-600')) {--}}
+{{-- progressBar.classList.remove('bg-red-500', 'bg-warning-600');--}}
+{{-- progressBar.classList.add('bg-blue-600');--}}
+{{-- }--}}
+{{-- }--}}
+{{-- });--}}
 {{--});--}}
 {{--</script>--}}

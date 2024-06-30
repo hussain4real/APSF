@@ -84,7 +84,7 @@
                 </small>
             </div>
             <div class="px-2 text-gray-700 dark:text-gray-200 text-sm">
-                <div class="line-clamp-4 overflow-hidden text-justify leading-tight tracking-tight">
+                <div class="line-clamp-4 overflow-hidden text-justify leading-tight tracking-tight ">
                     {!! $getRecord()->description !!}
                 </div>
             </div>
