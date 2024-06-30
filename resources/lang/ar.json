@@ -93,5 +93,19 @@
     "Transaction Failed": "فشلت العملية",
     "We could not process your transaction": "لم نتمكن من معالجة عمليتك",
     "Notice": "إشعار",
-    "pending": "قيد الانتظار"
+    "pending": "قيد الانتظار",
+    "approved": "وافق",
+    "rejected": "مرفوض",
+    "verified": "تم التحقق",
+    "unverified": "غير مؤكد",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "suspended": "معلق",
+    "full-time": "بدوام كامل",
+    "part-time": "بدوام جزئي",
+    "contract": "عقد",
+    "temporary": "مؤقت",
+    "remote": "عن بعد",
+    "unavailable": "غير متوفر",
+    "other": "آخر"
 }
