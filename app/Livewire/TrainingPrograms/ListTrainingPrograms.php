@@ -30,6 +30,7 @@ use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
 use Filament\Tables\Actions\Action as ActionsAction;
 use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
@@ -166,6 +167,8 @@ class ListTrainingPrograms extends Component implements HasForms, HasTable
                                 ->searchable(),
                             Tables\Columns\TextColumn::make('duration')
                                 ->searchable(),
+                                TextColumn::make('description')
+                                ->label(__('Description')),
                             Tables\Columns\TextColumn::make('cost')
                                 ->money()
                                 ->sortable(),

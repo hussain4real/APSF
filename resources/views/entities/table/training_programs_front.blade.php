@@ -49,6 +49,13 @@
         font-size: 1.2rem !important;
 
     }
+
+    .custom-line-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 </style>
 <div class="max-w-full bg-white dark:bg-slate-700 rounded-lg text-gray-900 dark:text-gray-200 overflow-hidden ">
     <a href="{{route('training-programs.show', $getRecord()->id)}}">
@@ -76,10 +83,16 @@
                     {{$getRecord()->duration}}
                 </small>
             </div>
+            <div class="px-2 text-gray-700 dark:text-gray-200 text-sm">
+                <div class="line-clamp-4 overflow-hidden text-justify leading-tight tracking-tight">
+                    {!! $getRecord()->description !!}
+                </div>
+            </div>
 
-            <p class="text-justify px-2 leading-tight tracking-tight text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
-                {{$getRecord()->description}}
-            </p>
+
+            <!-- <p class="text-justify px-2 leading-tight tracking-tight text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
+                {{ $getRecord()->description }}
+            </p> -->
         </div>
         <div class="flex items-center justify-center flex-wrap gap-2 px-2 pb-2">
             <span class="bg-{{ $getRecord()->status->getColor() }}-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">

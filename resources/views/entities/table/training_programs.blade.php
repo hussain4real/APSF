@@ -28,11 +28,16 @@
 
 
     </div>
-    <div class="mb-2">
+    <div class="px-2 text-gray-700 dark:text-gray-200 text-sm mb-2">
+        <div class="line-clamp-4 overflow-hidden text-justify leading-tight tracking-tight">
+            {!! $getRecord()->description !!}
+        </div>
+    </div>
+    <!-- <div class="mb-2">
         <p class="text-justify px-2 leading-tight tracking-tight text-gray-700 dark:text-gray-200 text-sm line-clamp-3">
             {{$getRecord()->description}}
         </p>
-    </div>
+    </div> -->
     <div class="flex items-center justify-center flex-wrap gap-2 px-2 pb-2">
         <span class="bg-{{ $getRecord()->status->getColor() }}-600 rounded-full px-2 py-1 text-xs font-semibold text-gray-100 shadow-md">
             {{$getRecord()->status}}
