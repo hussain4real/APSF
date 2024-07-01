@@ -64,7 +64,7 @@ class ViewSchool extends ViewRecord
 
                         Group::make([
 
-                            TextEntry::make('name')
+                            TextEntry::make('school_name')
                                 ->label(__('School Name'))
                                 ->icon('heroicon-o-building-office-2')
                                 ->iconColor('primary'),
