@@ -127,7 +127,7 @@ new class extends Component implements HasForms
             $this->form->fill();
 
             $ownerOfLivefeed = $record->user;
-            // $this->dispatch('livefeed-created');
+            $this->dispatch('livefeed-created');
 
             $admins = User::role(['super_admin', 'admin'])->get();
             \Filament\Notifications\Notification::make('Livefeed created successfully!')
@@ -140,7 +140,7 @@ new class extends Component implements HasForms
                 ->title('New Live Feed')
                 ->body('A new live feed has been posted by ' . $ownerOfLivefeed->name . '. ')
                 ->actions([
-                    Action::make('View Livefeed')
+                    Action::make('View')
                         ->url(route('filament.admin.pages.livefeed'))
                         ->color('primary')
                         ->button(),
