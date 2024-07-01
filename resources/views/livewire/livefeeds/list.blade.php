@@ -71,7 +71,7 @@ new
                             <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                         @endunless
                     </div>
-                    @if ($livefeed->user->is(auth()->user()) || auth()->user()->can('delete', $livefeed))
+                    @if ($livefeed->user->is(auth()->user()) || auth()?->user()?->can('delete', $livefeed))
                         <x-dropdown >
                             <x-slot name="trigger">
                                 <button>
