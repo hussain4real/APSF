@@ -48,9 +48,9 @@ new
     }
 }; ?>
 
-<div class="mt-6 bg-white shadow-sm rounded-lg divide-y w-full">
+<div class="mt-6 bg-white shadow-sm rounded-lg divide-y w-full ">
     @foreach ($livefeeds as $livefeed)
-        <div class="p-6 flex space-x-2 overflow-scroll text-wrap" wire:key="{{ $livefeed->id }}">
+        <div class="min-h-[10rem] p-6 flex space-x-2 overflow-scroll text-wrap" wire:key="{{ $livefeed->id }}">
             <img src="{{ $livefeed->user->profile_photo_url }}" alt="{{ $livefeed->user->name }}"
                 class="w-12 h-12 rounded-full object-cover">
 {{--            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none"--}}
@@ -71,8 +71,8 @@ new
                             <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                         @endunless
                     </div>
-                    @if ($livefeed->user->is(auth()->user()))
-                        <x-dropdown>
+                    @if ($livefeed->user->is(auth()->user()) || auth()->user()->can('delete', $livefeed))
+                        <x-dropdown >
                             <x-slot name="trigger">
                                 <button>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400"
@@ -82,7 +82,7 @@ new
                                     </svg>
                                 </button>
                             </x-slot>
-                            <x-slot name="content">
+                            <x-slot name="content" >
                                 <x-dropdown-link wire:click="edit({{ $livefeed->id }})">
                                     {{ __('Edit') }}
                                 </x-dropdown-link>
