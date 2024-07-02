@@ -536,7 +536,7 @@ class Register extends BaseRegister
 
         event(new Registered($user));
         //
-        $this->sendEmailVerificationNotification($user);
+        // $this->sendEmailVerificationNotification($user);
         FacadesNotification::route('mail', 'info@arab-psf.com')
             ->notify(new \App\Notifications\NewMemberRegistration($user));
         // FacadesNotification::route('mail', 'aminuhussain22@gmail.com')
