@@ -87,7 +87,7 @@ new
                                     {{ __('Edit') }}
                                 </x-dropdown-link>
                                 <x-dropdown-link wire:click="delete({{ $livefeed->id }})"
-                                    wire:confirm="Are you sure to delete this chirp?">
+                                    wire:confirm.prompt="Are you sure to delete this chirp?\n\nType YES to confirm|YES">
                                     {{ __('Delete') }}
                                 </x-dropdown-link>
                             </x-slot>
