@@ -1,6 +1,6 @@
 <x-home-layout>
 
-   <!-- Team area start -->
+    <!-- Team area start -->
     <section class="portfolio__service service-v5 pt-140 pb-140">
         <div class="container">
             <div class="row">
@@ -13,16 +13,16 @@
                     @foreach($boardOfTrusteesModel as $boardOfTrustees)
 
 
-                            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 hello-trouble">
-                                <div class="portfolio__service-item ">
-                                    <a href="{{route('board-of-trustee.show',$boardOfTrustees)}}">
-                                    @if($boardOfTrustees->media->isNotEmpty())
-                                    <img src="{{$boardOfTrustees->media->first()->getUrl()}}" width="80%" alt="">
-                                    @endif
-                                    <h3 class="ps-title mt-4">{{__($boardOfTrustees->name)}}</h3>
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-4 hello-trouble">
+                        <div class="portfolio__service-item ">
+                            <a href="#">
+                                @if($boardOfTrustees->media->isNotEmpty())
+                                <img src="{{$boardOfTrustees->media->first()->getUrl()}}" width="80%" alt="">
+                                @endif
+                                <h3 class="ps-title mt-4">{{__($boardOfTrustees->name)}}</h3>
+                            </a>
+                        </div>
+                    </div>
 
                     @endforeach
                 </div>
