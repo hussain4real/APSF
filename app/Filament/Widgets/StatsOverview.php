@@ -48,9 +48,11 @@ class StatsOverview extends BaseWidget
         }
 
         return static::$totalInstiutions = Cache::remember('total.instiutions.count', now()->addMinutes(30), function () {
+            //user has many schools
             return User::query()
                 ->whereHas('schools')
-                ->whereHas('trainingProvider')
+                ->orWhereHas('educationalConsultant')
+                ->orWhereHas('trainingProvider')
                 ->count();
         });
     }
