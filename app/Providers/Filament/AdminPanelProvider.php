@@ -100,7 +100,7 @@ class AdminPanelProvider extends PanelProvider
                     })
                     ->icon('heroicon-o-user-circle'),
             ])
-            ->emailVerification(EmailVerificationPrompt::class)
+            ->emailVerification()
             ->passwordReset()
             ->colors([
                 'primary' => Color::Orange,
@@ -204,6 +204,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->authGuard('web')
             ->assets([
                 // Css::make('style', 'css/chatify/style.css'),
                 // Js::make('code', 'public/js/chatify/code.js'),
